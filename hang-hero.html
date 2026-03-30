@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hang Hero Shark Tank Update – Shark Tank Season 17 | Shark Tank Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="page-styles.css">
+    <link rel="stylesheet" href="auth-styles.css">
+    <link rel="stylesheet" href="article-styles.css">
+    <style>
+        /* Ad Slot Styles for Article Page */
+        .ad-slot {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--font-body);
+            color: #999;
+            font-size: 12px;
+            letter-spacing: .5px;
+            position: relative;
+        }
+        .ad-slot-label {
+            position: absolute;
+            top: 4px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: #bcbfc5;
+            z-index: 1;
+        }
+        .ad-slot.demo-ad {
+            background: linear-gradient(135deg, #f7f7f7, #ececec);
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            min-height: 90px;
+            position: relative;
+        }
+        .ad-slot.demo-ad .ad-dim {
+            color: #bbb;
+            font-size: 11px;
+        }
+        .ad-inline {
+            margin: 28px 0;
+            text-align: center;
+        }
+        .ad-inline .ad-slot {
+            width: 100%;
+            min-height: 250px;
+            background: linear-gradient(135deg, #f7f7f7, #ececec);
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+        }
+        .ad-sidebar-rect .ad-slot {
+            width: 300px;
+            height: 250px;
+            background: linear-gradient(135deg, #f7f7f7, #ececec);
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            margin: 0 auto;
+        }
+        .ad-sidebar-sky .ad-slot {
+            width: 300px;
+            height: 600px;
+            background: linear-gradient(135deg, #f7f7f7, #ececec);
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+            margin: 0 auto;
+        }
+        .ad-leaderboard-article {
+            max-width: 100%;
+            margin: 28px 0;
+            text-align: center;
+        }
+        .ad-leaderboard-article .ad-slot {
+            width: 100%;
+            height: 90px;
+            background: linear-gradient(135deg, #f7f7f7, #ececec);
+            border: 1px solid #e0e0e0;
+            border-radius: 4px;
+        }
+        /* Sticky bottom bar */
+        .ad-sticky-bottom {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1a1d24, #2c3e50);
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            z-index: 998;
+            box-shadow: 0 -2px 12px rgba(0,0,0,.2);
+            font-size: 14px;
+            color: #ccc;
+        }
+        .ad-sticky-bottom .sticky-text { font-weight: 400; }
+        .ad-sticky-bottom .sticky-cta {
+            background: var(--cyan);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 6px;
+            font-weight: 700;
+            font-size: 13px;
+            cursor: pointer;
+            transition: background .2s;
+            border: none;
+            font-family: var(--font-body);
+        }
+        .ad-sticky-bottom .sticky-cta:hover { background: var(--cyan-hover); }
+        .ad-sticky-bottom .sticky-close {
+            background: none;
+            border: none;
+            color: #888;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 4px 8px;
+        }
+        .ad-sticky-bottom .sticky-close:hover { color: #fff; }
+        .ad-sticky-bottom.hidden { display: none; }
+        .scroll-top { bottom: 65px; }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="main-nav" id="mainNav">
+        <div class="container nav-inner">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <img src="assets/images/logo.svg" alt="The Shark Tank Blog" width="60" height="50">
+                </a>
+                <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="episodes.html">Shark Tank Episodes</a></li>
+                    <li><a href="products.html">Shark Tank Products</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="startup-list.html">Shark Tank Startup List</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <button class="search-toggle" id="searchToggle" aria-label="Search">
+                    <i class="fa fa-search"></i>
+                </button>
+                <a href="#" class="btn-contact">Contact Us</a>
+                <div class="social-icons">
+                    <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="search-box" id="searchBox">
+                <input type="text" placeholder="Search...">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Layout: Content + Sidebar -->
+    <div class="article-layout">
+        <main class="article-content">
+            <!-- Article Header -->
+            <article class="article-post">
+                <h1 class="article-title">Hang Hero Shark Tank Update &ndash; Shark Tank Season 17</h1>
+                <p class="article-excerpt">A simple household task turned into a full-blown Shark Tank Season 17, Episode 15 moment but could Hang Hero really nail a deal?</p>
+
+                <div class="article-author-bar">
+                    <div class="author-avatar-lg"></div>
+                    <span>By <a href="#" class="author-link">Liya Shanawas</a></span>
+                </div>
+
+                <!-- Featured Image -->
+                <figure class="article-featured-img">
+                    <img src="assets/images/hang-hero-pitch.svg" alt="Michael and Ana Van Horst pitching Hang Hero on Shark Tank">
+                    <figcaption>Michael and Ana Van Horst pitching Hang Hero on Shark Tank (Image Credit: ABC)</figcaption>
+                </figure>
+
+                <!-- Intro paragraph -->
+                <p>Hanging a picture sounds easy, until it is not. You get frames that are crooked with too many holes in the wall. Then you look for tools. This makes it one of those things that people put off, because it is frustrating. That's where Hang Hero came in.</p>
+
+                <!-- AD: After intro -->
+                <div class="ad-inline">
+                    <div class="ad-slot demo-ad">
+                        <span class="ad-slot-label">Advertisement</span>
+                        <span class="ad-dim">Display Ad &mdash; 728&times;90</span>
+                    </div>
+                </div>
+
+                <!-- Table of Contents -->
+                <div class="toc-box">
+                    <div class="toc-header">
+                        <span class="toc-icon"><i class="fas fa-list"></i></span>
+                        <h3>Contents</h3>
+                        <button class="toc-toggle" aria-label="Toggle contents"><i class="fa fa-chevron-up"></i></button>
+                    </div>
+                    <div class="toc-body">
+                        <div class="toc-columns">
+                            <div class="toc-col">
+                                <a href="#about"><span class="toc-num">1</span> About Hang Hero</a>
+                                <a href="#pitch"><span class="toc-num">2</span> Hang Hero Shark Tank Pitch</a>
+                                <a href="#unique"><span class="toc-num">3</span> What Makes Hang Hero Unique?</a>
+                                <a href="#deal"><span class="toc-num">4</span> Did Hang Hero Get a Deal on Shark Tank?</a>
+                            </div>
+                            <div class="toc-col">
+                                <a href="#update"><span class="toc-num">5</span> Hang Hero Shark Tank Update</a>
+                                <a href="#buy"><span class="toc-num">6</span> Where Can You Buy It?</a>
+                                <a href="#summary"><span class="toc-num">7</span> Quick Summary</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AD: After TOC -->
+                <div class="ad-inline">
+                    <div class="ad-slot demo-ad">
+                        <span class="ad-slot-label">Advertisement</span>
+                        <span class="ad-dim">Display Ad &mdash; 300&times;250</span>
+                    </div>
+                </div>
+
+                <p>It is a tool designed to simplify picture hanging completely. Michael Van Horst and Ana Van Horst asked for $150,000 for 10% equity. They promised a faster, cleaner, and easier way to get it done in Shark Tank Season 17, Episode 15. But would the Sharks buy into it?</p>
+
+                <!-- AD: Mid-content -->
+                <div class="ad-inline">
+                    <div class="ad-slot demo-ad">
+                        <span class="ad-slot-label">Advertisement</span>
+                        <span class="ad-dim">Display Ad &mdash; 300&times;250</span>
+                    </div>
+                </div>
+
+                <!-- About Hang Hero Table -->
+                <h2 id="about">About Hang Hero</h2>
+                <table class="info-table">
+                    <thead>
+                        <tr>
+                            <th>Category</th>
+                            <th>Details</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Business Name</td><td>Hang Hero</td></tr>
+                        <tr><td>Founder</td><td>Michael Van Horst, Ana Van Horst</td></tr>
+                        <tr><td>Industry</td><td>Home Improvement</td></tr>
+                        <tr><td>Product</td><td>Picture-hanging tool with built-in leveling and nail insertion</td></tr>
+                        <tr><td>Funding (Pre-Shark Tank)</td><td>Self-funded</td></tr>
+                        <tr><td>Investment Asked</td><td>$150,000 for 10% equity</td></tr>
+                        <tr><td>Deal Status</td><td>Deal secured</td></tr>
+                        <tr><td>Deal Outcome</td><td>$150,000 for 25% equity</td></tr>
+                        <tr><td>Valuation</td><td>$1.5 Million (based on ask)</td></tr>
+                    </tbody>
+                </table>
+
+                <!-- AD: After table -->
+                <div class="ad-inline">
+                    <div class="ad-slot demo-ad">
+                        <span class="ad-slot-label">Advertisement</span>
+                        <span class="ad-dim">Display Ad &mdash; 728&times;90</span>
+                    </div>
+                </div>
+
+                <p>Michael's idea came from his time in real estate. He noticed his clients would leave pictures leaning against walls simply because they didn't want to hang them.</p>
+
+                <p>Michael and Ana built Hang Hero from the ground up, balancing full-time work. Ana even shared how she works at a doctor's office during the day and then helps fulfill orders at night.</p>
+
+                <p>Their journey wasn't smooth. At first, they licensed it, earning $0.40 for each. After a while, Michael and Ana realized they were not making as much money as they could, so they decided to take Hang Hero back and do it themselves.</p>
+
+                <p>This change was a deal, but it also meant they had to start over with Hang Hero.</p>
+
+                <!-- AD: Mid-article -->
+                <div class="ad-inline">
+                    <div class="ad-slot demo-ad">
+                        <span class="ad-slot-label">Advertisement</span>
+                        <span class="ad-dim">Display Ad &mdash; 300&times;250</span>
+                    </div>
+                </div>
+
+                <p>Hang Hero is designed to remove the hassle from hanging items on walls. To hang something, you just put the nail into a slot that has a magnet. Then line up the level and push the handle. The nail will go into the wall without a hammer.</p>
+
+                <p>Hang Hero works well for picture frames, clocks, or small things you want to decorate with. It can also hold nails at different angles if needed.</p>
+
+                <!-- Pitch Section -->
+                <h2 id="pitch">Hang Hero Shark Tank Pitch</h2>
+
+                <p>The pitch started with a relatable skit between Michael and Ana, showing how frustrating picture hanging can be. It quickly turned humorous, with Kevin O'Leary joking that they had won the "bad theater award," while <a href="#">Lori Greiner</a> called it the "best picture award."</p>
+
+                <hr class="article-divider">
+
+                <!-- AD: Before numbers -->
+                <div class="ad-inline">
+                    <div class="ad-slot demo-ad">
+                        <span class="ad-slot-label">Advertisement</span>
+                        <span class="ad-dim">Display Ad &mdash; 728&times;90</span>
+                    </div>
+                </div>
+
+                <p>But things got awkward when the product demo didn't work on the first try. The founders reset and demonstrated it again, this time successfully showing how simple the tool could be.</p>
+
+                <p>The Sharks were intrigued by the concept and even more impressed by the patents, four in total, including utility and design protections.</p>
+
+                <p>Then came the numbers. Sales were $240,000 in 2020. They grew to $851,000 by 2024. In 2025, sales revenue fell sharply to $40,000. This happened after they took back control from licensing deals. Sales dropped a lot.</p>
+
+                <p>That sudden drop raised concerns. <a href="#">Kevin O'Leary</a> and Daymond John both pointed out that the business had essentially reset.</p>
+
+                <p>Still, the founders explained their long-term vision of moving from small royalties to full ownership and higher margins.</p>
+
+                <!-- Video Embed Placeholder -->
+                <figure class="article-video">
+                    <div class="video-placeholder">
+                        <img src="assets/images/hang-hero-video.svg" alt="Hang Hero Pitch on Shark Tank">
+                        <div class="video-play-overlay">
+                            <div class="play-btn"><i class="fas fa-play"></i></div>
+                        </div>
+                        <div class="video-yt-bar">
+                            <span>Watch on</span>
+                            <i class="fab fa-youtube"></i> YouTube
+                        </div>
+                    </div>
+                </figure>
+
+                <!-- AD: After video -->
+                <div class="ad-inline">
+                    <div class="ad-slot demo-ad">
+                        <span class="ad-slot-label">Advertisement</span>
+                        <span class="ad-dim">Display Ad &mdash; 300&times;250</span>
+                    </div>
+                </div>
+
+                <!-- What Makes Unique -->
+                <h2 id="unique">What Makes Hang Hero Unique?</h2>
+                <p>What makes Hang Hero stand out is how it simplifies a task most people avoid altogether.</p>
+                <ul class="article-list">
+                    <li>Combines leveling and nail insertion in one tool</li>
+                    <li>No hammer, measuring, or extra tools required</li>
+                    <li>Designed for anyone to use, from beginners to homeowners</li>
+                </ul>
+
+                <!-- Deal Section -->
+                <h2 id="deal">Did Hang Hero Get a Deal on Shark Tank?</h2>
+                <p>Most sharks loved the product but hesitated on the business.</p>
+
+                <p><a href="#">Rashaun Williams</a> liked the story but said it wasn't his type of investment.</p>
+
+                <p>Kevin O'Leary thought the company was not ready yet.</p>
+
+                <p><a href="#">Barbara Corcoran</a> and Lori Greiner decided not to invest. They liked the founders and their presentation.</p>
+
+                <p>That left Daymond John. He connected with the problem because he remembered being a kid and having trouble hanging pictures. Despite saying it wasn't his usual space, he saw potential.</p>
+
+                <p><a href="#">Daymond John</a> said he would put in $150,000 in exchange for 25% of the company. The founders wanted to give him 20%. Daymond John refused to change his offer. He believed he could save them money on marketing and logistics.</p>
+
+                <p>They accepted the deal and called it "life-changing."</p>
+
+                <!-- AD: After deal -->
+                <div class="ad-inline">
+                    <div class="ad-slot demo-ad">
+                        <span class="ad-slot-label">Advertisement</span>
+                        <span class="ad-dim">Display Ad &mdash; 728&times;90</span>
+                    </div>
+                </div>
+
+                <!-- Update Section -->
+                <h2 id="update">Hang Hero Shark Tank Update</h2>
+                <p>After the show, Hang Hero got a lot of attention online. They had 1.5 to 4 million views on TikTok. The founders are now trying to get things going again. They had stopped signing licensing deals.</p>
+
+                <p>Now Hang Hero wants to make money and be in charge. They are using the internet to advertise and sell things directly to people.</p>
+
+                <p>The big problem is now getting back to where they used to be financially while still making a profit.</p>
+
+                <!-- Where to Buy -->
+                <h2 id="buy">Where Can You Buy It?</h2>
+                <p>Hang Hero is available on the internet and their <a href="#">official website</a>.</p>
+
+                <p>As people learn about the product, it will likely be sold in big stores and on TV shopping channels again, making it even more widely available to everyone. Follow their <a href="#">TikTok</a> for more updates.</p>
+
+                <!-- Quick Summary -->
+                <h2 id="summary">Quick Summary</h2>
+                <ul class="article-list">
+                    <li>Hang Hero simplifies picture hanging with a built-in leveling and nail system</li>
+                    <li>The founders secured a $150K deal from Daymond John for 25% equity</li>
+                    <li>Despite a sales drop, the Sharks saw potential in rebuilding the brand</li>
+                </ul>
+
+                <p>Hang Hero's pitch had humor, heart, and a bit of chaos, but in the end, it landed exactly where it needed to.</p>
+
+                <p>Curious about other businesses from Shark Tank Season 17 Episode 15? Explore more founder stories and deals to see which ideas made waves and which ones missed the mark.</p>
+
+                <!-- AD: Before related -->
+                <div class="ad-inline">
+                    <div class="ad-slot demo-ad">
+                        <span class="ad-slot-label">Advertisement</span>
+                        <span class="ad-dim">Display Ad &mdash; 728&times;90</span>
+                    </div>
+                </div>
+
+                <!-- Related Article Link -->
+                <div class="article-nav-links">
+                    <span class="nav-link-label">Next</span>
+                    <a href="#">R1SE Shark Tank</a>
+                </div>
+
+                <hr class="article-divider">
+
+                <!-- Related Posts -->
+                <div class="related-posts-list">
+                    <ul>
+                        <li><a href="#">Hele Outdoors Shark Tank</a></li>
+                        <li><a href="#">Everything Blocks Shark Tank</a></li>
+                    </ul>
+                </div>
+
+                <hr class="article-divider">
+
+                <!-- Author Bio -->
+                <div class="author-bio-box">
+                    <div class="author-bio-avatar"></div>
+                    <div class="author-bio-info">
+                        <div class="author-bio-top">
+                            <span>By <a href="#" class="author-link">Liya Shanawas</a> <i class="fas fa-check-circle" style="color:#00bcd4;font-size:12px"></i></span>
+                            <span class="author-follow">Follow: <a href="#"><i class="fab fa-linkedin-in"></i></a></span>
+                        </div>
+                        <p>Liya Shanawas is a writer, editor, and brand strategist whose work has appeared in major publications, including The New York Times, HuffPost, Vogue, InStyle, Khaleej Times, and HelloGiggles. She previously served as a features editor at Dua Lipa's editorial platform Service95 and has written widely on culture, fashion, business, and lifestyle. With a background in journalism, storytelling, and brand strategy, Liya writes about business, culture, and innovation, bringing clarity and perspective to modern ideas and emerging trends.</p>
+                    </div>
+                </div>
+
+            </article>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="article-sidebar">
+            <!-- Search Widget -->
+            <div class="sidebar-widget sidebar-search">
+                <div class="sidebar-search-box">
+                    <input type="text" placeholder="Search Headlines, News...">
+                    <span class="search-divider"></span>
+                    <button type="submit">Search</button>
+                </div>
+            </div>
+
+            <!-- AD: Sidebar top -->
+            <div class="ad-sidebar-rect">
+                <div class="ad-slot demo-ad">
+                    <span class="ad-slot-label">Advertisement</span>
+                    <span class="ad-dim">Rectangle Ad &mdash; 300&times;250</span>
+                </div>
+            </div>
+
+            <!-- Recent Blogs -->
+            <div class="sidebar-widget">
+                <h3 class="sidebar-heading"><span class="heading-slash">/</span> Recent Blogs <span class="heading-slash">/</span></h3>
+                <div class="sidebar-post-list">
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/blog-jane-foodie.svg" alt="Jane Foodie"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">How Jane Foodie Turned a Lori Greiner Shark Tank Deal Into $1.2 Million in Sales</a></h4>
+                            <div class="sidebar-post-tags">
+                                <span>Business</span><span>Season 16</span>
+                            </div>
+                            <div class="sidebar-post-tags">
+                                <span>Shark Tank Season 16</span><span>Success Stories</span>
+                            </div>
+                            <div class="sidebar-post-tags">
+                                <span>The Shark Tank Effect</span>
+                            </div>
+                            <div class="sidebar-post-date">March 27, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/blog-1.svg" alt="ChompShop"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">How Mark Cuban and Lori Greiner's $250K Bet Turned a Kid-Safe Cutter into a Shark Tank Hit</a></h4>
+                            <div class="sidebar-post-tags">
+                                <span>Business</span><span>Season 16</span>
+                            </div>
+                            <div class="sidebar-post-tags">
+                                <span>Shark Tank Investors</span>
+                            </div>
+                            <div class="sidebar-post-tags">
+                                <span>Shark Tank Moments</span><span>Success Stories</span>
+                            </div>
+                            <div class="sidebar-post-date">March 27, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/blog-2.svg" alt="Shark Tank Statistics"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">Shark Tank Statistics: The Ultimate Breakdown</a></h4>
+                            <div class="sidebar-post-tags">
+                                <span>Business</span><span>Financing</span>
+                            </div>
+                            <div class="sidebar-post-tags">
+                                <span>The Shark Tank Effect</span>
+                            </div>
+                            <div class="sidebar-post-date">March 20, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/blog-3.svg" alt="Guest Shark Whiskey"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">How This Guest Shark Built a $1B Whiskey Empire from Scratch</a></h4>
+                            <div class="sidebar-post-tags">
+                                <span>Breaking News</span><span>Business</span><span>Season 17</span>
+                            </div>
+                            <div class="sidebar-post-tags">
+                                <span>Shark Tank Investors</span><span>Success Stories</span>
+                            </div>
+                            <div class="sidebar-post-date">March 18, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/herjavec.svg" alt="Robert Herjavec"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">How Robert Herjavec Spotted Shark Tank's Hidden Millionaires</a></h4>
+                            <div class="sidebar-post-tags">
+                                <span>Breaking News</span><span>Shark Tank Investors</span>
+                            </div>
+                            <div class="sidebar-post-tags">
+                                <span>Social Shark</span>
+                            </div>
+                            <div class="sidebar-post-date">March 18, 2026</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AD: Sidebar mid -->
+            <div class="ad-sidebar-rect">
+                <div class="ad-slot demo-ad">
+                    <span class="ad-slot-label">Advertisement</span>
+                    <span class="ad-dim">Rectangle Ad &mdash; 300&times;250</span>
+                </div>
+            </div>
+
+            <!-- Recent Shark Tank Pitches -->
+            <div class="sidebar-widget">
+                <h3 class="sidebar-heading">Recent Shark Tank Pitches</h3>
+                <div class="sidebar-post-list compact">
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/hang-hero-thumb.svg" alt="Hang Hero"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">Hang Hero Shark Tank Update &ndash; Shark Tank Season 17</a></h4>
+                            <div class="sidebar-post-date">March 27, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/r1se-thumb.svg" alt="R1SE"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">R1SE Shark Tank Update &ndash; Shark Tank Season 17</a></h4>
+                            <div class="sidebar-post-date">March 27, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/episode-s17e14.svg" alt="S17E14"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">Shark Tank Season 17 Episode 14</a></h4>
+                            <div class="sidebar-post-date">March 25, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/never-have-i-ever-thumb.svg" alt="Never Have I Ever"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">Never Have I Ever Shark Tank Update &ndash; Shark Tank Season 17</a></h4>
+                            <div class="sidebar-post-date">March 24, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/gob-thumb.svg" alt="GOB"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">GOB Shark Tank Update &ndash; Shark Tank Season 17</a></h4>
+                            <div class="sidebar-post-date">March 24, 2026</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AD: Sidebar skyscraper -->
+            <div class="ad-sidebar-sky">
+                <div class="ad-slot demo-ad">
+                    <span class="ad-slot-label">Advertisement</span>
+                    <span class="ad-dim">Skyscraper Ad &mdash; 300&times;600</span>
+                </div>
+            </div>
+
+            <!-- Popular Startups -->
+            <div class="sidebar-widget">
+                <h3 class="sidebar-heading">Popular Startups That Appeared on Shark Tank</h3>
+                <div class="sidebar-post-list compact">
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/r1se-thumb.svg" alt="R1SE"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">R1SE Shark Tank Update &ndash; Shark Tank Season 17</a></h4>
+                            <div class="sidebar-post-date">March 27, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/never-have-i-ever-thumb.svg" alt="Never Have I Ever"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">Never Have I Ever Shark Tank Update &ndash; Shark Tank Season 17</a></h4>
+                            <div class="sidebar-post-date">March 26, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/gob-thumb.svg" alt="GOB"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">GOB Shark Tank Update &ndash; Shark Tank Season 17</a></h4>
+                            <div class="sidebar-post-date">March 26, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/remplenish-thumb.svg" alt="REMplenish"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">REMplenish Shark Tank Update &ndash; Shark Tank Season 17</a></h4>
+                            <div class="sidebar-post-date">March 25, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/beer-girl-thumb.svg" alt="Beer Girl"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">Beer Girl Shark Tank Update &ndash; Shark Tank Season 17</a></h4>
+                            <div class="sidebar-post-date">March 25, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/hot-girl-soda-thumb.svg" alt="Hot Girl Soda"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">Hot Girl Soda Shark Tank Update &ndash; Shark Tank Season 17</a></h4>
+                            <div class="sidebar-post-date">March 16, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/clean-green-thumb.svg" alt="Clean Green Golf Balls"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">Clean Green Golf Balls Shark Tank Update &ndash; Shark Tank Season 17</a></h4>
+                            <div class="sidebar-post-date">March 16, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/nude-foods-thumb.svg" alt="Nude Foods Market"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">Nude Foods Market Shark Tank Update &ndash; Shark Tank Season 17</a></h4>
+                            <div class="sidebar-post-date">March 16, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/rip-tie-thumb.svg" alt="Rip Tie Hair"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">Rip Tie Hair Shark Tank Update &ndash; Shark Tank Season 17</a></h4>
+                            <div class="sidebar-post-date">March 16, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/cranel-thumb.svg" alt="Cranel"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">Cranel Shark Tank Update &ndash; Shark Tank Season 17</a></h4>
+                            <div class="sidebar-post-date">March 12, 2026</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AD: Sidebar bottom -->
+            <div class="ad-sidebar-rect" style="margin-top:24px">
+                <div class="ad-slot demo-ad">
+                    <span class="ad-slot-label">Advertisement</span>
+                    <span class="ad-dim">Rectangle Ad &mdash; 300&times;250</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="assets/images/footer-logo.svg" alt="The Shark Tank Blog" width="80" height="70">
+                        <span class="footer-logo-text">The Shark Tank Blog</span>
+                    </div>
+                    <p>Shark Tank Blog is independent of and not affiliated or endorsed by ABC, Sony, the producers or any other company associated with the television show, Shark Tank. Shark Tank Blog is an opinion blog. Views expressed on this blog are solely owned by the author individually and not that of Shark Tank Blog or principles of Shark Tank Blog.</p>
+                    <div class="social-icons footer-social">
+                        <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-x-twitter"></i></a>
+                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                </div>
+                <div class="footer-menu">
+                    <h4>Menu</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="episodes.html">Shark Tank Episodes</a></li>
+                        <li><a href="products.html">Shark Tank Products</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="startup-list.html">Shark Tank Businesses</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Subscribe to our Newsletter</h4>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Footer Bottom Bar -->
+    <div class="footer-bottom-bar">
+        <p>Information from your device can be used to personalize your ad experience.</p>
+        <p><a href="#">Do not sell or share my personal information.</a></p>
+        <p><a href="#">Terms of Content Use</a></p>
+        <p class="raptive-badge">A RAPTIVE PARTNER SITE</p>
+    </div>
+
+    <!-- Sticky bottom ad bar -->
+    <div class="ad-sticky-bottom" id="stickyAd">
+        <span class="sticky-text">Skip one coffee, go ads-free for a whole year. Just $20.</span>
+        <a href="subscribe.html" class="sticky-cta">Go Ads-Free</a>
+        <button class="sticky-close" onclick="document.getElementById('stickyAd').classList.add('hidden')">&times;</button>
+    </div>
+
+    <!-- Scroll to Top -->
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="go-ad-free.js" data-delay="1000" data-poll="3000" data-selectors=".demo-ad"></script>
+</body>
+</html>

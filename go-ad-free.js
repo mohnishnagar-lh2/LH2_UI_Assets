@@ -2,10 +2,10 @@
 "use strict";
 
 // ========== BRAND CONFIG ==========
-var P = "#00bcd4";     // Primary
-var PD = "#0097a7";    // Primary dark
-var PL = "#e0f7fa";    // Primary light
-var PT = "rgba(0,188,212,0.25)"; // Primary transparent
+var P = "#f5c518";     // Primary (yellow)
+var PD = "#d4a80e";    // Primary dark (darker yellow)
+var PL = "#fef9e7";    // Primary light (cream)
+var PT = "rgba(245,197,24,0.25)"; // Primary transparent
 
 var SITE_NAME = "Shark Tank Blog";
 var SITE_CAUSE = "Shark Tank coverage";
@@ -63,12 +63,12 @@ var styleEl = document.createElement('style');
 styleEl.textContent = `
 @keyframes gaf-fadeIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 @keyframes gaf-popIn{from{opacity:0;transform:scale(.94) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
-.gaf-bar{display:flex;align-items:center;justify-content:space-between;height:30px;padding:0 12px;background:linear-gradient(135deg,#1a2332,#1e3a4f);border-radius:6px 6px 0 0;cursor:pointer;animation:gaf-fadeIn .35s ease-out;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
+.gaf-bar{display:flex;align-items:center;justify-content:space-between;height:30px;padding:0 12px;background:linear-gradient(135deg,#1a1a1a,#2d2d2d);border-radius:6px 6px 0 0;cursor:pointer;animation:gaf-fadeIn .35s ease-out;box-sizing:border-box;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif}
 .gaf-bar.narrow{justify-content:center;height:28px}
 .gaf-bar-left{display:flex;align-items:center;gap:8px}
-.gaf-sparkle{width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,${P},${PD});flex-shrink:0}
+.gaf-sparkle{width:16px;height:16px;border-radius:50%;background:linear-gradient(135deg,${P},${PD});flex-shrink:0;border:1.5px solid rgba(255,255,255,.15)}
 .gaf-bar-text{font-size:11.5px;color:rgba(255,255,255,.7);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.gaf-cta{display:inline-flex;align-items:center;gap:4px;padding:4px 14px;background:linear-gradient(135deg,${P},${PD});color:#fff;font-size:11px;font-weight:700;border-radius:20px;white-space:nowrap;box-shadow:0 2px 8px ${PT};transition:transform .15s,box-shadow .15s}
+.gaf-cta{display:inline-flex;align-items:center;gap:4px;padding:4px 14px;background:linear-gradient(135deg,${P},${PD});color:#111;font-size:11px;font-weight:700;border-radius:20px;white-space:nowrap;box-shadow:0 2px 8px ${PT};transition:transform .15s,box-shadow .15s}
 .gaf-cta:hover{transform:scale(1.06);box-shadow:0 4px 14px ${PT}}
 .gaf-cta:active{transform:scale(.96)}
 .gaf-cta-arrow{transition:transform .15s;display:inline-block}
@@ -91,7 +91,7 @@ styleEl.textContent = `
 .gaf-preset.active{border-color:${P};background:${PL};color:${PD}}
 .gaf-preset .pop-label{position:absolute;top:-8px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:700;color:${P};background:#fff;padding:0 6px;border:1px solid ${P};border-radius:8px;white-space:nowrap}
 .gaf-perk{text-align:center;font-size:13px;color:${P};font-weight:600;margin-bottom:16px}
-.gaf-main-cta{width:100%;padding:15px;border:none;border-radius:12px;background:${P};color:#fff;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px ${PT};transition:background .15s,transform .15s;font-family:inherit}
+.gaf-main-cta{width:100%;padding:15px;border:none;border-radius:12px;background:${P};color:#111;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px ${PT};transition:background .15s,transform .15s;font-family:inherit}
 .gaf-main-cta:hover{background:${PD};transform:translateY(-1px)}
 .gaf-main-cta:active{transform:translateY(0)}
 .gaf-main-cta.processing{background:${PD};opacity:.7;cursor:not-allowed}
@@ -120,10 +120,10 @@ styleEl.textContent = `
 .gaf-express-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px}
 .gaf-express-btn{padding:10px;border:1.5px solid #e0e0e0;border-radius:10px;text-align:center;cursor:pointer;font-size:12px;font-weight:700;color:#333;background:#fff;transition:border-color .15s}
 .gaf-express-btn:hover{border-color:${P}}
-.gaf-check-circle{width:48px;height:48px;border-radius:50%;border:2.5px solid ${P};display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:24px;color:${P}}
+.gaf-check-circle{width:48px;height:48px;border-radius:50%;border:2.5px solid ${P};background:#1a1a1a;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:24px;color:${P}}
 .gaf-confirm-text{text-align:center;font-size:14px;color:#555;line-height:1.5;margin-bottom:14px}
 .gaf-confirm-text strong{color:#1a1a1a}
-.gaf-badge{display:inline-block;padding:6px 16px;border:1.5px solid ${P};border-radius:20px;background:${PL};color:${PD};font-size:12px;font-weight:700;margin-bottom:20px}
+.gaf-badge{display:inline-block;padding:6px 16px;border:1.5px solid ${P};border-radius:20px;background:#1a1a1a;color:${P};font-size:12px;font-weight:700;margin-bottom:20px}
 .gaf-cert{background:#fff;border:1px solid #e8e8e8;border-radius:14px;padding:24px;margin-bottom:18px;box-shadow:0 2px 12px rgba(0,0,0,.04);text-align:center}
 .gaf-cert-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:16px}
 .gaf-cert-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#aaa;margin-bottom:12px}
@@ -134,7 +134,7 @@ styleEl.textContent = `
 .gaf-cert-cause{font-style:italic;color:#777;font-size:13px;margin:8px 0}
 .gaf-cert-amount{font-weight:800;font-size:15px;color:#1a1a1a}
 .gaf-cert-date{font-size:12px;color:#aaa;margin-top:4px}
-.gaf-cert-perk{background:${PL};border-radius:0 0 14px 14px;padding:14px;margin:-24px -24px 0;margin-top:16px;font-size:13px;color:${PD};font-weight:600}
+.gaf-cert-perk{background:#1a1a1a;border-radius:0 0 14px 14px;padding:14px;margin:-24px -24px 0;margin-top:16px;font-size:13px;color:${P};font-weight:600}
 .gaf-share-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#aaa;text-align:center;margin-bottom:10px}
 .gaf-share-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
 .gaf-share-btn{padding:10px;border:none;border-radius:10px;color:#fff;font-size:13px;font-weight:700;cursor:pointer;text-decoration:none;text-align:center;display:block}

@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="article-styles.css">
     <link rel="stylesheet" href="auth-styles.css">
     <style>
         /* Ad Slot Styles */
@@ -231,6 +232,23 @@
             font-size: 14px;
         }
 
+        /* See More button */
+        .btn-see-more {
+            display: inline-block;
+            padding: 10px 32px;
+            border: 2px solid var(--text-primary);
+            border-radius: 4px;
+            color: var(--text-primary);
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all .2s;
+        }
+        .btn-see-more:hover {
+            background: var(--text-primary);
+            color: #fff;
+        }
+
         /* Adjust scroll-top position for sticky bar */
         .scroll-top { bottom: 65px; }
 
@@ -421,7 +439,9 @@
         <div class="container">
             <h2 class="section-title">Companies Featured in the Latest Shark Tank Episodes</h2>
             <div class="companies-list">
-                <div class="company-card"><a href="#" class="company-img"><img src="assets/images/company-nhie.svg" alt="Never Have I Ever"></a><div class="company-info"><h3><a href="#">Never Have I Ever Shark Tank Update – Shark Tank Season 17</a></h3><div class="card-meta"><span>By Liya Shanawas</span><span>&bull;</span><span>March 24, 2026</span></div><p>Getting your nails done can cost a lot of money and take up a lot of time. For many people, it seems hard to make their nails look nice in...</p></div></div>
+                <div class="company-card"><a href="hang-hero.html" class="company-img"><img src="assets/images/company-hang-hero.svg" alt="Hang Hero"></a><div class="company-info"><h3><a href="hang-hero.html">Hang Hero Shark Tank Update &ndash; Shark Tank Season 17</a></h3><div class="card-meta"><span>By Liya Shanawas</span><span>&bull;</span><span>March 27, 2026</span></div><p>Hanging a picture sounds easy, until it is not. You get frames that are crooked with too many holes in the wall. Then you look for tools. This makes it...</p></div></div>
+                <div class="company-card"><a href="#" class="company-img"><img src="assets/images/company-r1se.svg" alt="R1SE"></a><div class="company-info"><h3><a href="#">R1SE Shark Tank Update &ndash; Shark Tank Season 17</a></h3><div class="card-meta"><span>By Liya Shanawas</span><span>&bull;</span><span>March 27, 2026</span></div><p>Parents everywhere know the daily struggle. Work ends late, school ends early, and homework somehow falls in between. Trevor and Heather Szafranski wanted to fix this problem with R1SE. They...</p></div></div>
+                <div class="company-card"><a href="#" class="company-img"><img src="assets/images/company-nhie.svg" alt="Never Have I Ever"></a><div class="company-info"><h3><a href="#">Never Have I Ever Shark Tank Update &ndash; Shark Tank Season 17</a></h3><div class="card-meta"><span>By Liya Shanawas</span><span>&bull;</span><span>March 24, 2026</span></div><p>Getting your nails done can cost a lot of money and take up a lot of time. For many people, it seems hard to make their nails look nice in...</p></div></div>
                 <div class="company-card"><a href="#" class="company-img"><img src="assets/images/company-gob.svg" alt="GOB"></a><div class="company-info"><h3><a href="#">GOB Shark Tank Update – Shark Tank Season 17</a></h3><div class="card-meta"><span>By Liya Shanawas</span><span>&bull;</span><span>March 24, 2026</span></div><p>Noise is around us. It is at concerts and on city streets. The sound of a partner snoring is noise. Many people use earplugs to block out this noise. What...</p></div></div>
 
                 <!-- Ad: Rectangle inline between companies -->
@@ -437,7 +457,10 @@
                 </div>
 
                 <div class="company-card"><a href="#" class="company-img"><img src="assets/images/company-remplenish.svg" alt="REMplenish"></a><div class="company-info"><h3><a href="#">REMplenish Shark Tank Update – Shark Tank Season 17</a></h3><div class="card-meta"><span>By Liya Shanawas</span><span>&bull;</span><span>March 24, 2026</span></div><p>Snoring is a problem. It disrupts sleep, relationships, and health. Anders Olmanson set out to solve this problem when he appeared on Shark Tank Season 17 Episode 14 with REMplenish....</p></div></div>
-                <div class="company-card"><a href="#" class="company-img"><img src="assets/images/company-beergirl.svg" alt="Beer Girl"></a><div class="company-info"><h3><a href="#">Beer Girl Shark Tank Update – Shark Tank Season 17</a></h3><div class="card-meta"><span>By Liya Shanawas</span><span>&bull;</span><span>March 24, 2026</span></div><p>For decades, men have been marketing beer, and it seems they have only had men in mind. This meant women were not really considered when it came to beer. On...</p></div></div>
+                <div class="company-card"><a href="#" class="company-img"><img src="assets/images/company-beergirl.svg" alt="Beer Girl"></a><div class="company-info"><h3><a href="#">Beer Girl Shark Tank Update &ndash; Shark Tank Season 17</a></h3><div class="card-meta"><span>By Liya Shanawas</span><span>&bull;</span><span>March 24, 2026</span></div><p>For decades, men have been marketing beer, and it seems they have only had men in mind. This meant women were not really considered when it came to beer. On...</p></div></div>
+            </div>
+            <div style="text-align:center;padding:24px 0 8px">
+                <a href="startup-list.html" class="btn-see-more">See More</a>
             </div>
         </div>
     </section>
@@ -485,6 +508,7 @@
                         <li><a href="products.html">Shark Tank Products</a></li>
                         <li><a href="blog.html">Blog</a></li>
                         <li><a href="startup-list.html">Shark Tank Businesses</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
                     </ul>
                 </div>
                 <div class="footer-newsletter">
@@ -497,6 +521,14 @@
             </div>
         </div>
     </footer>
+
+    <!-- Footer Bottom Bar -->
+    <div class="footer-bottom-bar">
+        <p>Information from your device can be used to personalize your ad experience.</p>
+        <p><a href="#">Do not sell or share my personal information.</a></p>
+        <p><a href="#">Terms of Content Use</a></p>
+        <p class="raptive-badge">A RAPTIVE PARTNER SITE</p>
+    </div>
 
     <!-- Sticky bottom ad bar -->
     <div class="ad-sticky-bottom" id="stickyAd">
