@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Go Ads-Free | Shark Tank Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto+Slab:wght@400;700&family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="article-styles.css">
+    <link rel="stylesheet" href="auth-styles.css">
+    <style>
+        body { background: #0e0f12; }
+
+        /* ======== HERO — Full-bleed image ======== */
+        .gaf-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .gaf-hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('assets/images/adfree-hero-bg.svg') center/cover no-repeat;
+            filter: brightness(0.35);
+        }
+        .gaf-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+            padding: 40px 24px;
+        }
+        .gaf-hero h1 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 64px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.1;
+            margin-bottom: 8px;
+            letter-spacing: -1px;
+        }
+        .gaf-hero h1 .gold {
+            color: #d4a030;
+            display: block;
+            font-style: italic;
+        }
+        .gaf-hero-sub {
+            font-size: 17px;
+            color: rgba(255,255,255,0.55);
+            line-height: 1.65;
+            max-width: 480px;
+            margin: 24px auto 0;
+        }
+
+        /* ======== Stats row ======== */
+        .gaf-stats {
+            padding: 80px 20px;
+            background: #12131a;
+            text-align: center;
+        }
+        .gaf-stats-row {
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            gap: 0;
+            max-width: 750px;
+            margin: 0 auto 32px;
+        }
+        .gaf-stat {
+            flex: 1;
+            padding: 0 32px;
+            position: relative;
+        }
+        .gaf-stat:not(:last-child)::after {
+            content: '';
+            position: absolute;
+            right: 0;
+            top: 8px;
+            height: 48px;
+            width: 1px;
+            background: rgba(255,255,255,0.1);
+        }
+        .gaf-stat-value {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 40px;
+            font-weight: 900;
+            color: #d4a030;
+            line-height: 1;
+            margin-bottom: 6px;
+        }
+        .gaf-stat-label {
+            font-size: 13px;
+            color: rgba(255,255,255,0.4);
+            line-height: 1.4;
+        }
+        .gaf-stats-tagline {
+            font-size: 16px;
+            color: rgba(255,255,255,0.45);
+            max-width: 500px;
+            margin: 0 auto;
+            line-height: 1.6;
+        }
+
+        /* ======== Coffee section ======== */
+        .gaf-coffee {
+            position: relative;
+            min-height: 70vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            overflow: hidden;
+        }
+        .gaf-coffee-bg {
+            position: absolute;
+            inset: 0;
+            background: url('assets/images/adfree-coffee-bg.svg') center/cover no-repeat;
+            filter: brightness(0.3);
+        }
+        .gaf-coffee-content {
+            position: relative;
+            z-index: 1;
+            max-width: 640px;
+            padding: 60px 24px;
+        }
+        .gaf-coffee h2 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 48px;
+            font-weight: 900;
+            color: #fff;
+            line-height: 1.15;
+            margin-bottom: 20px;
+        }
+        .gaf-coffee-sub {
+            font-size: 16px;
+            color: rgba(255,255,255,0.5);
+            line-height: 1.6;
+        }
+
+        /* ======== Payment card ======== */
+        .gaf-payment-section {
+            padding: 80px 20px;
+            background: #12131a;
+            display: flex;
+            justify-content: center;
+        }
+        .gaf-card {
+            width: 520px;
+            max-width: 100%;
+            background: #fff;
+            border-radius: 16px;
+            padding: 48px 40px 36px;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        .gaf-card h3 {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 28px;
+            font-weight: 700;
+            color: #1a1a1a;
+            font-style: italic;
+            margin-bottom: 8px;
+        }
+        .gaf-card-sub {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 28px;
+        }
+        .gaf-card-amount-box {
+            border: 1.5px solid #e4e4e4;
+            border-radius: 12px;
+            padding: 20px 24px;
+            display: flex;
+            align-items: baseline;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .gaf-card-price {
+            display: flex;
+            align-items: baseline;
+            gap: 4px;
+        }
+        .gaf-card-dollar {
+            font-size: 18px;
+            color: #bbb;
+            font-weight: 600;
+        }
+        .gaf-card-val {
+            font-size: 42px;
+            font-weight: 900;
+            color: #1a1a1a;
+            line-height: 1;
+            font-family: var(--font-body);
+        }
+        .gaf-card-period {
+            font-size: 16px;
+            color: #999;
+            margin-left: 4px;
+        }
+        .gaf-card-daily {
+            font-size: 13px;
+            color: #bbb;
+        }
+        /* Presets */
+        .gaf-card-presets {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+            margin-bottom: 24px;
+        }
+        .gaf-card-preset {
+            padding: 14px 8px;
+            border: 1.5px solid #e8e8e8;
+            border-radius: 10px;
+            background: #fff;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: 700;
+            color: #444;
+            transition: all 0.15s;
+            position: relative;
+            font-family: var(--font-body);
+        }
+        .gaf-card-preset:hover { border-color: #6366f1; }
+        .gaf-card-preset.active {
+            border-color: #6366f1;
+            background: #f0f0ff;
+            color: #4338ca;
+        }
+        .gaf-card-preset .pop-tag {
+            position: absolute;
+            top: -8px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 9px;
+            font-weight: 700;
+            color: #fff;
+            background: #6366f1;
+            padding: 2px 8px;
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+        /* CTA */
+        .gaf-card-cta {
+            width: 100%;
+            padding: 16px 20px;
+            background: #6366f1;
+            color: #fff;
+            border: none;
+            border-radius: 12px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            font-family: var(--font-body);
+            transition: background 0.15s, transform 0.1s;
+            margin-bottom: 18px;
+        }
+        .gaf-card-cta:hover { background: #4f46e5; transform: translateY(-1px); }
+        .gaf-card-perk {
+            font-size: 13px;
+            color: #6366f1;
+            margin-bottom: 8px;
+        }
+        .gaf-card-perk em { font-style: italic; }
+        .gaf-card-billing {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            padding: 6px 14px;
+            border: 1px solid #e0e0e0;
+            border-radius: 20px;
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 14px;
+        }
+        .gaf-card-trust {
+            font-size: 12px;
+            color: #ccc;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+        }
+
+        /* ======== Responsive ======== */
+        @media (max-width: 768px) {
+            .gaf-hero h1 { font-size: 40px; }
+            .gaf-stats-row { flex-direction: column; gap: 28px; }
+            .gaf-stat:not(:last-child)::after { display: none; }
+            .gaf-coffee h2 { font-size: 32px; }
+            .gaf-card { padding: 36px 24px 28px; }
+            .gaf-card-presets { grid-template-columns: repeat(2, 1fr); }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="main-nav" id="mainNav">
+        <div class="container nav-inner">
+            <div class="nav-left">
+                <a href="index.html" class="logo"><img src="assets/images/logo.svg" alt="The Shark Tank Blog" width="60" height="50"></a>
+                <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="episodes.html">Shark Tank Episodes</a></li>
+                    <li><a href="products.html">Shark Tank Products</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="startup-list.html">Shark Tank Startup List</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <button class="search-toggle" id="searchToggle" aria-label="Search"><i class="fa fa-search"></i></button>
+                <a href="#" class="btn-contact">Contact Us</a>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-pinterest-p"></i></a>
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-x-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                </div>
+            </div>
+            <div class="search-box" id="searchBox"><input type="text" placeholder="Search..."><button type="submit"><i class="fa fa-search"></i></button></div>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="gaf-hero">
+        <div class="gaf-hero-bg"></div>
+        <div class="gaf-hero-content">
+            <h1>Go ad-free. <span class="gold">Don't stop there.</span></h1>
+            <p class="gaf-hero-sub">You're here for ad-free. Most people add a little more &mdash; that's what keeps this free.</p>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="gaf-stats">
+        <div class="gaf-stats-row">
+            <div class="gaf-stat">
+                <div class="gaf-stat-value">2M+</div>
+                <div class="gaf-stat-label">readers trust it<br>monthly</div>
+            </div>
+            <div class="gaf-stat">
+                <div class="gaf-stat-value">17+</div>
+                <div class="gaf-stat-label">seasons of<br>coverage</div>
+            </div>
+            <div class="gaf-stat">
+                <div class="gaf-stat-value">500+</div>
+                <div class="gaf-stat-label">business stories,<br>by hand</div>
+            </div>
+        </div>
+        <p class="gaf-stats-tagline">Built by Shark Tank fans. Kept going by Shark Tank fans.</p>
+    </section>
+
+    <!-- Coffee -->
+    <section class="gaf-coffee">
+        <div class="gaf-coffee-bg"></div>
+        <div class="gaf-coffee-content">
+            <h2>One coffee a month.</h2>
+            <p class="gaf-coffee-sub">That's the difference between using Shark Tank Blog and keeping it independent.</p>
+        </div>
+    </section>
+
+    <!-- Payment Card -->
+    <section class="gaf-payment-section">
+        <div class="gaf-card">
+            <h3>Support Shark Tank Blog</h3>
+            <p class="gaf-card-sub">Support starts with ad-free. Many choose to give a little more.</p>
+
+            <div class="gaf-card-amount-box">
+                <div class="gaf-card-price">
+                    <span class="gaf-card-dollar">$</span>
+                    <span class="gaf-card-val" id="cardVal">3</span>
+                    <span class="gaf-card-period">/ month</span>
+                </div>
+                <span class="gaf-card-daily" id="cardDaily">$0.10/day</span>
+            </div>
+
+            <div class="gaf-card-presets" id="cardPresets">
+                <div class="gaf-card-preset" data-val="2">$2</div>
+                <div class="gaf-card-preset active" data-val="5"><span class="pop-tag">Popular</span>$5</div>
+                <div class="gaf-card-preset" data-val="9">$9</div>
+                <div class="gaf-card-preset" data-val="15">$15</div>
+            </div>
+
+            <button class="gaf-card-cta" id="cardCta">Continue with $3 / month</button>
+
+            <div class="gaf-card-perk"><i class="fas fa-globe" style="margin-right:4px"></i> Includes <em>ad-free</em> experience</div>
+            <div class="gaf-card-billing"><i class="fas fa-chevron-down" style="font-size:9px"></i> $36 Billed Annually</div>
+            <div class="gaf-card-trust">
+                <span><i class="fas fa-lock" style="margin-right:3px"></i> Secure payment</span>
+                <span>&bull;</span>
+                <span>Cancel anytime</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo"><img src="assets/images/footer-logo.svg" alt="The Shark Tank Blog" width="80" height="70"><span class="footer-logo-text">The Shark Tank Blog</span></div>
+                    <p>Shark Tank Blog is independent of and not affiliated or endorsed by ABC, Sony, the producers or any other company associated with the television show, Shark Tank.</p>
+                    <div class="social-icons footer-social"><a href="#"><i class="fab fa-pinterest-p"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-x-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
+                </div>
+                <div class="footer-menu"><h4>Menu</h4><ul><li><a href="index.html">Home</a></li><li><a href="episodes.html">Shark Tank Episodes</a></li><li><a href="products.html">Shark Tank Products</a></li><li><a href="blog.html">Blog</a></li><li><a href="startup-list.html">Shark Tank Businesses</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
+                <div class="footer-newsletter"><h4>Subscribe to our Newsletter</h4><div class="newsletter-form"><input type="email" placeholder="Enter your email"><button type="submit">Subscribe</button></div></div>
+            </div>
+        </div>
+    </footer>
+    <div class="footer-bottom-bar"><p><a href="#">Terms of Content Use</a></p><p class="raptive-badge">A RAPTIVE PARTNER SITE</p></div>
+
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fa fa-chevron-up"></i></button>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="go-ad-free.js" data-delay="99999" data-poll="0"></script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function(){
+        var selected = 3;
+        var presets = document.querySelectorAll('.gaf-card-preset');
+        var valEl = document.getElementById('cardVal');
+        var dailyEl = document.getElementById('cardDaily');
+        var ctaEl = document.getElementById('cardCta');
+
+        function update(){
+            valEl.textContent = selected;
+            dailyEl.textContent = '$'+(selected/30).toFixed(2)+'/day';
+            ctaEl.textContent = 'Continue with $'+selected+' / month';
+        }
+
+        presets.forEach(function(p){
+            p.addEventListener('click', function(){
+                selected = parseInt(this.getAttribute('data-val'));
+                presets.forEach(function(b){ b.classList.remove('active'); });
+                this.classList.add('active');
+                update();
+            });
+        });
+
+        ctaEl.addEventListener('click', function(){
+            if(window.gafOpenDonate) window.gafOpenDonate(selected * 12);
+            else if(window.gafOpenPopup) window.gafOpenPopup();
+        });
+    });
+    </script>
+</body>
+</html>
