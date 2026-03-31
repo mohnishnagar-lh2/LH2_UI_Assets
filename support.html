@@ -1199,9 +1199,28 @@
             {name:'Mohnish', email:'mohnish@getmega.com', color:'#EA4335', initial:'M'}
         ];
 
-        function ewAmount(){ return EW.plan === 'annual' ? 40 : 5; }
-        function ewPeriod(){ return EW.plan === 'annual' ? 'year' : 'month'; }
-        function ewBillingNote(){ return EW.plan === 'annual' ? '$3.33/mo — save 33%' : 'Billed monthly'; }
+        function ewAnnual(){ return EW.amount * 12; }
+        function ewDaily(){ return (EW.amount / 30).toFixed(2); }
+
+        function ewUpdateS1(){
+            var amtIn = widget.querySelector('#ewAmtInput');
+            if(amtIn) amtIn.value = EW.amount;
+            widget.querySelectorAll('[data-val]').forEach(function(p){
+                var isActive = !EW.isCustom && parseInt(p.getAttribute('data-val')) === EW.amount;
+                p.style.borderColor = isActive ? '#00d4aa' : '#e8e8e8';
+                p.style.background = isActive ? 'rgba(0,212,170,0.04)' : '#fff';
+                p.style.color = isActive ? '#00a080' : '#444';
+            });
+            ewUpdateS1Cta();
+        }
+        function ewUpdateS1Cta(){
+            var c = widget.querySelector('#ewCta1');
+            if(c) c.textContent = 'Continue with $' + EW.amount + ' / month';
+            var d = widget.querySelector('#ewDaily');
+            if(d) d.textContent = '$' + ewDaily() + '/day';
+            var b = widget.querySelector('#ewBilling');
+            if(b) b.innerHTML = '<i class="fas fa-chevron-down" style="font-size:8px"></i> $' + ewAnnual() + ' Billed Annually';
+        }
 
         var widget = document.getElementById('embWidget');
 
@@ -1226,32 +1245,34 @@
             ewBind();
         }
 
-        // Screen 1: Plan selection
+        // Screen 1: Amount selection (same as popup widget)
+        var PRESETS = [2, 5, 9, 15], POP = 5;
         function ewScreen1(){
             var h = '';
             h += '<div class="emb-s1-title">Support Shark Tank Blog</div>';
             h += '<div class="emb-s1-sub">Support starts with ad-free. Many choose to give a little more.</div>';
-            h += '<div class="emb-toggle-wrap"><div class="emb-toggle">';
-            h += '<button class="emb-toggle-btn'+(EW.billing==='monthly'?' active':'')+'" data-b="monthly">Monthly</button>';
-            h += '<button class="emb-toggle-btn'+(EW.billing==='annual'?' active':'')+'" data-b="annual">Annual <span class="emb-toggle-save">Save 33%</span></button>';
-            h += '</div></div>';
-            h += '<div class="emb-plans">';
-            h += '<div class="emb-plan'+(EW.plan==='monthly'?' active':'')+'" data-plan="monthly">';
-            h += '<div class="emb-plan-label">Monthly</div>';
-            h += '<div class="emb-plan-price">$5</div>';
-            h += '<div class="emb-plan-period">per month</div>';
-            h += '<div class="emb-plan-note">Billed monthly</div>';
+            // Amount box
+            h += '<div style="border:1.5px solid #e4e4e4;border-radius:14px;padding:22px 24px;display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px">';
+            h += '<div style="display:flex;align-items:baseline;gap:2px"><span style="font-size:20px;color:#bbb;font-weight:600">$</span><input id="ewAmtInput" type="text" value="'+EW.amount+'" inputmode="numeric" style="font-size:44px;font-weight:900;border:none;outline:none;width:70px;color:#1a1a1a;background:transparent;font-family:inherit;line-height:1"><span style="font-size:16px;color:#999;margin-left:2px">/ month</span></div>';
+            h += '<span id="ewDaily" style="font-size:13px;color:#bbb">$'+(EW.amount/30).toFixed(2)+'/day</span>';
             h += '</div>';
-            h += '<div class="emb-plan'+(EW.plan==='annual'?' active':'')+'" data-plan="annual">';
-            h += '<div class="emb-plan-badge">Best Value</div>';
-            h += '<div class="emb-plan-label">Annual</div>';
-            h += '<div class="emb-plan-price">$40</div>';
-            h += '<div class="emb-plan-period">per year</div>';
-            h += '<div class="emb-plan-note">$3.33/mo — save 33%</div>';
+            // Presets
+            h += '<div style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px" id="ewPresets">';
+            PRESETS.forEach(function(p){
+                var cls = (!EW.isCustom && EW.amount===p) ? ' active' : '';
+                h += '<div class="emb-plan'+cls+'" data-val="'+p+'" style="padding:14px 8px;border:1.5px solid #e8e8e8;border-radius:12px;cursor:pointer;font-size:17px;font-weight:700;color:#444;text-align:center;position:relative;transition:all .15s">';
+                if(p===POP) h += '<span style="position:absolute;top:-9px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:700;color:#fff;background:#00d4aa;padding:2px 10px;border-radius:8px;white-space:nowrap">Popular</span>';
+                h += '$'+p+'</div>';
+            });
             h += '</div>';
+            // CTA
+            h += '<button class="emb-cta" id="ewCta1">Continue with $'+EW.amount+' / month</button>';
+            // Perk row
+            h += '<div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px">';
+            h += '<span style="font-size:13px;color:#00d4aa;font-weight:600"><i class="fas fa-globe" style="margin-right:4px"></i> Includes <em>ad-free</em> experience</span>';
+            h += '<span id="ewBilling" style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border:1px solid #e0e0e0;border-radius:16px;font-size:11.5px;color:#999"><i class="fas fa-chevron-down" style="font-size:8px"></i> $'+(EW.amount*12)+' Billed Annually</span>';
             h += '</div>';
-            h += '<button class="emb-cta" id="ewCta1">Get Started — $'+ewAmount()+'/'+ewPeriod()+'</button>';
-            h += '<div class="emb-trust"><i class="fas fa-lock"></i> Secure payment · Cancel anytime · Includes ad-free</div>';
+            h += '<div class="emb-trust"><i class="fas fa-lock"></i> Secure payment · Cancel anytime</div>';
             return h;
         }
 
@@ -1276,8 +1297,8 @@
 
         // Screen 3: Payment
         function ewScreen3(){
-            var amt = ewAmount();
-            var per = ewPeriod();
+            var amt = ewAnnual();
+            var per = 'year';
             var h = '';
             h += '<button class="emb-back" id="ewBack3"><i class="fas fa-arrow-left"></i> Back</button>';
             h += '<div class="emb-s3-label">You\'re supporting</div>';
@@ -1296,8 +1317,8 @@
 
         // Screen 4: Success
         function ewScreen4(){
-            var amt = ewAmount();
-            var per = ewPeriod();
+            var amt = ewAnnual();
+            var per = 'year';
             var name = EW.name || (EW.selectedAccount !== null ? ACCOUNTS[EW.selectedAccount].name : 'Member');
             var date = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
             var h = '';
@@ -1328,25 +1349,26 @@
         }
 
         function ewBind(){
-            // Screen 1
-            var toggles = widget.querySelectorAll('.emb-toggle-btn');
-            toggles.forEach(function(b){
-                b.addEventListener('click', function(){
-                    EW.billing = this.getAttribute('data-b');
-                    EW.plan = EW.billing;
-                    toggles.forEach(function(x){ x.classList.remove('active'); });
-                    this.classList.add('active');
-                    ewRender();
-                });
-            });
-            var plans = widget.querySelectorAll('.emb-plan');
-            plans.forEach(function(p){
+            // Screen 1 — presets
+            var presetBtns = widget.querySelectorAll('[data-val]');
+            presetBtns.forEach(function(p){
                 p.addEventListener('click', function(){
-                    EW.plan = this.getAttribute('data-plan');
-                    EW.billing = EW.plan;
-                    ewRender();
+                    EW.amount = parseInt(this.getAttribute('data-val'));
+                    EW.isCustom = false;
+                    ewUpdateS1();
                 });
             });
+            // Amount input
+            var amtIn = widget.querySelector('#ewAmtInput');
+            if(amtIn){
+                amtIn.addEventListener('focus', function(){ this.select(); });
+                amtIn.addEventListener('input', function(){
+                    var v = parseInt(this.value.replace(/[^0-9]/g,'')) || 0;
+                    EW.amount = v; EW.isCustom = true;
+                    presetBtns.forEach(function(p){ p.style.borderColor='#e8e8e8'; p.style.background='#fff'; p.style.color='#444'; });
+                    ewUpdateS1Cta();
+                });
+            }
             var cta1 = widget.querySelector('#ewCta1');
             if(cta1) cta1.addEventListener('click', function(){ EW.screen = 2; ewRender(); });
 
