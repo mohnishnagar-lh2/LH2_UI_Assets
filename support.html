@@ -12,359 +12,122 @@
     <link rel="stylesheet" href="article-styles.css">
     <link rel="stylesheet" href="auth-styles.css">
     <style>
-        body { background: #0e0f12; }
+        body{background:#0a0b0e;color:#fff}
 
-        /* ======== Hero ======== */
-        .sup-hero {
-            position: relative;
-            min-height: 60vh;
-            display: flex;
-            align-items: center;
-            overflow: hidden;
-            padding: 100px 20px 60px;
-        }
-        .sup-hero-bg {
-            position: absolute;
-            inset: 0;
-            background: url('assets/images/support-hero-bg.svg') center/cover no-repeat;
-            filter: brightness(0.2);
-        }
-        .sup-hero-content {
-            position: relative;
-            z-index: 1;
-            max-width: 680px;
-            margin: 0 auto;
-        }
-        .sup-hero h1 {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 52px;
-            font-weight: 900;
-            color: #fff;
-            line-height: 1.15;
-            margin-bottom: 24px;
-        }
-        .sup-hero h1 .accent {
-            color: #6366f1;
-        }
-        .sup-hero-sub {
-            font-size: 17px;
-            color: rgba(255,255,255,0.5);
-            line-height: 1.7;
-            max-width: 560px;
-        }
+        /* === HERO === */
+        .sp-hero{position:relative;min-height:65vh;display:flex;align-items:center;overflow:hidden;padding:100px 20px 72px}
+        .sp-hero-bg{position:absolute;inset:0;background:linear-gradient(160deg,#0a0b0e 0%,#111827 50%,#0f172a 100%)}
+        .sp-hero-glow{position:absolute;top:5%;right:10%;width:500px;height:500px;background:radial-gradient(circle,rgba(0,188,212,.06) 0%,transparent 70%);pointer-events:none}
+        .sp-hero-content{position:relative;z-index:1;max-width:640px;margin:0 auto}
+        .sp-hero h1{font-family:'Playfair Display',Georgia,serif;font-size:50px;font-weight:900;line-height:1.12;margin-bottom:24px;letter-spacing:-1px}
+        .sp-hero h1 .accent{color:#00bcd4;display:block}
+        .sp-hero-sub{font-size:17px;color:rgba(255,255,255,.45);line-height:1.75;max-width:540px}
 
-        /* ======== Timeline ======== */
-        .sup-timeline {
-            padding: 64px 20px;
-            background: #12131a;
-        }
-        .sup-timeline-inner {
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        .sup-timeline-bar {
-            display: flex;
-            align-items: flex-start;
-            justify-content: space-between;
-            position: relative;
-            padding: 0 10px;
-            margin-bottom: 48px;
-        }
-        .sup-timeline-bar::before {
-            content: '';
-            position: absolute;
-            top: 6px;
-            left: 30px;
-            right: 30px;
-            height: 2px;
-            background: rgba(255,255,255,0.08);
-        }
-        .sup-tl-dot {
-            text-align: center;
-            position: relative;
-            z-index: 1;
-        }
-        .sup-tl-dot .dot {
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            background: rgba(255,255,255,0.2);
-            margin: 0 auto 8px;
-        }
-        .sup-tl-dot.current .dot {
-            background: #6366f1;
-            box-shadow: 0 0 12px rgba(99,102,241,0.4);
-        }
-        .sup-tl-dot .tl-year {
-            font-family: var(--font-body);
-            font-size: 14px;
-            font-weight: 700;
-            color: rgba(255,255,255,0.5);
-        }
-        .sup-tl-dot.current .tl-year {
-            color: #6366f1;
-        }
-        .sup-tl-dot .tl-label {
-            font-size: 11px;
-            color: rgba(255,255,255,0.3);
-            margin-top: 2px;
-        }
-        .sup-story-text {
-            font-size: 17px;
-            color: rgba(255,255,255,0.55);
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-        .sup-story-text:last-child { margin-bottom: 0; }
-        .sup-story-bold {
-            color: rgba(255,255,255,0.75);
-            font-weight: 600;
-        }
+        /* === TIMELINE === */
+        .sp-timeline{padding:64px 20px;background:#0f1117;border-top:1px solid rgba(255,255,255,.04)}
+        .sp-tl-inner{max-width:660px;margin:0 auto}
+        .sp-tl-bar{display:flex;justify-content:space-between;position:relative;padding:0 8px;margin-bottom:48px}
+        .sp-tl-bar::before{content:'';position:absolute;top:6px;left:24px;right:24px;height:2px;background:rgba(255,255,255,.06)}
+        .sp-tl-dot{text-align:center;position:relative;z-index:1}
+        .sp-tl-dot .dot{width:12px;height:12px;border-radius:50%;background:rgba(255,255,255,.15);margin:0 auto 8px}
+        .sp-tl-dot.now .dot{background:#00bcd4;box-shadow:0 0 12px rgba(0,188,212,.35)}
+        .sp-tl-dot .yr{font-size:14px;font-weight:700;color:rgba(255,255,255,.45)}
+        .sp-tl-dot.now .yr{color:#00bcd4}
+        .sp-tl-dot .lbl{font-size:10.5px;color:rgba(255,255,255,.25);margin-top:2px}
+        .sp-story{font-size:17px;color:rgba(255,255,255,.5);line-height:1.8;margin-bottom:18px}
+        .sp-story strong{color:rgba(255,255,255,.7)}
+        .sp-story:last-child{margin-bottom:0}
 
-        /* ======== Photo break ======== */
-        .sup-photo {
-            padding: 40px 20px;
-            background: #12131a;
-            text-align: center;
-        }
-        .sup-photo img {
-            max-width: 680px;
-            width: 100%;
-            border-radius: 10px;
-            display: block;
-            margin: 0 auto;
-        }
+        /* === TESTIMONIALS === */
+        .sp-quotes{padding:72px 20px;background:#0a0b0e}
+        .sp-quotes-inner{max-width:660px;margin:0 auto}
+        .sp-quote{padding-bottom:32px;margin-bottom:32px;border-bottom:1px solid rgba(255,255,255,.04)}
+        .sp-quote:last-child{border-bottom:none;margin-bottom:0;padding-bottom:0}
+        .sp-quote-bar{display:flex;gap:18px}
+        .sp-quote-line{width:3px;background:#00bcd4;border-radius:2px;flex-shrink:0}
+        .sp-quote-body{flex:1}
+        .sp-quote-text{font-family:'Playfair Display',Georgia,serif;font-size:17px;font-style:italic;color:rgba(255,255,255,.55);line-height:1.7;margin-bottom:10px}
+        .sp-quote-author{font-size:12.5px;color:rgba(255,255,255,.25)}
 
-        /* ======== Testimonials ======== */
-        .sup-testimonials {
-            padding: 64px 20px;
-            background: #12131a;
-        }
-        .sup-testimonials-inner {
-            max-width: 680px;
-            margin: 0 auto;
-        }
-        .sup-quote {
-            padding: 0 0 32px;
-            margin-bottom: 32px;
-            border-bottom: 1px solid rgba(255,255,255,0.04);
-        }
-        .sup-quote:last-child { border-bottom: none; margin-bottom: 0; }
-        .sup-quote-bar {
-            display: flex;
-            gap: 20px;
-        }
-        .sup-quote-line {
-            width: 3px;
-            background: #6366f1;
-            border-radius: 2px;
-            flex-shrink: 0;
-        }
-        .sup-quote-body {
-            flex: 1;
-        }
-        .sup-quote-text {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 18px;
-            font-style: italic;
-            color: rgba(255,255,255,0.6);
-            line-height: 1.65;
-            margin-bottom: 10px;
-        }
-        .sup-quote-author {
-            font-size: 13px;
-            color: rgba(255,255,255,0.3);
-        }
+        /* === MANIFESTO === */
+        .sp-manifesto{padding:80px 20px;background:#0f1117;border-top:1px solid rgba(255,255,255,.04)}
+        .sp-manifesto-inner{max-width:660px;margin:0 auto}
+        .sp-manifesto-div{width:36px;height:3px;background:rgba(255,255,255,.08);margin-bottom:44px}
+        .sp-manifesto-line{font-size:18px;color:rgba(255,255,255,.45);line-height:1.75;margin-bottom:16px}
+        .sp-manifesto-line.strong{color:rgba(255,255,255,.65);font-weight:600}
 
-        /* ======== Manifesto ======== */
-        .sup-manifesto {
-            padding: 80px 20px;
-            background: #0e0f12;
-        }
-        .sup-manifesto-inner {
-            max-width: 680px;
-            margin: 0 auto;
-        }
-        .sup-manifesto-divider {
-            width: 40px;
-            height: 3px;
-            background: rgba(255,255,255,0.1);
-            margin-bottom: 48px;
-        }
-        .sup-manifesto-line {
-            font-size: 18px;
-            color: rgba(255,255,255,0.5);
-            line-height: 1.75;
-            margin-bottom: 16px;
-        }
-        .sup-manifesto-line.strong {
-            color: rgba(255,255,255,0.7);
-            font-weight: 600;
-        }
+        /* === COMMUNITY === */
+        .sp-community{padding:72px 20px;background:#0a0b0e;text-align:center}
+        .sp-community-inner{max-width:660px;margin:0 auto}
+        .sp-community h2{font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:700;color:#00bcd4;font-style:italic;margin-bottom:32px}
+        .sp-goal-top{display:flex;justify-content:space-between;font-size:12px;color:rgba(255,255,255,.35);margin-bottom:8px}
+        .sp-goal-bar{height:8px;background:rgba(255,255,255,.05);border-radius:6px;overflow:hidden;margin-bottom:32px}
+        .sp-goal-fill{height:100%;width:73%;background:linear-gradient(90deg,#00bcd4,#26c6da);border-radius:6px}
+        .sp-com-stats{display:flex;justify-content:center}
+        .sp-com-stat{flex:1;padding:0 24px;position:relative}
+        .sp-com-stat:not(:last-child)::after{content:'';position:absolute;right:0;top:4px;height:36px;width:1px;background:rgba(255,255,255,.06)}
+        .sp-com-stat .v{font-family:'Playfair Display',Georgia,serif;font-size:30px;font-weight:900;color:#00bcd4;margin-bottom:4px}
+        .sp-com-stat .l{font-size:11.5px;color:rgba(255,255,255,.3)}
 
-        /* ======== Community goal ======== */
-        .sup-community {
-            padding: 64px 20px;
-            background: #12131a;
-            text-align: center;
-        }
-        .sup-community-inner {
-            max-width: 680px;
-            margin: 0 auto;
-        }
-        .sup-community h2 {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 28px;
-            font-weight: 700;
-            color: #6366f1;
-            font-style: italic;
-            margin-bottom: 32px;
-        }
-        .sup-goal-label {
-            display: flex;
-            justify-content: space-between;
-            font-size: 13px;
-            color: rgba(255,255,255,0.4);
-            margin-bottom: 8px;
-        }
-        .sup-goal-bar {
-            height: 10px;
-            background: rgba(255,255,255,0.06);
-            border-radius: 8px;
-            overflow: hidden;
-            margin-bottom: 32px;
-        }
-        .sup-goal-fill {
-            height: 100%;
-            width: 73%;
-            background: linear-gradient(90deg, #6366f1, #818cf8);
-            border-radius: 8px;
-            transition: width 1s ease;
-        }
-        .sup-community-stats {
-            display: flex;
-            justify-content: center;
-            gap: 0;
-            margin-bottom: 0;
-        }
-        .sup-com-stat {
-            flex: 1;
-            padding: 0 24px;
-            position: relative;
-        }
-        .sup-com-stat:not(:last-child)::after {
-            content: '';
-            position: absolute;
-            right: 0;
-            top: 4px;
-            height: 36px;
-            width: 1px;
-            background: rgba(255,255,255,0.06);
-        }
-        .sup-com-stat .val {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 32px;
-            font-weight: 900;
-            color: #6366f1;
-            margin-bottom: 4px;
-        }
-        .sup-com-stat .lbl {
-            font-size: 12px;
-            color: rgba(255,255,255,0.35);
-        }
+        /* === COFFEE CTA === */
+        .sp-coffee{position:relative;padding:100px 20px;text-align:center;overflow:hidden}
+        .sp-coffee-bg{position:absolute;inset:0;background:linear-gradient(180deg,#0f1117,#111827,#0f1117)}
+        .sp-coffee-glow{position:absolute;top:20%;left:50%;transform:translateX(-50%);width:500px;height:500px;background:radial-gradient(circle,rgba(0,188,212,.05) 0%,transparent 70%);pointer-events:none}
+        .sp-coffee-content{position:relative;z-index:1;max-width:580px;margin:0 auto}
+        .sp-coffee h2{font-family:'Playfair Display',Georgia,serif;font-size:40px;font-weight:900;line-height:1.15;margin-bottom:14px}
+        .sp-coffee h2 span{color:#00bcd4}
+        .sp-coffee-sub{font-size:15px;color:rgba(255,255,255,.4)}
 
-        /* ======== Coffee CTA ======== */
-        .sup-coffee-cta {
-            position: relative;
-            min-height: 50vh;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            overflow: hidden;
-        }
-        .sup-coffee-bg {
-            position: absolute;
-            inset: 0;
-            background: url('assets/images/adfree-coffee-bg.svg') center/cover no-repeat;
-            filter: brightness(0.25);
-        }
-        .sup-coffee-content {
-            position: relative;
-            z-index: 1;
-            max-width: 600px;
-            padding: 60px 24px;
-        }
-        .sup-coffee-content h2 {
-            font-family: 'Playfair Display', Georgia, serif;
-            font-size: 42px;
-            font-weight: 900;
-            color: #fff;
-            line-height: 1.15;
-            margin-bottom: 16px;
-        }
-        .sup-coffee-content h2 .accent { color: #6366f1; }
-        .sup-coffee-content p {
-            font-size: 15px;
-            color: rgba(255,255,255,0.45);
-            margin-bottom: 0;
-        }
+        /* === PAYMENT CARD === */
+        .sp-card-section{padding:80px 20px;background:#0a0b0e;display:flex;justify-content:center}
+        .sp-card{width:520px;max-width:100%;background:#fff;border-radius:18px;padding:48px 40px 36px;text-align:center;box-shadow:0 24px 80px rgba(0,0,0,.4)}
+        .sp-card h3{font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:700;color:#1a1a1a;font-style:italic;margin-bottom:6px}
+        .sp-card-sub{font-size:14px;color:#999;margin-bottom:28px}
+        .sp-card-amount{border:1.5px solid #e4e4e4;border-radius:14px;padding:22px 24px;display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px}
+        .sp-card-left{display:flex;align-items:baseline;gap:2px}
+        .sp-card-dollar{font-size:20px;color:#bbb;font-weight:600}
+        .sp-card-val{font-size:44px;font-weight:900;color:#1a1a1a;line-height:1}
+        .sp-card-period{font-size:16px;color:#999;margin-left:2px}
+        .sp-card-daily{font-size:13px;color:#bbb}
+        .sp-card-presets{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px}
+        .sp-card-preset{padding:14px 8px;border:1.5px solid #e8e8e8;border-radius:12px;background:#fff;cursor:pointer;font-size:17px;font-weight:700;color:#444;text-align:center;position:relative;transition:all .15s;font-family:inherit}
+        .sp-card-preset:hover{border-color:#6366f1;background:#fafaff}
+        .sp-card-preset.active{border-color:#6366f1;background:#eef2ff;color:#4338ca}
+        .sp-card-preset .ptag{position:absolute;top:-9px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:700;color:#fff;background:#6366f1;padding:2px 10px;border-radius:8px;white-space:nowrap}
+        .sp-card-cta{width:100%;padding:17px 20px;border:none;border-radius:14px;background:#6366f1;color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s,transform .1s;margin-bottom:18px}
+        .sp-card-cta:hover{background:#4f46e5;transform:translateY(-1px)}
+        .sp-card-perk-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+        .sp-card-perk{font-size:13px;color:#6366f1;font-weight:600}
+        .sp-card-perk em{font-style:italic}
+        .sp-card-badge{display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border:1px solid #e0e0e0;border-radius:16px;font-size:11.5px;color:#999}
+        .sp-card-trust{display:flex;align-items:center;justify-content:center;gap:10px;font-size:12px;color:#ccc;margin-top:4px}
 
-        /* ======== Sticky bottom CTA ======== */
-        .sup-sticky-cta {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            z-index: 998;
-            background: #12131a;
-            border-top: 1px solid rgba(255,255,255,0.06);
-            padding: 12px 20px;
-            text-align: center;
-        }
-        .sup-sticky-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            padding: 13px 48px;
-            background: #6366f1;
-            color: #fff;
-            border: none;
-            border-radius: 10px;
-            font-family: var(--font-body);
-            font-size: 15px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: background 0.15s, transform 0.1s;
-        }
-        .sup-sticky-btn:hover { background: #4f46e5; transform: translateY(-1px); }
-        .sup-sticky-social {
-            display: block;
-            margin-top: 6px;
-            font-size: 11.5px;
-            color: rgba(255,255,255,0.35);
-        }
-        .sup-sticky-social strong { color: rgba(255,255,255,0.6); }
-        .sup-sticky-social .amount { color: #6366f1; font-weight: 700; }
+        /* === STICKY === */
+        .sp-sticky{position:fixed;bottom:0;left:0;right:0;z-index:998;background:#0f1117;border-top:1px solid rgba(255,255,255,.06);padding:12px 20px;text-align:center}
+        .sp-sticky-btn{display:inline-flex;align-items:center;gap:8px;padding:13px 44px;background:#00bcd4;color:#fff;border:none;border-radius:10px;font-size:15px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s,transform .1s}
+        .sp-sticky-btn:hover{background:#00acc1;transform:translateY(-1px)}
+        .sp-sticky-proof{display:block;margin-top:6px;font-size:11px;color:rgba(255,255,255,.3)}
+        .sp-sticky-proof strong{color:rgba(255,255,255,.55)}
+        .sp-sticky-proof .amt{color:#00bcd4;font-weight:700}
+        .site-footer{margin-bottom:76px}
 
-        /* Offset footer for sticky bar */
-        .site-footer { margin-bottom: 80px; }
-
-        /* ======== Responsive ======== */
-        @media (max-width: 768px) {
-            .sup-hero h1 { font-size: 34px; }
-            .sup-timeline-bar { flex-wrap: wrap; gap: 16px; justify-content: center; }
-            .sup-timeline-bar::before { display: none; }
-            .sup-community-stats { flex-direction: column; gap: 20px; }
-            .sup-com-stat:not(:last-child)::after { display: none; }
-            .sup-coffee-content h2 { font-size: 30px; }
-            .sup-quote-text { font-size: 16px; }
+        /* === Responsive === */
+        @media(max-width:768px){
+            .sp-hero h1{font-size:34px}
+            .sp-tl-bar{flex-wrap:wrap;gap:14px;justify-content:center}
+            .sp-tl-bar::before{display:none}
+            .sp-com-stats{flex-direction:column;gap:18px}
+            .sp-com-stat:not(:last-child)::after{display:none}
+            .sp-coffee h2{font-size:28px}
+            .sp-card{padding:36px 24px 28px}
+            .sp-card-presets{grid-template-columns:repeat(2,1fr)}
+            .sp-quote-text{font-size:15px}
         }
     </style>
 </head>
 <body>
 
-    <!-- Navigation -->
+    <!-- Nav -->
     <nav class="main-nav" id="mainNav">
         <div class="container nav-inner">
             <div class="nav-left">
@@ -388,62 +151,57 @@
     </nav>
 
     <!-- Hero -->
-    <section class="sup-hero">
-        <div class="sup-hero-bg"></div>
-        <div class="sup-hero-content">
-            <h1>Support Free Coverage.<br><span class="accent">Keep It Alive.</span></h1>
-            <p class="sup-hero-sub">In an era of paywalls, locked content, and journalism treated as a commodity &mdash; Shark Tank Blog has stayed free for over 5 years.</p>
+    <section class="sp-hero">
+        <div class="sp-hero-bg"></div>
+        <div class="sp-hero-glow"></div>
+        <div class="sp-hero-content">
+            <h1>Support Free Coverage.<span class="accent">Keep It Alive.</span></h1>
+            <p class="sp-hero-sub">In an era of paywalls, locked content, and journalism treated as a commodity &mdash; Shark Tank Blog has stayed free for over 5 years. That only happens because of people like you.</p>
         </div>
     </section>
 
     <!-- Timeline -->
-    <section class="sup-timeline">
-        <div class="sup-timeline-inner">
-            <div class="sup-timeline-bar">
-                <div class="sup-tl-dot"><div class="dot"></div><div class="tl-year">2021</div><div class="tl-label">Founded</div></div>
-                <div class="sup-tl-dot"><div class="dot"></div><div class="tl-year">2022</div><div class="tl-label">100 articles</div></div>
-                <div class="sup-tl-dot"><div class="dot"></div><div class="tl-year">2023</div><div class="tl-label">500K readers</div></div>
-                <div class="sup-tl-dot"><div class="dot"></div><div class="tl-year">2025</div><div class="tl-label">Still free</div></div>
-                <div class="sup-tl-dot current"><div class="dot"></div><div class="tl-year">2026</div><div class="tl-label">5+ years</div></div>
+    <section class="sp-timeline">
+        <div class="sp-tl-inner">
+            <div class="sp-tl-bar">
+                <div class="sp-tl-dot"><div class="dot"></div><div class="yr">2021</div><div class="lbl">Founded</div></div>
+                <div class="sp-tl-dot"><div class="dot"></div><div class="yr">2022</div><div class="lbl">100 articles</div></div>
+                <div class="sp-tl-dot"><div class="dot"></div><div class="yr">2023</div><div class="lbl">500K readers</div></div>
+                <div class="sp-tl-dot"><div class="dot"></div><div class="yr">2025</div><div class="lbl">Still free</div></div>
+                <div class="sp-tl-dot now"><div class="dot"></div><div class="yr">2026</div><div class="lbl">5+ years</div></div>
             </div>
-
-            <p class="sup-story-text">Follow a founder's pitch. Trace how one deal changed an industry. Rediscover the episode you watched with your family.</p>
-            <p class="sup-story-text"><span class="sup-story-bold">No gatekeepers</span> &mdash; just Shark Tank Blog, always open.</p>
+            <p class="sp-story">Every episode recap, every founder story, every deep-dive into a pitch &mdash; it's all written by a <strong>small team of independent writers</strong> who care deeply about entrepreneurship.</p>
+            <p class="sp-story"><strong>No gatekeepers</strong> &mdash; just Shark Tank Blog, always open.</p>
         </div>
     </section>
 
-    <!-- Photo -->
-    <div class="sup-photo">
-        <img src="assets/images/support-photo.svg" alt="Behind the scenes">
-    </div>
-
     <!-- Testimonials -->
-    <section class="sup-testimonials">
-        <div class="sup-testimonials-inner">
-            <div class="sup-quote">
-                <div class="sup-quote-bar">
-                    <div class="sup-quote-line"></div>
-                    <div class="sup-quote-body">
-                        <p class="sup-quote-text">"Shark Tank Blog is the only place that covers every single pitch with the same care. From Season 1 to Season 17. That's why I've read it for years."</p>
-                        <p class="sup-quote-author">&mdash; Startup founder, Austin</p>
+    <section class="sp-quotes">
+        <div class="sp-quotes-inner">
+            <div class="sp-quote">
+                <div class="sp-quote-bar">
+                    <div class="sp-quote-line"></div>
+                    <div class="sp-quote-body">
+                        <p class="sp-quote-text">"Shark Tank Blog is the only place that covers every single pitch with the same care. From Season 1 to Season 17. That's why I've read it for years."</p>
+                        <p class="sp-quote-author">&mdash; Startup founder, Austin</p>
                     </div>
                 </div>
             </div>
-            <div class="sup-quote">
-                <div class="sup-quote-bar">
-                    <div class="sup-quote-line"></div>
-                    <div class="sup-quote-body">
-                        <p class="sup-quote-text">"I found my favorite business through this blog in 2022. Three years later, I still come back to trace how one pitch led to a million-dollar company."</p>
-                        <p class="sup-quote-author">&mdash; Entrepreneur, Mumbai</p>
+            <div class="sp-quote">
+                <div class="sp-quote-bar">
+                    <div class="sp-quote-line"></div>
+                    <div class="sp-quote-body">
+                        <p class="sp-quote-text">"I found my favorite business through this blog in 2022. Three years later, I still come back to trace how one pitch led to a million-dollar company."</p>
+                        <p class="sp-quote-author">&mdash; Entrepreneur, Mumbai</p>
                     </div>
                 </div>
             </div>
-            <div class="sup-quote">
-                <div class="sup-quote-bar">
-                    <div class="sup-quote-line"></div>
-                    <div class="sup-quote-body">
-                        <p class="sup-quote-text">"When Netflix tells me what to watch, I come here to discover stories on my own. Shark Tank Blog is the resource the internet forgot to build."</p>
-                        <p class="sup-quote-author">&mdash; Business teacher, London</p>
+            <div class="sp-quote">
+                <div class="sp-quote-bar">
+                    <div class="sp-quote-line"></div>
+                    <div class="sp-quote-body">
+                        <p class="sp-quote-text">"When Netflix tells me what to watch, I come here to discover stories on my own. Shark Tank Blog is the resource the internet forgot to build."</p>
+                        <p class="sp-quote-author">&mdash; Business teacher, London</p>
                     </div>
                 </div>
             </div>
@@ -451,95 +209,81 @@
     </section>
 
     <!-- Manifesto -->
-    <section class="sup-manifesto">
-        <div class="sup-manifesto-inner">
-            <div class="sup-manifesto-divider"></div>
-            <p class="sup-manifesto-line">No paywalls. No forced sign-ups. No content locked behind tiers.</p>
-            <p class="sup-manifesto-line">Keeping it that way has always depended on a small number of people who quietly choose to give back.</p>
+    <section class="sp-manifesto">
+        <div class="sp-manifesto-inner">
+            <div class="sp-manifesto-div"></div>
+            <p class="sp-manifesto-line">No paywalls. No forced sign-ups. No content locked behind tiers.</p>
+            <p class="sp-manifesto-line">Keeping it that way has always depended on a small number of people who quietly choose to give back.</p>
+            <p class="sp-manifesto-line strong">The internet has changed a lot in 5 years. Most places we loved are gone.</p>
+            <p class="sp-manifesto-line strong">Shark Tank Blog is still here. Help it stay that way.</p>
         </div>
     </section>
 
-    <!-- Community Goal -->
-    <section class="sup-community">
-        <div class="sup-community-inner">
+    <!-- Community -->
+    <section class="sp-community">
+        <div class="sp-community-inner">
             <h2>You're not alone in this.</h2>
-            <div class="sup-goal-label"><span>Community Goal</span><span>73%</span></div>
-            <div class="sup-goal-bar"><div class="sup-goal-fill"></div></div>
-            <div class="sup-community-stats">
-                <div class="sup-com-stat"><div class="val">1.2K+</div><div class="lbl">Supporters</div></div>
-                <div class="sup-com-stat"><div class="val">24/7</div><div class="lbl">Uptime</div></div>
-                <div class="sup-com-stat"><div class="val">500+</div><div class="lbl">Articles</div></div>
+            <div class="sp-goal-top"><span>Community Goal</span><span>73%</span></div>
+            <div class="sp-goal-bar"><div class="sp-goal-fill"></div></div>
+            <div class="sp-com-stats">
+                <div class="sp-com-stat"><div class="v">1.2K+</div><div class="l">Supporters</div></div>
+                <div class="sp-com-stat"><div class="v">24/7</div><div class="l">Uptime</div></div>
+                <div class="sp-com-stat"><div class="v">500+</div><div class="l">Articles</div></div>
             </div>
         </div>
     </section>
 
     <!-- Coffee CTA -->
-    <section class="sup-coffee-cta">
-        <div class="sup-coffee-bg"></div>
-        <div class="sup-coffee-content">
-            <h2>Skip one coffee a month.<br><span class="accent">Keep coverage free for millions.</span></h2>
-            <p>Most supporters give about $5/month.</p>
+    <section class="sp-coffee">
+        <div class="sp-coffee-bg"></div>
+        <div class="sp-coffee-glow"></div>
+        <div class="sp-coffee-content">
+            <h2>Skip one coffee a month.<br><span>Keep coverage free for millions.</span></h2>
+            <p class="sp-coffee-sub">Most supporters give about $5/month.</p>
         </div>
     </section>
 
-    <!-- Embedded Payment Card -->
-    <section class="gaf-payment-section" id="donateSection" style="padding:80px 20px;background:#12131a;display:flex;justify-content:center">
-        <div style="width:520px;max-width:100%;background:#fff;border-radius:16px;padding:48px 40px 36px;text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.3)">
-            <h3 style="font-family:'Playfair Display',Georgia,serif;font-size:26px;font-weight:700;color:#1a1a1a;font-style:italic;margin-bottom:6px">Support Shark Tank Blog</h3>
-            <p style="font-size:14px;color:#999;margin-bottom:28px">Support starts with ad-free. Many choose to give a little more.</p>
-
-            <div style="border:1.5px solid #e4e4e4;border-radius:14px;padding:22px 24px;display:flex;align-items:baseline;justify-content:space-between;margin-bottom:20px">
-                <div style="display:flex;align-items:baseline;gap:2px">
-                    <span style="font-size:20px;color:#bbb;font-weight:600">$</span>
-                    <span id="supCardVal" style="font-size:44px;font-weight:900;color:#1a1a1a;line-height:1">3</span>
-                    <span style="font-size:16px;color:#999;margin-left:2px">/ month</span>
-                </div>
-                <span id="supCardDaily" style="font-size:13px;color:#bbb">$0.10/day</span>
+    <!-- Payment Card -->
+    <section class="sp-card-section">
+        <div class="sp-card">
+            <h3>Support Shark Tank Blog</h3>
+            <p class="sp-card-sub">Support starts with ad-free. Many choose to give a little more.</p>
+            <div class="sp-card-amount">
+                <div class="sp-card-left"><span class="sp-card-dollar">$</span><span class="sp-card-val" id="spVal">3</span><span class="sp-card-period">/ month</span></div>
+                <span class="sp-card-daily" id="spDaily">$0.10/day</span>
             </div>
-
-            <div id="supCardPresets" style="display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:28px">
-                <div class="sup-card-preset" data-val="2" style="padding:14px 8px;border:1.5px solid #e8e8e8;border-radius:12px;cursor:pointer;font-size:17px;font-weight:700;color:#444;text-align:center;position:relative;transition:all .15s">$2</div>
-                <div class="sup-card-preset active" data-val="5" style="padding:14px 8px;border:1.5px solid #6366f1;border-radius:12px;cursor:pointer;font-size:17px;font-weight:700;color:#4338ca;text-align:center;position:relative;background:#eef2ff;transition:all .15s"><span style="position:absolute;top:-9px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:700;color:#fff;background:#6366f1;padding:2px 10px;border-radius:8px;white-space:nowrap">Popular</span>$5</div>
-                <div class="sup-card-preset" data-val="9" style="padding:14px 8px;border:1.5px solid #e8e8e8;border-radius:12px;cursor:pointer;font-size:17px;font-weight:700;color:#444;text-align:center;position:relative;transition:all .15s">$9</div>
-                <div class="sup-card-preset" data-val="15" style="padding:14px 8px;border:1.5px solid #e8e8e8;border-radius:12px;cursor:pointer;font-size:17px;font-weight:700;color:#444;text-align:center;position:relative;transition:all .15s">$15</div>
+            <div class="sp-card-presets" id="spPresets">
+                <div class="sp-card-preset" data-val="2">$2</div>
+                <div class="sp-card-preset active" data-val="5"><span class="ptag">Popular</span>$5</div>
+                <div class="sp-card-preset" data-val="9">$9</div>
+                <div class="sp-card-preset" data-val="15">$15</div>
             </div>
-
-            <button id="supCardCta" style="width:100%;padding:17px 20px;border:none;border-radius:14px;background:#6366f1;color:#fff;font-size:16px;font-weight:700;cursor:pointer;font-family:inherit;transition:background .15s;margin-bottom:18px">Continue with $3 / month</button>
-
-            <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:10px">
-                <span style="font-size:13px;color:#6366f1;font-weight:600"><i class="fas fa-globe" style="margin-right:4px"></i> Includes <em>ad-free</em> experience</span>
-                <span style="display:inline-flex;align-items:center;gap:4px;padding:5px 12px;border:1px solid #e0e0e0;border-radius:16px;font-size:11.5px;color:#999"><i class="fas fa-chevron-down" style="font-size:8px"></i> $36 Billed Annually</span>
+            <button class="sp-card-cta" id="spCta">Continue with $3 / month</button>
+            <div class="sp-card-perk-row">
+                <span class="sp-card-perk"><i class="fas fa-globe" style="margin-right:4px"></i> Includes <em>ad-free</em> experience</span>
+                <span class="sp-card-badge"><i class="fas fa-chevron-down" style="font-size:8px"></i> $36 Billed Annually</span>
             </div>
-            <div style="display:flex;align-items:center;justify-content:center;gap:10px;font-size:12px;color:#ccc;margin-top:4px">
-                <span><i class="fas fa-lock" style="margin-right:3px"></i> Secure payment</span>
-                <span>&bull;</span>
-                <span>Cancel anytime</span>
-            </div>
+            <div class="sp-card-trust"><span><i class="fas fa-lock" style="margin-right:3px"></i> Secure payment</span><span>&bull;</span><span>Cancel anytime</span></div>
         </div>
     </section>
 
-    <!-- Sticky Bottom CTA -->
-    <div class="sup-sticky-cta">
-        <button class="sup-sticky-btn" id="supStickyBtn">Support Shark Tank Blog</button>
-        <span class="sup-sticky-social"><strong>Sarah</strong> from Portland supported with <span class="amount">$25</span></span>
+    <!-- Sticky -->
+    <div class="sp-sticky">
+        <button class="sp-sticky-btn" id="spStickyBtn">Support Shark Tank Blog</button>
+        <span class="sp-sticky-proof"><strong>Sarah</strong> from Portland supported with <span class="amt">$25</span></span>
     </div>
 
     <!-- Footer -->
     <footer class="site-footer">
         <div class="container footer-inner">
             <div class="footer-grid">
-                <div class="footer-about">
-                    <div class="footer-logo"><img src="assets/images/footer-logo.svg" alt="The Shark Tank Blog" width="80" height="70"><span class="footer-logo-text">The Shark Tank Blog</span></div>
-                    <p>Shark Tank Blog is independent of and not affiliated or endorsed by ABC, Sony, the producers or any other company associated with the television show, Shark Tank.</p>
-                    <div class="social-icons footer-social"><a href="#"><i class="fab fa-pinterest-p"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-x-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div>
-                </div>
+                <div class="footer-about"><div class="footer-logo"><img src="assets/images/footer-logo.svg" alt="The Shark Tank Blog" width="80" height="70"><span class="footer-logo-text">The Shark Tank Blog</span></div><p>Shark Tank Blog is independent of and not affiliated or endorsed by ABC, Sony, the producers or any other company associated with the television show, Shark Tank.</p><div class="social-icons footer-social"><a href="#"><i class="fab fa-pinterest-p"></i></a><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-x-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-linkedin-in"></i></a></div></div>
                 <div class="footer-menu"><h4>Menu</h4><ul><li><a href="index.html">Home</a></li><li><a href="episodes.html">Shark Tank Episodes</a></li><li><a href="products.html">Shark Tank Products</a></li><li><a href="blog.html">Blog</a></li><li><a href="startup-list.html">Shark Tank Businesses</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
                 <div class="footer-newsletter"><h4>Subscribe to our Newsletter</h4><div class="newsletter-form"><input type="email" placeholder="Enter your email"><button type="submit">Subscribe</button></div></div>
             </div>
         </div>
     </footer>
     <div class="footer-bottom-bar"><p><a href="#">Terms of Content Use</a></p><p class="raptive-badge">A RAPTIVE PARTNER SITE</p></div>
-
     <button class="scroll-top" id="scrollTop" aria-label="Scroll to top"><i class="fa fa-chevron-up"></i></button>
 
     <script src="script.js"></script>
@@ -547,55 +291,19 @@
     <script src="go-ad-free.js" data-delay="99999" data-poll="0"></script>
     <script>
     document.addEventListener('DOMContentLoaded', function(){
-        // Embedded card logic
-        var supSelected = 3;
-        var supPresets = document.querySelectorAll('.sup-card-preset');
-        var supVal = document.getElementById('supCardVal');
-        var supDaily = document.getElementById('supCardDaily');
-        var supCta = document.getElementById('supCardCta');
+        // Card
+        var sel=3, presets=document.querySelectorAll('.sp-card-preset'), valEl=document.getElementById('spVal'), dailyEl=document.getElementById('spDaily'), ctaEl=document.getElementById('spCta');
+        function upd(){ valEl.textContent=sel; dailyEl.textContent='$'+(sel/30).toFixed(2)+'/day'; ctaEl.textContent='Continue with $'+sel+' / month'; }
+        presets.forEach(function(p){ p.addEventListener('click',function(){ sel=parseInt(this.getAttribute('data-val')); presets.forEach(function(b){b.classList.remove('active')}); this.classList.add('active'); upd(); }); });
+        ctaEl.addEventListener('click',function(){ if(window.gafOpenPopup) window.gafOpenPopup(); });
 
-        function supUpdate(){
-            supVal.textContent = supSelected;
-            supDaily.textContent = '$'+(supSelected/30).toFixed(2)+'/day';
-            supCta.textContent = 'Continue with $'+supSelected+' / month';
-        }
+        // Sticky
+        document.getElementById('spStickyBtn').addEventListener('click',function(){ if(window.gafOpenPopup) window.gafOpenPopup(); });
 
-        supPresets.forEach(function(p){
-            p.addEventListener('click', function(){
-                supSelected = parseInt(this.getAttribute('data-val'));
-                supPresets.forEach(function(b){
-                    b.style.borderColor='#e8e8e8'; b.style.background='#fff'; b.style.color='#444';
-                });
-                this.style.borderColor='#6366f1'; this.style.background='#eef2ff'; this.style.color='#4338ca';
-                supUpdate();
-            });
-        });
-
-        supCta.addEventListener('click', function(){
-            if(window.gafOpenPopup) window.gafOpenPopup();
-        });
-
-        // Sticky CTA
-        document.getElementById('supStickyBtn').addEventListener('click', function(){
-            if(window.gafOpenPopup) window.gafOpenPopup();
-        });
-
-        // Rotate social proof
-        var names = [
-            {n:'Sarah', c:'Portland', a:'$25'},
-            {n:'Raj', c:'Mumbai', a:'$10'},
-            {n:'Lucas', c:'Berlin', a:'$50'},
-            {n:'Amara', c:'Nairobi', a:'$5'},
-            {n:'Jake', c:'Austin', a:'$15'},
-            {n:'Mia', c:'Sydney', a:'$100'}
-        ];
-        var idx = 0;
-        var socialEl = document.querySelector('.sup-sticky-social');
-        setInterval(function(){
-            idx = (idx + 1) % names.length;
-            var p = names[idx];
-            socialEl.innerHTML = '<strong>'+p.n+'</strong> from '+p.c+' supported with <span class="amount">'+p.a+'</span>';
-        }, 4000);
+        // Social proof rotation
+        var names=[{n:'Sarah',c:'Portland',a:'$25'},{n:'Raj',c:'Mumbai',a:'$10'},{n:'Lucas',c:'Berlin',a:'$50'},{n:'Amara',c:'Nairobi',a:'$5'},{n:'Jake',c:'Austin',a:'$15'},{n:'Mia',c:'Sydney',a:'$100'}];
+        var idx=0, proofEl=document.querySelector('.sp-sticky-proof');
+        setInterval(function(){ idx=(idx+1)%names.length; var p=names[idx]; proofEl.innerHTML='<strong>'+p.n+'</strong> from '+p.c+' supported with <span class="amt">'+p.a+'</span>'; },4000);
     });
     </script>
 </body>
