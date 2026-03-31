@@ -108,6 +108,99 @@
         }
         .ad-sticky-bottom .sticky-close:hover { color: #fff; }
         .ad-sticky-bottom.hidden { display: none; }
+        /* ---- Zone A: Compact inline banner ---- */
+        .zone-a {
+            background: #f8f9fa;
+            border: 1px solid #eee;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin: 24px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            flex-wrap: wrap;
+        }
+        .zone-a-text { flex: 1; min-width: 200px; }
+        .zone-a-text strong { font-size: 14px; color: #1a1a1a; display: block; margin-bottom: 2px; }
+        .zone-a-text span { font-size: 12.5px; color: #888; }
+        .zone-a-cta {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 8px 18px; background: var(--cyan); color: #fff;
+            border: none; border-radius: 6px; font-size: 12px; font-weight: 700;
+            cursor: pointer; font-family: var(--font-body); white-space: nowrap;
+            text-decoration: none; transition: background .15s;
+        }
+        .zone-a-cta:hover { background: var(--cyan-hover); }
+
+        /* ---- Zone B: Mid-article strip ---- */
+        .zone-b {
+            background: linear-gradient(135deg, #0e1117, #151b28);
+            border-radius: 10px;
+            padding: 24px 28px;
+            margin: 32px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+        .zone-b-text { flex: 1; min-width: 200px; }
+        .zone-b-text strong { font-size: 15px; color: #fff; display: block; margin-bottom: 4px; }
+        .zone-b-text span { font-size: 13px; color: rgba(255,255,255,.5); }
+        .zone-b-cta {
+            display: inline-flex; align-items: center; gap: 5px;
+            padding: 10px 22px; background: var(--cyan); color: #fff;
+            border: none; border-radius: 8px; font-size: 13px; font-weight: 700;
+            cursor: pointer; font-family: var(--font-body); white-space: nowrap;
+            text-decoration: none; transition: background .15s, transform .1s;
+        }
+        .zone-b-cta:hover { background: var(--cyan-hover); transform: translateY(-1px); }
+
+        /* ---- Zone D: Author bio strip ---- */
+        .zone-d {
+            background: #f8f9fa;
+            border-left: 3px solid var(--cyan);
+            border-radius: 0 8px 8px 0;
+            padding: 18px 22px;
+            margin: 24px 0 0;
+        }
+        .zone-d strong { font-size: 14px; color: #1a1a1a; display: block; margin-bottom: 4px; }
+        .zone-d span { font-size: 13px; color: #777; }
+        .zone-d a {
+            display: inline-flex; align-items: center; gap: 4px;
+            color: var(--cyan); font-size: 13px; font-weight: 700;
+            text-decoration: none; margin-top: 8px;
+        }
+        .zone-d a:hover { text-decoration: underline; }
+
+        /* ---- Zone E: Sticky sidebar card ---- */
+        .zone-e {
+            position: sticky;
+            top: 80px;
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 10px;
+            padding: 24px 20px;
+            text-align: center;
+            margin-top: 24px;
+        }
+        .zone-e h4 { font-family: var(--font-heading); font-size: 16px; font-weight: 700; color: #1a1a1a; margin-bottom: 6px; }
+        .zone-e p { font-size: 12.5px; color: #999; margin-bottom: 14px; line-height: 1.5; }
+        .zone-e-cta {
+            display: block; width: 100%;
+            padding: 11px 16px; background: var(--cyan); color: #fff;
+            border: none; border-radius: 8px; font-size: 13px; font-weight: 700;
+            cursor: pointer; font-family: var(--font-body);
+            text-decoration: none; text-align: center;
+            transition: background .15s;
+            margin-bottom: 10px;
+        }
+        .zone-e-cta:hover { background: var(--cyan-hover); }
+        .zone-e-link { font-size: 11.5px; color: #bbb; }
+        .zone-e-link a { color: var(--cyan); text-decoration: none; font-weight: 600; }
+        .zone-e-link a:hover { text-decoration: underline; }
+
         .scroll-top { bottom: 65px; }
 
         /* ---- Article Support Appeal ---- */
@@ -325,6 +418,15 @@
                     </div>
                 </div>
 
+                <!-- Zone A: Compact inline banner -->
+                <div class="zone-a">
+                    <div class="zone-a-text">
+                        <strong>Reading this with ads?</strong>
+                        <span>Skip them for a whole year &mdash; just $20. One coffee.</span>
+                    </div>
+                    <a href="go-ads-free.html" class="zone-a-cta">Go Ad-Free <i class="fas fa-arrow-right"></i></a>
+                </div>
+
                 <!-- Table of Contents -->
                 <div class="toc-box">
                     <div class="toc-header">
@@ -464,6 +566,15 @@
                     </div>
                 </div>
 
+                <!-- Zone B: Mid-article strip -->
+                <div class="zone-b">
+                    <div class="zone-b-text">
+                        <strong>Enjoying this breakdown?</strong>
+                        <span>Over 2 million readers come here every month. You can read without ads for $20/year.</span>
+                    </div>
+                    <a href="go-ads-free.html" class="zone-b-cta">Go Ad-Free <i class="fas fa-arrow-right"></i></a>
+                </div>
+
                 <!-- What Makes Unique -->
                 <h2 id="unique">What Makes Hang Hero Unique?</h2>
                 <p>What makes Hang Hero stand out is how it simplifies a task most people avoid altogether.</p>
@@ -561,30 +672,23 @@
                     </div>
                 </div>
 
-                <!-- Support Appeal -->
+                <!-- Zone D: Author bio strip -->
+                <div class="zone-d">
+                    <strong>Liya wrote this. Independent writers keep this site alive.</strong>
+                    <span>If you got something from it, consider supporting the work.</span>
+                    <a href="support.html">Support Shark Tank Blog <i class="fas fa-arrow-right"></i></a>
+                </div>
+
+                <!-- Zone C: Full support widget (post-summary) -->
                 <div class="article-support-appeal">
-                    <h3 class="appeal-headline">Covering every pitch takes real resources</h3>
+                    <h3 class="appeal-headline">This coverage is free. It doesn't have to cost you nothing.</h3>
 
-                    <p>Shark Tank Blog covers every episode, every founder, every deal &mdash; across 17 seasons and counting. We do it independently, without corporate backing or VC money.</p>
-
-                    <p>With reporters watching every episode live, researching every company, and writing stories that millions of readers rely on &mdash; we're well-placed to provide comprehensive coverage. <strong>But we can't do it without your support.</strong></p>
-
-                    <p>We rely on readers like you, whose backing helps keep our coverage independent and free from commercial influence.</p>
-
-                    <p>We appreciate that not everyone can afford to pay for journalism, but if you can, here are three good reasons to back us today:</p>
-
-                    <ol class="appeal-reasons">
-                        <li><strong>Our coverage is thorough.</strong> Every pitch gets the same care &mdash; whether it landed a $1M deal or walked away empty-handed.</li>
-                        <li><strong>We are independent.</strong> No billionaire owner, no network pressure. Your support directly powers our reporting.</li>
-                        <li><strong>It doesn't cost much</strong>, and takes less time than it took to read this article.</li>
-                    </ol>
-
-                    <div class="appeal-highlight">
-                        <p><strong>Choosing to back us on a monthly basis makes the most impact</strong>, meaning we can continue to cover every pitch, every founder story, and what it all means for entrepreneurship &mdash; and the world.</p>
-                    </div>
+                    <p>Shark Tank Blog has covered every pitch, every season, every founder &mdash; without a paywall. A small group of readers make that possible.</p>
 
                     <!-- Embedded payment widget -->
                     <div class="aw-widget" id="articleWidget"></div>
+
+                    <p style="font-size:13px!important;color:#999!important;text-align:center;margin-top:14px!important">Includes ad-free reading across the entire site.<br>Or just &rarr; <a href="go-ads-free.html" style="color:var(--cyan);font-weight:600">Go Ad-Free for $20/year</a></p>
                 </div>
 
             </article>
@@ -828,6 +932,14 @@
                     <span class="ad-slot-label">Advertisement</span>
                     <span class="ad-dim">Rectangle Ad &mdash; 300&times;250</span>
                 </div>
+            </div>
+
+            <!-- Zone E: Sticky sidebar card -->
+            <div class="zone-e">
+                <h4>Read without ads</h4>
+                <p>$20/year. Cancel anytime.</p>
+                <a href="go-ads-free.html" class="zone-e-cta">Go Ad-Free <i class="fas fa-arrow-right"></i></a>
+                <div class="zone-e-link">Or <a href="support.html">support the coverage</a> from $3/mo</div>
             </div>
         </aside>
     </div>
