@@ -404,54 +404,51 @@ img { max-width: 100%; display: block; }
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+.sticky-video-topbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 4px 6px;
+    background: #2a2a2a;
+    border-radius: 6px 6px 0 0;
+}
 .sticky-video-gaf-pill {
-    position: absolute;
-    top: -10px;
-    right: 8px;
-    z-index: 4;
     display: inline-flex;
     align-items: center;
     gap: 3px;
     padding: 3px 10px;
-    background: #c0392b;
+    background: #9b3a3a;
     color: #fff;
     border: none;
-    border-radius: 12px;
-    font-size: 9.5px;
+    border-radius: 3px;
+    font-size: 9px;
     font-weight: 800;
     letter-spacing: 0.4px;
     text-transform: uppercase;
     cursor: pointer;
     font-family: inherit;
     white-space: nowrap;
-    box-shadow: 0 2px 6px rgba(192,57,43,0.4);
-    transition: transform 0.15s, box-shadow 0.15s;
+    transition: background 0.15s;
 }
-.sticky-video-gaf-pill:hover {
-    transform: scale(1.05);
-    box-shadow: 0 3px 10px rgba(192,57,43,0.5);
-}
+.sticky-video-gaf-pill:hover { background: #b94040; }
 
 .sticky-video-close {
-    position: absolute;
-    top: -10px;
-    left: -10px;
-    width: 28px;
-    height: 28px;
+    position: static;
+    width: 22px;
+    height: 22px;
     border-radius: 50%;
-    background: #555;
-    color: #fff;
-    border: 2px solid #fff;
-    font-size: 14px;
+    background: none;
+    color: #888;
+    border: none;
+    font-size: 16px;
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 3;
     line-height: 1;
-    transition: background 0.15s;
+    transition: color 0.15s;
 }
-.sticky-video-close:hover { background: #333; }
+.sticky-video-close:hover { color: #fff; }
 .sticky-video-player { position: relative; border-radius: 6px; overflow: hidden; }
 .sticky-video-screen {
     width: 100%;
