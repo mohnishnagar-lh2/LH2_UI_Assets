@@ -420,9 +420,9 @@ img { max-width: 100%; display: block; }
     position: fixed;
     bottom: 72px;
     right: 16px;
-    width: 320px;
+    width: 300px;
     z-index: 201;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
     border-radius: 6px;
     overflow: visible;
     background: #000;
@@ -436,41 +436,39 @@ img { max-width: 100%; display: block; }
     display: flex;
     align-items: center;
     justify-content: flex-end;
-    padding: 6px 8px;
-    background: #f0efec;
-    border-radius: 6px 6px 0 0;
-    border: 1px solid #e0dfdc;
-    border-bottom: none;
+    height: 28px;
+    padding: 0;
+    margin: 0 0 2px;
 }
 .sticky-video-gaf-pill {
     display: inline-flex;
     align-items: center;
-    gap: 3px;
-    padding: 4px 12px;
+    gap: 4px;
+    padding: 5px 14px;
     background: #9b3a3a;
     color: #fff;
     border: none;
-    border-radius: 3px;
-    font-size: 9px;
+    border-radius: 20px;
+    font-size: 10px;
     font-weight: 800;
     letter-spacing: 0.4px;
     text-transform: uppercase;
     cursor: pointer;
     font-family: inherit;
     white-space: nowrap;
-    transition: background 0.15s;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.2);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+    transition: transform 0.15s, box-shadow 0.15s;
 }
-.sticky-video-gaf-pill:hover { background: #b94040; }
+.sticky-video-gaf-pill:hover { transform: scale(1.03); box-shadow: 0 3px 12px rgba(155,58,58,0.4); }
 
 .sticky-video-close {
     position: absolute;
-    top: -8px;
-    left: -8px;
+    top: 0;
+    left: -12px;
     width: 24px;
     height: 24px;
     border-radius: 50%;
-    background: #555;
+    background: #666;
     color: #fff;
     border: 2px solid #fff;
     font-size: 13px;
@@ -483,7 +481,7 @@ img { max-width: 100%; display: block; }
     transition: background 0.15s;
 }
 .sticky-video-close:hover { background: #333; }
-.sticky-video-player { position: relative; border-radius: 0 0 6px 6px; overflow: hidden; }
+.sticky-video-player { position: relative; border-radius: 6px; overflow: hidden; }
 .sticky-video-screen {
     width: 100%;
     aspect-ratio: 16/9;
