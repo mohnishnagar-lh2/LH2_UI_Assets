@@ -28,18 +28,16 @@ var CFG = {
 };
 
 // ========== AD SELECTORS ==========
+// Only match real ad networks + our explicit .demo-ad class (via data-selectors)
+// Do NOT use broad patterns like [class*="ad-"] which match our own wrapper divs
 var AD_SELECTORS = [
   'ins.adsbygoogle','[id^="google_ads"]','[id^="div-gpt-ad"]','.gpt-ad','[data-google-query-id]',
   '[id^="amzn-assoc"]','iframe[src*="amazon-adsystem"]',
   '[id*="freestar"]','[class*="freestar"]',
   '[id^="mediavine"]','[class*="mediavine"]','[data-mediavine]',
   '[class*="adthrive"]',
-  '[class*="ad-slot"]','[class*="ad-container"]','[class*="ad-wrapper"]','[class*="ad-banner"]',
-  '[class*="advertisement"]','[class*="sponsored"]',
-  '[id*="ad-slot"]','[id*="ad-container"]','[id*="ad-banner"]','[id*="advertisement"]',
   '[data-ad]','[data-ad-slot]','[data-ad-unit]','[data-adunit]','[data-dfp]',
-  'iframe[src*="doubleclick"]','iframe[src*="googlesyndication"]',
-  '.ad-placeholder','.ad-banner'
+  'iframe[src*="doubleclick"]','iframe[src*="googlesyndication"]'
 ];
 
 // ========== STATE ==========

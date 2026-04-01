@@ -398,13 +398,13 @@ img { max-width: 100%; display: block; }
 /* ===== STICKY VIDEO AD (bottom-right) ===== */
 .sticky-video-ad {
     position: fixed;
-    bottom: 70px;
+    bottom: 72px;
     right: 16px;
     width: 320px;
-    z-index: 198;
+    z-index: 201;
     box-shadow: 0 8px 32px rgba(0,0,0,0.25);
     border-radius: 6px;
-    overflow: hidden;
+    overflow: visible;
     background: #000;
     animation: svSlideIn 0.4s ease-out;
 }
@@ -432,7 +432,7 @@ img { max-width: 100%; display: block; }
     transition: background 0.15s;
 }
 .sticky-video-close:hover { background: #333; }
-.sticky-video-player { position: relative; }
+.sticky-video-player { position: relative; border-radius: 6px; overflow: hidden; }
 .sticky-video-screen {
     width: 100%;
     aspect-ratio: 16/9;
@@ -945,7 +945,7 @@ img { max-width: 100%; display: block; }
 /* ===== SCROLL TO TOP ===== */
 .scroll-top-btn {
     position: fixed;
-    bottom: 70px;
+    bottom: 280px;
     right: 16px;
     width: 40px;
     height: 40px;
