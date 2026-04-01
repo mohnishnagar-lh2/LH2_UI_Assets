@@ -18,7 +18,8 @@
       "Bash(ls C:/Library/Projects/STB_UI/*.html)",
       "Bash(do curl:*)",
       "Bash(curl -s http://localhost:8080/login.html)",
-      "Bash(curl -s http://localhost:8080/subscription.html)"
+      "Bash(curl -s http://localhost:8080/subscription.html)",
+      "Bash(gh api:*)"
     ]
   }
 }
