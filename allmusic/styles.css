@@ -412,9 +412,28 @@ img { max-width: 100%; display: block; }
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
+.sticky-video-gaf {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 4px;
+    padding: 4px 10px;
+    background: #c0392b;
+    color: #fff;
+    font-size: 10.5px;
+    font-weight: 800;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.15s;
+    border-radius: 6px 6px 0 0;
+}
+.sticky-video-gaf:hover { background: #a93226; }
+.sticky-video-gaf span { margin-right: 2px; }
+
 .sticky-video-close {
     position: absolute;
-    top: -12px;
+    top: 16px;
     left: -12px;
     width: 28px;
     height: 28px;
