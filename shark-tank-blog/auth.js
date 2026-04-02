@@ -58,19 +58,7 @@ function initAuthUI() {
             });
         }
     } else {
-        // Not logged in: show Go Ads-Free button (opens payment popup)
-        const goAdsFreeBtn = document.createElement('button');
-        goAdsFreeBtn.className = 'btn-signin';
-        goAdsFreeBtn.textContent = 'Go Ads-Free';
-        goAdsFreeBtn.addEventListener('click', function () {
-            if (window.gafOpenPopup) { window.gafOpenPopup(); }
-        });
-
-        if (contactBtn) {
-            navRight.insertBefore(goAdsFreeBtn, contactBtn);
-        } else {
-            navRight.appendChild(goAdsFreeBtn);
-        }
+        // Not logged in: Go Ads-Free button already in HTML, no injection needed
     }
 }
 

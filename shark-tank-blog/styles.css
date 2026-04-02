@@ -1125,7 +1125,7 @@ ul { list-style: none; }
     .read-more { font-size: 13px; padding: 6px 0; }
 
     /* --- Floating helper --- */
-    .ad-helper-btn { bottom: 16px; left: 12px; padding: 8px 14px; font-size: 12px; }
+    .ad-helper-round { bottom: 16px; left: 12px; width: 46px; height: 46px; font-size: 20px; }
 }
 
 /* ==================
@@ -1154,8 +1154,7 @@ ul { list-style: none; }
 
     .btn-see-more, .see-more-wrap { width: 100%; text-align: center; }
 
-    .ad-helper-btn { padding: 7px 12px; font-size: 11px; }
-    .ad-helper-btn .helper-icon { width: 20px; height: 20px; font-size: 12px; }
+    .ad-helper-round { width: 42px; height: 42px; font-size: 18px; }
 }
 
 /* ==================
@@ -1163,7 +1162,7 @@ ul { list-style: none; }
    ================== */
 @supports (padding: env(safe-area-inset-bottom)) {
     .scroll-top { bottom: calc(16px + env(safe-area-inset-bottom)); }
-    .ad-helper-btn { bottom: calc(16px + env(safe-area-inset-bottom)); }
+    .ad-helper-round { bottom: calc(16px + env(safe-area-inset-bottom)); }
     body { padding-bottom: env(safe-area-inset-bottom); }
 }
 
