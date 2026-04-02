@@ -58,18 +58,18 @@ function initAuthUI() {
             });
         }
     } else {
-        // Not logged in: show Sign In button (opens modal)
-        const signinBtn = document.createElement('button');
-        signinBtn.className = 'btn-signin';
-        signinBtn.textContent = 'Sign In';
-        signinBtn.addEventListener('click', function () {
-            openLoginModal();
+        // Not logged in: show Go Ads-Free button (opens payment popup)
+        const goAdsFreeBtn = document.createElement('button');
+        goAdsFreeBtn.className = 'btn-signin';
+        goAdsFreeBtn.textContent = 'Go Ads-Free';
+        goAdsFreeBtn.addEventListener('click', function () {
+            if (window.gafOpenPopup) { window.gafOpenPopup(); }
         });
 
         if (contactBtn) {
-            navRight.insertBefore(signinBtn, contactBtn);
+            navRight.insertBefore(goAdsFreeBtn, contactBtn);
         } else {
-            navRight.appendChild(signinBtn);
+            navRight.appendChild(goAdsFreeBtn);
         }
     }
 }
