@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Beer Girl Shark Tank Update – Shark Tank Season 17 | Shark Tank Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="page-styles.css">
+    <link rel="stylesheet" href="auth-styles.css">
+    <link rel="stylesheet" href="article-styles.css">
+    <style>
+        /* ====== Shark-Style CTAs (new) ====== */
+
+        /* Header CTA emoji */
+        .btn-contact .shark-emoji { display: inline-block; margin-left: 4px; }
+
+        /* In-article support CTA */
+        .support-cta.shark-style {
+            background: linear-gradient(135deg, #FFFBEB, #FEF3C7);
+            border-left: 4px solid #F5A623;
+            border-radius: 8px;
+            padding: 20px 24px;
+            margin: 28px 0;
+        }
+        .support-cta.shark-style p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #1A1A2E;
+            margin-bottom: 16px;
+        }
+        .support-cta.shark-style strong { color: #1A1A2E; }
+        .cta-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        .cta-btn-primary {
+            display: inline-block;
+            background: #F5A623;
+            color: #1A1A2E !important;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: background 0.2s, transform 0.1s;
+        }
+        .cta-btn-primary:hover {
+            background: #E09000;
+            transform: translateY(-1px);
+            text-decoration: none;
+        }
+        .cta-secondary { font-size: 14px; color: #6B7280; }
+        .cta-secondary a {
+            color: #F5A623;
+            text-decoration: underline;
+            font-weight: 500;
+        }
+        .cta-secondary a:hover { color: #E09000; }
+
+        /* Mid-article deal context variant */
+        .support-cta.deal-context {
+            background: #FEFCE8;
+            border-left-color: #F5A623;
+        }
+
+        /* Author CTA */
+        .author-cta.shark-style {
+            background: #F9FAFB;
+            border-radius: 12px;
+            padding: 24px;
+            margin: 32px 0;
+        }
+        .author-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+        .author-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            object-fit: cover;
+            background: linear-gradient(135deg, #F5A623, #E09000);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #1A1A2E;
+            font-weight: 700;
+            font-size: 18px;
+        }
+        .author-name {
+            display: block;
+            font-weight: 600;
+            font-size: 15px;
+            color: #1A1A2E;
+        }
+        .author-role {
+            display: block;
+            font-size: 13px;
+            color: #6B7280;
+        }
+        .author-cta.shark-style p {
+            font-size: 15px;
+            line-height: 1.6;
+            color: #374151;
+            margin-bottom: 16px;
+        }
+
+        /* Sidebar CTA */
+        .sidebar-cta.shark-style {
+            background: #FFFFFF;
+            border: 1px solid #E5E7EB;
+            border-left: 4px solid #F5A623;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .sidebar-cta.shark-style h4 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1A1A2E;
+            margin-bottom: 12px;
+        }
+        .sidebar-cta.shark-style p {
+            font-size: 14px;
+            line-height: 1.5;
+            color: #4B5563;
+            margin-bottom: 16px;
+        }
+        .cta-btn-primary.full-width {
+            display: block;
+            width: 100%;
+            text-align: center;
+        }
+        .cta-alt {
+            text-align: center;
+            font-size: 13px;
+            color: #6B7280;
+            margin-top: 12px;
+            margin-bottom: 0;
+        }
+        .cta-alt a {
+            color: #F5A623;
+            text-decoration: underline;
+        }
+
+        /* Sticky bottom bar */
+        .sticky-cta-bar {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
+            color: #FFFFFF;
+            padding: 14px 24px;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            z-index: 9999;
+            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+        }
+        .sticky-cta-bar.visible { display: flex; }
+        .sticky-cta-bar p { margin: 0; font-size: 15px; }
+        .sticky-cta-bar strong { font-weight: 600; }
+        .sticky-cta-bar .cta-btn-primary { padding: 8px 18px; font-size: 13px; }
+        .sticky-close {
+            position: absolute;
+            right: 16px;
+            background: none;
+            border: none;
+            color: #FFFFFF;
+            opacity: 0.6;
+            cursor: pointer;
+            font-size: 24px;
+            line-height: 1;
+            padding: 4px;
+            transition: opacity 0.2s;
+        }
+        .sticky-close:hover { opacity: 1; }
+
+        /* Footer CTA */
+        .footer-cta.shark-style {
+            text-align: center;
+            padding: 32px 24px;
+            margin: 24px 0;
+            background: #F9FAFB;
+            border-radius: 12px;
+        }
+        .footer-cta.shark-style h4 {
+            font-size: 18px;
+            font-weight: 600;
+            color: #1A1A2E;
+            margin-bottom: 12px;
+        }
+        .footer-cta.shark-style p {
+            font-size: 15px;
+            color: #4B5563;
+            max-width: 480px;
+            margin: 0 auto 20px;
+            line-height: 1.6;
+        }
+
+        /* Article featured image styling */
+        .article-featured-img img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .article-featured-img figcaption {
+            font-size: 12px;
+            color: #6B7280;
+            text-align: center;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 640px) {
+            .sticky-cta-bar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 12px 16px;
+                text-align: center;
+            }
+            .sticky-close { position: absolute; top: 8px; right: 12px; }
+            .support-cta.shark-style { padding: 16px 18px; margin: 22px 0; }
+            .author-cta.shark-style { padding: 18px; }
+            .cta-actions { gap: 8px; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Social Bar -->
+    <div class="top-social-bar">
+        <div class="container top-social-inner">
+            <div class="social-icons top-social-icons">
+                <a href="#" aria-label="Pinterest"><i class="fab fa-pinterest-p"></i></a>
+                <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                <a href="#" aria-label="X"><i class="fab fa-x-twitter"></i></a>
+                <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar -->
+    <nav class="main-nav" id="mainNav">
+        <div class="container nav-inner">
+            <div class="nav-left">
+                <a href="index.html" class="logo">
+                    <img src="assets/images/shark_logo.jpeg" alt="The Shark Tank Blog" width="60" height="50">
+                </a>
+                <button class="hamburger" id="hamburgerBtn" aria-label="Toggle menu">
+                    <span></span><span></span><span></span>
+                </button>
+                <ul class="nav-menu" id="navMenu">
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="episodes.html">Shark Tank Episodes</a></li>
+                    <li><a href="products.html">Shark Tank Products</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="startup-list.html">Shark Tank Startup List</a></li>
+                </ul>
+            </div>
+            <div class="nav-right">
+                <button class="search-toggle" id="searchToggle" aria-label="Search">
+                    <i class="fa fa-search"></i>
+                </button>
+                <a href="go-ads-free.html" class="btn-contact">Go Ads-Free <span class="shark-emoji">🦈</span></a>
+                <a href="login.html" class="btn-login-nav"><i class="fas fa-user"></i> Login</a>
+            </div>
+            <div class="search-box" id="searchBox">
+                <input type="text" placeholder="Search...">
+                <button type="submit"><i class="fa fa-search"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Article Layout -->
+    <div class="article-layout">
+        <main class="article-content">
+            <article class="article-post">
+                <h1 class="article-title">Beer Girl Shark Tank Update – Shark Tank Season 17</h1>
+                <p class="article-excerpt">A trailer-park beer concept turned into one of Season 17's most talked-about pitches. Did Beer Girl actually walk out with a deal — or did the Sharks pop the tab and walk?</p>
+
+                <div class="article-author-bar">
+                    <div class="author-avatar-lg"></div>
+                    <span>By <a href="#" class="author-link">Liya Shanawas</a> &middot; March 28, 2026</span>
+                </div>
+
+                <!-- Featured Image -->
+                <figure class="article-featured-img">
+                    <img src="assets/images/company-beergirl.svg" alt="Beer Girl founder pitching on Shark Tank">
+                    <figcaption>Mary "Beer Girl" Hernandez pitching on Shark Tank Season 17 (Image Credit: ABC)</figcaption>
+                </figure>
+
+                <!-- Intro paragraph -->
+                <p>Some pitches walk into the Tank with a slide deck. Beer Girl walked in with a six-pack, a working-class story, and a brand built around the kind of beer drinkers Madison Avenue forgot existed. The Sharks weren't sure what to make of it at first — and then the numbers showed up.</p>
+
+                <!-- ============================================
+                     CTA #1: First in-article CTA (after intro)
+                     ============================================ -->
+                <div class="support-cta shark-style">
+                    <p><strong>This article wasn't funded by a Shark.</strong> It was funded by readers like you. No equity taken. No royalty deals. Just independent coverage.</p>
+                    <div class="cta-actions">
+                        <a href="support.html" class="cta-btn-primary">Back This Blog</a>
+                        <span class="cta-secondary">or <a href="go-ads-free.html">read ad-free for $20/year</a></span>
+                    </div>
+                </div>
+
+                <!-- Table of Contents -->
+                <div class="toc-info">
+                    <h3 class="toc-title">In this article</h3>
+                    <ol class="toc-list">
+                        <li><a href="#what-is">What is Beer Girl?</a></li>
+                        <li><a href="#pitch">The Beer Girl Shark Tank Pitch</a></li>
+                        <li><a href="#deal">Did Beer Girl Get a Deal?</a></li>
+                        <li><a href="#after">Beer Girl After Shark Tank</a></li>
+                        <li><a href="#bottom-line">The Bottom Line</a></li>
+                    </ol>
+                </div>
+
+                <h2 id="what-is">What is Beer Girl?</h2>
+                <p>Beer Girl is a working-class lager brand founded by Mary Hernandez, a former bartender from Bakersfield who spent a decade watching her customers drink beer that didn't talk to them, didn't look like them, and didn't fit their wallets. The brand launched in 2023 with a simple promise: a no-nonsense beer for people who actually pay for their own beer.</p>
+                <p>The cans are pink-and-blue with a hand-drawn mascot. The beer is brewed in a contract facility in Modesto. The price point is deliberately under $9 a six-pack. Everything about the brand is loud, cheeky, and unapologetically blue-collar.</p>
+
+                <!-- Inline ad slot -->
+                <div class="ad-inline">
+                    <div class="ad-slot demo-ad" style="min-height:90px">
+                        <span class="ad-slot-label">Advertisement</span>
+                        <span class="ad-dim">Leaderboard Ad &mdash; 728&times;90</span>
+                    </div>
+                </div>
+
+                <h2 id="pitch">The Beer Girl Shark Tank Pitch</h2>
+                <p>Mary walked into the Tank asking for $200,000 for 10% equity — a $2 million valuation. She came in with a cooler of cans, distributed samples to the Sharks, and opened with a five-minute story about the customers she grew up serving. The Sharks tried the beer. Robert nodded. Mark made a face. Lori smiled and put hers down.</p>
+                <p>The numbers came next. Beer Girl had done $1.4 million in sales in its first 18 months, with $380K in profit. Distribution was already in 740 stores across California, Nevada, and Arizona. Mary had bootstrapped the entire operation with $60K of her own savings and a $40K loan from her brother.</p>
+
+                <!-- Hero/video placeholder -->
+                <figure class="article-featured-img" style="margin: 28px 0;">
+                    <img src="assets/images/beer-girl-thumb.svg" alt="Beer Girl pitch on Shark Tank">
+                    <figcaption>Mary pitching Beer Girl in the Tank (Image Credit: ABC)</figcaption>
+                </figure>
+
+                <h2 id="deal">Did Beer Girl Get a Deal?</h2>
+                <p>Kevin O'Leary went first — and predictably, he wanted a royalty. He offered $200K for 5% equity plus a $1-per-case royalty until $600K was paid back. Mary thanked him and politely passed. Mark Cuban went out, citing the alcohol regulatory environment. Lori went out — "not my space."</p>
+                <p>Then Daymond John leaned in. He didn't love the alcohol category either, but he loved the brand. He saw the same blue-collar marketing playbook he'd run with FUBU two decades earlier. He offered $200,000 for 25% equity. Mary countered at 15%. They settled at 20%.</p>
+
+                <!-- ============================================
+                     CTA #2: Mid-article contextual deal CTA
+                     ============================================ -->
+                <div class="support-cta shark-style deal-context">
+                    <p><strong>Daymond put in $200K for 20%.</strong> You can put in $3/month for unlimited access to our coverage. No pitch deck required.</p>
+                    <a href="support.html" class="cta-btn-primary">I'm In for $3/mo</a>
+                </div>
+
+                <h2 id="after">Beer Girl After Shark Tank</h2>
+                <p>After the episode aired, Beer Girl's website did 4.2 million pageviews in 72 hours. Distribution requests poured in from Texas, Florida, and Illinois. By the end of the quarter, the brand had landed in 1,800 additional stores. Daymond's team helped negotiate a national distribution deal with a midwestern wholesaler that took the brand into 11 new states by the end of 2026.</p>
+                <p>Mary now runs a 14-person team out of a small office in Bakersfield. She's added two new SKUs — a light lager and a Mexican-style amber — and the brand's projected to clear $8 million in revenue by year-end. The Daymond deal closed in due diligence with no changes to the original terms.</p>
+
+                <!-- Inline ad slot -->
+                <div class="ad-inline">
+                    <div class="ad-slot demo-ad" style="min-height:250px">
+                        <span class="ad-slot-label">Advertisement</span>
+                        <span class="ad-dim">Rectangle Ad &mdash; 300&times;250</span>
+                    </div>
+                </div>
+
+                <h2 id="bottom-line">The Bottom Line</h2>
+                <p>Beer Girl's pitch worked because Mary didn't try to make her brand bigger than it was — she made it sharper. She wasn't selling a category. She was selling a customer the Sharks could actually picture. That's why Daymond bit, and that's why the deal closed. In an episode full of complicated tech pitches and inflated valuations, Beer Girl was a reminder that sometimes the best business is the one with the clearest customer.</p>
+
+                <!-- ============================================
+                     CTA #4: Author Bio CTA
+                     ============================================ -->
+                <div class="author-cta shark-style">
+                    <div class="author-info">
+                        <div class="author-avatar">LS</div>
+                        <div>
+                            <span class="author-name">Liya Shanawas</span>
+                            <span class="author-role">Writer & Editor</span>
+                        </div>
+                    </div>
+                    <p><strong>No investor deck. No valuation pitch.</strong> Just great Shark Tank coverage, funded by you. If this story gave you something — an idea, a product to try, or just a good read — consider backing the team.</p>
+                    <div class="cta-actions">
+                        <a href="go-ads-free.html" class="cta-btn-primary">Go Ad-Free for $20/year</a>
+                        <span class="cta-secondary">or <a href="support.html">support from $3/mo</a></span>
+                    </div>
+                </div>
+            </article>
+        </main>
+
+        <!-- Sidebar -->
+        <aside class="article-sidebar">
+            <!-- AD: Sidebar top -->
+            <div class="ad-sidebar-rect">
+                <div class="ad-slot demo-ad" style="min-height:250px">
+                    <span class="ad-slot-label">Advertisement</span>
+                    <span class="ad-dim">Rectangle Ad &mdash; 300&times;250</span>
+                </div>
+            </div>
+
+            <!-- ============================================
+                 CTA #5: Sidebar CTA (below first ad)
+                 ============================================ -->
+            <div class="sidebar-cta shark-style">
+                <h4>Close the Deal 🦈</h4>
+                <p><strong>No equity. No royalties.</strong> Just <strong>$20/year</strong> for zero ads across the entire site.</p>
+                <a href="go-ads-free.html" class="cta-btn-primary full-width">I'm In</a>
+                <p class="cta-alt">Or <a href="support.html">support the coverage</a> from $3/mo</p>
+            </div>
+
+            <!-- Recent Posts widget -->
+            <div class="sidebar-widget">
+                <h3 class="sidebar-widget-title">Recent Posts</h3>
+                <div class="sidebar-posts">
+                    <div class="sidebar-post">
+                        <a href="hang-hero.html" class="sidebar-post-img"><img src="assets/images/hang-hero-thumb.svg" alt="Hang Hero"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="hang-hero.html">Hang Hero Shark Tank Update &ndash; Season 17</a></h4>
+                            <div class="sidebar-post-date">March 25, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/hot-girl-soda-thumb.svg" alt="Hot Girl Soda"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">Hot Girl Soda Shark Tank Update &ndash; Season 17</a></h4>
+                            <div class="sidebar-post-date">March 22, 2026</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-post">
+                        <a href="#" class="sidebar-post-img"><img src="assets/images/cranel-thumb.svg" alt="Cranel"></a>
+                        <div class="sidebar-post-info">
+                            <h4><a href="#">Cranel Shark Tank Update &ndash; Season 17</a></h4>
+                            <div class="sidebar-post-date">March 12, 2026</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- AD: Sidebar bottom -->
+            <div class="ad-sidebar-rect" style="margin-top:24px">
+                <div class="ad-slot demo-ad" style="min-height:250px">
+                    <span class="ad-slot-label">Advertisement</span>
+                    <span class="ad-dim">Rectangle Ad &mdash; 300&times;250</span>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- ============================================
+         CTA #7: Footer CTA (before footer)
+         ============================================ -->
+    <div class="container">
+        <div class="footer-cta shark-style">
+            <h4>We're Bootstrapped 🦈</h4>
+            <p>Every deal covered. Every founder's story told. Reader-funded since day one — just like your favorite Shark Tank founders.</p>
+            <a href="support.html" class="cta-btn-primary">Back Us</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <div class="footer-grid">
+                <div class="footer-about">
+                    <div class="footer-logo">
+                        <img src="assets/images/shark_logo.jpeg" alt="The Shark Tank Blog" width="80" height="70">
+                        <span class="footer-logo-text">The Shark Tank Blog</span>
+                    </div>
+                    <p>Shark Tank Blog is independent of and not affiliated or endorsed by ABC, Sony, the producers or any other company associated with the television show, Shark Tank.</p>
+                </div>
+                <div class="footer-menu">
+                    <h4>Menu</h4>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="episodes.html">Shark Tank Episodes</a></li>
+                        <li><a href="products.html">Shark Tank Products</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                        <li><a href="startup-list.html">Shark Tank Businesses</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-newsletter">
+                    <h4>Subscribe to our Newsletter</h4>
+                    <div class="newsletter-form">
+                        <input type="email" placeholder="Enter your email">
+                        <button type="submit">Subscribe</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="footer-bottom-bar">
+        <p><a href="#">Terms of Content Use</a></p>
+        <p class="raptive-badge">A RAPTIVE PARTNER SITE</p>
+    </div>
+
+    <button class="scroll-top" id="scrollTop" aria-label="Scroll to top">
+        <i class="fa fa-chevron-up"></i>
+    </button>
+
+    <!-- Floating support widget (existing) -->
+    <a href="support.html" class="ad-helper-round" aria-label="Invest in SharkTankBlog">
+        <span>🦈</span>
+    </a>
+
+    <!-- ============================================
+         CTA #6: Sticky bottom bar (appears at 50% scroll)
+         ============================================ -->
+    <div class="sticky-cta-bar" id="stickyCtaBar">
+        <p>For that reason… <strong>I'm going ad-free.</strong></p>
+        <a href="go-ads-free.html" class="cta-btn-primary">Make the Deal &rarr;</a>
+        <button class="sticky-close" onclick="closeStickyBar()" aria-label="Close">&times;</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="auth.js"></script>
+    <script src="go-ad-free.js" data-delay="99999" data-poll="0"></script>
+    <script>
+    (function () {
+        var stickyBar = document.getElementById('stickyCtaBar');
+        var STORAGE_KEY = 'stb_sticky_dismissed';
+        var DISMISS_DURATION = 24 * 60 * 60 * 1000; // 24 hours
+
+        try {
+            var dismissedAt = localStorage.getItem(STORAGE_KEY);
+            if (dismissedAt && Date.now() - parseInt(dismissedAt, 10) < DISMISS_DURATION) {
+                return;
+            }
+        } catch (e) { /* localStorage unavailable */ }
+
+        function checkScroll() {
+            var scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            if (scrollPercent > 50) {
+                stickyBar.classList.add('visible');
+                window.removeEventListener('scroll', checkScroll);
+            }
+        }
+        window.addEventListener('scroll', checkScroll, { passive: true });
+    })();
+
+    function closeStickyBar() {
+        var stickyBar = document.getElementById('stickyCtaBar');
+        stickyBar.classList.remove('visible');
+        try {
+            localStorage.setItem('stb_sticky_dismissed', Date.now().toString());
+        } catch (e) { /* localStorage unavailable */ }
+    }
+    </script>
+</body>
+</html>
