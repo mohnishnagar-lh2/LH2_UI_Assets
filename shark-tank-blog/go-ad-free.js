@@ -211,6 +211,19 @@ function scanAds(){
   try{ads = document.querySelectorAll(selector)}catch(e){return}
   ads.forEach(function(ad){
     if(ad.getAttribute(MARKER))return;
+    // Skip if any ancestor is already an ad slot (prevents duplicate pills
+    // on nested elements like .ad-slot-label inside .ad-slot)
+    if(ad.closest && ad.closest('['+MARKER+'="1"]')) return;
+    // Skip if any ancestor matches our ad selectors (we'll mark the outermost)
+    var parent = ad.parentElement;
+    var hasAdAncestor = false;
+    while(parent && parent !== document.body){
+      try{
+        if(parent.matches && parent.matches(selector)){ hasAdAncestor = true; break; }
+      }catch(e){}
+      parent = parent.parentElement;
+    }
+    if(hasAdAncestor) return;
     var rect = ad.getBoundingClientRect();
     if(rect.width<40||rect.height<20)return;
     ad.setAttribute(MARKER,'1');
