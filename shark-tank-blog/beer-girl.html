@@ -13,199 +13,532 @@
     <link rel="stylesheet" href="auth-styles.css">
     <link rel="stylesheet" href="article-styles.css">
     <style>
-        /* ====== Shark-Style CTAs (new) ====== */
+        /* ====== SHARK TANK BRAND THEME ======
+           Navy:    #0B1426  (deep ocean)
+           Navy 2:  #142342  (slightly lighter)
+           Cyan:    #00BCD4  (STB accent)
+           Cyan-2:  #00E5FF  (highlight)
+           Gold:    #F5A623  (premium accent)
+           Gold-2:  #FFD700  (highlight)
+        */
+        :root {
+            --stb-navy: #0B1426;
+            --stb-navy-2: #142342;
+            --stb-cyan: #00BCD4;
+            --stb-cyan-2: #00E5FF;
+            --stb-gold: #F5A623;
+            --stb-gold-2: #FFD700;
+            --stb-ink: #1A1A2E;
+            --stb-muted: #6B7280;
+            --stb-subtle: #E5E7EB;
+            --stb-card: #FFFFFF;
+            --stb-card-alt: #F9FAFB;
+        }
 
         /* Header CTA emoji */
         .btn-contact .shark-emoji { display: inline-block; margin-left: 4px; }
 
-        /* In-article support CTA */
-        .support-cta.shark-style {
-            background: linear-gradient(135deg, #FFFBEB, #FEF3C7);
-            border-left: 4px solid #F5A623;
+        /* ===== Shared CTA primitives ===== */
+        .cta-btn-primary {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: linear-gradient(135deg, var(--stb-cyan) 0%, #0099b8 100%);
+            color: #fff !important;
+            padding: 12px 24px;
             border-radius: 8px;
-            padding: 20px 24px;
-            margin: 28px 0;
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.2px;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            font-family: inherit;
+            transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.2s;
+            box-shadow: 0 2px 8px rgba(0, 188, 212, 0.25);
         }
-        .support-cta.shark-style p {
-            font-size: 15px;
-            line-height: 1.6;
-            color: #1A1A2E;
-            margin-bottom: 16px;
+        .cta-btn-primary:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 6px 20px rgba(0, 188, 212, 0.35);
+            text-decoration: none;
+            background: linear-gradient(135deg, var(--stb-cyan-2) 0%, var(--stb-cyan) 100%);
         }
-        .support-cta.shark-style strong { color: #1A1A2E; }
+        .cta-btn-primary.gold {
+            background: linear-gradient(135deg, var(--stb-gold) 0%, #d98e00 100%);
+            color: var(--stb-navy) !important;
+            box-shadow: 0 2px 8px rgba(245, 166, 35, 0.3);
+        }
+        .cta-btn-primary.gold:hover {
+            background: linear-gradient(135deg, var(--stb-gold-2) 0%, var(--stb-gold) 100%);
+            box-shadow: 0 6px 20px rgba(245, 166, 35, 0.4);
+        }
+        .cta-btn-primary.full-width {
+            display: flex;
+            width: 100%;
+        }
         .cta-actions {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             flex-wrap: wrap;
         }
-        .cta-btn-primary {
-            display: inline-block;
-            background: #F5A623;
-            color: #1A1A2E !important;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            transition: background 0.2s, transform 0.1s;
-        }
-        .cta-btn-primary:hover {
-            background: #E09000;
-            transform: translateY(-1px);
-            text-decoration: none;
-        }
-        .cta-secondary { font-size: 14px; color: #6B7280; }
+        .cta-secondary { font-size: 13.5px; color: var(--stb-muted); }
         .cta-secondary a {
-            color: #F5A623;
-            text-decoration: underline;
-            font-weight: 500;
+            color: var(--stb-cyan);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(0, 188, 212, 0.3);
+            transition: border-color 0.15s, color 0.15s;
         }
-        .cta-secondary a:hover { color: #E09000; }
+        .cta-secondary a:hover { color: var(--stb-cyan-2); border-color: var(--stb-cyan); }
 
-        /* Mid-article deal context variant */
-        .support-cta.deal-context {
-            background: #FEFCE8;
-            border-left-color: #F5A623;
-        }
-
-        /* Author CTA */
-        .author-cta.shark-style {
-            background: #F9FAFB;
+        /* ===== CTA #2: After-intro CTA ===== */
+        .support-cta.shark-style {
+            position: relative;
+            background: linear-gradient(135deg, var(--stb-navy) 0%, var(--stb-navy-2) 100%);
             border-radius: 12px;
-            padding: 24px;
+            padding: 26px 28px 24px 32px;
             margin: 32px 0;
+            color: #fff;
+            overflow: hidden;
+            box-shadow: 0 4px 24px rgba(11, 20, 38, 0.18);
+        }
+        .support-cta.shark-style::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; bottom: 0;
+            width: 5px;
+            background: linear-gradient(180deg, var(--stb-cyan), var(--stb-gold));
+        }
+        .support-cta.shark-style::after {
+            content: '';
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 188, 212, 0.12), transparent 70%);
+            pointer-events: none;
+        }
+        .support-cta.shark-style .cta-eyebrow {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            font-size: 10px;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            color: var(--stb-cyan);
+            margin-bottom: 10px;
+        }
+        .support-cta.shark-style .cta-eyebrow i { font-size: 10px; }
+        .support-cta.shark-style p {
+            font-size: 15.5px;
+            line-height: 1.65;
+            color: rgba(255, 255, 255, 0.78);
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1;
+        }
+        .support-cta.shark-style strong { color: #fff; font-weight: 700; }
+        .support-cta.shark-style .cta-secondary { color: rgba(255, 255, 255, 0.55); }
+        .support-cta.shark-style .cta-secondary a {
+            color: var(--stb-cyan);
+            border-color: rgba(0, 188, 212, 0.4);
+        }
+        .support-cta.shark-style .cta-secondary a:hover { color: var(--stb-cyan-2); }
+
+        /* ===== CTA #3: Mid-article deal context ===== */
+        .support-cta.deal-context {
+            background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+            color: var(--stb-ink);
+            box-shadow: 0 4px 20px rgba(245, 166, 35, 0.12);
+        }
+        .support-cta.deal-context::before {
+            background: linear-gradient(180deg, var(--stb-gold), #d98e00);
+        }
+        .support-cta.deal-context::after {
+            background: radial-gradient(circle, rgba(245, 166, 35, 0.18), transparent 70%);
+        }
+        .support-cta.deal-context .cta-eyebrow { color: #b45309; }
+        .support-cta.deal-context p { color: rgba(26, 26, 46, 0.82); }
+        .support-cta.deal-context strong { color: var(--stb-ink); }
+
+        /* ===== CTA #4: Author bio CTA ===== */
+        .author-cta.shark-style {
+            background: var(--stb-card-alt);
+            border: 1px solid var(--stb-subtle);
+            border-radius: 12px;
+            padding: 28px;
+            margin: 36px 0;
+            position: relative;
         }
         .author-info {
             display: flex;
             align-items: center;
-            gap: 12px;
-            margin-bottom: 16px;
+            gap: 14px;
+            margin-bottom: 18px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid var(--stb-subtle);
         }
         .author-avatar {
-            width: 48px;
-            height: 48px;
+            width: 52px;
+            height: 52px;
             border-radius: 50%;
-            object-fit: cover;
-            background: linear-gradient(135deg, #F5A623, #E09000);
+            background: linear-gradient(135deg, var(--stb-cyan), #0099b8);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: #1A1A2E;
-            font-weight: 700;
+            color: #fff;
+            font-weight: 800;
             font-size: 18px;
+            box-shadow: 0 2px 8px rgba(0, 188, 212, 0.25);
         }
         .author-name {
             display: block;
-            font-weight: 600;
-            font-size: 15px;
-            color: #1A1A2E;
+            font-weight: 700;
+            font-size: 15.5px;
+            color: var(--stb-ink);
         }
         .author-role {
             display: block;
-            font-size: 13px;
-            color: #6B7280;
+            font-size: 12.5px;
+            color: var(--stb-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            margin-top: 2px;
         }
         .author-cta.shark-style p {
             font-size: 15px;
-            line-height: 1.6;
+            line-height: 1.65;
             color: #374151;
-            margin-bottom: 16px;
+            margin-bottom: 18px;
         }
+        .author-cta.shark-style strong { color: var(--stb-ink); }
 
-        /* Sidebar CTA */
+        /* ===== CTA #5: Sidebar CTA ===== */
         .sidebar-cta.shark-style {
-            background: #FFFFFF;
-            border: 1px solid #E5E7EB;
-            border-left: 4px solid #F5A623;
-            border-radius: 8px;
-            padding: 20px;
+            background: linear-gradient(160deg, var(--stb-navy) 0%, var(--stb-navy-2) 100%);
+            border-radius: 12px;
+            padding: 22px 20px;
             margin: 20px 0;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(11, 20, 38, 0.2);
+        }
+        .sidebar-cta.shark-style::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 3px;
+            background: linear-gradient(90deg, var(--stb-cyan), var(--stb-gold));
         }
         .sidebar-cta.shark-style h4 {
-            font-size: 16px;
-            font-weight: 600;
-            color: #1A1A2E;
-            margin-bottom: 12px;
+            font-size: 17px;
+            font-weight: 800;
+            color: #fff;
+            margin: 4px 0 10px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         .sidebar-cta.shark-style p {
-            font-size: 14px;
-            line-height: 1.5;
-            color: #4B5563;
+            font-size: 13.5px;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.7);
             margin-bottom: 16px;
         }
-        .cta-btn-primary.full-width {
-            display: block;
-            width: 100%;
-            text-align: center;
-        }
+        .sidebar-cta.shark-style strong { color: #fff; }
         .cta-alt {
             text-align: center;
-            font-size: 13px;
-            color: #6B7280;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.5);
             margin-top: 12px;
             margin-bottom: 0;
         }
         .cta-alt a {
-            color: #F5A623;
-            text-decoration: underline;
+            color: var(--stb-cyan);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(0, 188, 212, 0.3);
         }
+        .cta-alt a:hover { color: var(--stb-cyan-2); }
 
-        /* Sticky bottom bar */
+        /* ===== CTA #6: Sticky bottom bar ===== */
         .sticky-cta-bar {
             position: fixed;
             bottom: 0;
             left: 0;
             right: 0;
-            background: linear-gradient(135deg, #1A1A2E 0%, #16213E 100%);
-            color: #FFFFFF;
-            padding: 14px 24px;
+            background: linear-gradient(135deg, var(--stb-navy) 0%, var(--stb-navy-2) 100%);
+            color: #fff;
+            padding: 16px 24px;
             display: none;
             align-items: center;
             justify-content: center;
-            gap: 16px;
+            gap: 20px;
             z-index: 9999;
-            box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 -4px 24px rgba(0, 0, 0, 0.25);
+            border-top: 2px solid var(--stb-cyan);
         }
         .sticky-cta-bar.visible { display: flex; }
-        .sticky-cta-bar p { margin: 0; font-size: 15px; }
-        .sticky-cta-bar strong { font-weight: 600; }
-        .sticky-cta-bar .cta-btn-primary { padding: 8px 18px; font-size: 13px; }
+        .sticky-cta-bar p { margin: 0; font-size: 14.5px; color: rgba(255, 255, 255, 0.85); }
+        .sticky-cta-bar strong { font-weight: 700; color: #fff; }
+        .sticky-cta-bar .cta-btn-primary { padding: 10px 22px; font-size: 13px; }
         .sticky-close {
             position: absolute;
             right: 16px;
             background: none;
             border: none;
-            color: #FFFFFF;
-            opacity: 0.6;
+            color: rgba(255, 255, 255, 0.5);
             cursor: pointer;
-            font-size: 24px;
+            font-size: 22px;
             line-height: 1;
-            padding: 4px;
-            transition: opacity 0.2s;
+            padding: 6px;
+            transition: color 0.2s;
         }
-        .sticky-close:hover { opacity: 1; }
+        .sticky-close:hover { color: #fff; }
 
-        /* Footer CTA */
+        /* ===== CTA #7: Footer CTA ===== */
         .footer-cta.shark-style {
             text-align: center;
-            padding: 32px 24px;
-            margin: 24px 0;
-            background: #F9FAFB;
-            border-radius: 12px;
+            padding: 40px 28px;
+            margin: 32px 0;
+            background: linear-gradient(135deg, var(--stb-navy) 0%, var(--stb-navy-2) 100%);
+            border-radius: 14px;
+            color: #fff;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 24px rgba(11, 20, 38, 0.15);
+        }
+        .footer-cta.shark-style::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: linear-gradient(90deg, var(--stb-cyan), var(--stb-gold));
+            border-radius: 0 0 3px 3px;
         }
         .footer-cta.shark-style h4 {
-            font-size: 18px;
-            font-weight: 600;
-            color: #1A1A2E;
-            margin-bottom: 12px;
+            font-size: 22px;
+            font-weight: 800;
+            color: #fff;
+            margin-bottom: 10px;
         }
         .footer-cta.shark-style p {
             font-size: 15px;
-            color: #4B5563;
+            color: rgba(255, 255, 255, 0.7);
             max-width: 480px;
-            margin: 0 auto 20px;
-            line-height: 1.6;
+            margin: 0 auto 22px;
+            line-height: 1.65;
+        }
+
+        /* ===== AD SLOTS — DUMMY DESIGNED ADS ===== */
+        .ad-slot.demo-ad {
+            background: none;
+            border: none;
+            min-height: auto;
+            padding: 0;
+            display: block;
+            position: relative;
+        }
+        .ad-slot.demo-ad .ad-slot-label,
+        .ad-slot.demo-ad .ad-dim { display: none; }
+
+        /* Generic mock ad container */
+        .mock-ad {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            color: #fff;
+            font-family: inherit;
+        }
+        .mock-ad::after {
+            content: 'Ad';
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            background: rgba(0, 0, 0, 0.55);
+            color: #fff;
+            font-size: 9px;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.6px;
+            padding: 3px 7px;
+            border-radius: 3px;
+            backdrop-filter: blur(4px);
+        }
+
+        /* Leaderboard 728x90 — Dark navy w/ cyan accent */
+        .mock-ad.leaderboard {
+            min-height: 90px;
+            background: linear-gradient(120deg, #0B1426 0%, #142342 50%, #0d1f3a 100%);
+            display: flex;
+            align-items: center;
+            padding: 14px 24px;
+            gap: 18px;
+        }
+        .mock-ad.leaderboard .mock-logo {
+            flex-shrink: 0;
+            width: 56px;
+            height: 56px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, var(--stb-cyan), #0099b8);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(0, 188, 212, 0.3);
+        }
+        .mock-ad.leaderboard .mock-content { flex: 1; min-width: 0; }
+        .mock-ad.leaderboard .mock-eyebrow {
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--stb-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1.4px;
+            margin-bottom: 4px;
+        }
+        .mock-ad.leaderboard .mock-headline {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 3px;
+            line-height: 1.25;
+        }
+        .mock-ad.leaderboard .mock-sub {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.55);
+            line-height: 1.3;
+        }
+        .mock-ad.leaderboard .mock-cta {
+            flex-shrink: 0;
+            background: var(--stb-cyan);
+            color: var(--stb-navy);
+            font-size: 12px;
+            font-weight: 800;
+            padding: 9px 16px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+            white-space: nowrap;
+        }
+
+        /* Rectangle 300x250 — Card style with image area */
+        .mock-ad.rectangle {
+            width: 100%;
+            max-width: 300px;
+            background: #fff;
+            color: var(--stb-ink);
+            border: 1px solid var(--stb-subtle);
+            margin: 0 auto;
+        }
+        .mock-ad.rectangle .mock-img {
+            height: 130px;
+            background: linear-gradient(135deg, var(--stb-navy) 0%, var(--stb-navy-2) 50%, #1d3258 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        .mock-ad.rectangle .mock-img::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(circle at 20% 80%, rgba(0, 188, 212, 0.25), transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(245, 166, 35, 0.18), transparent 50%);
+        }
+        .mock-ad.rectangle .mock-img-icon {
+            position: relative;
+            font-size: 38px;
+            color: rgba(255, 255, 255, 0.85);
+            background: rgba(255, 255, 255, 0.1);
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(6px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+        .mock-ad.rectangle .mock-body {
+            padding: 16px 18px 18px;
+        }
+        .mock-ad.rectangle .mock-eyebrow {
+            font-size: 9px;
+            font-weight: 800;
+            color: var(--stb-cyan);
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+            margin-bottom: 6px;
+        }
+        .mock-ad.rectangle .mock-headline {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--stb-ink);
+            line-height: 1.3;
+            margin-bottom: 6px;
+        }
+        .mock-ad.rectangle .mock-sub {
+            font-size: 12px;
+            color: var(--stb-muted);
+            line-height: 1.5;
+            margin-bottom: 12px;
+        }
+        .mock-ad.rectangle .mock-cta {
+            display: inline-block;
+            background: var(--stb-navy);
+            color: #fff;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 8px 14px;
+            border-radius: 6px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* Article featured image */
+        .article-featured-img img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .article-featured-img figcaption {
+            font-size: 12px;
+            color: var(--stb-muted);
+            text-align: center;
+            margin-top: 8px;
+            font-style: italic;
+        }
+
+        /* Mobile adjustments */
+        @media (max-width: 640px) {
+            .sticky-cta-bar {
+                flex-direction: column;
+                gap: 10px;
+                padding: 14px 16px 14px 16px;
+                text-align: center;
+            }
+            .sticky-close { position: absolute; top: 10px; right: 12px; }
+            .support-cta.shark-style { padding: 22px 20px 20px 24px; margin: 24px 0; }
+            .author-cta.shark-style { padding: 22px; }
+            .footer-cta.shark-style { padding: 32px 22px; }
+            .footer-cta.shark-style h4 { font-size: 19px; }
+            .cta-actions { gap: 10px; }
+            .cta-btn-primary { padding: 11px 20px; font-size: 13px; }
+            .mock-ad.leaderboard { padding: 14px 16px; gap: 12px; }
+            .mock-ad.leaderboard .mock-logo { width: 48px; height: 48px; font-size: 20px; }
+            .mock-ad.leaderboard .mock-headline { font-size: 14px; }
+            .mock-ad.leaderboard .mock-sub { font-size: 11px; }
+            .mock-ad.leaderboard .mock-cta { padding: 7px 12px; font-size: 11px; }
         }
 
         /* Article featured image styling */
@@ -308,6 +641,7 @@
                      CTA #1: First in-article CTA (after intro)
                      ============================================ -->
                 <div class="support-cta shark-style">
+                    <span class="cta-eyebrow"><i class="fas fa-shield-alt"></i> Independent Coverage</span>
                     <p><strong>This article wasn't funded by a Shark.</strong> It was funded by readers like you. No equity taken. No royalty deals. Just independent coverage.</p>
                     <div class="cta-actions">
                         <a href="support.html" class="cta-btn-primary">Back This Blog</a>
@@ -331,11 +665,18 @@
                 <p>Beer Girl is a working-class lager brand founded by Mary Hernandez, a former bartender from Bakersfield who spent a decade watching her customers drink beer that didn't talk to them, didn't look like them, and didn't fit their wallets. The brand launched in 2023 with a simple promise: a no-nonsense beer for people who actually pay for their own beer.</p>
                 <p>The cans are pink-and-blue with a hand-drawn mascot. The beer is brewed in a contract facility in Modesto. The price point is deliberately under $9 a six-pack. Everything about the brand is loud, cheeky, and unapologetically blue-collar.</p>
 
-                <!-- Inline ad slot -->
+                <!-- Inline leaderboard ad -->
                 <div class="ad-inline">
-                    <div class="ad-slot demo-ad" style="min-height:90px">
-                        <span class="ad-slot-label">Advertisement</span>
-                        <span class="ad-dim">Leaderboard Ad &mdash; 728&times;90</span>
+                    <div class="ad-slot demo-ad">
+                        <div class="mock-ad leaderboard">
+                            <div class="mock-logo"><i class="fas fa-rocket"></i></div>
+                            <div class="mock-content">
+                                <div class="mock-eyebrow">Founder Tools</div>
+                                <div class="mock-headline">Pitch Smarter. Close Faster.</div>
+                                <div class="mock-sub">The deck builder used by 12,000+ founders.</div>
+                            </div>
+                            <span class="mock-cta">Try Free</span>
+                        </div>
                     </div>
                 </div>
 
@@ -357,19 +698,29 @@
                      CTA #2: Mid-article contextual deal CTA
                      ============================================ -->
                 <div class="support-cta shark-style deal-context">
+                    <span class="cta-eyebrow"><i class="fas fa-handshake"></i> The Real Deal</span>
                     <p><strong>Daymond put in $200K for 20%.</strong> You can put in $3/month for unlimited access to our coverage. No pitch deck required.</p>
-                    <a href="support.html" class="cta-btn-primary">I'm In for $3/mo</a>
+                    <a href="support.html" class="cta-btn-primary gold">I'm In for $3/mo</a>
                 </div>
 
                 <h2 id="after">Beer Girl After Shark Tank</h2>
                 <p>After the episode aired, Beer Girl's website did 4.2 million pageviews in 72 hours. Distribution requests poured in from Texas, Florida, and Illinois. By the end of the quarter, the brand had landed in 1,800 additional stores. Daymond's team helped negotiate a national distribution deal with a midwestern wholesaler that took the brand into 11 new states by the end of 2026.</p>
                 <p>Mary now runs a 14-person team out of a small office in Bakersfield. She's added two new SKUs — a light lager and a Mexican-style amber — and the brand's projected to clear $8 million in revenue by year-end. The Daymond deal closed in due diligence with no changes to the original terms.</p>
 
-                <!-- Inline ad slot -->
-                <div class="ad-inline">
-                    <div class="ad-slot demo-ad" style="min-height:250px">
-                        <span class="ad-slot-label">Advertisement</span>
-                        <span class="ad-dim">Rectangle Ad &mdash; 300&times;250</span>
+                <!-- Inline rectangle ad -->
+                <div class="ad-inline" style="display:flex;justify-content:center;">
+                    <div class="ad-slot demo-ad">
+                        <div class="mock-ad rectangle">
+                            <div class="mock-img">
+                                <div class="mock-img-icon"><i class="fas fa-chart-line"></i></div>
+                            </div>
+                            <div class="mock-body">
+                                <div class="mock-eyebrow">Small Business Banking</div>
+                                <div class="mock-headline">Banking Built for Founders</div>
+                                <div class="mock-sub">No fees. No minimums. Open in 5 minutes.</div>
+                                <span class="mock-cta">Open Account</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
 
@@ -400,9 +751,18 @@
         <aside class="article-sidebar">
             <!-- AD: Sidebar top -->
             <div class="ad-sidebar-rect">
-                <div class="ad-slot demo-ad" style="min-height:250px">
-                    <span class="ad-slot-label">Advertisement</span>
-                    <span class="ad-dim">Rectangle Ad &mdash; 300&times;250</span>
+                <div class="ad-slot demo-ad">
+                    <div class="mock-ad rectangle">
+                        <div class="mock-img">
+                            <div class="mock-img-icon"><i class="fas fa-handshake"></i></div>
+                        </div>
+                        <div class="mock-body">
+                            <div class="mock-eyebrow">Legal for Founders</div>
+                            <div class="mock-headline">Term Sheets in 24 Hours</div>
+                            <div class="mock-sub">Used by 8,500+ early-stage startups.</div>
+                            <span class="mock-cta">Get Started</span>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -410,7 +770,7 @@
                  CTA #5: Sidebar CTA (below first ad)
                  ============================================ -->
             <div class="sidebar-cta shark-style">
-                <h4>Close the Deal 🦈</h4>
+                <h4><i class="fas fa-bolt" style="color:var(--stb-cyan);font-size:14px"></i> Close the Deal</h4>
                 <p><strong>No equity. No royalties.</strong> Just <strong>$20/year</strong> for zero ads across the entire site.</p>
                 <a href="go-ads-free.html" class="cta-btn-primary full-width">I'm In</a>
                 <p class="cta-alt">Or <a href="support.html">support the coverage</a> from $3/mo</p>
@@ -446,9 +806,18 @@
 
             <!-- AD: Sidebar bottom -->
             <div class="ad-sidebar-rect" style="margin-top:24px">
-                <div class="ad-slot demo-ad" style="min-height:250px">
-                    <span class="ad-slot-label">Advertisement</span>
-                    <span class="ad-dim">Rectangle Ad &mdash; 300&times;250</span>
+                <div class="ad-slot demo-ad">
+                    <div class="mock-ad rectangle">
+                        <div class="mock-img">
+                            <div class="mock-img-icon"><i class="fas fa-bullhorn"></i></div>
+                        </div>
+                        <div class="mock-body">
+                            <div class="mock-eyebrow">Marketing Stack</div>
+                            <div class="mock-headline">All-in-One for D2C Brands</div>
+                            <div class="mock-sub">Email, SMS, automation. One subscription.</div>
+                            <span class="mock-cta">Start Free</span>
+                        </div>
+                    </div>
                 </div>
             </div>
         </aside>
@@ -459,9 +828,9 @@
          ============================================ -->
     <div class="container">
         <div class="footer-cta shark-style">
-            <h4>We're Bootstrapped 🦈</h4>
+            <h4>We're Bootstrapped</h4>
             <p>Every deal covered. Every founder's story told. Reader-funded since day one — just like your favorite Shark Tank founders.</p>
-            <a href="support.html" class="cta-btn-primary">Back Us</a>
+            <a href="support.html" class="cta-btn-primary gold">Back Us</a>
         </div>
     </div>
 
