@@ -1231,8 +1231,8 @@ a, button { -webkit-tap-highlight-color: rgba(0,188,212,0.15); }
    ================== */
 .go-adfree-float {
     position: fixed;
-    bottom: 20px;
-    right: 16px;
+    bottom: 80px;
+    left: 16px;
     z-index: 997;
     display: flex;
     align-items: center;
@@ -1269,8 +1269,8 @@ a, button { -webkit-tap-highlight-color: rgba(0,188,212,0.15); }
 
 @media (max-width: 768px) {
     .go-adfree-float {
-        bottom: 16px;
-        right: 12px;
+        bottom: 72px;
+        left: 12px;
         padding: 9px 16px 9px 12px;
         font-size: 12px;
         gap: 6px;
