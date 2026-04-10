@@ -1,0 +1,675 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTA Showcase — Shark Tank Blog</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Open+Sans:wght@400;600;700&family=Roboto+Slab:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        :root {
+            --navy: #0B1426;
+            --navy-2: #142342;
+            --cyan: #00BCD4;
+            --cyan-dark: #0097a7;
+            --gold: #F5A623;
+            --ink: #1e293b;
+            --muted: #64748b;
+            --border: #e5e7eb;
+            --bg: #f1f5f9;
+            --card: #ffffff;
+        }
+        *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Inter', -apple-system, sans-serif; background: var(--bg); color: var(--ink); -webkit-font-smoothing: antialiased; }
+        a { text-decoration: none; }
+
+        /* Page header */
+        .showcase-header {
+            background: linear-gradient(135deg, var(--navy) 0%, var(--navy-2) 100%);
+            color: #fff; padding: 56px 24px 44px; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .showcase-header::before {
+            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 100px; height: 3px;
+            background: linear-gradient(90deg, var(--cyan), var(--gold));
+        }
+        .showcase-header h1 { font-size: 2rem; font-weight: 800; margin-bottom: 8px; }
+        .showcase-header p { font-size: 14px; color: rgba(255,255,255,0.55); max-width: 520px; margin: 0 auto; line-height: 1.6; }
+
+        /* Nav pills */
+        .toc-bar {
+            background: var(--card); border-bottom: 1px solid var(--border);
+            padding: 14px 24px; position: sticky; top: 0; z-index: 50;
+            overflow-x: auto; white-space: nowrap;
+        }
+        .toc-inner { max-width: 1000px; margin: 0 auto; display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; }
+        .toc-pill {
+            font-size: 12px; font-weight: 600; color: var(--muted);
+            padding: 6px 14px; border-radius: 20px; border: 1px solid var(--border);
+            transition: all 0.15s; display: inline-block;
+        }
+        .toc-pill:hover { background: rgba(0,188,212,0.08); border-color: var(--cyan); color: var(--cyan); }
+
+        /* Section wrapper */
+        .section { max-width: 1000px; margin: 0 auto; padding: 48px 24px 0; }
+        .section-label {
+            font-size: 11px; font-weight: 800; color: var(--cyan);
+            text-transform: uppercase; letter-spacing: 2px; margin-bottom: 6px;
+        }
+        .section-title {
+            font-size: 24px; font-weight: 800; color: var(--ink); margin-bottom: 6px;
+        }
+        .section-desc {
+            font-size: 14px; color: var(--muted); line-height: 1.6; margin-bottom: 28px; max-width: 600px;
+        }
+
+        /* Preview frame */
+        .preview-frame {
+            background: var(--card); border: 1px solid var(--border); border-radius: 14px;
+            overflow: hidden; box-shadow: 0 4px 24px rgba(0,0,0,0.04); margin-bottom: 48px;
+        }
+        .preview-label {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 20px; background: #f8fafc; border-bottom: 1px solid var(--border);
+        }
+        .preview-label .label-left { display: flex; align-items: center; gap: 8px; }
+        .preview-num {
+            width: 28px; height: 28px; border-radius: 7px;
+            background: var(--navy); color: var(--cyan);
+            font-size: 13px; font-weight: 800;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .preview-name { font-size: 14px; font-weight: 700; color: var(--ink); }
+        .preview-tags { display: flex; gap: 6px; }
+        .ptag {
+            font-size: 10px; font-weight: 700; padding: 3px 8px; border-radius: 4px;
+            text-transform: uppercase; letter-spacing: 0.5px;
+        }
+        .ptag.trigger { background: #fef3c7; color: #92400e; }
+        .ptag.static { background: #e0f2fe; color: #0369a1; }
+        .ptag.page { background: #f0fdf4; color: #166534; }
+        .preview-body { padding: 28px; }
+
+        /* Meta info below preview */
+        .preview-meta {
+            padding: 16px 20px; background: #fafbfc; border-top: 1px solid var(--border);
+            display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 16px;
+        }
+        .pm-item { }
+        .pm-label { font-size: 10px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: 0.8px; margin-bottom: 3px; }
+        .pm-value { font-size: 13px; color: var(--ink); font-weight: 500; }
+        .pm-value code { background: #f0f0f0; padding: 2px 6px; border-radius: 3px; font-size: 11px; }
+
+        /* ===== ACTUAL CTA RENDERS ===== */
+
+        /* #1 Header nav mock */
+        .mock-nav-bar {
+            background: #1a1d24; display: flex; align-items: center; justify-content: space-between;
+            padding: 10px 20px; border-radius: 6px; gap: 12px;
+        }
+        .mock-nav-logo { display: flex; align-items: center; gap: 8px; }
+        .mock-nav-logo img { height: 32px; border-radius: 3px; }
+        .mock-nav-logo span { color: #fff; font-size: 11px; font-weight: 700; }
+        .mock-nav-links { display: flex; gap: 16px; }
+        .mock-nav-links span { font-size: 11px; color: #aaa; font-weight: 600; }
+        .mock-nav-right { display: flex; align-items: center; gap: 10px; }
+        .mock-nav-btn {
+            background: var(--cyan); color: #fff; padding: 7px 16px;
+            border-radius: 4px; font-size: 12px; font-weight: 700; white-space: nowrap;
+        }
+        .mock-nav-login {
+            color: #ccc; border: 1px solid rgba(255,255,255,0.2);
+            padding: 6px 12px; border-radius: 5px; font-size: 11px; font-weight: 600;
+        }
+
+        /* #2 Independent Coverage */
+        .render-ic {
+            position: relative; background: linear-gradient(160deg, var(--navy), var(--navy-2));
+            border-radius: 12px; padding: 24px 28px 22px 30px; color: #fff; overflow: hidden;
+        }
+        .render-ic::before {
+            content: ''; position: absolute; top: 0; left: 0; bottom: 0; width: 5px;
+            background: linear-gradient(180deg, var(--cyan), var(--gold));
+        }
+        .render-ic .eyebrow {
+            font-size: 10px; font-weight: 800; color: var(--cyan);
+            text-transform: uppercase; letter-spacing: 1.5px; margin-bottom: 10px;
+            display: flex; align-items: center; gap: 6px;
+        }
+        .render-ic p { font-size: 14px; line-height: 1.6; color: rgba(255,255,255,0.75); margin-bottom: 16px; }
+        .render-ic strong { color: #fff; }
+        .render-ic .actions { display: flex; align-items: center; gap: 14px; flex-wrap: wrap; }
+        .render-ic .btn {
+            background: var(--cyan); color: #fff; padding: 11px 22px;
+            border-radius: 7px; font-size: 13px; font-weight: 700;
+        }
+        .render-ic .alt { font-size: 13px; color: rgba(255,255,255,0.5); }
+        .render-ic .alt a { color: var(--cyan); font-weight: 600; border-bottom: 1px solid rgba(0,188,212,0.4); }
+
+        /* #3 End of Article */
+        .render-eoa {
+            background: linear-gradient(160deg, var(--navy), var(--navy-2));
+            border-radius: 12px; padding: 32px 28px; text-align: center; color: #fff;
+            position: relative; overflow: hidden;
+        }
+        .render-eoa::before {
+            content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
+            width: 60px; height: 3px; background: linear-gradient(90deg, var(--cyan), var(--gold));
+        }
+        .render-eoa h3 { font-size: 20px; font-weight: 800; margin-bottom: 8px; }
+        .render-eoa p { font-size: 14px; color: rgba(255,255,255,0.65); margin-bottom: 20px; line-height: 1.5; }
+        .render-eoa .btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+        .render-eoa .btn-primary {
+            background: var(--cyan); color: #fff; padding: 12px 24px;
+            border-radius: 7px; font-size: 14px; font-weight: 700;
+        }
+        .render-eoa .btn-outline {
+            border: 1.5px solid rgba(255,255,255,0.25); color: #fff; padding: 12px 24px;
+            border-radius: 7px; font-size: 14px; font-weight: 600;
+        }
+        .render-eoa .proof { font-size: 11px; color: rgba(255,255,255,0.4); margin-top: 14px; }
+
+        /* #4 Sidebar card */
+        .render-sidebar {
+            background: linear-gradient(160deg, var(--navy), var(--navy-2));
+            border-radius: 12px; padding: 20px 18px; color: #fff; max-width: 280px;
+            position: relative; overflow: hidden;
+        }
+        .render-sidebar::before {
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+            background: linear-gradient(90deg, var(--cyan), var(--gold));
+        }
+        .render-sidebar h4 { font-size: 16px; font-weight: 800; margin: 4px 0 10px; display: flex; align-items: center; gap: 6px; }
+        .render-sidebar h4 i { color: var(--cyan); font-size: 14px; }
+        .render-sidebar p { font-size: 13px; color: rgba(255,255,255,0.65); line-height: 1.5; margin-bottom: 14px; }
+        .render-sidebar strong { color: #fff; }
+        .render-sidebar .btn {
+            display: block; width: 100%; text-align: center; background: var(--cyan);
+            color: #fff; padding: 12px; border-radius: 8px; font-size: 14px; font-weight: 700;
+        }
+        .render-sidebar .alt { text-align: center; font-size: 12px; color: rgba(255,255,255,0.45); margin-top: 10px; }
+        .render-sidebar .alt a { color: var(--cyan); }
+
+        /* #5 Footer box */
+        .render-footer-box {
+            background: #1a1d24; border-radius: 8px; padding: 18px 16px; max-width: 260px;
+            border-top: 1px solid rgba(255,255,255,0.06);
+        }
+        .render-footer-box h4 { font-size: 14px; font-weight: 700; color: #fff; margin-bottom: 5px; }
+        .render-footer-box p { font-size: 12px; color: rgba(255,255,255,0.45); margin-bottom: 10px; line-height: 1.4; }
+        .render-footer-box .btn {
+            display: block; width: 100%; text-align: center; background: var(--cyan);
+            color: #fff; padding: 10px; border-radius: 5px; font-size: 13px; font-weight: 700;
+        }
+        .render-footer-box .alt { text-align: center; font-size: 11px; color: rgba(255,255,255,0.35); margin-top: 8px; }
+        .render-footer-box .alt a { color: var(--cyan); }
+
+        /* #6 Ad pill */
+        .render-adpill-wrap { display: flex; flex-direction: column; align-items: flex-end; gap: 6px; }
+        .render-adpill {
+            background: #9b3a3a; color: #fff; padding: 6px 16px;
+            border-radius: 20px; font-size: 11px; font-weight: 800;
+            letter-spacing: 0.4px; text-transform: uppercase;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        .render-ad-slot {
+            background: linear-gradient(120deg, var(--navy), var(--navy-2), #0d1f3a);
+            border-radius: 8px; padding: 14px 20px; display: flex; align-items: center; gap: 14px;
+            width: 100%;
+        }
+        .render-ad-logo {
+            width: 44px; height: 44px; border-radius: 10px;
+            background: linear-gradient(135deg, var(--cyan), var(--cyan-dark));
+            display: flex; align-items: center; justify-content: center;
+            font-size: 18px; color: #fff;
+        }
+        .render-ad-content { flex: 1; }
+        .render-ad-ey { font-size: 8px; font-weight: 800; color: var(--cyan); text-transform: uppercase; letter-spacing: 1px; }
+        .render-ad-hl { font-size: 14px; font-weight: 700; color: #fff; }
+        .render-ad-sub { font-size: 11px; color: rgba(255,255,255,0.5); }
+        .render-ad-cta {
+            background: var(--cyan); color: var(--navy); font-size: 11px; font-weight: 800;
+            padding: 7px 14px; border-radius: 5px; text-transform: uppercase; white-space: nowrap;
+        }
+
+        /* #7 Floating button */
+        .render-float {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 10px 18px 10px 14px; background: linear-gradient(135deg, var(--navy), var(--navy-2));
+            color: #fff; border: 1.5px solid rgba(0,188,212,0.35); border-radius: 28px;
+            font-size: 13px; font-weight: 700; box-shadow: 0 4px 20px rgba(0,0,0,0.25);
+        }
+        .render-float .shark { font-size: 20px; }
+        .render-float .text { color: var(--cyan); font-weight: 800; }
+
+        /* #8 Welcome mat */
+        .render-wm {
+            background: linear-gradient(160deg, var(--navy), var(--navy-2), #0d2440);
+            border-radius: 12px; padding: 48px 28px; text-align: center; color: #fff;
+        }
+        .render-wm .emoji { font-size: 40px; margin-bottom: 16px; }
+        .render-wm h2 { font-size: 22px; font-weight: 800; margin-bottom: 10px; }
+        .render-wm p { font-size: 14px; color: rgba(255,255,255,0.55); margin-bottom: 24px; line-height: 1.5; }
+        .render-wm .btn {
+            display: inline-block; background: var(--cyan); color: #fff;
+            padding: 14px 32px; border-radius: 9px; font-size: 15px; font-weight: 700;
+        }
+        .render-wm .skip { display: block; margin-top: 14px; font-size: 13px; color: rgba(255,255,255,0.4); }
+
+        /* #9 Timed modal */
+        .render-modal-frame {
+            background: rgba(0,0,0,0.5); border-radius: 12px; padding: 40px; display: flex;
+            align-items: center; justify-content: center;
+        }
+        .render-modal {
+            background: #fff; border-radius: 14px; padding: 32px 28px 24px; max-width: 380px;
+            width: 100%; position: relative; text-align: center;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+        }
+        .render-modal .close { position: absolute; top: 12px; right: 14px; font-size: 20px; color: #bbb; }
+        .render-modal h2 { font-size: 20px; font-weight: 800; color: var(--ink); margin-bottom: 8px; }
+        .render-modal p { font-size: 14px; color: var(--muted); line-height: 1.5; margin-bottom: 18px; }
+        .render-modal .btn {
+            display: block; width: 100%; padding: 14px; background: var(--cyan);
+            color: #fff; border-radius: 9px; font-size: 15px; font-weight: 700; text-align: center;
+        }
+        .render-modal .dismiss { display: block; margin-top: 12px; font-size: 13px; color: #999; }
+        .render-modal .benefits { text-align: left; margin-bottom: 18px; padding: 0; list-style: none; }
+        .render-modal .benefits li { font-size: 13px; color: #444; padding: 4px 0; }
+        .render-modal .benefits li::before { content: '\2713'; color: var(--cyan); font-weight: 700; margin-right: 8px; }
+        .render-modal.exit { border-top: 4px solid var(--gold); }
+
+        /* #10 Sticky bar */
+        .render-stickybar {
+            background: linear-gradient(135deg, var(--navy), var(--navy-2));
+            border-radius: 8px; padding: 14px 20px; display: flex;
+            align-items: center; justify-content: center; gap: 16px;
+            border-top: 2px solid var(--cyan); position: relative;
+        }
+        .render-stickybar .text { font-size: 13px; color: rgba(255,255,255,0.8); }
+        .render-stickybar .btn {
+            background: var(--cyan); color: #fff; padding: 8px 18px;
+            border-radius: 5px; font-size: 12px; font-weight: 700; white-space: nowrap;
+        }
+        .render-stickybar .x { position: absolute; right: 12px; color: rgba(255,255,255,0.4); font-size: 18px; }
+
+        /* Position indicator */
+        .pos-indicator {
+            display: inline-flex; align-items: center; gap: 5px;
+            font-size: 10px; font-weight: 700; color: var(--muted);
+            text-transform: uppercase; letter-spacing: 0.8px;
+            padding: 4px 10px; background: #f0f0f0; border-radius: 4px;
+        }
+        .pos-indicator i { font-size: 9px; }
+
+        @media (max-width: 640px) {
+            .showcase-header h1 { font-size: 1.5rem; }
+            .toc-inner { justify-content: flex-start; }
+            .preview-meta { grid-template-columns: 1fr; }
+            .preview-tags { flex-wrap: wrap; }
+            .mock-nav-links { display: none; }
+            .render-eoa .btns { flex-direction: column; }
+            .render-modal-frame { padding: 20px; }
+            .render-stickybar { flex-direction: column; gap: 10px; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="showcase-header">
+        <h1>🦈 CTA Showcase</h1>
+        <p>Visual reference of every subscription entry point on the Shark Tank Blog article pages. Each CTA is shown exactly as it renders on the live site.</p>
+    </header>
+
+    <nav class="toc-bar">
+        <div class="toc-inner">
+            <a href="#cta-1" class="toc-pill">1. Header Nav</a>
+            <a href="#cta-2" class="toc-pill">2. Independent Coverage</a>
+            <a href="#cta-3" class="toc-pill">3. End of Article</a>
+            <a href="#cta-4" class="toc-pill">4. Sidebar Card</a>
+            <a href="#cta-5" class="toc-pill">5. Footer Box</a>
+            <a href="#cta-6" class="toc-pill">6. Ad Slot Pill</a>
+            <a href="#cta-7" class="toc-pill">7. Floating Button</a>
+            <a href="#cta-8" class="toc-pill">8. Welcome Mat</a>
+            <a href="#cta-9" class="toc-pill">9. Timed Modal</a>
+            <a href="#cta-10" class="toc-pill">10. Sticky Bar</a>
+            <a href="#cta-11" class="toc-pill">11. Exit Intent</a>
+        </div>
+    </nav>
+
+    <!-- ===== STATIC CTAs ===== -->
+    <div class="section" id="cta-1">
+        <div class="section-label">Static Placement</div>
+        <div class="section-title">1. Header Navigation Button</div>
+        <div class="section-desc">Persistent CTA in the top nav bar. Always visible. Links to the Go Ads-Free landing page.</div>
+    </div>
+    <div style="max-width:1000px;margin:0 auto;padding:0 24px 0">
+        <div class="preview-frame">
+            <div class="preview-label">
+                <div class="label-left"><div class="preview-num">1</div><span class="preview-name">Header Nav</span></div>
+                <div class="preview-tags"><span class="ptag static">Always Visible</span><span class="ptag page">All Pages</span></div>
+            </div>
+            <div class="preview-body">
+                <div class="mock-nav-bar">
+                    <div class="mock-nav-logo">
+                        <img src="assets/images/shark_logo.jpeg" alt="Logo">
+                    </div>
+                    <div class="mock-nav-links">
+                        <span>Home</span><span>Episodes</span><span>Products</span><span>Blog</span>
+                    </div>
+                    <div class="mock-nav-right">
+                        <span style="color:#aaa;font-size:14px"><i class="fas fa-search"></i></span>
+                        <span class="mock-nav-btn">Go Ads-Free</span>
+                        <span class="mock-nav-login"><i class="fas fa-user" style="font-size:10px"></i> Login</span>
+                    </div>
+                </div>
+            </div>
+            <div class="preview-meta">
+                <div class="pm-item"><div class="pm-label">Destination</div><div class="pm-value">go-ads-free.html</div></div>
+                <div class="pm-item"><div class="pm-label">Position</div><div class="pm-value"><span class="pos-indicator"><i class="fas fa-arrow-up"></i> Top Right</span></div></div>
+                <div class="pm-item"><div class="pm-label">Trigger</div><div class="pm-value">None (always visible)</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="cta-2">
+        <div class="section-label">Static Placement</div>
+        <div class="section-title">2. Independent Coverage Block</div>
+        <div class="section-desc">Dark navy card after intro paragraphs. Dual CTA: primary support button + secondary ad-free link. Cyan-to-gold accent stripe on left edge.</div>
+    </div>
+    <div style="max-width:1000px;margin:0 auto;padding:0 24px 0">
+        <div class="preview-frame">
+            <div class="preview-label">
+                <div class="label-left"><div class="preview-num">2</div><span class="preview-name">Independent Coverage</span></div>
+                <div class="preview-tags"><span class="ptag static">Static</span><span class="ptag page">In-Article</span></div>
+            </div>
+            <div class="preview-body">
+                <div class="render-ic">
+                    <div class="eyebrow"><i class="fas fa-shield-alt"></i> Independent Coverage</div>
+                    <p><strong>This article wasn't funded by a Shark.</strong> It was funded by readers like you. No equity taken. No royalty deals. Just independent coverage.</p>
+                    <div class="actions">
+                        <span class="btn">Back This Blog</span>
+                        <span class="alt">or <a href="#">read ad-free for $20/year</a></span>
+                    </div>
+                </div>
+            </div>
+            <div class="preview-meta">
+                <div class="pm-item"><div class="pm-label">Destinations</div><div class="pm-value">support.html + go-ads-free.html</div></div>
+                <div class="pm-item"><div class="pm-label">Position</div><div class="pm-value"><span class="pos-indicator"><i class="fas fa-paragraph"></i> After Intro</span></div></div>
+                <div class="pm-item"><div class="pm-label">Pages</div><div class="pm-value">hundy, bloom</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="cta-3">
+        <div class="section-label">Static Placement</div>
+        <div class="section-title">3. End-of-Article CTA</div>
+        <div class="section-desc">Full-width dark card after Quick Summary. Two side-by-side buttons. Social proof line at bottom.</div>
+    </div>
+    <div style="max-width:1000px;margin:0 auto;padding:0 24px 0">
+        <div class="preview-frame">
+            <div class="preview-label">
+                <div class="label-left"><div class="preview-num">3</div><span class="preview-name">End of Article</span></div>
+                <div class="preview-tags"><span class="ptag static">Static</span><span class="ptag page">bloom.html</span></div>
+            </div>
+            <div class="preview-body">
+                <div class="render-eoa">
+                    <h3>Enjoyed This Deep Dive?</h3>
+                    <p>Every Shark Tank story takes hours to research. Support the blog and read without interruption.</p>
+                    <div class="btns">
+                        <span class="btn-primary">Go Ad-Free — $20/year</span>
+                        <span class="btn-outline">Support from $3/mo</span>
+                    </div>
+                    <div class="proof"><i class="fas fa-users"></i> Trusted by 12,000+ readers</div>
+                </div>
+            </div>
+            <div class="preview-meta">
+                <div class="pm-item"><div class="pm-label">Destinations</div><div class="pm-value">go-ads-free.html + support.html</div></div>
+                <div class="pm-item"><div class="pm-label">Position</div><div class="pm-value"><span class="pos-indicator"><i class="fas fa-arrow-down"></i> After Summary</span></div></div>
+                <div class="pm-item"><div class="pm-label">Social Proof</div><div class="pm-value">"Trusted by 12,000+ readers"</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="cta-4">
+        <div class="section-label">Static Placement</div>
+        <div class="section-title">4. Sidebar "Close the Deal" Card</div>
+        <div class="section-desc">Dark navy card in sidebar between search and Recent Blogs. Full-width CTA + alt link.</div>
+    </div>
+    <div style="max-width:1000px;margin:0 auto;padding:0 24px 0">
+        <div class="preview-frame">
+            <div class="preview-label">
+                <div class="label-left"><div class="preview-num">4</div><span class="preview-name">Sidebar Card</span></div>
+                <div class="preview-tags"><span class="ptag static">Static</span><span class="ptag page">Sidebar</span></div>
+            </div>
+            <div class="preview-body" style="display:flex;justify-content:center">
+                <div class="render-sidebar">
+                    <h4><i class="fas fa-bolt"></i> Close the Deal</h4>
+                    <p><strong>No equity. No royalties.</strong> Just <strong>$20/year</strong> for zero ads across the entire site.</p>
+                    <span class="btn">I'm In</span>
+                    <div class="alt">Or <a href="#">support the coverage</a> from $3/mo</div>
+                </div>
+            </div>
+            <div class="preview-meta">
+                <div class="pm-item"><div class="pm-label">Destinations</div><div class="pm-value">go-ads-free.html + support.html</div></div>
+                <div class="pm-item"><div class="pm-label">Position</div><div class="pm-value"><span class="pos-indicator"><i class="fas fa-columns"></i> Right Sidebar</span></div></div>
+                <div class="pm-item"><div class="pm-label">Pages</div><div class="pm-value">hundy, bloom</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="cta-5">
+        <div class="section-label">Static Placement</div>
+        <div class="section-title">5. Footer Go Ad-Free Box</div>
+        <div class="section-desc">Below newsletter in footer. Cyan button + support alt link.</div>
+    </div>
+    <div style="max-width:1000px;margin:0 auto;padding:0 24px 0">
+        <div class="preview-frame">
+            <div class="preview-label">
+                <div class="label-left"><div class="preview-num">5</div><span class="preview-name">Footer Box</span></div>
+                <div class="preview-tags"><span class="ptag static">Static</span><span class="ptag page">bloom.html</span></div>
+            </div>
+            <div class="preview-body" style="display:flex;justify-content:center">
+                <div class="render-footer-box">
+                    <h4>Go Ad-Free</h4>
+                    <p>Read every article without ads for just $20/year.</p>
+                    <span class="btn">Go Ad-Free <i class="fas fa-arrow-right" style="font-size:11px"></i></span>
+                    <div class="alt">Or <a href="#">support the blog</a> from $3/mo</div>
+                </div>
+            </div>
+            <div class="preview-meta">
+                <div class="pm-item"><div class="pm-label">Destination</div><div class="pm-value">go-ads-free.html</div></div>
+                <div class="pm-item"><div class="pm-label">Position</div><div class="pm-value"><span class="pos-indicator"><i class="fas fa-arrow-down"></i> Footer</span></div></div>
+                <div class="pm-item"><div class="pm-label">Below</div><div class="pm-value">Newsletter form</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="cta-6">
+        <div class="section-label">Static Placement</div>
+        <div class="section-title">6. Ad Slot GO ADS-FREE Pill</div>
+        <div class="section-desc">Auto-injected pill above every ad unit. Red background, right-aligned. Opens payment popup.</div>
+    </div>
+    <div style="max-width:1000px;margin:0 auto;padding:0 24px 0">
+        <div class="preview-frame">
+            <div class="preview-label">
+                <div class="label-left"><div class="preview-num">6</div><span class="preview-name">Ad Slot Pill</span></div>
+                <div class="preview-tags"><span class="ptag trigger">Auto-Injected</span><span class="ptag page">All Articles</span></div>
+            </div>
+            <div class="preview-body">
+                <div class="render-adpill-wrap">
+                    <span class="render-adpill">GO ADS-FREE &rarr;</span>
+                    <div class="render-ad-slot">
+                        <div class="render-ad-logo"><i class="fas fa-rocket"></i></div>
+                        <div class="render-ad-content">
+                            <div class="render-ad-ey">Founder Tools</div>
+                            <div class="render-ad-hl">Pitch Smarter. Close Faster.</div>
+                            <div class="render-ad-sub">The deck builder used by 12,000+ founders.</div>
+                        </div>
+                        <span class="render-ad-cta">Try Free</span>
+                    </div>
+                </div>
+            </div>
+            <div class="preview-meta">
+                <div class="pm-item"><div class="pm-label">Action</div><div class="pm-value">Opens payment popup</div></div>
+                <div class="pm-item"><div class="pm-label">Script</div><div class="pm-value"><code>go-ad-free.js</code></div></div>
+                <div class="pm-item"><div class="pm-label">Selector</div><div class="pm-value"><code>.demo-ad</code></div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="cta-7">
+        <div class="section-label">Static Placement</div>
+        <div class="section-title">7. Floating Sticky Button</div>
+        <div class="section-desc">Fixed bottom-left. Dark navy pill with shark emoji + "Go Ad-Free" text. Always visible above sticky footer.</div>
+    </div>
+    <div style="max-width:1000px;margin:0 auto;padding:0 24px 0">
+        <div class="preview-frame">
+            <div class="preview-label">
+                <div class="label-left"><div class="preview-num">7</div><span class="preview-name">Floating Button</span></div>
+                <div class="preview-tags"><span class="ptag static">Always Visible</span><span class="ptag page">All Articles</span></div>
+            </div>
+            <div class="preview-body" style="display:flex;justify-content:center">
+                <span class="render-float">
+                    <span class="shark">🦈</span>
+                    <span class="text">Go Ad-Free</span>
+                </span>
+            </div>
+            <div class="preview-meta">
+                <div class="pm-item"><div class="pm-label">Destination</div><div class="pm-value">go-ads-free.html</div></div>
+                <div class="pm-item"><div class="pm-label">Position</div><div class="pm-value"><span class="pos-indicator"><i class="fas fa-arrow-down"></i> Bottom Left, Fixed</span></div></div>
+                <div class="pm-item"><div class="pm-label">Offset</div><div class="pm-value"><code>bottom: 80px</code> (above sticky CTA)</div></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ===== BEHAVIORAL CTAs ===== -->
+    <div class="section" id="cta-8">
+        <div class="section-label">Behavioral Trigger</div>
+        <div class="section-title">8. Welcome Mat</div>
+        <div class="section-desc">Full-screen takeover for first-time visitors. Blocks scroll. Stored in localStorage (once per browser ever).</div>
+    </div>
+    <div style="max-width:1000px;margin:0 auto;padding:0 24px 0">
+        <div class="preview-frame">
+            <div class="preview-label">
+                <div class="label-left"><div class="preview-num">8</div><span class="preview-name">Welcome Mat</span></div>
+                <div class="preview-tags"><span class="ptag trigger">First Visit</span><span class="ptag page">bloom.html</span></div>
+            </div>
+            <div class="preview-body">
+                <div class="render-wm">
+                    <div class="emoji">🦈</div>
+                    <h2>Welcome to Shark Tank Blog</h2>
+                    <p>The internet's most comprehensive Shark Tank coverage — and it can be yours, ad-free.</p>
+                    <span class="btn">Start Ad-Free — $20/year</span>
+                    <span class="skip">Continue with ads &rarr;</span>
+                </div>
+            </div>
+            <div class="preview-meta">
+                <div class="pm-item"><div class="pm-label">Frequency</div><div class="pm-value">Once per browser (<code>localStorage</code>)</div></div>
+                <div class="pm-item"><div class="pm-label">Z-Index</div><div class="pm-value"><code>10000</code></div></div>
+                <div class="pm-item"><div class="pm-label">Behavior</div><div class="pm-value">Blocks scroll; "Continue" dismisses</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="cta-9">
+        <div class="section-label">Behavioral Trigger</div>
+        <div class="section-title">9. Timed Modal Popup</div>
+        <div class="section-desc">Centered modal on dark overlay. Fires at 20 seconds or 50% scroll (whichever first). Once per session.</div>
+    </div>
+    <div style="max-width:1000px;margin:0 auto;padding:0 24px 0">
+        <div class="preview-frame">
+            <div class="preview-label">
+                <div class="label-left"><div class="preview-num">9</div><span class="preview-name">Timed Modal</span></div>
+                <div class="preview-tags"><span class="ptag trigger">20s / 50% Scroll</span><span class="ptag page">bloom.html</span></div>
+            </div>
+            <div class="preview-body">
+                <div class="render-modal-frame">
+                    <div class="render-modal">
+                        <span class="close">&times;</span>
+                        <h2>Reading Without Interruptions?</h2>
+                        <p>Go ad-free for just $20/year. That's less than a single Shark Tank deal gone wrong.</p>
+                        <span class="btn">Remove All Ads</span>
+                        <span class="dismiss">Maybe later</span>
+                    </div>
+                </div>
+            </div>
+            <div class="preview-meta">
+                <div class="pm-item"><div class="pm-label">Frequency</div><div class="pm-value">Once per session (<code>sessionStorage</code>)</div></div>
+                <div class="pm-item"><div class="pm-label">Z-Index</div><div class="pm-value"><code>9997</code></div></div>
+                <div class="pm-item"><div class="pm-label">Close</div><div class="pm-value">X, overlay click, Escape key</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="cta-10">
+        <div class="section-label">Behavioral Trigger</div>
+        <div class="section-title">10. Sticky Bottom Bar</div>
+        <div class="section-desc">Thin persistent bar at viewport bottom. Appears 3 seconds after load. Dismissible per session.</div>
+    </div>
+    <div style="max-width:1000px;margin:0 auto;padding:0 24px 0">
+        <div class="preview-frame">
+            <div class="preview-label">
+                <div class="label-left"><div class="preview-num">10</div><span class="preview-name">Sticky Bar</span></div>
+                <div class="preview-tags"><span class="ptag trigger">3s Delay</span><span class="ptag page">bloom.html</span></div>
+            </div>
+            <div class="preview-body">
+                <div class="render-stickybar">
+                    <span class="text">🦈 Tired of ads interrupting the pitch?</span>
+                    <span class="btn">Go Ad-Free — $20/year</span>
+                    <span class="x">&times;</span>
+                </div>
+            </div>
+            <div class="preview-meta">
+                <div class="pm-item"><div class="pm-label">Frequency</div><div class="pm-value">Dismiss hides for session</div></div>
+                <div class="pm-item"><div class="pm-label">Z-Index</div><div class="pm-value"><code>9996</code></div></div>
+                <div class="pm-item"><div class="pm-label">Mobile</div><div class="pm-value">Stacks vertically, full-width</div></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section" id="cta-11">
+        <div class="section-label">Behavioral Trigger</div>
+        <div class="section-title">11. Exit-Intent Modal</div>
+        <div class="section-desc">Desktop only. Triggers when mouse leaves viewport top. Gold top border for urgency. Benefit bullets.</div>
+    </div>
+    <div style="max-width:1000px;margin:0 auto;padding:0 24px 0">
+        <div class="preview-frame">
+            <div class="preview-label">
+                <div class="label-left"><div class="preview-num">11</div><span class="preview-name">Exit Intent</span></div>
+                <div class="preview-tags"><span class="ptag trigger">Mouse Leave</span><span class="ptag page">Desktop Only</span></div>
+            </div>
+            <div class="preview-body">
+                <div class="render-modal-frame">
+                    <div class="render-modal exit">
+                        <span class="close">&times;</span>
+                        <h2>Wait — One Last Offer</h2>
+                        <p>Get unlimited ad-free access to every Shark Tank story for $20/year.</p>
+                        <ul class="benefits">
+                            <li>Zero ads across the entire site</li>
+                            <li>Faster page loading</li>
+                            <li>Support independent coverage</li>
+                        </ul>
+                        <span class="btn">Claim Ad-Free Access</span>
+                        <span class="dismiss">No thanks, I like ads</span>
+                    </div>
+                </div>
+            </div>
+            <div class="preview-meta">
+                <div class="pm-item"><div class="pm-label">Frequency</div><div class="pm-value">Once per session (<code>sessionStorage</code>)</div></div>
+                <div class="pm-item"><div class="pm-label">Z-Index</div><div class="pm-value"><code>9998</code></div></div>
+                <div class="pm-item"><div class="pm-label">Arm Delay</div><div class="pm-value">5 seconds (prevents false triggers)</div></div>
+            </div>
+        </div>
+    </div>
+
+    <footer style="text-align:center;padding:48px 24px;color:var(--muted);font-size:13px;border-top:1px solid var(--border);margin-top:48px">
+        <p><a href="cta-map.html" style="color:var(--cyan);font-weight:600">View Full CTA Map</a> &middot; <a href="index.html" style="color:var(--cyan);font-weight:600">Back to Shark Tank Blog</a></p>
+    </footer>
+
+</body>
+</html>
