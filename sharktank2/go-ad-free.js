@@ -152,35 +152,21 @@ styleEl.textContent = `
 .gaf-s3-cta.processing{opacity:.7;cursor:not-allowed}
 
 /* ---- Screen 4: Success ---- */
-.gaf-s4-back{display:inline-flex;align-items:center;gap:4px;font-size:13px;color:#bbb;cursor:pointer;border:none;background:none;margin-bottom:20px;font-family:inherit;transition:color .15s}
-.gaf-s4-back:hover{color:#888}
-.gaf-s4-confirm{text-align:center;font-size:14px;color:#777;line-height:1.6;margin-bottom:20px}
-.gaf-s4-confirm strong{color:#1a1a1a}
-.gaf-s4-badge{display:inline-flex;align-items:center;gap:6px;padding:8px 20px;border:1.5px solid ${ACCENT};border-radius:20px;color:${ACCENT};font-size:12px;font-weight:700;margin-bottom:28px}
-.gaf-cert{background:#fff;border:1px solid #e8e8e8;border-radius:14px;padding:28px;margin-bottom:22px;box-shadow:0 2px 12px rgba(0,0,0,.04);text-align:center;position:relative}
-.gaf-cert-bar{height:4px;background:linear-gradient(90deg,${ACCENT},#818cf8);border-radius:14px 14px 0 0;position:absolute;top:0;left:0;right:0}
-.gaf-cert-icons{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:16px;color:${ACCENT}}
-.gaf-cert-icons .share-icon{cursor:pointer;color:#ccc;transition:color .15s}
-.gaf-cert-icons .share-icon:hover{color:#888}
-.gaf-cert-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#bbb;margin-bottom:14px}
-.gaf-cert hr{border:none;border-top:1px solid #f0f0f0;margin:12px 0}
-.gaf-cert-small{font-size:12px;color:#bbb}
-.gaf-cert-name{font-size:24px;font-weight:800;color:#1a1a1a;margin:6px 0}
-.gaf-cert-site{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 0}
-.gaf-cert-site-icon{width:28px;height:28px;border-radius:50%;background:${ACCENT};display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700}
-.gaf-cert-cause{font-style:italic;color:#999;font-size:13px;margin:10px 0}
-.gaf-cert-amount{font-weight:800;font-size:16px;color:#1a1a1a}
-.gaf-cert-date{font-size:12px;color:#bbb;margin-top:4px}
-.gaf-cert-perk{background:${ACCENT_LIGHT};border-radius:0 0 14px 14px;padding:14px;margin:-28px -28px 0;margin-top:18px;font-size:13px;color:${ACCENT_DARK};font-weight:600}
-.gaf-hide-toggle{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:#bbb;margin-bottom:20px;cursor:pointer}
-.gaf-hide-toggle .circle{width:16px;height:16px;border:1.5px solid #ddd;border-radius:50%}
-.gaf-share-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#bbb;text-align:center;margin-bottom:10px}
-.gaf-share-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
-.gaf-share-btn{padding:12px;border:1.5px solid #eee;border-radius:10px;color:#555;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px;background:#fff;transition:border-color .15s;font-family:inherit}
-.gaf-share-btn:hover{border-color:${ACCENT}}
-.gaf-share-btn i{font-size:14px}
-.gaf-footer-text{text-align:center;font-size:12px;color:#bbb}
-.gaf-footer-text i{margin-right:4px}
+.gaf-s4-check{width:56px;height:56px;border-radius:50%;background:#ecfdf5;display:flex;align-items:center;justify-content:center;margin:0 auto 20px;color:#10b981;font-size:26px}
+.gaf-s4-heading{font-size:22px;font-weight:800;color:#1a1a1a;text-align:center;margin-bottom:8px}
+.gaf-s4-sub{font-size:14px;color:#888;text-align:center;line-height:1.6;margin-bottom:28px}
+.gaf-s4-card{background:#f9fafb;border:1px solid #eaeaea;border-radius:12px;padding:24px;margin-bottom:24px}
+.gaf-s4-row{display:flex;justify-content:space-between;align-items:center;padding:10px 0;border-bottom:1px solid #f0f0f0}
+.gaf-s4-row:last-child{border-bottom:none}
+.gaf-s4-row-label{font-size:13px;color:#999;font-weight:600}
+.gaf-s4-row-value{font-size:14px;font-weight:700;color:#1a1a1a}
+.gaf-s4-row-value .badge{display:inline-flex;align-items:center;gap:4px;background:#ecfdf5;color:#059669;font-size:12px;font-weight:600;padding:3px 10px;border-radius:12px}
+.gaf-s4-perk{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#0e1726,#1a2742);border-radius:10px;padding:16px 20px;margin-bottom:24px;color:#fff;font-size:13px;font-weight:600}
+.gaf-s4-perk i{color:#00bcd4;font-size:16px;flex-shrink:0}
+.gaf-s4-manage{display:block;width:100%;padding:13px;border:1.5px solid #e0e0e0;border-radius:10px;background:#fff;color:#555;font-size:14px;font-weight:600;text-align:center;cursor:pointer;transition:all .15s;font-family:inherit;text-decoration:none;margin-bottom:16px}
+.gaf-s4-manage:hover{border-color:${ACCENT};color:${ACCENT}}
+.gaf-footer-text{text-align:center;font-size:12.5px;color:#aaa;margin-top:4px}
+.gaf-footer-text i{margin-right:6px}
 
 /* ---- Spinner ---- */
 .gaf-spinner{display:inline-block;width:16px;height:16px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:gaf-spin .6s linear infinite;vertical-align:middle;margin-right:6px}
@@ -380,45 +366,33 @@ function screen3(){
 // ========== SCREEN 4: Success ==========
 function screen4(){
   var annual = getAnnual();
-  var name = S.name || (S.selectedAccount ? DEMO_ACCOUNTS[S.selectedAccount].name : 'Supporter');
+  var monthly = (annual / 12).toFixed(2);
+  var name = S.name || (S.selectedAccount ? DEMO_ACCOUNTS[S.selectedAccount].name : 'Reader');
   var date = new Date().toLocaleDateString('en-US',{year:'numeric',month:'long',day:'numeric'});
-  var shareText = encodeURIComponent("I just became an official supporter of "+SITE_NAME+"! Supporting free "+SITE_CAUSE+" for everyone. "+SITE_URL);
 
   var h='';
-  h+='<div style="text-align:center">';
-  h+='<div class="gaf-s4-confirm">Your <strong>$'+annual+' every year</strong> support is confirmed.<br>You\'re now one of us &mdash; helping keep '+SITE_CAUSE+' free for millions worldwide.</div>';
-  h+='<div class="gaf-s4-badge"><i class="far fa-heart"></i> Official Supporter of '+SITE_NAME+'</div>';
+
+  // Success header
+  h+='<div class="gaf-s4-check"><i class="fas fa-check"></i></div>';
+  h+='<div class="gaf-s4-heading">You\'re Ad-Free!</div>';
+  h+='<div class="gaf-s4-sub">Welcome, '+name+'. Your ad-free subscription is now active. Enjoy uninterrupted Shark Tank coverage.</div>';
+
+  // Subscription details card
+  h+='<div class="gaf-s4-card">';
+  h+='<div class="gaf-s4-row"><span class="gaf-s4-row-label">Plan</span><span class="gaf-s4-row-value">Ad-Free Reading</span></div>';
+  h+='<div class="gaf-s4-row"><span class="gaf-s4-row-label">Amount</span><span class="gaf-s4-row-value">$'+annual+' / year</span></div>';
+  h+='<div class="gaf-s4-row"><span class="gaf-s4-row-label">Billing</span><span class="gaf-s4-row-value">Annual</span></div>';
+  h+='<div class="gaf-s4-row"><span class="gaf-s4-row-label">Status</span><span class="gaf-s4-row-value"><span class="badge"><i class="fas fa-check" style="font-size:9px"></i> Active</span></span></div>';
+  h+='<div class="gaf-s4-row"><span class="gaf-s4-row-label">Started</span><span class="gaf-s4-row-value">'+date+'</span></div>';
   h+='</div>';
 
-  // Certificate
-  h+='<div class="gaf-cert">';
-  h+='<div class="gaf-cert-bar"></div>';
-  h+='<div class="gaf-cert-icons"><span style="color:'+ACCENT+'"><i class="fas fa-heart"></i></span><span class="share-icon"><i class="fas fa-share-from-square"></i></span></div>';
-  h+='<div class="gaf-cert-label">Certificate of Support</div>';
-  h+='<hr>';
-  h+='<div class="gaf-cert-small">This certifies that</div>';
-  h+='<div class="gaf-cert-name">'+name+'</div>';
-  h+='<div class="gaf-cert-small">is a proud supporter of</div>';
-  h+='<div class="gaf-cert-site"><div class="gaf-cert-site-icon">ST</div><span style="font-weight:700;font-size:15px">'+SITE_NAME+'</span></div>';
-  h+='<hr>';
-  h+='<div class="gaf-cert-cause">For keeping '+SITE_CAUSE+' free & accessible for everyone</div>';
-  h+='<div class="gaf-cert-amount">$'+annual+' every year</div>';
-  h+='<div class="gaf-cert-date">'+date+'</div>';
-  h+='<div class="gaf-cert-perk"><i class="fas fa-check" style="margin-right:4px"></i> Your '+SITE_NAME+' experience will be <strong>ads-free</strong> while your support is active.</div>';
-  h+='</div>';
+  // Perk banner
+  h+='<div class="gaf-s4-perk"><i class="fas fa-eye-slash"></i> All ads, banners, and popups are now removed from your Shark Tank Blog experience.</div>';
 
-  // Hide toggle
-  h+='<div class="gaf-hide-toggle"><span class="circle"></span> Hide amount from certificate</div>';
+  // Manage link
+  h+='<a href="my-account.html" class="gaf-s4-manage"><i class="fas fa-cog" style="margin-right:6px"></i> Manage Subscription</a>';
 
-  // Share
-  h+='<div class="gaf-share-label">Share Your Support</div>';
-  h+='<div class="gaf-share-grid">';
-  h+='<a class="gaf-share-btn" href="https://twitter.com/intent/tweet?text='+shareText+'" target="_blank"><i class="fab fa-x-twitter"></i> X</a>';
-  h+='<a class="gaf-share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(SITE_URL)+'" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>';
-  h+='<a class="gaf-share-btn" href="https://wa.me/?text='+shareText+'" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>';
-  h+='</div>';
-
-  h+='<div class="gaf-footer-text"><i class="far fa-envelope"></i> Certificate and invoice sent to your email</div>';
+  h+='<div class="gaf-footer-text"><i class="far fa-envelope"></i> Confirmation and invoice sent to your email</div>';
   return h;
 }
 
