@@ -153,33 +153,34 @@ styleEl.textContent = `
 .gaf-s3-cta.processing{opacity:.7;cursor:not-allowed}
 
 /* ---- Screen 4: Success ---- */
-.gaf-s4-confirm{text-align:center;font-size:14px;color:#777;line-height:1.6;margin-bottom:20px}
+.gaf-s4-confirm{text-align:center;font-size:15px;color:#666;line-height:1.7;margin-bottom:24px}
 .gaf-s4-confirm strong{color:#1a1a1a}
-.gaf-s4-badge{display:inline-flex;align-items:center;gap:6px;padding:8px 20px;border:1.5px solid ${ACCENT};border-radius:20px;color:${ACCENT};font-size:12px;font-weight:700;margin-bottom:28px}
-.gaf-cert{background:#fff;border:1px solid #e8e8e8;border-radius:14px;padding:28px;margin-bottom:22px;box-shadow:0 2px 12px rgba(0,0,0,.04);text-align:center;position:relative}
-.gaf-cert-bar{height:4px;background:linear-gradient(90deg,${ACCENT},#00b4d8);border-radius:14px 14px 0 0;position:absolute;top:0;left:0;right:0}
-.gaf-cert-icons{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;font-size:16px;color:${ACCENT}}
+.gaf-s4-badge{display:inline-flex;align-items:center;gap:8px;padding:10px 24px;border:1.5px solid ${ACCENT};border-radius:24px;color:${ACCENT};font-size:13px;font-weight:700;margin-bottom:32px}
+.gaf-cert{background:#fff;border:1px solid #eaeaea;border-radius:16px;padding:36px 32px;margin-bottom:28px;box-shadow:0 2px 16px rgba(0,0,0,.05);text-align:center;position:relative}
+.gaf-cert-bar{display:none}
+.gaf-cert-icons{display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;font-size:16px;color:${ACCENT}}
 .gaf-cert-icons .share-icon{cursor:pointer;color:#ccc;transition:color .15s}
 .gaf-cert-icons .share-icon:hover{color:#888}
-.gaf-cert-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;color:#bbb;margin-bottom:14px}
-.gaf-cert hr{border:none;border-top:1px solid #f0f0f0;margin:12px 0}
-.gaf-cert-small{font-size:12px;color:#bbb}
-.gaf-cert-name{font-size:24px;font-weight:800;color:#1a1a1a;margin:6px 0}
-.gaf-cert-site{display:flex;align-items:center;justify-content:center;gap:8px;margin:12px 0}
-.gaf-cert-site-icon{width:28px;height:28px;border-radius:50%;background:${ACCENT};display:flex;align-items:center;justify-content:center;color:#fff;font-size:12px;font-weight:700}
-.gaf-cert-cause{font-style:italic;color:#999;font-size:13px;margin:10px 0}
-.gaf-cert-amount{font-weight:800;font-size:16px;color:#1a1a1a}
-.gaf-cert-date{font-size:12px;color:#bbb;margin-top:4px}
-.gaf-cert-perk{background:${ACCENT_LIGHT};border-radius:0 0 14px 14px;padding:14px;margin:-28px -28px 0;margin-top:18px;font-size:13px;color:${ACCENT_DARK};font-weight:600}
-.gaf-hide-toggle{display:flex;align-items:center;justify-content:center;gap:6px;font-size:12px;color:#bbb;margin-bottom:20px;cursor:pointer}
-.gaf-hide-toggle .circle{width:16px;height:16px;border:1.5px solid #ddd;border-radius:50%}
-.gaf-share-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:#bbb;text-align:center;margin-bottom:10px}
-.gaf-share-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:18px}
-.gaf-share-btn{padding:12px;border:1.5px solid #eee;border-radius:10px;color:#555;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px;background:#fff;transition:border-color .15s;font-family:inherit}
-.gaf-share-btn:hover{border-color:${ACCENT}}
+.gaf-cert-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:#bbb;margin-bottom:20px}
+.gaf-cert hr{border:none;border-top:1px solid #f0f0f0;margin:16px auto;max-width:60px}
+.gaf-cert-small{font-size:12.5px;color:#bbb;line-height:1.6}
+.gaf-cert-name{font-size:26px;font-weight:800;color:#1a1a1a;margin:8px 0}
+.gaf-cert-site{display:flex;align-items:center;justify-content:center;gap:10px;margin:16px 0}
+.gaf-cert-site-icon{width:32px;height:32px;border-radius:50%;background:${ACCENT};display:flex;align-items:center;justify-content:center;color:#fff;font-size:13px;font-weight:700}
+.gaf-cert-cause{font-style:italic;color:#999;font-size:13.5px;margin:14px 0 6px}
+.gaf-cert-amount{font-weight:800;font-size:18px;color:#1a1a1a}
+.gaf-cert-date{font-size:12.5px;color:#bbb;margin-top:6px}
+.gaf-cert-perk{background:${ACCENT_LIGHT};border-radius:10px;padding:16px 20px;margin-top:24px;font-size:13px;color:${ACCENT_DARK};font-weight:600;display:flex;align-items:center;gap:8px}
+.gaf-hide-toggle{display:flex;align-items:center;justify-content:center;gap:8px;font-size:12.5px;color:#aaa;margin-bottom:24px;cursor:pointer;transition:color .15s}
+.gaf-hide-toggle:hover{color:#777}
+.gaf-hide-toggle .circle{width:18px;height:18px;border:1.5px solid #ddd;border-radius:4px}
+.gaf-share-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.2px;color:#bbb;text-align:center;margin-bottom:12px}
+.gaf-share-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:24px}
+.gaf-share-btn{padding:12px;border:1.5px solid #eee;border-radius:10px;color:#555;font-size:13px;font-weight:600;cursor:pointer;text-decoration:none;text-align:center;display:flex;align-items:center;justify-content:center;gap:6px;background:#fff;transition:all .15s;font-family:inherit}
+.gaf-share-btn:hover{border-color:${ACCENT};background:${ACCENT_LIGHT};color:${ACCENT_DARK}}
 .gaf-share-btn i{font-size:14px}
-.gaf-footer-text{text-align:center;font-size:12px;color:#bbb}
-.gaf-footer-text i{margin-right:4px}
+.gaf-footer-text{text-align:center;font-size:12.5px;color:#aaa;margin-top:4px}
+.gaf-footer-text i{margin-right:6px}
 
 /* ---- Spinner ---- */
 .gaf-spinner{display:inline-block;width:16px;height:16px;border:2.5px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:gaf-spin .6s linear infinite;vertical-align:middle;margin-right:6px}
@@ -353,29 +354,28 @@ function screen4(){
 
   var h='';
   h+='<div style="text-align:center">';
-  h+='<div class="gaf-s4-confirm">Your <strong>$'+annual+' every year</strong> support is confirmed.<br>You\'re now helping keep '+SITE_CAUSE+' free for millions worldwide.</div>';
+  h+='<div class="gaf-s4-confirm">Your <strong>$'+annual+' / year</strong> support is confirmed.<br>You\'re now one of us &mdash; helping keep '+SITE_CAUSE+' free for millions worldwide.</div>';
   h+='<div class="gaf-s4-badge"><i class="far fa-heart"></i> Official Supporter of '+SITE_NAME+'</div>';
   h+='</div>';
 
   h+='<div class="gaf-cert">';
-  h+='<div class="gaf-cert-bar"></div>';
   h+='<div class="gaf-cert-icons"><span style="color:'+ACCENT+'"><i class="fas fa-heart"></i></span><span class="share-icon"><i class="fas fa-share-from-square"></i></span></div>';
   h+='<div class="gaf-cert-label">Certificate of Support</div>';
   h+='<hr>';
   h+='<div class="gaf-cert-small">This certifies that</div>';
   h+='<div class="gaf-cert-name">'+name+'</div>';
   h+='<div class="gaf-cert-small">is a proud supporter of</div>';
-  h+='<div class="gaf-cert-site"><div class="gaf-cert-site-icon">'+CERT_ICON+'</div><span style="font-weight:700;font-size:15px">'+SITE_NAME+'</span></div>';
+  h+='<div class="gaf-cert-site"><div class="gaf-cert-site-icon">'+CERT_ICON+'</div><span style="font-weight:700;font-size:16px;color:#1a1a1a">'+SITE_NAME+'</span></div>';
   h+='<hr>';
-  h+='<div class="gaf-cert-cause">For keeping '+SITE_CAUSE+' free & accessible for everyone</div>';
-  h+='<div class="gaf-cert-amount">$'+annual+' every year</div>';
+  h+='<div class="gaf-cert-cause">For keeping '+SITE_CAUSE+' free &amp; accessible for everyone</div>';
+  h+='<div class="gaf-cert-amount">$'+annual+' / year</div>';
   h+='<div class="gaf-cert-date">'+date+'</div>';
-  h+='<div class="gaf-cert-perk"><i class="fas fa-check" style="margin-right:4px"></i> Your '+SITE_NAME+' experience will be <strong>ads-free</strong> while your support is active.</div>';
+  h+='<div class="gaf-cert-perk"><i class="fas fa-gift" style="font-size:14px"></i> Your '+SITE_NAME+' experience will be <strong>ad-free</strong> while your support is active.</div>';
   h+='</div>';
 
   h+='<div class="gaf-hide-toggle"><span class="circle"></span> Hide amount from certificate</div>';
 
-  h+='<div class="gaf-share-label">Share Your Support</div>';
+  h+='<div class="gaf-share-label">Show others you support free '+SITE_CAUSE+'</div>';
   h+='<div class="gaf-share-grid">';
   h+='<a class="gaf-share-btn" href="https://twitter.com/intent/tweet?text='+shareText+'" target="_blank"><i class="fab fa-x-twitter"></i> X</a>';
   h+='<a class="gaf-share-btn" href="https://www.linkedin.com/sharing/share-offsite/?url='+encodeURIComponent(SITE_URL)+'" target="_blank"><i class="fab fa-linkedin-in"></i> LinkedIn</a>';
