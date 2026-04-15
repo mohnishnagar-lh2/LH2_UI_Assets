@@ -5,9 +5,73 @@ import comparisonImg from "@/assets/comparison.jpg";
 import aircraftImg from "@/assets/final-aircraft.jpg";
 import { useEffect, useState } from "react";
 
+const CTA_COLOR = "#bb361b";
+
 const goToPayment = () => {
   window.location.hash = "#/payment";
 };
+
+/* ─── VAN Site Header ─── */
+const VANHeader = () => (
+  <>
+    <header style={{background:"#fff",borderBottom:"1px solid #e0e0e0"}}>
+      <div style={{maxWidth:1280,margin:"0 auto",padding:"16px 20px",display:"flex",alignItems:"center",justifyContent:"space-between"}}>
+        <div style={{display:"flex",gap:12,alignItems:"center"}}>
+          <a href="../index.html" style={{color:"#666",fontSize:14}}><i className="fab fa-facebook-f"></i></a>
+          <a href="#" style={{color:"#666",fontSize:14}}><i className="fab fa-twitter"></i></a>
+          <a href="#" style={{color:"#666",fontSize:14}}><i className="fab fa-youtube"></i></a>
+          <a href="#" style={{color:"#666",fontSize:14}}><i className="fab fa-instagram"></i></a>
+        </div>
+        <div>
+          <a href="../index.html" style={{fontFamily:"'Merriweather',Georgia,serif",fontSize:22,fontWeight:700,color:"#1a1a1a",textDecoration:"none"}}>
+            Vintage Aviation News
+          </a>
+        </div>
+        <div style={{display:"flex",alignItems:"center",gap:8,border:"1px solid #e0e0e0",borderRadius:4,padding:"6px 12px"}}>
+          <input type="text" placeholder="Search Headlines, News..." style={{border:"none",outline:"none",fontSize:13,width:180,fontFamily:"Inter,sans-serif"}} />
+          <i className="fas fa-arrow-circle-right" style={{color:"#999",fontSize:14}}></i>
+        </div>
+      </div>
+    </header>
+    <nav style={{background:"#fff",borderBottom:"2px solid #e0e0e0",position:"sticky",top:0,zIndex:100}}>
+      <div style={{maxWidth:1280,margin:"0 auto",padding:"0 20px",display:"flex",alignItems:"center",justifyContent:"center",gap:0}}>
+        {["Home","Restorations","Warbirds News","Vintage","Articles","Aviation Museum News","Sponsors"].map(item => (
+          <a key={item} href={item === "Home" ? "../index.html" : `../pages/${item.toLowerCase().replace(/\s+/g,"-")}.html`} style={{padding:"14px 18px",fontSize:14,fontWeight:600,color:"#333",textDecoration:"none",fontFamily:"Inter,sans-serif",transition:"color 0.15s"}}>{item}</a>
+        ))}
+        <a href="../go-ad-free/" style={{padding:"8px 18px",fontSize:13,fontWeight:700,color:"#fff",background:CTA_COLOR,borderRadius:4,textDecoration:"none",marginLeft:8,fontFamily:"Inter,sans-serif"}}>Go Ad-Free</a>
+      </div>
+    </nav>
+  </>
+);
+
+/* ─── VAN Site Footer ─── */
+const VANFooter = () => (
+  <footer style={{background:"#1a1a1a",color:"#ccc",padding:"48px 0 32px",fontFamily:"Inter,sans-serif"}}>
+    <div style={{maxWidth:1280,margin:"0 auto",padding:"0 20px"}}>
+      <div style={{display:"flex",justifyContent:"space-between",alignItems:"center",marginBottom:32,paddingBottom:24,borderBottom:"1px solid #333"}}>
+        <span style={{fontFamily:"'Merriweather',Georgia,serif",fontSize:18,fontWeight:700,color:"#fff"}}>Vintage Aviation News</span>
+        <div style={{display:"flex",gap:14}}>
+          {["facebook-f","twitter","youtube","instagram"].map(icon => (
+            <a key={icon} href="#" style={{width:36,height:36,borderRadius:"50%",border:"1px solid #555",display:"flex",alignItems:"center",justifyContent:"center",color:"#aaa",fontSize:14,textDecoration:"none"}}><i className={`fab fa-${icon}`}></i></a>
+          ))}
+        </div>
+      </div>
+      <div style={{display:"grid",gridTemplateColumns:"2fr 1fr 1fr",gap:40}}>
+        <p style={{fontSize:13,lineHeight:1.7,color:"#888",fontStyle:"italic"}}>Vintage Aviation News is a company founded by a group of passionate aviation enthusiasts who love the history and technology Aviation and Flying Museums preserve for the public. It is our intention to play a role in safeguarding the heritage of these beautiful machines by providing increased awareness and education through the use of internet based digital media.</p>
+        <div style={{display:"flex",flexDirection:"column",gap:10}}>
+          {["Home","Restorations","Vintage Aviation","Aviation Museum News","Articles"].map(l => (
+            <a key={l} href="#" style={{color:"#999",fontSize:13,textDecoration:"none"}}>{l}</a>
+          ))}
+        </div>
+        <div style={{display:"flex",flexDirection:"column",gap:10}}>
+          {["Privacy Policy","Terms of Service","Newsletter","About Us","Contact Us","Ethics Policy"].map(l => (
+            <a key={l} href="#" style={{color:"#999",fontSize:13,textDecoration:"none"}}>{l}</a>
+          ))}
+        </div>
+      </div>
+    </div>
+  </footer>
+);
 
 /* ─── Sticky Bottom CTA (Mobile) ─── */
 const StickyBottomCTA = () => {
@@ -27,12 +91,12 @@ const StickyBottomCTA = () => {
     >
       <div className="max-w-5xl mx-auto flex items-center justify-between px-4 py-3">
         <div className="text-sm font-serif font-semibold text-foreground">
-          <span className="line-through opacity-60 font-normal">$25</span>{" "}
-          <span>$20</span><span className="text-muted-foreground font-sans font-normal">/year</span>
+          <span className="line-through opacity-60 font-normal">$3</span>{" "}
+          <span>$2</span><span className="text-muted-foreground font-sans font-normal">/month</span>
         </div>
-        <Button variant="cta" size="sm" onClick={goToPayment}>
+        <button onClick={goToPayment} style={{padding:"8px 20px",background:CTA_COLOR,color:"#fff",border:"none",borderRadius:6,fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>
           Read Without Ads
-        </Button>
+        </button>
       </div>
     </div>
   );
@@ -50,15 +114,15 @@ const StickyHeader = () => {
 
   return (
     <header
-      className={`fixed top-0 inset-x-0 z-50 bg-background/90 backdrop-blur border-b border-border transition-transform duration-300 ${
+      className={`fixed top-0 inset-x-0 z-[200] bg-background/90 backdrop-blur border-b border-border transition-transform duration-300 ${
         visible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
       <div className="max-w-5xl mx-auto flex items-center justify-between px-6 py-3">
         <span className="font-serif font-semibold text-foreground">Vintage Aviation News</span>
-        <Button variant="cta" size="sm" onClick={goToPayment}>
+        <button onClick={goToPayment} style={{padding:"8px 20px",background:CTA_COLOR,color:"#fff",border:"none",borderRadius:6,fontSize:13,fontWeight:700,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>
           Read Without Ads
-        </Button>
+        </button>
       </div>
     </header>
   );
@@ -84,12 +148,12 @@ const Hero = () => (
           No ads. No popups. Just aviation, uninterrupted.
         </p>
         <div className="space-y-2">
-          <Button variant="cta" size="lg" onClick={goToPayment}>
+          <button onClick={goToPayment} style={{padding:"16px 40px",background:CTA_COLOR,color:"#fff",border:"none",borderRadius:10,fontSize:16,fontWeight:700,cursor:"pointer",fontFamily:"Inter,sans-serif",boxShadow:"0 4px 16px rgba(187,54,27,0.3)"}}>
             Read Without Ads
-          </Button>
+          </button>
           <p className="text-sm text-muted-foreground">
-            <span className="line-through opacity-60">$25/year</span>{" "}
-            <span className="font-semibold text-foreground">$20/year — today only.</span>{" "}
+            <span className="line-through opacity-60">$3/month</span>{" "}
+            <span className="font-semibold text-foreground">$2/month — today only.</span>{" "}
             Cancel anytime.
           </p>
         </div>
@@ -113,7 +177,6 @@ const WhyWeExist = () => (
   </section>
 );
 
-
 const MidScrollTrigger = () => {
   const [visible, setVisible] = useState(false);
 
@@ -133,9 +196,9 @@ const MidScrollTrigger = () => {
       <p className="text-lg font-serif font-semibold text-foreground">
         Enjoying this? Read the rest without interruptions.
       </p>
-      <Button variant="cta" size="lg" onClick={() => { goToPayment(); }}>
-        Remove Ads Instantly — $20/year (was $25)
-      </Button>
+      <button onClick={goToPayment} style={{padding:"14px 32px",background:CTA_COLOR,color:"#fff",border:"none",borderRadius:10,fontSize:15,fontWeight:700,cursor:"pointer",fontFamily:"Inter,sans-serif",width:"100%"}}>
+        Remove Ads — $2/month (was $3)
+      </button>
       <p className="text-xs text-muted-foreground">Cancel anytime. Takes seconds.</p>
     </div>
   );
@@ -198,14 +261,14 @@ const Pricing = () => (
         One plan. No surprises.
       </h2>
       <div className="bg-card rounded-lg shadow-lg p-10 space-y-6 border border-border">
-        <p className="text-sm font-medium text-accent uppercase tracking-wide">Today only</p>
+        <p className="text-sm font-medium uppercase tracking-wide" style={{color:CTA_COLOR}}>Today only</p>
         <p className="text-lg font-serif font-medium text-foreground">Ad-Free Access</p>
         <div>
-          <span className="text-2xl font-serif text-muted-foreground line-through opacity-60">$25</span>
-          <span className="text-5xl font-serif font-bold text-foreground ml-2">$20</span>
-          <span className="text-muted-foreground ml-1">/ year</span>
+          <span className="text-2xl font-serif text-muted-foreground line-through opacity-60">$3</span>
+          <span className="text-5xl font-serif font-bold text-foreground ml-2">$2</span>
+          <span className="text-muted-foreground ml-1">/ month</span>
         </div>
-        <p className="text-sm text-muted-foreground">Cancel anytime.</p>
+        <p className="text-sm text-muted-foreground">That's less than $0.50/week. Cancel anytime.</p>
         <ul className="text-sm text-muted-foreground space-y-2 text-left max-w-xs mx-auto">
           {[
             "Every article, no interruptions",
@@ -218,9 +281,9 @@ const Pricing = () => (
             </li>
           ))}
         </ul>
-        <Button variant="cta" size="lg" className="w-full" onClick={goToPayment}>
+        <button onClick={goToPayment} style={{width:"100%",padding:"16px",background:CTA_COLOR,color:"#fff",border:"none",borderRadius:10,fontSize:16,fontWeight:700,cursor:"pointer",fontFamily:"Inter,sans-serif"}}>
           Read Without Ads
-        </Button>
+        </button>
         <p className="text-xs text-muted-foreground">Cancel anytime. Takes seconds.</p>
       </div>
     </div>
@@ -238,9 +301,9 @@ const EndCTA = () => (
       <p className="text-xl font-serif text-foreground leading-relaxed">
         You've read this far — now read every article without interruptions.
       </p>
-      <Button variant="cta" size="lg" onClick={goToPayment}>
-        Read Without Ads — $0.05/day
-      </Button>
+      <button onClick={goToPayment} style={{padding:"16px 40px",background:CTA_COLOR,color:"#fff",border:"none",borderRadius:10,fontSize:16,fontWeight:700,cursor:"pointer",fontFamily:"Inter,sans-serif",boxShadow:"0 4px 16px rgba(187,54,27,0.3)"}}>
+        Read Without Ads — less than $0.50/week
+      </button>
       <p className="text-sm text-muted-foreground">Cancel anytime. Takes seconds.</p>
     </div>
   </section>
@@ -249,6 +312,7 @@ const EndCTA = () => (
 /* ─── Page ─── */
 const Index = () => (
   <>
+    <VANHeader />
     <StickyHeader />
     <StickyBottomCTA />
     <Hero />
@@ -256,6 +320,7 @@ const Index = () => (
     <Pricing />
     <WhyWeExist />
     <EndCTA />
+    <VANFooter />
   </>
 );
 

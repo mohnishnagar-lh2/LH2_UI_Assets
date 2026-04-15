@@ -11,8 +11,8 @@
   }
 
   // ===== BRAND THEMING =====
-  var P = "#c0392b";
-  var PD = "#a93226";
+  var P = "#bb361b";
+  var PD = "#9e2e17";
   var PL = "#fdf2f2";
   var PT = "rgba(192,57,43,0.25)";
   var SITE_NAME = "Vintage Aviation News";
@@ -240,7 +240,7 @@
   function makeAdBadge() {
     var badge = document.createElement("div");
     badge.className = "gaf-above-badge";
-    badge.innerHTML = '<span class="gaf-cta-pill">Go Ads-Free <span class="gaf-arrow">\u2192</span></span>';
+    badge.innerHTML = '<span class="gaf-cta-pill">Go Ad-Free <span class="gaf-arrow">\u2192</span></span>';
     badge.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); window.location.href = getSupportUrl(); });
     return badge;
   }
@@ -294,7 +294,7 @@
       '<div class="gaf-amount-box"><span class="gaf-amount-sign">$</span><input class="gaf-amount-input" id="gafAmount" type="text" inputmode="numeric" value="' + amt + '">' +
         (perDay ? '<span class="gaf-amount-per">' + perDay + '</span>' : '') + '</div>' +
       '<div class="gaf-presets">' + presetBtns + '</div>' +
-      '<div class="gaf-perk">\u2714 Includes ads-free experience</div>' +
+      '<div class="gaf-perk">\u2714 Includes ad-free experience</div>' +
       '<button class="gaf-cta" id="gafCta1">Continue with $' + amt + freqLabel + '</button>' +
       '<div class="gaf-trust">\uD83D\uDD12 Secure payment &nbsp;|&nbsp; ApplePay \u00B7 Visa \u00B7 MC</div>' +
       '<div class="gaf-trust2">Secure &amp; encrypted \u00B7 Cancel anytime \u00B7 Takes &lt;10 seconds</div>';
