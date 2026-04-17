@@ -70,7 +70,7 @@ const VANFooter = () => (
           ))}
         </div>
         <div style={{display:"flex",flexDirection:"column" as const,gap:10}}>
-          {["Privacy Policy","Terms of Service","Newsletter","About Us","Contact Us","Ethics-Policy"].map(l=>(
+          {["Privacy Policy","Terms of Service","Newsletter","About Us","Contact Us","Login","Ethics-Policy"].map(l=>(
             <a key={l} href="#" style={{color:"#999",fontSize:13,textDecoration:"none"}}>{l}</a>
           ))}
         </div>
