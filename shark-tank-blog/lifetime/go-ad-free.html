@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Go Ad-Free — Shark Tank Blog</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Open+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--cyan:#117fb0;--cyan-light:#1592cc;--cyan-glow:rgba(17,127,176,0.25);--nav-bg:#191c20;--bg:#0b0e13;--bg-card:#141922;--border:rgba(255,255,255,0.08);--text:#fff;--text-muted:rgba(255,255,255,0.62);--text-dim:rgba(255,255,255,0.38);--green:#10b981;--amber:#f59e0b;--font-body:'Open Sans',sans-serif;--font-serif:'Newsreader',Georgia,serif;--font-mono:'JetBrains Mono',monospace}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none}
+
+.demo-strip{background:#050709;color:#fff;padding:8px 20px;text-align:center;font-size:12px;border-bottom:1px solid var(--border)}
+.demo-strip a{color:#7bc7e8;font-weight:600;margin-left:6px}
+.demo-strip .tag{display:inline-block;padding:2px 8px;background:rgba(17,127,176,0.2);border:1px solid rgba(17,127,176,0.4);border-radius:10px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#7bc7e8;margin-right:8px}
+
+.main-nav{background:var(--nav-bg);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:1100px;margin:0 auto;padding:0 20px}
+.nav-left{display:flex;align-items:center;gap:25px}
+.logo img{height:40px;border-radius:4px}
+
+.page{flex:1;padding:60px 20px;display:flex;align-items:center;justify-content:center}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;max-width:460px;width:100%;padding:40px;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--cyan),var(--cyan-light),transparent)}
+
+.state-toggle{display:flex;gap:8px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;padding:4px;margin-bottom:28px}
+.state-toggle button{flex:1;padding:8px 12px;background:transparent;color:var(--text-muted);font-size:11.5px;font-weight:600;border-radius:4px;transition:all 0.15s;letter-spacing:0.3px}
+.state-toggle button.active{background:rgba(17,127,176,0.18);color:var(--cyan)}
+
+.kicker{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--cyan);margin-bottom:12px}
+h1{font-family:var(--font-serif);font-size:28px;font-weight:600;letter-spacing:-0.01em;margin-bottom:10px;line-height:1.2}
+h1 .accent{color:var(--cyan);font-style:italic;font-weight:500}
+.sub{font-size:14.5px;color:var(--text-muted);margin-bottom:28px;line-height:1.6}
+
+.price-line{display:flex;align-items:baseline;gap:6px;margin-bottom:28px;padding-bottom:24px;border-bottom:1px solid var(--border)}
+.price-main{font-family:var(--font-serif);font-size:48px;font-weight:600;letter-spacing:-1.5px;line-height:1}
+.price-sub{font-size:14px;color:var(--text-muted)}
+.price-note{margin-left:auto;padding:4px 10px;background:rgba(16,185,129,0.1);border:1px solid rgba(16,185,129,0.25);border-radius:20px;font-size:10.5px;font-weight:700;color:var(--green);letter-spacing:1px;text-transform:uppercase}
+
+.field{margin-bottom:20px}
+.field label{display:block;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;color:var(--text-dim);margin-bottom:8px}
+.field input{width:100%;padding:13px 16px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;color:#fff;font-size:15px;font-family:inherit;outline:none;transition:all 0.15s}
+.field input:focus{border-color:var(--cyan);background:rgba(17,127,176,0.05);box-shadow:0 0 0 3px rgba(17,127,176,0.1)}
+.field input::placeholder{color:var(--text-dim)}
+.field-help{font-size:12px;color:var(--text-dim);margin-top:8px;line-height:1.5}
+
+.cta{width:100%;padding:14px;background:var(--cyan);color:#fff;border-radius:8px;font-size:14.5px;font-weight:700;letter-spacing:0.3px;transition:background 0.15s;display:flex;align-items:center;justify-content:center;gap:8px}
+.cta:hover{background:var(--cyan-light)}
+.cta.secondary{background:transparent;border:1px solid var(--border);margin-top:10px}
+.cta.secondary:hover{border-color:var(--cyan);background:rgba(17,127,176,0.08)}
+
+.trust-row{display:flex;align-items:center;justify-content:center;gap:10px;margin-top:18px;flex-wrap:wrap}
+.trust-row svg{height:14px;opacity:0.4;filter:grayscale(100%)}
+.trust-note{text-align:center;font-size:11px;color:var(--text-dim);margin-top:14px;display:flex;align-items:center;justify-content:center;gap:5px}
+.trust-note i{font-size:10px}
+
+.features{margin-top:28px;padding-top:28px;border-top:1px solid var(--border)}
+.features h4{font-size:11px;font-weight:700;color:var(--text-dim);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.features li{display:flex;align-items:center;gap:10px;font-size:13.5px;color:var(--text-muted);padding:6px 0;list-style:none}
+.features li i{color:var(--green);font-size:11px;flex-shrink:0}
+
+/* BLOCKED STATE */
+.blocked-banner{background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);border-radius:10px;padding:14px 16px;display:flex;align-items:flex-start;gap:12px;margin-bottom:24px}
+.blocked-banner i{color:var(--amber);font-size:16px;margin-top:2px;flex-shrink:0}
+.blocked-banner .blocked-text{font-size:13.5px;color:var(--text-muted);line-height:1.5}
+.blocked-banner strong{color:#fff;font-weight:600;display:block;margin-bottom:2px;font-size:14px}
+.blocked-email{display:inline-block;padding:3px 8px;background:rgba(255,255,255,0.05);border-radius:4px;font-family:var(--font-mono);font-size:12.5px;color:var(--cyan);margin-top:8px}
+
+/* API peek */
+.api-peek{margin-top:24px;padding:14px 16px;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:8px;font-family:var(--font-mono);font-size:11.5px;color:var(--text-dim);line-height:1.6}
+.api-peek .method{color:var(--green);font-weight:700}
+.api-peek .ep{color:var(--cyan)}
+.api-peek .k{color:#c4b5fd}
+.api-peek .s{color:#fcd34d}
+.api-peek .c{color:var(--text-dim);font-style:italic}
+
+@media (max-width:520px){
+  .card{padding:28px 22px}
+  h1{font-size:22px}
+  .price-main{font-size:40px}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-strip"><span class="tag">Demo</span>Step 3 of 6 &mdash; <code style="background:rgba(17,127,176,0.15);color:#7bc7e8;padding:1px 6px;border-radius:3px;font-family:monospace">/go-ad-free</code> email gate. Toggle between Flow A (new) and Flow B (blocked). <a href="index.html">← Overview</a></div>
+
+<nav class="main-nav">
+  <div class="nav-inner">
+    <div class="nav-left">
+      <a href="home.html" class="logo"><img src="https://nagarmohnish.github.io/LH2_Assets_UI/shark-tank-blog/assets/images/shark_logo.jpeg" alt="STB"></a>
+    </div>
+    <a href="home.html" style="font-size:13px;color:var(--text-muted)"><i class="fas fa-times"></i></a>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="card">
+
+    <div class="state-toggle">
+      <button id="tglNew" class="active" onclick="setState('new')">Flow A · New purchase</button>
+      <button id="tglBlocked" onclick="setState('blocked')">Flow B · Duplicate</button>
+    </div>
+
+    <!-- FLOW A: NEW PURCHASE -->
+    <div id="stateNew">
+      <div class="kicker">One-Time Payment</div>
+      <h1>Pay once, <span class="accent">read ad-free forever.</span></h1>
+      <p class="sub">No subscriptions. No recurring charges. A single $10 payment removes every ad across Shark Tank Blog, for life.</p>
+
+      <div class="price-line">
+        <span style="font-family:var(--font-serif);font-size:22px;color:var(--text-muted);font-weight:500">$</span>
+        <span class="price-main">10</span>
+        <span class="price-sub">one-time</span>
+        <span class="price-note">Lifetime</span>
+      </div>
+
+      <form onsubmit="event.preventDefault();goToPayment()">
+        <div class="field">
+          <label for="newEmail">Your email</label>
+          <input type="email" id="newEmail" placeholder="you@example.com" value="reader@example.com" required>
+          <div class="field-help">We'll email your lifetime access link here after payment. Use an email you check &mdash; it's how you sign in.</div>
+        </div>
+        <button type="submit" class="cta">
+          Continue to payment &mdash; $10
+          <i class="fas fa-arrow-right"></i>
+        </button>
+      </form>
+
+      <div class="trust-note"><i class="fas fa-lock"></i> Secured by Stripe &middot; Cancel anytime within 7 days</div>
+
+      <div class="features">
+        <h4>What you get</h4>
+        <ul>
+          <li><i class="fas fa-check"></i> Zero ads across all Shark Tank Blog pages</li>
+          <li><i class="fas fa-check"></i> Faster page loads, smaller footprint</li>
+          <li><i class="fas fa-check"></i> Works on any device with the same email</li>
+          <li><i class="fas fa-check"></i> No expiry &mdash; pay once, keep forever</li>
+        </ul>
+      </div>
+
+      <div class="api-peek">
+        <div class="c">// On submit, frontend calls:</div>
+        <span class="method">POST</span> <span class="ep">/wp-json/stb/v1/adfree/init</span><br>
+        { <span class="k">"email"</span>: <span class="s">"reader@example.com"</span>, <span class="k">"source"</span>: <span class="s">"banner"</span> }<br>
+        <div class="c">// Returns:</div>
+        { <span class="k">"clientSecret"</span>: <span class="s">"pi_xxx_secret_yyy"</span> }
+      </div>
+    </div>
+
+    <!-- FLOW B: BLOCKED -->
+    <div id="stateBlocked" style="display:none">
+      <div class="kicker">Already a member</div>
+      <h1>Looks like <span class="accent">you've already paid.</span></h1>
+      <p class="sub">This email has an active lifetime entitlement. You don't need to pay again &mdash; just sign in to activate it on this device.</p>
+
+      <div class="blocked-banner">
+        <i class="fas fa-info-circle"></i>
+        <div>
+          <div class="blocked-text"><strong>Lifetime access already on file</strong>Purchased March 14, 2026 &middot; Entitlement is tied to this email &mdash; no account needed.</div>
+          <span class="blocked-email">reader@example.com</span>
+        </div>
+      </div>
+
+      <button class="cta" onclick="location.href='success.html?from=blocked'">
+        Send me the login link
+        <i class="fas fa-paper-plane"></i>
+      </button>
+      <button class="cta secondary" onclick="setState('new')">
+        Use a different email
+      </button>
+
+      <div class="trust-note"><i class="fas fa-shield-alt"></i> Link arrives in under a minute &middot; Valid for 30 minutes</div>
+
+      <div class="api-peek" style="margin-top:24px">
+        <div class="c">// When email is found in wp_stb_adfree:</div>
+        <span class="method">POST</span> <span class="ep">/wp-json/stb/v1/adfree/init</span><br>
+        <div class="c">// Returns:</div>
+        { <span class="k">"blocked"</span>: <span class="s">true</span>, <span class="k">"purchased_at"</span>: <span class="s">1710374400</span> }<br><br>
+        <div class="c">// Send login link instead:</div>
+        <span class="method">POST</span> <span class="ep">/wp-json/stb/v1/adfree/send-login</span>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<script>
+function setState(s){
+  document.getElementById('stateNew').style.display = s==='new'?'block':'none';
+  document.getElementById('stateBlocked').style.display = s==='blocked'?'block':'none';
+  document.getElementById('tglNew').classList.toggle('active',s==='new');
+  document.getElementById('tglBlocked').classList.toggle('active',s==='blocked');
+  history.replaceState(null,'',s==='blocked'?'?demo=blocked':'go-ad-free.html');
+}
+function goToPayment(){
+  var email = document.getElementById('newEmail').value;
+  location.href = 'payment.html?email=' + encodeURIComponent(email);
+}
+// initial state from URL
+(function(){
+  var p = new URLSearchParams(location.search);
+  if(p.get('demo')==='blocked') setState('blocked');
+})();
+</script>
+
+</body>
+</html>
