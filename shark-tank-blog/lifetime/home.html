@@ -136,7 +136,6 @@ button{font-family:inherit;cursor:pointer;border:none}
         <li><a href="#">Shark Tank Startup List</a></li>
       </ul>
     </div>
-    <a href="payment.html" class="btn-contact">Go Ad-Free · $10</a>
   </div>
 </nav>
 
@@ -149,11 +148,11 @@ button{font-family:inherit;cursor:pointer;border:none}
       </svg>
     </div>
     <div class="promo-copy">
-      <span class="promo-eyebrow">Reader-Supported &middot; Lifetime</span>
-      <span class="promo-title">Back independent Shark Tank coverage. Read ad-free forever for <strong>$10</strong>.</span>
+      <span class="promo-eyebrow">Lifetime Supporter &middot; Ad-Free &middot; Newsletter</span>
+      <span class="promo-title">Back our coverage, read ad-free, and get our exclusive newsletter &mdash; <strong>$10</strong> for life.</span>
     </div>
     <a href="payment.html" class="promo-cta">
-      <span>Go Ad-Free</span>
+      <span>Subscribe</span>
       <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
     </a>
     <button class="promo-close" onclick="document.getElementById('promoStrip').style.display='none'" aria-label="Dismiss">
@@ -250,7 +249,7 @@ button{font-family:inherit;cursor:pointer;border:none}
         <ul>
           <li><a href="home.html">Home</a></li>
           <li><a href="article.html">Blog</a></li>
-          <li><a href="payment.html">Go Ad-Free · $10</a></li>
+          <li><a href="payment.html">Subscribe · $10 Lifetime</a></li>
         </ul>
       </div>
       <div class="footer-menu">
@@ -277,10 +276,13 @@ button{font-family:inherit;cursor:pointer;border:none}
     var ds = document.getElementById('demoStrip');
     if(ds) ds.innerHTML = '<span class="tag">Demo</span>Final state &mdash; logged in, banner hidden, ads removed. <a href="index.html">← Architecture overview</a>';
 
-    // Replace the Go Ad-Free nav button with user chip
-    var nav = document.querySelector('.btn-contact');
-    if(nav){
-      nav.outerHTML = '<div style="display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 6px;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.25);border-radius:20px;color:#fff;font-size:12px;font-weight:600"><span style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#117fb0,#0e5f85);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">RE</span>reader@example.com <span style="padding:2px 7px;background:rgba(16,185,129,0.18);color:#10b981;border-radius:8px;font-size:9px;letter-spacing:0.5px;text-transform:uppercase;font-weight:700">Ad-Free</span></div>';
+    // Add user chip to nav (logged-in state)
+    var navInner = document.querySelector('.nav-inner');
+    if(navInner){
+      var chip = document.createElement('div');
+      chip.style.cssText = 'display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 6px;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.25);border-radius:20px;color:#fff;font-size:12px;font-weight:600';
+      chip.innerHTML = '<span style="width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#117fb0,#0e5f85);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700">RE</span>reader@example.com <span style="padding:2px 7px;background:rgba(16,185,129,0.18);color:#10b981;border-radius:8px;font-size:9px;letter-spacing:0.5px;text-transform:uppercase;font-weight:700">Supporter</span>';
+      navInner.appendChild(chip);
     }
   }
 })();

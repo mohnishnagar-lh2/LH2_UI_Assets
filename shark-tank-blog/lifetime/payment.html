@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Checkout — Go Ad-Free Lifetime</title>
+<title>Subscribe — Lifetime Supporter Membership</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Open+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
@@ -28,23 +28,53 @@ button{font-family:inherit;cursor:pointer;border:none}
 .page{flex:1;padding:40px 20px}
 .page-inner{max-width:960px;margin:0 auto;display:grid;grid-template-columns:1fr 1.3fr;gap:40px}
 
-/* LEFT: Order summary */
-.summary-head{font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-muted);margin-bottom:12px}
-.summary-title{font-family:var(--font-serif);font-size:22px;font-weight:600;color:var(--text);margin-bottom:4px;line-height:1.3}
-.summary-subtitle{font-size:14px;color:var(--text-muted);margin-bottom:28px}
-.summary-price{display:flex;align-items:baseline;gap:6px;padding-bottom:28px;border-bottom:1px solid var(--border);margin-bottom:24px}
-.summary-price .cur{font-family:var(--font-serif);font-size:24px;color:var(--text-muted);font-weight:500}
-.summary-price .big{font-family:var(--font-serif);font-size:56px;font-weight:600;color:var(--text);line-height:1;letter-spacing:-2px}
-.summary-price .per{font-size:14px;color:var(--text-muted)}
-.summary-features{list-style:none;display:flex;flex-direction:column;gap:16px;margin-top:4px}
-.pillar{display:flex;gap:14px;padding:0}
-.pillar-icon{width:36px;height:36px;border-radius:8px;background:rgba(17,127,176,0.08);border:1px solid rgba(17,127,176,0.18);color:var(--cyan);display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
+/* LEFT: Order summary — refined card layout */
+.summary{position:sticky;top:20px}
+
+/* Brand row */
+.brand-row{display:flex;align-items:center;gap:10px;padding-bottom:18px;border-bottom:1px solid var(--border);margin-bottom:22px}
+.brand-row img{width:34px;height:34px;border-radius:6px}
+.brand-row-text{display:flex;flex-direction:column;gap:0}
+.brand-row-name{font-family:var(--font-serif);font-size:13.5px;font-weight:600;color:var(--text);letter-spacing:-0.01em;line-height:1.1}
+.brand-row-meta{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:1.2px;font-weight:700;margin-top:3px}
+
+/* Product header */
+.product-head{margin-bottom:22px}
+.product-badges{display:flex;gap:6px;margin-bottom:10px;flex-wrap:wrap}
+.product-badge{display:inline-flex;align-items:center;gap:4px;padding:3px 9px;background:rgba(17,127,176,0.08);border:1px solid rgba(17,127,176,0.18);border-radius:20px;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--cyan)}
+.product-badge.lifetime{background:rgba(16,185,129,0.08);border-color:rgba(16,185,129,0.22);color:var(--green)}
+.product-title{font-family:var(--font-serif);font-size:24px;font-weight:600;color:var(--text);margin-bottom:6px;line-height:1.25;letter-spacing:-0.01em}
+.product-tagline{font-size:13.5px;color:var(--text-muted);line-height:1.55}
+
+/* Price card */
+.price-card{background:linear-gradient(180deg,#fff,#fafbfc);border:1px solid var(--border);border-radius:10px;padding:18px 20px;display:flex;align-items:baseline;justify-content:space-between;margin-bottom:24px}
+.price-card-left .price-label{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;line-height:1}
+.price-card-left .price-main{font-family:var(--font-serif);font-size:42px;font-weight:600;color:var(--text);letter-spacing:-1.5px;line-height:1;display:inline-flex;align-items:baseline;gap:3px}
+.price-card-left .price-cur{font-size:22px;color:var(--text-muted);font-weight:500}
+.price-card-right{text-align:right;font-size:11.5px;color:var(--text-muted);line-height:1.5}
+.price-card-right strong{display:block;color:var(--green);font-weight:700;font-size:11px;letter-spacing:0.8px;text-transform:uppercase;margin-bottom:2px}
+
+/* Pillars — tight rows with left-accent */
+.pillars-label{font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px}
+.pillars{display:flex;flex-direction:column;gap:2px}
+.pillar{display:flex;gap:14px;padding:12px 14px;border-radius:8px;transition:background 0.15s}
+.pillar:hover{background:rgba(17,127,176,0.03)}
+.pillar-icon{width:32px;height:32px;border-radius:8px;background:rgba(17,127,176,0.08);color:var(--cyan);display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .pillar-text{flex:1;min-width:0}
-.pillar-title{font-family:var(--font-serif);font-size:15px;font-weight:600;color:var(--text);margin-bottom:3px;line-height:1.3}
-.pillar-desc{font-size:13px;color:var(--text-muted);line-height:1.55}
-.summary-trust{margin-top:28px;padding-top:24px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:10px}
-.summary-trust-row{display:flex;align-items:center;gap:10px;font-size:13px;color:var(--text-muted)}
-.summary-trust-row i{color:var(--text-muted);width:14px;text-align:center}
+.pillar-title{font-family:var(--font-serif);font-size:14.5px;font-weight:600;color:var(--text);margin-bottom:2px;line-height:1.3;letter-spacing:-0.005em}
+.pillar-desc{font-size:12.5px;color:var(--text-muted);line-height:1.5}
+
+/* Total row */
+.total-row{display:flex;justify-content:space-between;align-items:center;padding:16px 0 14px;margin-top:22px;border-top:1px solid var(--border)}
+.total-label{font-size:14px;font-weight:600;color:var(--text)}
+.total-amount{font-family:var(--font-serif);font-size:20px;font-weight:600;color:var(--text);letter-spacing:-0.5px}
+.total-amount .sub{font-size:11px;color:var(--text-muted);font-weight:400;margin-left:4px;letter-spacing:0}
+
+/* Trust chips — compact horizontal */
+.trust-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.trust-chip{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;background:#fff;border:1px solid var(--border);border-radius:6px;font-size:11.5px;font-weight:500;color:var(--text-sec)}
+.trust-chip i{font-size:11px;color:var(--text-muted)}
+.trust-chip.stripe i{color:var(--stripe)}
 
 /* RIGHT: Checkout card */
 .checkout{background:var(--bg-card);border:1px solid var(--border);border-radius:12px;padding:32px;box-shadow:0 4px 24px rgba(0,0,0,0.04)}
@@ -156,20 +186,43 @@ button{font-family:inherit;cursor:pointer;border:none}
 <main class="page">
   <div class="page-inner">
 
-    <!-- LEFT: ORDER SUMMARY -->
+    <!-- LEFT: ORDER SUMMARY (refined) -->
     <aside class="summary">
-      <div class="summary-head">Your Order</div>
-      <div class="summary-title">Lifetime Supporter Membership</div>
-      <div class="summary-subtitle">Shark Tank Blog</div>
-      <div class="summary-price">
-        <span class="cur">$</span>
-        <span class="big">10</span>
-        <span class="per">one-time &middot; lifetime</span>
+
+      <!-- Brand row -->
+      <div class="brand-row">
+        <img src="https://nagarmohnish.github.io/LH2_Assets_UI/shark-tank-blog/assets/images/shark_logo.jpeg" alt="STB">
+        <div class="brand-row-text">
+          <span class="brand-row-name">The Shark Tank Blog</span>
+          <span class="brand-row-meta">Your Order</span>
+        </div>
       </div>
 
-      <h4 style="font-size:11px;font-weight:700;color:var(--text-muted);letter-spacing:1.5px;text-transform:uppercase;margin-bottom:18px">Three things included</h4>
+      <!-- Product header -->
+      <div class="product-head">
+        <div class="product-badges">
+          <span class="product-badge">Supporter</span>
+          <span class="product-badge lifetime">Lifetime</span>
+        </div>
+        <h2 class="product-title">Lifetime Supporter Membership</h2>
+        <p class="product-tagline">Back independent Shark Tank coverage &mdash; get ad-free reading and exclusive newsletter access, for life.</p>
+      </div>
 
-      <div class="summary-features">
+      <!-- Price card -->
+      <div class="price-card">
+        <div class="price-card-left">
+          <div class="price-label">Pay once</div>
+          <div class="price-main"><span class="price-cur">$</span>10<sup style="font-size:11px;color:var(--text-muted);font-weight:500;vertical-align:top;margin-left:2px;letter-spacing:0">.00</sup></div>
+        </div>
+        <div class="price-card-right">
+          <strong>No renewal</strong>
+          One payment.<br>Lifetime access.
+        </div>
+      </div>
+
+      <!-- Pillars -->
+      <div class="pillars-label">What's Included</div>
+      <div class="pillars">
         <div class="pillar">
           <div class="pillar-icon">
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
@@ -178,7 +231,7 @@ button{font-family:inherit;cursor:pointer;border:none}
           </div>
           <div class="pillar-text">
             <div class="pillar-title">Support independent coverage</div>
-            <div class="pillar-desc">Back writer-run, reader-supported Shark Tank journalism. Keeps us independent.</div>
+            <div class="pillar-desc">Back writer-run, reader-supported Shark Tank journalism.</div>
           </div>
         </div>
 
@@ -190,7 +243,7 @@ button{font-family:inherit;cursor:pointer;border:none}
           </div>
           <div class="pillar-text">
             <div class="pillar-title">Ad-free, forever</div>
-            <div class="pillar-desc">Every banner, popup, and video ad removed across the site &mdash; for life.</div>
+            <div class="pillar-desc">No banners, popups, or video ads &mdash; anywhere on the site.</div>
           </div>
         </div>
 
@@ -201,16 +254,23 @@ button{font-family:inherit;cursor:pointer;border:none}
             </svg>
           </div>
           <div class="pillar-text">
-            <div class="pillar-title">Ad-free newsletter</div>
-            <div class="pillar-desc">Weekly subscriber-only recap &mdash; clean, ad-free, and exclusive deep-dives.</div>
+            <div class="pillar-title">Ad-free newsletter access</div>
+            <div class="pillar-desc">Weekly subscriber-only recap and exclusive deep-dives.</div>
           </div>
         </div>
       </div>
 
-      <div class="summary-trust">
-        <div class="summary-trust-row"><i class="fab fa-stripe-s"></i> Secure checkout via Stripe</div>
-        <div class="summary-trust-row"><i class="fas fa-undo"></i> 7-day refund window</div>
-        <div class="summary-trust-row"><i class="fas fa-envelope"></i> Login link sent after payment</div>
+      <!-- Total row -->
+      <div class="total-row">
+        <span class="total-label">Total today</span>
+        <span class="total-amount">$10.00 <span class="sub">USD</span></span>
+      </div>
+
+      <!-- Trust chips -->
+      <div class="trust-chips">
+        <span class="trust-chip stripe"><i class="fab fa-stripe-s"></i> Stripe</span>
+        <span class="trust-chip"><i class="fas fa-lock"></i> Encrypted</span>
+        <span class="trust-chip"><i class="fas fa-undo"></i> 7-day refund</span>
       </div>
     </aside>
 
@@ -251,7 +311,7 @@ button{font-family:inherit;cursor:pointer;border:none}
           <!-- New purchase: continue to payment -->
           <button type="submit" class="btn-primary" id="verifyBtn">
             <i class="fas fa-lock" style="font-size:11px"></i>
-            Continue to payment &mdash; $10
+            Subscribe &mdash; $10 Lifetime
           </button>
 
           <!-- Blocked state actions (hidden by default) -->
@@ -400,7 +460,7 @@ function editEmail(){
   var btn = document.getElementById('verifyBtn');
   btn.classList.remove('loading');
   btn.style.display = 'flex';
-  btn.innerHTML = '<i class="fas fa-lock" style="font-size:11px"></i> Continue to payment &mdash; $10';
+  btn.innerHTML = '<i class="fas fa-lock" style="font-size:11px"></i> Subscribe &mdash; $10 Lifetime';
   document.getElementById('emailInput').readOnly = false;
   document.getElementById('emailInput').classList.remove('valid');
 }
@@ -413,7 +473,7 @@ function resetToEmailEntry(){
   var btn = document.getElementById('verifyBtn');
   btn.classList.remove('loading');
   btn.style.display = 'flex';
-  btn.innerHTML = '<i class="fas fa-lock" style="font-size:11px"></i> Continue to payment &mdash; $10';
+  btn.innerHTML = '<i class="fas fa-lock" style="font-size:11px"></i> Subscribe &mdash; $10 Lifetime';
   // also reset steps
   document.getElementById('stepA').classList.add('active');
   document.getElementById('stepA').classList.remove('done');
