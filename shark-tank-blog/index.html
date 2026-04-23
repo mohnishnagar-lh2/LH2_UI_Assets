@@ -323,43 +323,62 @@
         </div>
     </nav>
 
-    <!-- Top Promo Strip -->
+    <!-- Editorial Promo Strip -->
     <div class="promo-strip" id="promoStrip">
         <div class="promo-strip-inner">
-            <span class="promo-emoji">✍️</span>
-            <span class="promo-text">
-                <strong>Written by real people, not AI.</strong>
-                <span class="promo-sub">Support human-written Shark Tank coverage for $1/month.</span>
-            </span>
-            <a href="go-ads-free-human.html" class="promo-cta">See how &rarr;</a>
-            <button class="promo-close" onclick="document.getElementById('promoStrip').style.display='none'" aria-label="Close">&times;</button>
+            <div class="promo-mark">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M20 7 L15 2 L4 13 L3 20 L10 19 L21 8 Z"/>
+                    <path d="M13 4 L20 11"/>
+                </svg>
+            </div>
+            <div class="promo-copy">
+                <span class="promo-eyebrow">Human-Written Editorial</span>
+                <span class="promo-title">Every Shark Tank story, researched and written by a real person.</span>
+            </div>
+            <div class="promo-divider"></div>
+            <div class="promo-price">$1<span>/mo</span></div>
+            <a href="go-ads-free-human.html" class="promo-cta">
+                <span>Learn more</span>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="M13 6l6 6-6 6"/></svg>
+            </a>
+            <button class="promo-close" onclick="document.getElementById('promoStrip').style.display='none'" aria-label="Dismiss">
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M6 18L18 6"/></svg>
+            </button>
         </div>
     </div>
     <style>
-        .promo-strip { background: linear-gradient(90deg, #0a1628 0%, #132d4f 50%, #0a1628 100%); border-bottom: 1px solid rgba(17,127,176,0.3); position: relative; overflow: hidden; }
-        .promo-strip::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse at center, rgba(17,127,176,0.15), transparent 70%); pointer-events: none; }
-        .promo-strip-inner { max-width: var(--max-width); margin: 0 auto; padding: 10px 48px 10px 20px; display: flex; align-items: center; justify-content: center; gap: 16px; position: relative; z-index: 1; }
-        .promo-emoji { font-size: 18px; animation: promoTilt 4s ease-in-out infinite; display: inline-block; transform-origin: bottom left; }
-        @keyframes promoTilt { 0%,100% { transform: rotate(0deg); } 50% { transform: rotate(-6deg); } }
-        .promo-text { color: #fff; font-size: 13.5px; font-family: var(--font-body); display: flex; align-items: baseline; gap: 6px; flex-wrap: wrap; justify-content: center; }
-        .promo-text strong { font-weight: 700; letter-spacing: 0.2px; }
-        .promo-sub { color: rgba(255,255,255,0.55); font-size: 12.5px; font-style: italic; }
-        .promo-cta { display: inline-flex; align-items: center; gap: 6px; padding: 6px 16px; background: var(--cyan); color: #fff !important; font-family: var(--font-body); font-size: 12.5px; font-weight: 700; border-radius: 20px; text-decoration: none; transition: all 0.15s; box-shadow: 0 2px 10px rgba(17,127,176,0.4); white-space: nowrap; }
-        .promo-cta:hover { background: var(--cyan-hover); transform: translateY(-1px); box-shadow: 0 4px 14px rgba(17,127,176,0.5); }
-        .promo-cta i { font-size: 10px; transition: transform 0.15s; }
-        .promo-cta:hover i { transform: translateX(2px); }
-        .promo-close { position: absolute; top: 50%; right: 16px; transform: translateY(-50%); background: none; border: none; color: rgba(255,255,255,0.4); font-size: 20px; cursor: pointer; padding: 4px 8px; transition: color 0.15s; line-height: 1; }
-        .promo-close:hover { color: rgba(255,255,255,0.9); }
-        @media (max-width: 768px) {
-            .promo-strip-inner { flex-wrap: wrap; gap: 10px; padding: 10px 40px 10px 16px; }
-            .promo-text { font-size: 12px; flex-direction: column; align-items: center; gap: 2px; }
-            .promo-sub { font-size: 11.5px; }
-            .promo-cta { font-size: 11.5px; padding: 5px 14px; }
-            .promo-emoji { font-size: 16px; }
+        .promo-strip { background: linear-gradient(180deg, #0a1118 0%, #0c1622 100%); border-top: 1px solid rgba(255,255,255,0.04); border-bottom: 1px solid rgba(255,255,255,0.06); position: relative; }
+        .promo-strip::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; background: var(--cyan); opacity: 0.75; }
+        .promo-strip-inner { max-width: var(--max-width); margin: 0 auto; padding: 14px 56px 14px 28px; display: flex; align-items: center; gap: 18px; position: relative; }
+        .promo-mark { width: 36px; height: 36px; border-radius: 50%; background: rgba(17,127,176,0.12); border: 1px solid rgba(17,127,176,0.28); color: var(--cyan); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+        .promo-copy { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+        .promo-eyebrow { font-family: var(--font-body); font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: 1.8px; color: var(--cyan); }
+        .promo-title { font-family: 'Newsreader', 'Roboto Slab', Georgia, serif; font-size: 16px; font-weight: 500; color: #fff; line-height: 1.3; letter-spacing: -0.01em; }
+        .promo-divider { width: 1px; height: 32px; background: rgba(255,255,255,0.1); flex-shrink: 0; }
+        .promo-price { font-family: 'Newsreader', 'Roboto Slab', Georgia, serif; font-size: 22px; font-weight: 600; color: #fff; letter-spacing: -0.5px; line-height: 1; flex-shrink: 0; }
+        .promo-price span { font-size: 12px; font-weight: 400; color: rgba(255,255,255,0.5); margin-left: 2px; letter-spacing: 0; }
+        .promo-cta { display: inline-flex; align-items: center; gap: 8px; padding: 9px 18px; background: transparent; color: #fff !important; border: 1px solid rgba(255,255,255,0.2); border-radius: 6px; font-family: var(--font-body); font-size: 12.5px; font-weight: 600; letter-spacing: 0.3px; text-decoration: none; transition: all 0.18s ease; white-space: nowrap; flex-shrink: 0; }
+        .promo-cta:hover { background: var(--cyan); border-color: var(--cyan); }
+        .promo-cta svg { transition: transform 0.18s ease; }
+        .promo-cta:hover svg { transform: translateX(3px); }
+        .promo-close { position: absolute; top: 50%; right: 18px; transform: translateY(-50%); background: none; border: none; color: rgba(255,255,255,0.35); cursor: pointer; padding: 6px; display: flex; align-items: center; justify-content: center; border-radius: 4px; transition: all 0.15s; }
+        .promo-close:hover { color: rgba(255,255,255,0.85); background: rgba(255,255,255,0.06); }
+        @media (max-width: 900px) {
+            .promo-strip-inner { flex-wrap: wrap; gap: 12px; padding: 14px 48px 14px 24px; }
+            .promo-divider { display: none; }
+            .promo-copy { flex: 1 1 auto; min-width: 200px; }
         }
-        @media (max-width: 480px) {
-            .promo-text strong { font-size: 12px; }
-            .promo-sub { display: none; }
+        @media (max-width: 640px) {
+            .promo-strip::before { width: 2px; }
+            .promo-strip-inner { padding: 12px 44px 12px 16px; gap: 10px; }
+            .promo-mark { width: 32px; height: 32px; }
+            .promo-mark svg { width: 16px; height: 16px; }
+            .promo-eyebrow { font-size: 9px; letter-spacing: 1.4px; }
+            .promo-title { font-size: 13.5px; }
+            .promo-price { font-size: 18px; }
+            .promo-cta { padding: 7px 14px; font-size: 11.5px; }
+            .promo-cta span { display: none; }
         }
     </style>
 
