@@ -34,13 +34,14 @@ button{font-family:inherit;cursor:pointer;border:none}
 /* PROMO STRIP — sticky below nav */
 .promo-strip{background:linear-gradient(180deg,#0a1118 0%,#0c1622 100%);border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.06);position:sticky;top:60px;z-index:1000;box-shadow:0 4px 20px rgba(0,0,0,0.15)}
 .promo-strip::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--cyan);opacity:0.75}
-.promo-strip-inner{max-width:var(--max);margin:0 auto;padding:14px 56px 14px 28px;display:flex;align-items:center;gap:18px}
-.promo-mark{width:36px;height:36px;border-radius:50%;background:rgba(17,127,176,0.12);border:1px solid rgba(17,127,176,0.28);color:var(--cyan);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.promo-copy{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px}
-.promo-eyebrow{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.8px;color:var(--cyan)}
-.promo-title{font-family:var(--font-serif);font-size:15px;font-weight:500;color:#fff;line-height:1.4;letter-spacing:-0.005em;max-width:760px}
-.promo-title strong{font-weight:700;color:#fff;font-family:var(--font-serif);padding:0 1px}
-.promo-title .accent{color:var(--cyan);font-style:italic;font-weight:500}
+.promo-strip-inner{max-width:var(--max);margin:0 auto;padding:16px 56px 16px 28px;display:flex;align-items:center;gap:22px}
+.promo-mark{width:38px;height:38px;border-radius:50%;background:rgba(17,127,176,0.12);border:1px solid rgba(17,127,176,0.28);color:var(--cyan);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.promo-copy{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.promo-eyebrow{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:2px;color:var(--cyan);line-height:1}
+.promo-title{font-family:var(--font-serif);font-size:17px;font-weight:500;color:#fff;line-height:1.25;letter-spacing:-0.015em}
+.promo-pillars{display:flex;flex-wrap:wrap;gap:14px;align-items:center;margin-top:6px}
+.promo-pillar{font-size:12.5px;color:rgba(255,255,255,0.65);font-weight:400;letter-spacing:0.1px;display:inline-flex;align-items:center;gap:7px}
+.promo-pillar::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--cyan);opacity:0.8}
 .promo-cta{display:inline-flex;align-items:center;gap:8px;padding:10px 22px;background:var(--cyan);color:#fff !important;border:1px solid var(--cyan);border-radius:6px;font-size:13px;font-weight:700;letter-spacing:0.3px;transition:all 0.18s;white-space:nowrap;flex-shrink:0;box-shadow:0 2px 12px rgba(17,127,176,0.35)}
 .promo-cta:hover{background:var(--cyan-light);border-color:var(--cyan-light);transform:translateY(-1px);box-shadow:0 4px 16px rgba(17,127,176,0.45)}
 .promo-cta svg{transition:transform 0.18s}
@@ -142,8 +143,13 @@ button{font-family:inherit;cursor:pointer;border:none}
       </svg>
     </div>
     <div class="promo-copy">
-      <span class="promo-eyebrow">One Payment &middot; Lifetime Access &middot; No Renewal</span>
-      <span class="promo-title">Become a lifetime supporter for <strong>$10</strong>. You'll get ad-free reading across every page, our <span class="accent">exclusive subscriber-only newsletter</span>, and you'll help keep independent Shark Tank coverage alive.</span>
+      <span class="promo-eyebrow">Lifetime Supporter &middot; $10 one-time</span>
+      <span class="promo-title">Support independent Shark Tank coverage.</span>
+      <div class="promo-pillars">
+        <span class="promo-pillar">Ad-free reading</span>
+        <span class="promo-pillar">Exclusive newsletter</span>
+        <span class="promo-pillar">No renewal &middot; ever</span>
+      </div>
     </div>
     <a href="payment.html" class="promo-cta">
       <span>Subscribe</span>
