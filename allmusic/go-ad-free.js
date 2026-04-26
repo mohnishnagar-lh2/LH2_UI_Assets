@@ -4,7 +4,7 @@
 // ========== CONFIG ==========
 var SITE_NAME = "AllMusic";
 var SITE_CAUSE = "music journalism";
-var SITE_URL = "https://nagarmohnish.github.io/LH2_Assets_UI/allmusic/";
+var SITE_URL = "https://mohnishnagar-lh2.github.io/LH2_UI_Assets/allmusic/";
 var PRESETS = [2, 5, 9, 15];
 var POPULAR = 5;
 var DEFAULT_AMT = 3;
