@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Flow G — A/B Test Messaging (Architecture)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Open+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--cyan:#117fb0;--cyan-light:#1592cc;--bg:#0b0e13;--bg-card:#141922;--border:rgba(255,255,255,0.08);--text:#fff;--text-muted:rgba(255,255,255,0.62);--text-dim:rgba(255,255,255,0.4);--green:#10b981;--orange:#f59232;--font-body:'Open Sans',sans-serif;--font-serif:'Newsreader',Georgia,serif;--font-mono:'JetBrains Mono',monospace}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:48px 24px 80px}
+
+.kick{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;background:rgba(17,127,176,0.12);border:1px solid rgba(17,127,176,0.3);border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:18px}
+h1{font-family:var(--font-serif);font-size:42px;font-weight:600;line-height:1.15;letter-spacing:-0.5px;margin-bottom:14px}
+h1 .accent{color:var(--cyan);font-style:italic;font-weight:500}
+.lead{font-size:16px;color:var(--text-muted);margin-bottom:36px;max-width:640px;line-height:1.65}
+
+.section{margin-top:48px}
+.section h2{font-family:var(--font-serif);font-size:24px;font-weight:600;margin-bottom:18px;letter-spacing:-0.2px}
+
+/* Variant comparison grid */
+.variants{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.variant-card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:border-color 0.15s}
+.variant-card.winning{border-color:rgba(16,185,129,0.45);box-shadow:0 0 0 1px rgba(16,185,129,0.2),0 8px 32px rgba(16,185,129,0.08)}
+.variant-card.winning .variant-tag{background:rgba(16,185,129,0.15);color:var(--green);border-color:rgba(16,185,129,0.4)}
+.variant-head{padding:18px 20px 14px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:10px}
+.variant-tag{font-size:10.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;padding:3px 10px;border-radius:14px;background:rgba(17,127,176,0.12);border:1px solid rgba(17,127,176,0.35);color:var(--cyan);font-family:var(--font-mono)}
+.variant-status{font-size:10.5px;font-weight:600;color:var(--text-dim);letter-spacing:0.4px}
+.variant-status.winner{color:var(--green)}
+
+/* Banner mock */
+.banner-mock{background:#0a0d12;padding:14px 18px;border-bottom:1px solid var(--border);position:relative}
+.banner-mock-tagline{font-family:var(--font-serif);font-size:11.5px;color:rgba(255,255,255,0.62);text-align:center;margin-bottom:9px;line-height:1.3}
+.banner-mock-tagline .accent{color:var(--cyan);font-style:italic;font-weight:500}
+.banner-mock-row{display:flex;align-items:center;gap:10px}
+.banner-mock-lead{flex-shrink:0;padding-right:10px;border-right:1px solid rgba(255,255,255,0.1)}
+.banner-mock-kick{font-size:8.5px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;color:var(--cyan);margin-bottom:1px;line-height:1}
+.banner-mock-price{font-family:var(--font-serif);font-size:18px;font-weight:600;color:#fff;line-height:1;letter-spacing:-0.3px}
+.banner-mock-price small{font-size:10px;color:rgba(255,255,255,0.5);font-weight:500;margin-left:2px}
+.banner-mock-pills{display:flex;gap:5px;flex:1;flex-wrap:wrap}
+.banner-mock-pill{font-size:9.5px;color:rgba(255,255,255,0.7);padding:2px 7px;background:rgba(17,127,176,0.1);border:1px solid rgba(17,127,176,0.2);border-radius:10px}
+.banner-mock-cta{padding:6px 12px;background:var(--cyan);color:#fff;border-radius:5px;font-size:11px;font-weight:700;flex-shrink:0;font-family:var(--font-body)}
+
+.variant-body{padding:20px;flex:1;display:flex;flex-direction:column;gap:14px}
+.variant-copy{font-size:13.5px;color:var(--text-muted);line-height:1.6}
+.variant-copy strong{color:#fff;font-weight:600}
+
+/* Metrics row */
+.variant-metrics{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:auto}
+.metric{padding:12px 10px;background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:8px;text-align:center}
+.metric-label{font-size:9.5px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;color:var(--text-dim);margin-bottom:4px}
+.metric-value{font-family:var(--font-serif);font-size:22px;font-weight:600;color:#fff;line-height:1;letter-spacing:-0.4px}
+.metric-value.up{color:var(--green)}
+.metric-delta{font-size:10.5px;color:var(--text-dim);margin-top:2px}
+.metric-delta.up{color:var(--green)}
+
+.variant-footer{padding:16px 20px;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;gap:10px}
+.variant-link{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;background:transparent;border:1px solid var(--border);color:var(--text-muted);border-radius:7px;font-size:12.5px;font-weight:600;transition:all 0.15s}
+.variant-link:hover{border-color:var(--cyan);color:var(--cyan)}
+.variant-link.primary{background:var(--cyan);color:#fff;border-color:var(--cyan)}
+.variant-link.primary:hover{background:var(--cyan-light);color:#fff}
+
+/* Test config */
+.test-config{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px;padding:20px;background:var(--bg-card);border:1px solid var(--border);border-radius:12px}
+.config-item{display:flex;flex-direction:column;gap:3px}
+.config-label{font-size:10.5px;font-weight:700;letter-spacing:1.4px;text-transform:uppercase;color:var(--cyan)}
+.config-value{font-size:14px;color:#fff;font-family:var(--font-mono)}
+
+/* Banner detail */
+.takeaway{padding:18px 22px;background:rgba(16,185,129,0.04);border:1px solid rgba(16,185,129,0.2);border-radius:10px;font-size:13.5px;color:var(--text-muted);line-height:1.65}
+.takeaway strong{color:var(--green);font-weight:600}
+
+.compare{margin-top:32px;padding:18px 22px;background:rgba(255,255,255,0.02);border:1px solid var(--border);border-radius:10px;font-size:13px;color:var(--text-muted);display:flex;flex-wrap:wrap;gap:16px;align-items:center;justify-content:space-between}
+.compare strong{color:#fff}
+.compare-links{display:flex;gap:10px;flex-wrap:wrap}
+.compare-chip{padding:6px 12px;border:1px solid var(--border);border-radius:18px;font-size:12px;color:var(--text-muted);transition:all 0.15s}
+.compare-chip:hover{border-color:var(--cyan);color:var(--cyan)}
+
+@media (max-width:760px){h1{font-size:32px}.variants{grid-template-columns:1fr}.variant-metrics{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <span class="kick"><i class="fas fa-flask"></i> Flow G</span>
+  <h1>A/B test the <span class="accent">CTA messaging.</span></h1>
+  <p class="lead">Same homepage, same price, same destination — but two different CTA copy treatments. Variant A is the standard "Go Ad-Free / Subscribe" framing. Variant B reframes around "Insider access" with a stronger early-access hook. Below: side-by-side preview, mock conversion data, and live variant pages.</p>
+
+  <div class="section">
+    <h2>Test setup</h2>
+    <div class="test-config">
+      <div class="config-item">
+        <div class="config-label">Surface</div>
+        <div class="config-value">Sticky banner · home + article</div>
+      </div>
+      <div class="config-item">
+        <div class="config-label">Audience</div>
+        <div class="config-value">All non-subscribed visitors</div>
+      </div>
+      <div class="config-item">
+        <div class="config-label">Split</div>
+        <div class="config-value">50 / 50</div>
+      </div>
+      <div class="config-item">
+        <div class="config-label">Primary metric</div>
+        <div class="config-value">Banner CTA click-through</div>
+      </div>
+      <div class="config-item">
+        <div class="config-label">Sample size (mock)</div>
+        <div class="config-value">14,832 visitors</div>
+      </div>
+      <div class="config-item">
+        <div class="config-label">Status</div>
+        <div class="config-value">Significant @ 95%</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Variants</h2>
+    <div class="variants">
+
+      <!-- Variant A: control -->
+      <div class="variant-card">
+        <div class="variant-head">
+          <span class="variant-tag">Variant A · Control</span>
+          <span class="variant-status">Baseline</span>
+        </div>
+        <div class="banner-mock">
+          <div class="banner-mock-tagline">Become a <span class="accent">monthly supporter</span> &middot; Independent, ad-free.</div>
+          <div class="banner-mock-row">
+            <div class="banner-mock-lead">
+              <div class="banner-mock-kick">Monthly</div>
+              <div class="banner-mock-price">$1<small>/mo</small></div>
+            </div>
+            <div class="banner-mock-pills">
+              <span class="banner-mock-pill">Ad-free</span>
+              <span class="banner-mock-pill">Newsletter</span>
+              <span class="banner-mock-pill">Support</span>
+            </div>
+            <span class="banner-mock-cta">Subscribe</span>
+          </div>
+        </div>
+        <div class="variant-body">
+          <div class="variant-copy">Standard messaging — leads with <strong>"monthly supporter"</strong> framing and the three pillars (ad-free, newsletter, support). CTA: <strong>Subscribe</strong>.</div>
+          <div class="variant-metrics">
+            <div class="metric">
+              <div class="metric-label">Impressions</div>
+              <div class="metric-value">7,416</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">CTR</div>
+              <div class="metric-value">2.4%</div>
+              <div class="metric-delta">baseline</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Conversions</div>
+              <div class="metric-value">38</div>
+              <div class="metric-delta">$38 / mo</div>
+            </div>
+          </div>
+        </div>
+        <div class="variant-footer">
+          <span style="font-size:11.5px;color:var(--text-dim);font-family:var(--font-mono)">/variant-a</span>
+          <a href="variant-a.html" class="variant-link primary">View live <i class="fas fa-arrow-right" style="font-size:9px"></i></a>
+        </div>
+      </div>
+
+      <!-- Variant B: test -->
+      <div class="variant-card winning">
+        <div class="variant-head">
+          <span class="variant-tag">Variant B · Test</span>
+          <span class="variant-status winner"><i class="fas fa-trophy" style="font-size:10px;margin-right:3px"></i>Winning · +47%</span>
+        </div>
+        <div class="banner-mock">
+          <div class="banner-mock-tagline">Read every Shark Tank deal <span class="accent">24h early</span> &middot; Insider-only newsletter, zero ads.</div>
+          <div class="banner-mock-row">
+            <div class="banner-mock-lead">
+              <div class="banner-mock-kick">Insider</div>
+              <div class="banner-mock-price">$1<small>/mo</small></div>
+            </div>
+            <div class="banner-mock-pills">
+              <span class="banner-mock-pill">24h early</span>
+              <span class="banner-mock-pill">Newsletter</span>
+              <span class="banner-mock-pill">Ad-free</span>
+            </div>
+            <span class="banner-mock-cta" style="background:var(--orange)">Become an Insider</span>
+          </div>
+        </div>
+        <div class="variant-body">
+          <div class="variant-copy">Reframed around <strong>"Insider"</strong> with early-access as the lead pillar. Stronger value-perception hook; turns a charity ask into an exclusivity ask. CTA: <strong>Become an Insider</strong>.</div>
+          <div class="variant-metrics">
+            <div class="metric">
+              <div class="metric-label">Impressions</div>
+              <div class="metric-value">7,416</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">CTR</div>
+              <div class="metric-value up">3.5%</div>
+              <div class="metric-delta up">+47%</div>
+            </div>
+            <div class="metric">
+              <div class="metric-label">Conversions</div>
+              <div class="metric-value up">62</div>
+              <div class="metric-delta up">+24 / mo</div>
+            </div>
+          </div>
+        </div>
+        <div class="variant-footer">
+          <span style="font-size:11.5px;color:var(--text-dim);font-family:var(--font-mono)">/variant-b</span>
+          <a href="variant-b.html" class="variant-link primary" style="background:var(--green);border-color:var(--green)">View live <i class="fas fa-arrow-right" style="font-size:9px"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="takeaway">
+      <strong>Takeaway (mock):</strong> Variant B's exclusivity framing ("Insider", "24h early") outperforms charity framing by ~47% on click-through, even though the underlying offer ($1/mo, ad-free, newsletter) is identical. Future tests: try urgency ("Limited time"), social proof ("12,431 supporters"), and dollar-anchoring ("Save $24/year vs $3/mo").
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Trade-offs</h2>
+    <div class="test-config">
+      <div class="config-item">
+        <div class="config-label">When to use</div>
+        <div class="config-value" style="font-family:var(--font-body);font-size:13.5px;line-height:1.55;color:var(--text-muted)">Whenever you're guessing at copy. CTR is cheap to measure; conversion takes longer.</div>
+      </div>
+      <div class="config-item">
+        <div class="config-label">Watch out for</div>
+        <div class="config-value" style="font-family:var(--font-body);font-size:13.5px;line-height:1.55;color:var(--text-muted)">CTR can lift while paid-conversion drops if the new copy attracts curious clickers but doesn't deliver.</div>
+      </div>
+      <div class="config-item">
+        <div class="config-label">Tech</div>
+        <div class="config-value" style="font-family:var(--font-body);font-size:13.5px;line-height:1.55;color:var(--text-muted)">Cookie-based bucket assignment, GA4 events <code>variant_assigned</code>, <code>banner_click</code>, <code>subscribe_complete</code>. Sticky per-user.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="compare">
+    <span><strong>Compare other flows:</strong></span>
+    <div class="compare-links">
+      <a href="../flow-a/" class="compare-chip">Flow A — Login then pay</a>
+      <a href="../flow-b/" class="compare-chip">Flow B — Pay then login</a>
+      <a href="../flow-c/" class="compare-chip">Flow C — Direct pay</a>
+      <a href="../flow-d/" class="compare-chip">Flow D — Popup</a>
+      <a href="../flow-e/" class="compare-chip">Flow E — Sales checkout</a>
+      <a href="../flow-f/" class="compare-chip">Flow F — Guest checkout</a>
+    </div>
+  </div>
+</div>
+</body>
+</html>

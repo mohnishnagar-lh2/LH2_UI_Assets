@@ -79,7 +79,6 @@ h1 .accent{color:var(--cyan);font-style:italic;font-weight:500}
       <div class="card-desc">User authenticates before paying. After Stripe, they're already logged in — no email round-trip needed. Highest-friction but cleanest account state.</div>
       <div class="card-actions">
         <span class="card-btn primary">Architecture <i class="fas fa-arrow-right" style="font-size:10px"></i></span>
-        <span class="card-btn ghost">From homepage</span>
       </div>
     </a>
 
@@ -95,7 +94,6 @@ h1 .accent{color:var(--cyan);font-style:italic;font-weight:500}
       <div class="card-desc">User pays without an account. After payment, a magic-link email activates ad-free on click. Lowest checkout friction, requires inbox round-trip.</div>
       <div class="card-actions">
         <span class="card-btn primary">Architecture <i class="fas fa-arrow-right" style="font-size:10px"></i></span>
-        <span class="card-btn ghost">From homepage</span>
       </div>
     </a>
 
@@ -110,7 +108,63 @@ h1 .accent{color:var(--cyan);font-style:italic;font-weight:500}
       <div class="card-desc">CTA goes straight to the payment page; the value proposition lives on the left of the checkout itself. Shortest funnel; magic-link activates after pay.</div>
       <div class="card-actions">
         <span class="card-btn primary">Architecture <i class="fas fa-arrow-right" style="font-size:10px"></i></span>
-        <span class="card-btn ghost">From homepage</span>
+      </div>
+    </a>
+
+    <a href="flow-d/" class="card">
+      <div class="card-tag">Flow D</div>
+      <div class="card-name">Direct payment <span class="accent">popup.</span></div>
+      <div class="card-flow">
+        <span>CTA</span><span class="arr">→</span>
+        <span>modal opens</span><span class="arr">→</span>
+        <span>pay inline</span><span class="arr">→</span>
+        <span>email link</span>
+      </div>
+      <div class="card-desc">CTA opens a Stripe-style payment modal in place — no route change. After payment, the modal swaps to a "check your email" success state. Email link activates.</div>
+      <div class="card-actions">
+        <span class="card-btn primary">Architecture <i class="fas fa-arrow-right" style="font-size:10px"></i></span>
+      </div>
+    </a>
+
+    <a href="flow-e/" class="card">
+      <div class="card-tag">Flow E</div>
+      <div class="card-name">Sales-oriented <span class="accent">checkout.</span></div>
+      <div class="card-flow">
+        <span>CTA</span><span class="arr">→</span>
+        <span>sales checkout</span><span class="arr">→</span>
+        <span>email link</span>
+      </div>
+      <div class="card-desc">Payment page with a full sales pitch on the left — urgency banner, hero image, comparison table, testimonial, money-back guarantee. Designed for cold-traffic conversion.</div>
+      <div class="card-actions">
+        <span class="card-btn primary">Architecture <i class="fas fa-arrow-right" style="font-size:10px"></i></span>
+      </div>
+    </a>
+
+    <a href="flow-f/" class="card">
+      <div class="card-tag">Flow F</div>
+      <div class="card-name">Guest checkout — <span class="accent">no account needed.</span></div>
+      <div class="card-flow">
+        <span>CTA</span><span class="arr">→</span>
+        <span>guest pay</span><span class="arr">→</span>
+        <span>confirm email</span><span class="arr">→</span>
+        <span>activate</span>
+      </div>
+      <div class="card-desc">Pay-first flow with explicit "Checkout as a guest" framing. No password, no account form. Email confirmation step takes center stage on the success page.</div>
+      <div class="card-actions">
+        <span class="card-btn primary">Architecture <i class="fas fa-arrow-right" style="font-size:10px"></i></span>
+      </div>
+    </a>
+
+    <a href="flow-g/" class="card">
+      <div class="card-tag">Flow G</div>
+      <div class="card-name">A/B test the <span class="accent">CTA messaging.</span></div>
+      <div class="card-flow">
+        <span>"Go Ad-Free"</span><span class="arr">vs</span>
+        <span>"Become an Insider"</span>
+      </div>
+      <div class="card-desc">Same homepage, two different CTA copy treatments — control vs early-access framing. Includes mock conversion metrics (CTR, conversions) for each variant.</div>
+      <div class="card-actions">
+        <span class="card-btn primary">Architecture <i class="fas fa-arrow-right" style="font-size:10px"></i></span>
       </div>
     </a>
   </div>
