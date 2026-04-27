@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Shark Tank Blog — Subscription Flow Demos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Open+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--cyan:#117fb0;--cyan-light:#1592cc;--bg:#0b0e13;--bg-card:#141922;--border:rgba(255,255,255,0.08);--text:#fff;--text-muted:rgba(255,255,255,0.62);--text-dim:rgba(255,255,255,0.4);--font-body:'Open Sans',sans-serif;--font-serif:'Newsreader',Georgia,serif;--font-mono:'JetBrains Mono',monospace}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1100px;margin:0 auto;padding:60px 24px 80px}
+
+.head{margin-bottom:48px}
+.kick{display:inline-flex;align-items:center;gap:8px;padding:5px 12px;background:rgba(17,127,176,0.12);border:1px solid rgba(17,127,176,0.3);border-radius:20px;font-size:11px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);margin-bottom:18px}
+h1{font-family:var(--font-serif);font-size:46px;font-weight:600;line-height:1.15;letter-spacing:-0.5px;margin-bottom:14px}
+h1 .accent{color:var(--cyan);font-style:italic;font-weight:500}
+.lead{font-size:16px;color:var(--text-muted);max-width:640px;line-height:1.65}
+
+.section-title{font-family:var(--font-serif);font-size:14px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--text-dim);margin:36px 0 18px;display:flex;align-items:center;gap:10px}
+.section-title::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:18px}
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:14px;padding:26px 24px;transition:border-color 0.15s,transform 0.15s;display:flex;flex-direction:column;gap:14px;position:relative;overflow:hidden}
+.card:hover{border-color:rgba(17,127,176,0.5);transform:translateY(-2px)}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--cyan);opacity:0;transition:opacity 0.15s}
+.card:hover::before{opacity:0.6}
+
+.card-tag{display:inline-block;font-size:10.5px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--cyan);font-family:var(--font-mono)}
+.card-name{font-family:var(--font-serif);font-size:22px;font-weight:600;line-height:1.2;letter-spacing:-0.2px}
+.card-name .accent{color:var(--cyan);font-style:italic;font-weight:500}
+.card-desc{font-size:13.5px;color:var(--text-muted);line-height:1.6;flex:1}
+
+.card-flow{display:flex;align-items:center;gap:6px;flex-wrap:wrap;font-family:var(--font-mono);font-size:11px;color:var(--text-dim);margin:4px 0 8px}
+.card-flow span:not(.arr){padding:3px 9px;border:1px solid var(--border);border-radius:12px;color:rgba(255,255,255,0.55)}
+.card-flow .arr{color:rgba(255,255,255,0.2)}
+
+.card-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.card-btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:7px;font-size:12.5px;font-weight:600;transition:all 0.15s}
+.card-btn.primary{background:var(--cyan);color:#fff !important}
+.card-btn.primary:hover{background:var(--cyan-light)}
+.card-btn.ghost{background:transparent;border:1px solid var(--border);color:var(--text-muted)}
+.card-btn.ghost:hover{border-color:var(--cyan);color:var(--cyan)}
+
+.foot{margin-top:64px;padding-top:24px;border-top:1px solid var(--border);font-size:12.5px;color:var(--text-dim);text-align:center}
+.foot a{color:var(--text-muted);border-bottom:1px dashed rgba(255,255,255,0.2)}
+.foot a:hover{color:#fff;border-bottom-color:#fff}
+
+@media (max-width:640px){
+  h1{font-size:34px}
+  .lead{font-size:15px}
+  .wrap{padding:40px 18px 60px}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <div class="head">
+    <span class="kick"><i class="fas fa-flask"></i> Demos</span>
+    <h1>Shark Tank Blog <span class="accent">subscription flows.</span></h1>
+    <p class="lead">Five live walkthroughs of different ways to take a reader from "I want to support this" to "I'm an active subscriber." Each is a fully clickable demo showing the page-by-page flow.</p>
+  </div>
+
+  <div class="section-title">Flow demos — different orderings of landing / login / payment</div>
+  <div class="grid">
+    <a href="flow-a/" class="card">
+      <div class="card-tag">Flow A</div>
+      <div class="card-name">Login first, <span class="accent">then pay.</span></div>
+      <div class="card-flow">
+        <span>CTA</span><span class="arr">→</span>
+        <span>landing</span><span class="arr">→</span>
+        <span>login</span><span class="arr">→</span>
+        <span>payment</span>
+      </div>
+      <div class="card-desc">User authenticates before paying. After Stripe, they're already logged in — no email round-trip needed. Highest-friction but cleanest account state.</div>
+      <div class="card-actions">
+        <span class="card-btn primary">Architecture <i class="fas fa-arrow-right" style="font-size:10px"></i></span>
+        <span class="card-btn ghost">From homepage</span>
+      </div>
+    </a>
+
+    <a href="flow-b/" class="card">
+      <div class="card-tag">Flow B</div>
+      <div class="card-name">Pay first, <span class="accent">login via email link.</span></div>
+      <div class="card-flow">
+        <span>CTA</span><span class="arr">→</span>
+        <span>landing</span><span class="arr">→</span>
+        <span>payment</span><span class="arr">→</span>
+        <span>email link</span>
+      </div>
+      <div class="card-desc">User pays without an account. After payment, a magic-link email activates ad-free on click. Lowest checkout friction, requires inbox round-trip.</div>
+      <div class="card-actions">
+        <span class="card-btn primary">Architecture <i class="fas fa-arrow-right" style="font-size:10px"></i></span>
+        <span class="card-btn ghost">From homepage</span>
+      </div>
+    </a>
+
+    <a href="flow-c/" class="card">
+      <div class="card-tag">Flow C</div>
+      <div class="card-name">Direct pay, <span class="accent">no landing.</span></div>
+      <div class="card-flow">
+        <span>CTA</span><span class="arr">→</span>
+        <span>payment + messaging</span><span class="arr">→</span>
+        <span>email link</span>
+      </div>
+      <div class="card-desc">CTA goes straight to the payment page; the value proposition lives on the left of the checkout itself. Shortest funnel; magic-link activates after pay.</div>
+      <div class="card-actions">
+        <span class="card-btn primary">Architecture <i class="fas fa-arrow-right" style="font-size:10px"></i></span>
+        <span class="card-btn ghost">From homepage</span>
+      </div>
+    </a>
+  </div>
+
+  <div class="section-title">Pricing demos — same flow, different price model</div>
+  <div class="grid">
+    <a href="monthly/" class="card">
+      <div class="card-tag">Monthly</div>
+      <div class="card-name">$1/month <span class="accent">subscription.</span></div>
+      <div class="card-flow">
+        <span>Stripe Subscriptions</span><span class="arr">·</span>
+        <span>cancel anytime</span><span class="arr">·</span>
+        <span>recurring billing</span>
+      </div>
+      <div class="card-desc">Recurring $1/month plan with full state machine: active, past_due, canceled, scheduled cancel. Magic-link activation. Customer portal for self-serve cancel.</div>
+      <div class="card-actions">
+        <span class="card-btn primary">Architecture <i class="fas fa-arrow-right" style="font-size:10px"></i></span>
+      </div>
+    </a>
+
+    <a href="lifetime/" class="card">
+      <div class="card-tag">Lifetime</div>
+      <div class="card-name">$10 once, <span class="accent">forever.</span></div>
+      <div class="card-flow">
+        <span>Stripe PaymentIntents</span><span class="arr">·</span>
+        <span>one-time</span><span class="arr">·</span>
+        <span>no renewal</span>
+      </div>
+      <div class="card-desc">One-time $10 lifetime pass. Single payment table, no subscription state. Magic-link activation. Same flow shape but simpler webhook surface.</div>
+      <div class="card-actions">
+        <span class="card-btn primary">Architecture <i class="fas fa-arrow-right" style="font-size:10px"></i></span>
+      </div>
+    </a>
+  </div>
+
+  <div class="foot">
+    All demos use the same color palette, fonts, and base components — they differ only in flow ordering and pricing model.
+    <br>Built on top of <a href="hang-hero.html">hang-hero.html</a> as the canonical article reference.
+  </div>
+</div>
+</body>
+</html>

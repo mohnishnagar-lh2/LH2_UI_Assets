@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're in — Shark Tank Blog (Flow A)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Open+Sans:wght@400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--cyan:#117fb0;--cyan-light:#1592cc;--nav-bg:#191c20;--bg:#0b0e13;--bg-card:#141922;--border:rgba(255,255,255,0.08);--text:#fff;--text-muted:rgba(255,255,255,0.62);--text-dim:rgba(255,255,255,0.38);--green:#10b981;--font-body:'Open Sans',sans-serif;--font-serif:'Newsreader',Georgia,serif;--font-mono:'JetBrains Mono',monospace}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text);line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none}
+
+.demo-strip{background:#050709;color:#fff;padding:8px 20px;text-align:center;font-size:12px;border-bottom:1px solid var(--border)}
+.demo-strip a{color:#7bc7e8;font-weight:600;margin-left:6px}
+.demo-strip .tag{display:inline-block;padding:2px 8px;background:rgba(17,127,176,0.2);border:1px solid rgba(17,127,176,0.4);border-radius:10px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#7bc7e8;margin-right:8px}
+
+.main-nav{background:var(--nav-bg);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:1100px;margin:0 auto;padding:0 20px}
+.logo img{height:40px;border-radius:4px}
+.user-chip{display:inline-flex;align-items:center;gap:8px;padding:6px 14px 6px 6px;background:rgba(16,185,129,0.12);border:1px solid rgba(16,185,129,0.25);border-radius:20px;color:#fff;font-size:12px;font-weight:600}
+.user-chip .avatar{width:24px;height:24px;border-radius:50%;background:linear-gradient(135deg,#117fb0,#0e5f85);display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700}
+.user-chip .badge{padding:2px 7px;background:rgba(16,185,129,0.18);color:#10b981;border-radius:8px;font-size:9px;letter-spacing:0.5px;text-transform:uppercase;font-weight:700}
+
+.page{flex:1;padding:60px 20px 40px;display:flex;align-items:center;justify-content:center}
+.wrap{max-width:520px;width:100%}
+
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:48px 40px;text-align:center;position:relative;overflow:hidden}
+.card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--green),var(--cyan),transparent)}
+
+.check{width:72px;height:72px;border-radius:50%;background:rgba(16,185,129,0.12);border:2px solid rgba(16,185,129,0.3);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;color:var(--green);font-size:30px;animation:popIn 0.5s cubic-bezier(0.34,1.56,0.64,1)}
+@keyframes popIn{from{opacity:0;transform:scale(0.5)}to{opacity:1;transform:scale(1)}}
+
+.card h1{font-family:var(--font-serif);font-size:30px;font-weight:600;letter-spacing:-0.01em;margin-bottom:12px;line-height:1.2}
+.card h1 .accent{color:var(--cyan);font-style:italic;font-weight:500}
+.card .sub{font-size:15px;color:var(--text-muted);margin-bottom:28px;line-height:1.65;max-width:420px;margin-left:auto;margin-right:auto}
+
+.receipt{background:rgba(255,255,255,0.03);border:1px solid var(--border);border-radius:10px;padding:18px 22px;margin-bottom:28px;text-align:left}
+.receipt-row{display:flex;justify-content:space-between;align-items:center;padding:6px 0;font-size:13.5px}
+.receipt-row:not(:last-child){border-bottom:1px solid rgba(255,255,255,0.04)}
+.receipt-label{color:var(--text-dim)}
+.receipt-value{color:var(--text);font-weight:600;font-family:var(--font-mono);font-size:12.5px}
+.receipt-row .badge-active{display:inline-flex;align-items:center;gap:5px;padding:3px 10px;background:rgba(16,185,129,0.12);border-radius:20px;color:var(--green);font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;font-family:var(--font-body)}
+
+.continue-btn{display:inline-flex;align-items:center;gap:10px;padding:14px 32px;background:var(--cyan);color:#fff;border-radius:8px;font-size:14.5px;font-weight:700;transition:all 0.15s;box-shadow:0 6px 20px rgba(17,127,176,0.3)}
+.continue-btn:hover{background:var(--cyan-light);transform:translateY(-1px);color:#fff}
+.continue-btn i{font-size:11px;transition:transform 0.15s}
+.continue-btn:hover i{transform:translateX(3px)}
+
+.callout{margin-top:28px;padding:20px;background:rgba(0,0,0,0.3);border:1px solid var(--border);border-radius:10px;font-family:var(--font-mono);font-size:11.5px;line-height:1.7;color:var(--text-dim);text-align:left}
+.callout .c{color:var(--text-dim);font-style:italic}
+.callout .k{color:#a5b4fc}
+.callout .s{color:#fcd34d}
+
+.flow-meta{margin-top:24px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:11px;color:rgba(255,255,255,0.4);flex-wrap:wrap}
+.step{padding:3px 10px;border:1px solid rgba(255,255,255,0.1);border-radius:14px;color:rgba(255,255,255,0.55);font-family:var(--font-mono)}
+.step.now{background:rgba(16,185,129,0.12);border-color:rgba(16,185,129,0.3);color:var(--green)}
+.step.done{color:rgba(255,255,255,0.35);text-decoration:line-through;text-decoration-thickness:1px}
+.arrow{color:rgba(255,255,255,0.2)}
+
+@media (max-width:480px){
+  .card{padding:36px 26px}
+  .card h1{font-size:24px}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-strip"><span class="tag">Flow A</span>Step 4 of 4 — Subscription active, no email link needed (already logged in). <a href="index.html">← Architecture</a></div>
+
+<nav class="main-nav">
+  <div class="nav-inner">
+    <a href="home.html" class="logo"><img src="../assets/images/shark_logo.jpeg" alt="STB"></a>
+    <div class="user-chip">
+      <span class="avatar" id="avatarEl">RE</span>
+      <span id="emailNav">reader@example.com</span>
+      <span class="badge">Supporter</span>
+    </div>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="wrap">
+    <div class="card">
+      <div class="check"><i class="fas fa-check"></i></div>
+      <h1>You're in. <span class="accent">Ads are gone.</span></h1>
+      <p class="sub">Your $1/month subscription is active and tied to your account. Ads are removed across every page on this device and any other you sign in on.</p>
+
+      <div class="receipt">
+        <div class="receipt-row"><span class="receipt-label">Plan</span><span class="receipt-value">Monthly Ad-Free</span></div>
+        <div class="receipt-row"><span class="receipt-label">Amount</span><span class="receipt-value">$1.00 USD / mo</span></div>
+        <div class="receipt-row"><span class="receipt-label">Next bill</span><span class="receipt-value" id="nextBillEl">—</span></div>
+        <div class="receipt-row"><span class="receipt-label">Status</span><span><span class="badge-active"><i class="fas fa-check" style="font-size:8px"></i> Active</span></span></div>
+      </div>
+
+      <a href="home.html?loggedIn=1" class="continue-btn">Go to Shark Tank Blog <i class="fas fa-arrow-right"></i></a>
+    </div>
+
+    <div class="callout">
+      <div class="c">// Flow A — login happened before payment, so user is already authenticated</div>
+      <span class="c">// No magic link needed — direct redirect with active session</span><br>
+      { <span class="k">"user"</span>: <span class="s">"reader@example.com"</span>, <span class="k">"sub"</span>: <span class="s">"active"</span>, <span class="k">"ad_free"</span>: <span class="s">true</span> }
+    </div>
+
+    <div class="flow-meta">
+      <span class="step done">1. Landing</span>
+      <span class="arrow">→</span>
+      <span class="step done">2. Login</span>
+      <span class="arrow">→</span>
+      <span class="step done">3. Payment</span>
+      <span class="arrow">→</span>
+      <span class="step now">4. Done</span>
+    </div>
+  </div>
+</main>
+
+<script>
+(function(){
+  var p = new URLSearchParams(location.search);
+  var e = p.get('email') || 'reader@example.com';
+  document.getElementById('emailNav').textContent = e;
+  var initials = e.split('@')[0].slice(0,2).toUpperCase();
+  document.getElementById('avatarEl').textContent = initials;
+
+  var d = new Date(); d.setMonth(d.getMonth() + 1);
+  var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  document.getElementById('nextBillEl').textContent = months[d.getMonth()] + ' ' + d.getDate() + ', ' + d.getFullYear();
+})();
+</script>
+
+</body>
+</html>

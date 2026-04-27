@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign in — Shark Tank Blog (Flow A)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root{--cyan:#117fb0;--cyan-light:#1592cc;--nav-bg:#191c20;--bg-dark:#0e1116;--bg-card:#141922;--border:rgba(255,255,255,0.08);--text:#fff;--text-muted:rgba(255,255,255,0.62);--font-body:'Open Sans',sans-serif;--font-serif:'Newsreader',Georgia,serif}
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+body{font-family:var(--font-body);background:var(--bg-dark);color:#fff;line-height:1.6;min-height:100vh;display:flex;flex-direction:column}
+a{color:inherit;text-decoration:none}
+button{font-family:inherit;cursor:pointer;border:none}
+
+.demo-strip{background:#050709;color:#fff;padding:8px 20px;text-align:center;font-size:12px;border-bottom:1px solid var(--border)}
+.demo-strip a{color:#7bc7e8;font-weight:600;margin-left:6px}
+.demo-strip .tag{display:inline-block;padding:2px 8px;background:rgba(17,127,176,0.2);border:1px solid rgba(17,127,176,0.4);border-radius:10px;font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#7bc7e8;margin-right:8px}
+
+.main-nav{background:var(--nav-bg);border-bottom:1px solid var(--border)}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;height:60px;max-width:1100px;margin:0 auto;padding:0 20px}
+.logo img{height:40px;border-radius:4px}
+.nav-back{font-size:13px;color:rgba(255,255,255,0.55)}
+.nav-back:hover{color:#fff}
+
+.page{flex:1;padding:50px 20px 40px;display:flex;align-items:flex-start;justify-content:center}
+.wrap{max-width:420px;width:100%}
+
+.card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;padding:40px 36px;text-align:center}
+.card-kick{font-size:10.5px;font-weight:700;letter-spacing:1.8px;text-transform:uppercase;color:var(--cyan);margin-bottom:14px}
+.card h1{font-family:var(--font-serif);font-size:26px;font-weight:600;line-height:1.25;letter-spacing:-0.2px;margin-bottom:8px}
+.card .sub{font-size:14px;color:var(--text-muted);margin-bottom:30px;line-height:1.55}
+
+.google-btn{width:100%;display:flex;align-items:center;justify-content:center;gap:10px;padding:13px 18px;background:#fff;color:#1f1f1f;border:1px solid #dadce0;border-radius:8px;font-size:14.5px;font-weight:600;transition:background 0.15s,box-shadow 0.15s;font-family:inherit;margin-bottom:14px}
+.google-btn:hover{background:#f8f9fa;box-shadow:0 1px 3px rgba(0,0,0,0.1)}
+.google-btn svg{width:18px;height:18px;flex-shrink:0}
+
+.divider{display:flex;align-items:center;gap:12px;margin:18px 0;font-size:11px;color:rgba(255,255,255,0.35);letter-spacing:0.5px;text-transform:uppercase}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+
+.email-form{text-align:left}
+.email-label{display:block;font-size:12px;font-weight:600;color:rgba(255,255,255,0.7);margin-bottom:6px;letter-spacing:0.2px}
+.email-input{width:100%;padding:12px 14px;background:rgba(255,255,255,0.04);border:1px solid var(--border);border-radius:8px;font-size:14px;font-family:inherit;color:#fff;outline:none;transition:border-color 0.15s,background 0.15s;margin-bottom:14px}
+.email-input::placeholder{color:rgba(255,255,255,0.3)}
+.email-input:focus{border-color:rgba(17,127,176,0.6);background:rgba(17,127,176,0.06)}
+
+.continue-btn{width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:13px;background:var(--cyan);color:#fff;border-radius:8px;font-size:14.5px;font-weight:700;transition:background 0.15s;font-family:inherit;cursor:pointer}
+.continue-btn:hover{background:var(--cyan-light)}
+.continue-btn i{font-size:11px}
+
+.foot{margin-top:24px;font-size:12px;color:rgba(255,255,255,0.4);line-height:1.5}
+.foot a{color:rgba(255,255,255,0.55);border-bottom:1px dashed rgba(255,255,255,0.2)}
+.foot a:hover{color:#fff;border-bottom-color:#fff}
+
+.flow-meta{margin-top:28px;display:flex;align-items:center;justify-content:center;gap:8px;font-size:11px;color:rgba(255,255,255,0.4);flex-wrap:wrap}
+.step{padding:3px 10px;border:1px solid rgba(255,255,255,0.1);border-radius:14px;color:rgba(255,255,255,0.55);font-family:'JetBrains Mono',monospace}
+.step.now{background:rgba(17,127,176,0.12);border-color:rgba(17,127,176,0.3);color:var(--cyan)}
+.step.done{color:rgba(255,255,255,0.35);text-decoration:line-through;text-decoration-thickness:1px}
+.arrow{color:rgba(255,255,255,0.2)}
+
+@media (max-width:480px){
+  .card{padding:32px 24px}
+  .card h1{font-size:22px}
+}
+</style>
+</head>
+<body>
+
+<div class="demo-strip"><span class="tag">Flow A</span>Step 2 of 4 — Sign in (landing → <strong>login</strong> → payment). <a href="index.html">← Architecture</a></div>
+
+<nav class="main-nav">
+  <div class="nav-inner">
+    <a href="home.html" class="logo"><img src="../assets/images/shark_logo.jpeg" alt="STB"></a>
+    <a href="landing.html" class="nav-back"><i class="fas fa-arrow-left" style="font-size:11px;margin-right:6px"></i>Back</a>
+  </div>
+</nav>
+
+<main class="page">
+  <div class="wrap">
+    <div class="card">
+      <div class="card-kick">Step 2 of 4</div>
+      <h1>Sign in to continue</h1>
+      <p class="sub">We'll link your $1/month subscription to your account so it works on every device.</p>
+
+      <button class="google-btn" onclick="continueAuth()">
+        <svg viewBox="0 0 48 48" aria-hidden="true">
+          <path fill="#4285F4" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+          <path fill="#34A853" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+          <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+          <path fill="#EA4335" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+        </svg>
+        Continue with Google
+      </button>
+
+      <div class="divider">or</div>
+
+      <form class="email-form" onsubmit="event.preventDefault();continueAuth()">
+        <label class="email-label" for="loginEmail">Email</label>
+        <input class="email-input" id="loginEmail" type="email" placeholder="reader@example.com" value="reader@example.com" autocomplete="email">
+        <button class="continue-btn" type="submit">Continue <i class="fas fa-arrow-right"></i></button>
+      </form>
+
+      <div class="foot">By continuing you agree to our <a href="#">Terms</a> and <a href="#">Privacy Policy</a>.</div>
+    </div>
+
+    <div class="flow-meta">
+      <span class="step done">1. Landing</span>
+      <span class="arrow">→</span>
+      <span class="step now">2. Login</span>
+      <span class="arrow">→</span>
+      <span class="step">3. Payment</span>
+      <span class="arrow">→</span>
+      <span class="step">4. Done</span>
+    </div>
+  </div>
+</main>
+
+<script>
+function continueAuth(){
+  var email = document.getElementById('loginEmail').value || 'reader@example.com';
+  location.href = 'payment.html?email=' + encodeURIComponent(email);
+}
+</script>
+
+</body>
+</html>
