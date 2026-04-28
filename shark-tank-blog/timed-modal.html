@@ -20,8 +20,9 @@ body{
 
 /* ===== STB timed modal — production CSS ===== */
 .render-modal.timed{
-  background:#fff;border-radius:22px;max-width:600px;width:calc(100% - 32px);
-  margin:24px auto;overflow:hidden;position:relative;
+  background:#fff;border-radius:20px;max-width:560px;width:calc(100% - 32px);
+  max-height:calc(100vh - 32px);overflow-y:auto;
+  margin:16px auto;position:relative;
   font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
   box-shadow:0 28px 80px rgba(0,0,0,0.45);
   animation:slideIn .3s cubic-bezier(0.34,1.56,0.64,1);
@@ -31,15 +32,15 @@ body{
 .render-modal.timed .rm-header,
 .render-modal.timed .stb-timed-modal-header{
   background:#08111f;color:#fff;text-align:center;
-  padding:38px 36px 60px;position:relative;
-  border-radius:22px 22px 50% 50% / 22px 22px 30px 30px;
+  padding:26px 32px 40px;position:relative;
+  border-radius:20px 20px 50% 50% / 20px 20px 26px 26px;
 }
 
 .render-modal.timed .close{
-  position:absolute;top:18px;right:18px;width:40px;height:40px;
+  position:absolute;top:14px;right:14px;width:36px;height:36px;
   border-radius:50%;background:transparent;
   border:1.5px solid rgba(255,255,255,0.28);
-  color:#fff;font-size:22px;line-height:1;font-weight:300;
+  color:#fff;font-size:20px;line-height:1;font-weight:300;
   display:flex;align-items:center;justify-content:center;
   cursor:pointer;padding:0;font-family:inherit;
   transition:background .15s,border-color .15s;z-index:2;
@@ -49,100 +50,100 @@ body{
 }
 
 .render-modal.timed .rm-logo{
-  display:block;width:auto;height:64px;max-width:260px;
-  object-fit:contain;margin:0 auto 6px;
+  display:block;width:auto;height:48px;max-width:220px;
+  object-fit:contain;margin:0 auto 4px;
 }
 
 .render-modal.timed .rm-header h2::before{
-  content:'';display:block;width:118px;height:118px;
-  margin:18px auto 22px;background-repeat:no-repeat;background-position:center;background-size:contain;
+  content:'';display:block;width:84px;height:84px;
+  margin:10px auto 14px;background-repeat:no-repeat;background-position:center;background-size:contain;
   background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><g stroke='%23f54a1f' stroke-width='3.5' stroke-linecap='round'><line x1='60' y1='4' x2='60' y2='14'/><line x1='100' y1='20' x2='94' y2='26'/><line x1='20' y1='20' x2='26' y2='26'/><line x1='106' y1='60' x2='116' y2='60'/><line x1='4' y1='60' x2='14' y2='60'/><line x1='94' y1='94' x2='100' y2='100'/><line x1='20' y1='100' x2='26' y2='94'/><line x1='60' y1='106' x2='60' y2='116'/></g><circle cx='60' cy='60' r='38' fill='none' stroke='%23f54a1f' stroke-width='5.5'/><text x='60' y='68' text-anchor='middle' font-family='Arial Black,Helvetica,sans-serif' font-size='21' font-weight='900' fill='%23f54a1f'>ADS</text><line x1='32' y1='88' x2='88' y2='32' stroke='%23f54a1f' stroke-width='5.5' stroke-linecap='round'/></svg>");
 }
 
 .render-modal.timed .rm-header h2{
-  font-size:48px;font-weight:800;line-height:1.05;letter-spacing:-1.2px;
-  color:#fff;margin:0 0 16px;font-family:inherit;
+  font-size:34px;font-weight:800;line-height:1.08;letter-spacing:-0.8px;
+  color:#fff;margin:0 0 10px;font-family:inherit;
 }
 .render-modal.timed .rm-header h2 .accent{color:#f54a1f}
 
 .render-modal.timed .rm-header p{
-  font-size:16px;color:rgba(255,255,255,0.62);line-height:1.5;
+  font-size:14px;color:rgba(255,255,255,0.62);line-height:1.5;
   margin:0;font-weight:400;
 }
 
 .render-modal.timed .rm-body{
-  background:#fff;padding:36px 36px 32px;
+  background:#fff;padding:24px 28px 22px;
 }
 
 .render-modal.timed .rm-price{
-  display:flex;align-items:baseline;justify-content:center;gap:10px;margin-bottom:14px;
+  display:flex;align-items:baseline;justify-content:center;gap:8px;margin-bottom:10px;
 }
 .render-modal.timed .rm-price .old{
-  font-size:32px;color:#b8b8b8;font-weight:700;
-  text-decoration:line-through;text-decoration-thickness:2.5px;
+  font-size:24px;color:#b8b8b8;font-weight:700;
+  text-decoration:line-through;text-decoration-thickness:2px;
 }
 .render-modal.timed .rm-price .new{
-  font-size:64px;font-weight:800;color:#1a1a1a;letter-spacing:-2.4px;line-height:1;
+  font-size:46px;font-weight:800;color:#1a1a1a;letter-spacing:-1.6px;line-height:1;
   font-feature-settings:"tnum" 1;
 }
 .render-modal.timed .rm-price .per{
-  font-size:18px;color:#888;font-weight:500;
+  font-size:15px;color:#888;font-weight:500;
 }
 
 .render-modal.timed .rm-benefits{
   display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;
-  list-style:none;padding:0;margin:0 0 28px;text-align:center;
+  list-style:none;padding:0;margin:0 0 20px;text-align:center;
 }
 .render-modal.timed .rm-benefits::before{
   content:'\f0f4  Less than a coffee';
   font-family:'Font Awesome 6 Free','FontAwesome',inherit;font-weight:700;
   grid-column:1 / -1;justify-self:center;
   display:inline-flex;align-items:center;gap:8px;
-  margin:0 auto 22px;padding:8px 18px;
-  background:#ffe9dd;color:#f54a1f;border-radius:24px;font-size:14px;
+  margin:0 auto 14px;padding:6px 14px;
+  background:#ffe9dd;color:#f54a1f;border-radius:24px;font-size:13px;
 }
 .render-modal.timed .rm-benefits li{
-  display:flex;flex-direction:column;align-items:center;gap:14px;
-  padding:24px 14px 4px;font-size:14px;font-weight:600;color:#1a1a1a;line-height:1.4;
+  display:flex;flex-direction:column;align-items:center;gap:9px;
+  padding:16px 10px 2px;font-size:12.5px;font-weight:600;color:#1a1a1a;line-height:1.35;
   border-top:1px solid #ececec;
 }
 .render-modal.timed .rm-benefits li + li{border-left:1px solid #ececec}
 
 .render-modal.timed .rm-benefits .bi{
-  width:56px;height:56px;border-radius:50%;
+  width:42px;height:42px;border-radius:50%;
   background:#ffe9dd;color:#f54a1f;
   display:flex;align-items:center;justify-content:center;
-  font-size:22px;flex-shrink:0;
+  font-size:17px;flex-shrink:0;
 }
 .render-modal.timed .rm-benefits .bi i{line-height:1}
 
 .render-modal.timed .rm-cta{
-  display:block;width:100%;padding:18px 24px;
-  background:#f54a1f;color:#fff;border:none;border-radius:12px;
-  font-size:18px;font-weight:700;font-family:inherit;cursor:pointer;
-  position:relative;text-align:center;margin-bottom:18px;
-  box-shadow:0 8px 22px rgba(245,74,31,0.28);
+  display:block;width:100%;padding:14px 24px;
+  background:#f54a1f;color:#fff;border:none;border-radius:10px;
+  font-size:16px;font-weight:700;font-family:inherit;cursor:pointer;
+  position:relative;text-align:center;margin-bottom:12px;
+  box-shadow:0 6px 18px rgba(245,74,31,0.26);
   transition:background .15s,transform .1s,box-shadow .15s;
 }
 .render-modal.timed .rm-cta:hover{
   background:#e83b10;transform:translateY(-1px);
-  box-shadow:0 12px 28px rgba(245,74,31,0.34);
+  box-shadow:0 10px 24px rgba(245,74,31,0.32);
 }
 .render-modal.timed .rm-cta::after{
-  content:'\203A';position:absolute;right:24px;top:50%;
-  transform:translateY(-52%);font-size:28px;font-weight:400;line-height:1;
+  content:'\203A';position:absolute;right:20px;top:50%;
+  transform:translateY(-52%);font-size:22px;font-weight:400;line-height:1;
 }
 
 .render-modal.timed .rm-trust{
-  display:flex;align-items:center;justify-content:center;gap:10px;
-  font-size:13px;color:#888;margin-bottom:12px;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  font-size:12.5px;color:#888;margin-bottom:8px;
 }
-.render-modal.timed .rm-trust span{display:inline-flex;align-items:center;gap:6px}
-.render-modal.timed .rm-trust i{font-size:11px;color:#9aa0a6}
+.render-modal.timed .rm-trust span{display:inline-flex;align-items:center;gap:5px}
+.render-modal.timed .rm-trust i{font-size:10.5px;color:#9aa0a6}
 
 .render-modal.timed .dismiss{
   display:block;width:100%;background:transparent;border:none;
-  color:#9aa0a6;font-size:14px;font-family:inherit;cursor:pointer;
+  color:#9aa0a6;font-size:13px;font-family:inherit;cursor:pointer;
   padding:4px;text-align:center;
   text-decoration:underline;text-decoration-style:dotted;
   text-decoration-color:#cfd2d6;text-underline-offset:4px;
@@ -150,25 +151,37 @@ body{
 }
 .render-modal.timed .dismiss:hover{color:#5f6368}
 
-@media (max-width:540px){
-  .render-modal.timed{width:calc(100% - 24px);margin:14px auto;border-radius:18px}
+/* Compact / short viewports */
+@media (max-height:760px){
   .render-modal.timed .rm-header,
-  .render-modal.timed .stb-timed-modal-header{padding:34px 22px 50px;border-radius:18px 18px 50% 50% / 18px 18px 24px 24px}
-  .render-modal.timed .rm-header h2{font-size:34px;letter-spacing:-1px}
-  .render-modal.timed .rm-header h2::before{width:96px;height:96px;margin:14px auto 18px}
-  .render-modal.timed .rm-header p{font-size:14px}
-  .render-modal.timed .close{top:14px;right:14px;width:36px;height:36px}
-  .render-modal.timed .rm-logo{height:52px}
-  .render-modal.timed .rm-body{padding:28px 20px 22px}
-  .render-modal.timed .rm-price .old{font-size:24px}
-  .render-modal.timed .rm-price .new{font-size:48px;letter-spacing:-1.6px}
-  .render-modal.timed .rm-price .per{font-size:15px}
-  .render-modal.timed .rm-benefits{margin-bottom:22px}
-  .render-modal.timed .rm-benefits::before{margin-bottom:18px;font-size:13px;padding:7px 14px}
-  .render-modal.timed .rm-benefits li{padding:18px 8px 4px;font-size:12.5px;gap:10px}
-  .render-modal.timed .rm-benefits .bi{width:46px;height:46px;font-size:18px}
-  .render-modal.timed .rm-cta{padding:15px;font-size:16px}
-  .render-modal.timed .rm-cta::after{right:18px;font-size:22px}
+  .render-modal.timed .stb-timed-modal-header{padding:20px 28px 32px}
+  .render-modal.timed .rm-logo{height:42px;margin-bottom:2px}
+  .render-modal.timed .rm-header h2::before{width:68px;height:68px;margin:6px auto 10px}
+  .render-modal.timed .rm-header h2{font-size:28px;margin-bottom:8px}
+  .render-modal.timed .rm-header p{font-size:13px}
+  .render-modal.timed .rm-body{padding:20px 24px 18px}
+  .render-modal.timed .rm-price .old{font-size:20px}
+  .render-modal.timed .rm-price .new{font-size:38px;letter-spacing:-1.2px}
+  .render-modal.timed .rm-price .per{font-size:14px}
+  .render-modal.timed .rm-benefits::before{margin-bottom:12px;font-size:12px;padding:5px 12px}
+  .render-modal.timed .rm-benefits li{padding:14px 8px 2px;font-size:12px;gap:7px}
+  .render-modal.timed .rm-benefits .bi{width:36px;height:36px;font-size:15px}
+  .render-modal.timed .rm-cta{padding:12px;font-size:15px;margin-bottom:10px}
+}
+
+@media (max-width:540px){
+  .render-modal.timed{width:calc(100% - 24px);margin:12px auto;border-radius:18px}
+  .render-modal.timed .rm-header,
+  .render-modal.timed .stb-timed-modal-header{padding:22px 20px 34px;border-radius:18px 18px 50% 50% / 18px 18px 22px 22px}
+  .render-modal.timed .rm-header h2{font-size:26px;letter-spacing:-0.6px}
+  .render-modal.timed .rm-header h2::before{width:72px;height:72px;margin:8px auto 12px}
+  .render-modal.timed .close{top:12px;right:12px;width:32px;height:32px;font-size:18px}
+  .render-modal.timed .rm-body{padding:20px 18px 18px}
+  .render-modal.timed .rm-price .new{font-size:38px;letter-spacing:-1.2px}
+  .render-modal.timed .rm-benefits li{padding:14px 6px 2px;font-size:11.5px;gap:8px}
+  .render-modal.timed .rm-benefits .bi{width:38px;height:38px;font-size:15px}
+  .render-modal.timed .rm-cta{padding:13px;font-size:15px}
+  .render-modal.timed .rm-cta::after{right:16px;font-size:20px}
 }
 
 @media (prefers-reduced-motion:reduce){
