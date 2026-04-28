@@ -39,8 +39,12 @@
 /* === Sticky video ad (bottom-right) === */
 .sv-wrap{position:fixed;bottom:104px;right:14px;width:320px;z-index:80;background:#fff;border-radius:6px;box-shadow:0 8px 28px rgba(0,0,0,0.35);overflow:hidden}
 .sv-wrap{padding:0}
-.sv-gaf-row{display:flex;align-items:center;justify-content:flex-end;padding:4px 6px;background:#fff;height:24px}
-.sv-close{width:18px;height:18px;border-radius:50%;background:#000;color:#fff;border:none;font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0}
+.sv-gaf-row{display:flex;align-items:center;justify-content:space-between;padding:6px 8px;background:#fff;gap:6px}
+.sv-gaf-cta{display:inline-flex;align-items:center;gap:5px;padding:5px 14px;background:#c0392b;color:#fff;font-size:10.5px;font-weight:800;border-radius:14px;letter-spacing:0.4px;text-transform:uppercase;border:none;cursor:pointer;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;white-space:nowrap;transition:transform 0.15s,box-shadow 0.15s;line-height:1}
+.sv-gaf-cta:hover{transform:scale(1.04);background:#a83323;box-shadow:0 2px 8px rgba(192,57,43,0.35);color:#fff}
+.sv-gaf-cta svg{width:10px;height:10px;flex-shrink:0;transition:transform 0.15s}
+.sv-gaf-cta:hover svg{transform:translateX(2px)}
+.sv-close{width:18px;height:18px;border-radius:50%;background:#000;color:#fff;border:none;font-size:11px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;flex-shrink:0}
 .sv-box{position:relative;background:#0a0e16;height:170px;color:#5fc4e0;font-family:'Source Sans 3',sans-serif;text-align:center;padding:18px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-transform:uppercase;letter-spacing:1px}
 .sv-box::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 70%,rgba(95,196,224,0.18),transparent 60%);z-index:0}
 .sv-box-title{position:relative;z-index:1;font-size:14px;font-weight:700;color:#5fc4e0}
@@ -997,6 +1001,10 @@ body{padding-bottom:90px}
 <!-- ===== STICKY VIDEO AD (bottom-right) ===== -->
 <div class="sv-wrap" id="stickyVideoAd">
     <div class="sv-gaf-row">
+        <button class="sv-gaf-cta" onclick="window.gafOpenPopup && gafOpenPopup()">
+            Go Ad-Free
+            <svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 2L8.5 6L4.5 10"/></svg>
+        </button>
         <button class="sv-close" onclick="document.getElementById('stickyVideoAd').style.display='none'" aria-label="Close">×</button>
     </div>
     <div class="sv-box">
