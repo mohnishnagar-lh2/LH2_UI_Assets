@@ -58,6 +58,36 @@
 
 body{padding-bottom:90px}
 .album-cover{position:relative}
+
+/* === Asking For Your Help — donation banner === */
+.help-banner{background:#fff;border-bottom:1px solid #e5e5e5;padding:32px 24px;position:relative;font-family:'Source Sans 3',sans-serif}
+.help-banner-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:auto 1fr;gap:32px;align-items:center}
+.help-banner-close{position:absolute;top:14px;right:18px;background:none;border:none;color:#5fc4e0;font-size:22px;font-weight:600;cursor:pointer;padding:4px 10px;line-height:1;font-family:inherit}
+.help-banner-close:hover{color:#1ca4cd}
+.help-silhouette{width:240px;height:120px;flex-shrink:0;display:flex;align-items:flex-end;justify-content:center}
+.help-silhouette svg{width:100%;height:100%}
+.help-content{text-align:center;max-width:760px;margin:0 auto}
+.help-title{font-family:Georgia,'Times New Roman',serif;font-size:38px;font-weight:700;font-style:italic;color:#1ca4cd;margin:0 0 14px;letter-spacing:-0.5px}
+.help-text{font-size:15.5px;color:#1a1a1a;line-height:1.55;margin:0 0 8px}
+.help-text a{color:#1ca4cd;text-decoration:underline}
+.help-buttons{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:22px}
+.help-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;padding:16px 24px;border:none;border-radius:4px;font-size:13.5px;font-weight:700;letter-spacing:0.6px;cursor:pointer;font-family:inherit;text-decoration:none;flex:1;min-width:280px;max-width:420px;color:#fff;transition:filter 0.15s}
+.help-btn:hover{filter:brightness(1.08)}
+.help-btn.cc{background:#1c7eb8}
+.help-btn.cc i{font-size:18px}
+.help-btn.paypal{background:#f5b50f;color:#fff}
+.help-btn.paypal i{font-size:18px;color:#003087;background:#fff;border-radius:3px;padding:1px 4px}
+.help-btn.paypal .pp-logo{font-style:italic;font-weight:900;color:#003087;background:#fff;padding:2px 6px;border-radius:3px;font-family:Georgia,serif;font-size:14px}
+
+@media (max-width:760px){
+  .help-banner{padding:22px 16px}
+  .help-banner-inner{grid-template-columns:1fr;gap:14px}
+  .help-silhouette{width:160px;height:70px;margin:0 auto}
+  .help-title{font-size:24px}
+  .help-text{font-size:14px}
+  .help-btn{padding:13px 18px;font-size:12px;min-width:0}
+  .help-buttons{flex-direction:column}
+}
 </style>
 </head>
 <body>
@@ -100,6 +130,61 @@ body{padding-bottom:90px}
         </div>
     </div>
 </header>
+
+<!-- ===== ASKING FOR YOUR HELP — DONATION BANNER ===== -->
+<div class="help-banner" id="helpBanner">
+    <button class="help-banner-close" onclick="document.getElementById('helpBanner').style.display='none'" aria-label="Close">X</button>
+    <div class="help-banner-inner">
+        <div class="help-silhouette">
+            <svg viewBox="0 0 240 110" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                <!-- 4 silhouettes spelling H-E-L-P in semaphore-style poses -->
+                <g fill="#1a1a1a">
+                    <!-- Figure 1: arms straight up (H) -->
+                    <ellipse cx="38" cy="20" rx="9" ry="11"/>
+                    <rect x="35" y="8" width="2.5" height="10"/>
+                    <rect x="40" y="8" width="2.5" height="10"/>
+                    <path d="M28 32 L48 32 L52 80 L46 95 L40 95 L38 70 L36 95 L30 95 L24 80 Z"/>
+                    <rect x="30" y="34" width="3" height="20" transform="rotate(-15 31 44)"/>
+                    <rect x="46" y="34" width="3" height="20" transform="rotate(15 47 44)"/>
+                    <!-- Figure 2: arms up Y-shape (E) -->
+                    <ellipse cx="92" cy="20" rx="9" ry="11"/>
+                    <rect x="89" y="8" width="2.5" height="10"/>
+                    <rect x="94" y="8" width="2.5" height="10"/>
+                    <path d="M82 32 L102 32 L106 80 L100 95 L94 95 L92 70 L90 95 L84 95 L78 80 Z"/>
+                    <rect x="68" y="32" width="20" height="4" transform="rotate(-25 78 34)"/>
+                    <rect x="96" y="32" width="20" height="4" transform="rotate(25 106 34)"/>
+                    <!-- Figure 3: arms wide L-shape (L) -->
+                    <ellipse cx="148" cy="20" rx="9" ry="11"/>
+                    <rect x="145" y="8" width="2.5" height="10"/>
+                    <rect x="150" y="8" width="2.5" height="10"/>
+                    <path d="M138 32 L158 32 L162 80 L156 95 L150 95 L148 70 L146 95 L140 95 L134 80 Z"/>
+                    <rect x="118" y="38" width="22" height="4" transform="rotate(-5 129 40)"/>
+                    <rect x="156" y="34" width="4" height="22" transform="rotate(15 158 45)"/>
+                    <!-- Figure 4: arms up V (P) -->
+                    <ellipse cx="204" cy="20" rx="9" ry="11"/>
+                    <rect x="201" y="8" width="2.5" height="10"/>
+                    <rect x="206" y="8" width="2.5" height="10"/>
+                    <path d="M194 32 L214 32 L218 80 L212 95 L206 95 L204 70 L202 95 L196 95 L190 80 Z"/>
+                    <rect x="184" y="34" width="3" height="22" transform="rotate(-30 185 45)"/>
+                    <rect x="216" y="34" width="3" height="22" transform="rotate(30 217 45)"/>
+                </g>
+            </svg>
+        </div>
+        <div class="help-content">
+            <h2 class="help-title">ASKING FOR YOUR HELP</h2>
+            <p class="help-text">Advertising is no longer able to cover our operating costs.</p>
+            <p class="help-text">If you are a longtime visitor of AllMusic and want to see the site continue, please donate by <a href="#">becoming an AllMusic Subscriber</a>.</p>
+            <div class="help-buttons">
+                <a href="#" class="help-btn cc" onclick="event.preventDefault();window.gafOpenPopup&&gafOpenPopup()">
+                    SUBSCRIBE &amp; DONATE USING CREDIT CARD <i class="fa-regular fa-credit-card"></i>
+                </a>
+                <a href="#" class="help-btn paypal" onclick="event.preventDefault();window.gafOpenPopup&&gafOpenPopup()">
+                    SUBSCRIBE &amp; DONATE USING PAYPAL/VENMO <span class="pp-logo">PP</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- ===== LEFT-RAIL STICKY AD (desktop only) ===== -->
 <aside class="side-rail-ad demo-ad" aria-label="Advertisement">
