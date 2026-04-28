@@ -113,24 +113,25 @@ body{
   font-size:18px;color:#888;font-weight:500;
 }
 
+.render-modal.timed .rm-benefits{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;
+  list-style:none;padding:0;margin:0 0 28px;text-align:center;
+}
+/* "Less than a coffee" badge — spans all columns, centered */
 .render-modal.timed .rm-benefits::before{
   content:'\f0f4  Less than a coffee';
   font-family:'Font Awesome 6 Free','FontAwesome',inherit;
-  font-weight:900;
-  display:flex;align-items:center;justify-content:center;gap:8px;
-  width:fit-content;margin:0 auto 26px;
-  padding:8px 18px;background:#ffe9dd;color:#f54a1f;
-  border-radius:24px;font-size:14px;
+  font-weight:700;letter-spacing:0.1px;
+  grid-column:1 / -1;justify-self:center;
+  display:inline-flex;align-items:center;gap:8px;
+  margin:0 auto 22px;padding:8px 18px;
+  background:#ffe9dd;color:#f54a1f;border-radius:24px;font-size:14px;
 }
-
-.render-modal.timed .rm-benefits{
-  display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;
-  list-style:none;padding:24px 0 0;margin:0 0 28px;
-  border-top:1px solid #ececec;text-align:center;
-}
+/* Horizontal divider sits on each <li>'s top edge so it appears BELOW the badge */
 .render-modal.timed .rm-benefits li{
   display:flex;flex-direction:column;align-items:center;gap:14px;
-  padding:4px 14px;font-size:14px;font-weight:600;color:#1a1a1a;line-height:1.4;
+  padding:24px 14px 4px;font-size:14px;font-weight:600;color:#1a1a1a;line-height:1.4;
+  border-top:1px solid #ececec;
 }
 .render-modal.timed .rm-benefits li + li{border-left:1px solid #ececec}
 
@@ -189,8 +190,9 @@ body{
   .render-modal.timed .rm-price .old{font-size:24px}
   .render-modal.timed .rm-price .new{font-size:48px;letter-spacing:-1.6px}
   .render-modal.timed .rm-price .per{font-size:15px}
-  .render-modal.timed .rm-benefits{padding-top:20px;margin-bottom:22px}
-  .render-modal.timed .rm-benefits li{padding:0 8px;font-size:12.5px;gap:10px}
+  .render-modal.timed .rm-benefits{margin-bottom:22px}
+  .render-modal.timed .rm-benefits::before{margin-bottom:18px;font-size:13px;padding:7px 14px}
+  .render-modal.timed .rm-benefits li{padding:18px 8px 4px;font-size:12.5px;gap:10px}
   .render-modal.timed .rm-benefits .bi{width:46px;height:46px;font-size:18px}
   .render-modal.timed .rm-cta{padding:15px;font-size:16px}
   .render-modal.timed .rm-cta::after{right:18px;font-size:22px}
