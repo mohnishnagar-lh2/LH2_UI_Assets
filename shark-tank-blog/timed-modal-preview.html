@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STB Timed Modal — Preview</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+<style>
+/* ===== Preview-page chrome (NOT part of the production CSS) ===== */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{
+  font-family:'Open Sans',sans-serif;background:#10151e;color:#fff;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:20px;-webkit-font-smoothing:antialiased;
+}
+.preview-head{text-align:center;max-width:520px;margin-bottom:32px}
+.preview-head h1{font-size:24px;font-weight:600;margin-bottom:8px;letter-spacing:-0.3px}
+.preview-head p{font-size:14px;color:rgba(255,255,255,0.55);line-height:1.6}
+.trigger-btn{
+  padding:12px 28px;background:#f54a1f;color:#fff;border:none;border-radius:8px;
+  font-size:14px;font-weight:600;cursor:pointer;font-family:inherit;
+  box-shadow:0 8px 22px rgba(245,74,31,0.28);transition:background .15s;
+}
+.trigger-btn:hover{background:#e83b10}
+.preview-note{
+  margin-top:24px;font-size:12px;color:rgba(255,255,255,0.4);
+  font-family:'JetBrains Mono','SF Mono',monospace;text-align:center;
+}
+.preview-note code{background:rgba(255,255,255,0.06);padding:2px 6px;border-radius:4px;color:rgba(255,255,255,0.7)}
+
+/* The backdrop is shown only when modal is "open" */
+.modal-backdrop{
+  position:fixed;inset:0;background:rgba(8,17,31,0.7);backdrop-filter:blur(4px);
+  display:none;align-items:center;justify-content:center;z-index:99998;padding:20px;
+  animation:fadeIn .2s ease-out;
+}
+.modal-backdrop.open{display:flex}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.render-modal.timed{animation:slideIn .3s cubic-bezier(0.34,1.56,0.64,1)}
+@keyframes slideIn{from{opacity:0;transform:translateY(20px) scale(0.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+
+/* ===== START — Production CSS for .render-modal.timed (the actual deliverable) ===== */
+.render-modal.timed{
+  background:#fff;border-radius:22px;max-width:600px;width:calc(100% - 32px);
+  margin:24px auto;overflow:hidden;position:relative;
+  font-family:'Open Sans',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  box-shadow:0 28px 80px rgba(0,0,0,0.45);
+}
+
+.render-modal.timed .rm-header,
+.render-modal.timed .stb-timed-modal-header{
+  background:#08111f;color:#fff;text-align:center;
+  padding:38px 36px 60px;position:relative;
+  border-radius:22px 22px 50% 50% / 22px 22px 30px 30px;
+}
+
+.render-modal.timed .close{
+  position:absolute;top:18px;right:18px;width:40px;height:40px;
+  border-radius:50%;background:transparent;
+  border:1.5px solid rgba(255,255,255,0.28);
+  color:#fff;font-size:22px;line-height:1;font-weight:300;
+  display:flex;align-items:center;justify-content:center;
+  cursor:pointer;padding:0;font-family:inherit;
+  transition:background .15s,border-color .15s;z-index:2;
+}
+.render-modal.timed .close:hover{
+  background:rgba(255,255,255,0.10);border-color:rgba(255,255,255,0.55);
+}
+
+.render-modal.timed .rm-logo{
+  display:block;width:auto;height:64px;max-width:260px;
+  object-fit:contain;margin:0 auto 6px;
+}
+
+.render-modal.timed .rm-header h2::before{
+  content:'';display:block;width:118px;height:118px;
+  margin:18px auto 22px;background-repeat:no-repeat;background-position:center;background-size:contain;
+  background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 120 120'><g stroke='%23f54a1f' stroke-width='3.5' stroke-linecap='round'><line x1='60' y1='4' x2='60' y2='14'/><line x1='100' y1='20' x2='94' y2='26'/><line x1='20' y1='20' x2='26' y2='26'/><line x1='106' y1='60' x2='116' y2='60'/><line x1='4' y1='60' x2='14' y2='60'/><line x1='94' y1='94' x2='100' y2='100'/><line x1='20' y1='100' x2='26' y2='94'/><line x1='60' y1='106' x2='60' y2='116'/></g><circle cx='60' cy='60' r='38' fill='none' stroke='%23f54a1f' stroke-width='5.5'/><text x='60' y='68' text-anchor='middle' font-family='Arial Black,Helvetica,sans-serif' font-size='21' font-weight='900' fill='%23f54a1f'>ADS</text><line x1='32' y1='88' x2='88' y2='32' stroke='%23f54a1f' stroke-width='5.5' stroke-linecap='round'/></svg>");
+}
+
+.render-modal.timed .rm-header h2{
+  font-size:48px;font-weight:800;line-height:1.05;letter-spacing:-1.2px;
+  color:#fff;margin:0 0 16px;font-family:inherit;
+}
+.render-modal.timed .rm-header h2 .accent{color:#f54a1f}
+
+.render-modal.timed .rm-header p{
+  font-size:16px;color:rgba(255,255,255,0.62);line-height:1.5;
+  margin:0;font-weight:400;
+}
+
+.render-modal.timed .rm-body{
+  background:#fff;padding:36px 36px 32px;
+}
+
+.render-modal.timed .rm-price{
+  display:flex;align-items:baseline;justify-content:center;gap:10px;margin-bottom:14px;
+}
+.render-modal.timed .rm-price .old{
+  font-size:32px;color:#b8b8b8;font-weight:700;
+  text-decoration:line-through;text-decoration-thickness:2.5px;
+}
+.render-modal.timed .rm-price .new{
+  font-size:64px;font-weight:800;color:#1a1a1a;letter-spacing:-2.4px;line-height:1;
+  font-feature-settings:"tnum" 1;
+}
+.render-modal.timed .rm-price .per{
+  font-size:18px;color:#888;font-weight:500;
+}
+
+.render-modal.timed .rm-benefits::before{
+  content:'\f0f4  Less than a coffee';
+  font-family:'Font Awesome 6 Free','FontAwesome',inherit;
+  font-weight:900;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  width:fit-content;margin:0 auto 26px;
+  padding:8px 18px;background:#ffe9dd;color:#f54a1f;
+  border-radius:24px;font-size:14px;
+}
+
+.render-modal.timed .rm-benefits{
+  display:grid;grid-template-columns:1fr 1fr 1fr;gap:0;
+  list-style:none;padding:24px 0 0;margin:0 0 28px;
+  border-top:1px solid #ececec;text-align:center;
+}
+.render-modal.timed .rm-benefits li{
+  display:flex;flex-direction:column;align-items:center;gap:14px;
+  padding:4px 14px;font-size:14px;font-weight:600;color:#1a1a1a;line-height:1.4;
+}
+.render-modal.timed .rm-benefits li + li{border-left:1px solid #ececec}
+
+.render-modal.timed .rm-benefits .bi{
+  width:56px;height:56px;border-radius:50%;
+  background:#ffe9dd;color:#f54a1f;
+  display:flex;align-items:center;justify-content:center;
+  font-size:22px;flex-shrink:0;
+}
+.render-modal.timed .rm-benefits .bi i{line-height:1}
+
+.render-modal.timed .rm-cta{
+  display:block;width:100%;padding:18px 24px;
+  background:#f54a1f;color:#fff;border:none;border-radius:12px;
+  font-size:18px;font-weight:700;font-family:inherit;cursor:pointer;
+  position:relative;text-align:center;margin-bottom:18px;
+  box-shadow:0 8px 22px rgba(245,74,31,0.28);
+  transition:background .15s,transform .1s,box-shadow .15s;
+}
+.render-modal.timed .rm-cta:hover{
+  background:#e83b10;transform:translateY(-1px);
+  box-shadow:0 12px 28px rgba(245,74,31,0.34);
+}
+.render-modal.timed .rm-cta::after{
+  content:'\203A';position:absolute;right:24px;top:50%;
+  transform:translateY(-52%);font-size:28px;font-weight:400;line-height:1;
+}
+
+.render-modal.timed .rm-trust{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  font-size:13px;color:#888;margin-bottom:12px;
+}
+.render-modal.timed .rm-trust span{display:inline-flex;align-items:center;gap:6px}
+.render-modal.timed .rm-trust i{font-size:11px;color:#9aa0a6}
+
+.render-modal.timed .dismiss{
+  display:block;width:100%;background:transparent;border:none;
+  color:#9aa0a6;font-size:14px;font-family:inherit;cursor:pointer;
+  padding:4px;text-align:center;
+  text-decoration:underline;text-decoration-style:dotted;
+  text-decoration-color:#cfd2d6;text-underline-offset:4px;
+  transition:color .15s;
+}
+.render-modal.timed .dismiss:hover{color:#5f6368}
+
+@media (max-width:540px){
+  .render-modal.timed{width:calc(100% - 24px);margin:14px auto;border-radius:18px}
+  .render-modal.timed .rm-header,
+  .render-modal.timed .stb-timed-modal-header{padding:34px 22px 50px;border-radius:18px 18px 50% 50% / 18px 18px 24px 24px}
+  .render-modal.timed .rm-header h2{font-size:34px;letter-spacing:-1px}
+  .render-modal.timed .rm-header h2::before{width:96px;height:96px;margin:14px auto 18px}
+  .render-modal.timed .rm-header p{font-size:14px}
+  .render-modal.timed .close{top:14px;right:14px;width:36px;height:36px}
+  .render-modal.timed .rm-logo{height:52px}
+  .render-modal.timed .rm-body{padding:28px 20px 22px}
+  .render-modal.timed .rm-price .old{font-size:24px}
+  .render-modal.timed .rm-price .new{font-size:48px;letter-spacing:-1.6px}
+  .render-modal.timed .rm-price .per{font-size:15px}
+  .render-modal.timed .rm-benefits{padding-top:20px;margin-bottom:22px}
+  .render-modal.timed .rm-benefits li{padding:0 8px;font-size:12.5px;gap:10px}
+  .render-modal.timed .rm-benefits .bi{width:46px;height:46px;font-size:18px}
+  .render-modal.timed .rm-cta{padding:15px;font-size:16px}
+  .render-modal.timed .rm-cta::after{right:18px;font-size:22px}
+}
+
+@media (prefers-reduced-motion:reduce){
+  .render-modal.timed .rm-cta,.render-modal.timed .close{transition:none}
+  .render-modal.timed .rm-cta:hover{transform:none}
+}
+/* ===== END — Production CSS ===== */
+</style>
+</head>
+<body>
+
+<div class="preview-head">
+  <h1>STB Timed Modal — Preview</h1>
+  <p>The modal below uses your exact HTML structure and classes. Click the button to open. Toggle DevTools' device mode to test mobile (≤540px).</p>
+</div>
+
+<button class="trigger-btn" onclick="document.getElementById('backdrop').classList.add('open')">Open modal</button>
+
+<div class="preview-note">Markup is identical to your snippet — only CSS is new. <code>.render-modal.timed</code></div>
+
+<!-- Backdrop wrapper (only the .render-modal.timed below ships to production) -->
+<div class="modal-backdrop" id="backdrop" onclick="if(event.target===this)this.classList.remove('open')">
+
+  <!-- ===== START — your existing production HTML, unchanged ===== -->
+  <div class="render-modal timed" id="timedModal" role="dialog" aria-modal="true" aria-labelledby="timedModalTitle">
+    <div class="rm-header stb-timed-modal-header">
+      <button type="button" class="close" aria-label="Close" onclick="document.getElementById('backdrop').classList.remove('open')">&times;</button>
+      <img class="rm-logo" src="https://www.sharktankblog.com/wp-content/uploads/2025/03/256f98e3b21220fba0f0ca32ee26444e-1.jpg" alt="Shark Tank Blog" width="569" height="247" loading="eager" decoding="async">
+      <h2 id="timedModalTitle">Reading Without Interruptions?</h2>
+      <p>That's less than a single Shark Tank deal gone wrong.</p>
+    </div>
+    <div class="rm-body">
+      <div class="rm-price">
+        <span class="old">$3</span>
+        <span class="new">$1</span>
+        <span class="per">/ month</span>
+      </div>
+      <ul class="rm-benefits">
+        <li><span class="bi"><i class="fas fa-eye-slash" aria-hidden="true"></i></span> Every article, no interruptions</li>
+        <li><span class="bi"><i class="fas fa-bolt" aria-hidden="true"></i></span> No banners, popups, or video ads</li>
+        <li><span class="bi"><i class="fas fa-heart" aria-hidden="true"></i></span> Faster, lighter pages</li>
+      </ul>
+      <button type="button" class="rm-cta">Remove All Ads</button>
+      <div class="rm-trust">
+        <span><i class="fas fa-lock" aria-hidden="true"></i> Secure payment</span>
+        <span aria-hidden="true">·</span>
+        <span>Cancel anytime</span>
+      </div>
+      <button type="button" class="dismiss" onclick="document.getElementById('backdrop').classList.remove('open')">Maybe later</button>
+    </div>
+  </div>
+  <!-- ===== END — production HTML ===== -->
+
+</div>
+
+<script>
+// Open by default for easy preview
+document.getElementById('backdrop').classList.add('open');
+document.addEventListener('keydown', function(e){
+  if(e.key === 'Escape') document.getElementById('backdrop').classList.remove('open');
+});
+</script>
+
+</body>
+</html>
