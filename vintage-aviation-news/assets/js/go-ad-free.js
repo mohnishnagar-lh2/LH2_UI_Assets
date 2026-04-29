@@ -108,22 +108,22 @@
 .gaf-modal-backdrop{position:fixed;inset:0;z-index:9999999;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;padding:12px;animation:gafFadeIn .2s ease-out;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
 .gaf-modal{width:500px;max-width:100%;max-height:calc(100vh - 24px);overflow-y:auto;border-radius:16px;background:#fff;box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative;animation:gafPopIn .25s ease-out;}
 .gaf-modal *{box-sizing:border-box;}
-.gaf-modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;z-index:2;transition:background .15s;}
-.gaf-modal-close:hover{background:rgba(255,255,255,.18);}
+.gaf-modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:1px solid #e0e0e0;background:#fff;color:#6d6e78;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;z-index:2;transition:background .15s,color .15s;}
+.gaf-modal-close:hover{background:#f4f4f4;color:#1a1a1a;}
 
-/* Header (dark) */
-.gaf-modal-header{background:#0a1424;background:radial-gradient(circle at 50% 100%,#15263d 0%,#0a1424 65%);padding:24px 28px 28px;text-align:center;color:#fff;border-radius:16px 16px 0 0;}
-.gaf-modal-logo{width:46px;height:auto;margin:0 auto 4px;display:block;filter:brightness(1.1);}
-.gaf-modal-brand{font-size:11px;font-weight:700;letter-spacing:1.5px;color:#5fc4e0;margin-bottom:16px;}
-.gaf-modal-no-ads{display:flex;justify-content:center;margin-bottom:12px;position:relative;}
+/* Header (light cream — blends with white-bg logo) */
+.gaf-modal-header{background:#fbf8f3;padding:28px 28px 32px;text-align:center;color:#1a1a1a;border-radius:16px 16px 0 0;border-bottom:1px solid #f0ebe2;}
+.gaf-modal-logo{width:64px;height:auto;margin:0 auto 4px;display:block;}
+.gaf-modal-brand{font-size:11px;font-weight:800;letter-spacing:1.6px;color:${P};margin-bottom:18px;}
+.gaf-modal-no-ads{display:flex;justify-content:center;margin-bottom:14px;position:relative;}
 .gaf-modal-no-ads-circle{width:56px;height:56px;border-radius:50%;border:3px solid ${P};display:inline-flex;align-items:center;justify-content:center;font-weight:800;color:${P};font-size:14px;letter-spacing:.4px;position:relative;}
 .gaf-modal-no-ads-circle::before{content:'';position:absolute;width:66px;height:4px;background:${P};transform:rotate(-45deg);border-radius:2px;left:50%;top:50%;margin-left:-33px;margin-top:-2px;}
-.gaf-modal-title{font-size:30px;font-weight:800;line-height:1.05;margin:0 0 8px;font-family:'Merriweather',Georgia,serif;letter-spacing:-.4px;}
+.gaf-modal-title{font-size:30px;font-weight:800;line-height:1.05;margin:0 0 8px;font-family:'Merriweather',Georgia,serif;letter-spacing:-.4px;color:#1a1a1a;}
 .gaf-modal-title-accent{display:block;color:${P};}
-.gaf-modal-subtitle{font-size:13px;color:rgba(255,255,255,.78);margin:0;font-weight:400;}
+.gaf-modal-subtitle{font-size:13px;color:#6d6e78;margin:0;font-weight:400;}
 
 /* Body (white) */
-.gaf-modal-body{padding:20px 28px 18px;background:#fff;border-radius:0 0 16px 16px;}
+.gaf-modal-body{padding:22px 28px 18px;background:#fff;border-radius:0 0 16px 16px;}
 .gaf-modal-price{display:flex;align-items:baseline;justify-content:center;gap:8px;margin-bottom:8px;}
 .gaf-modal-price-strike{font-size:24px;color:#bdbdbd;text-decoration:line-through;font-weight:700;}
 .gaf-modal-price-now{font-size:46px;font-weight:800;color:#1a1a1a;letter-spacing:-1.2px;line-height:1;}
@@ -148,9 +148,9 @@
 .gaf-modal-no-thanks:hover{color:#6d6e78;}
 
 @media(max-height:680px){
-  .gaf-modal-header{padding:18px 28px 22px;}
-  .gaf-modal-logo{width:38px;margin-bottom:2px;}
-  .gaf-modal-brand{margin-bottom:10px;font-size:10px;}
+  .gaf-modal-header{padding:20px 28px 24px;}
+  .gaf-modal-logo{width:50px;margin-bottom:2px;}
+  .gaf-modal-brand{margin-bottom:12px;font-size:10px;}
   .gaf-modal-no-ads-circle{width:46px;height:46px;font-size:12px;border-width:2.5px;}
   .gaf-modal-no-ads-circle::before{width:54px;height:3px;margin-left:-27px;margin-top:-1.5px;}
   .gaf-modal-title{font-size:24px;margin-bottom:6px;}
