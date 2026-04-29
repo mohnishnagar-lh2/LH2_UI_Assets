@@ -77,8 +77,6 @@
   transition:background .15s;
 }
 .gaf-cta-pill:hover{background:${PD};}
-.gaf-cta-pill .gaf-arrow{display:inline-block;transition:transform .15s;}
-.gaf-cta-pill:hover .gaf-arrow{transform:translateX(2px);}
 
 /* === STICKY BOTTOM BANNER === */
 .gaf-sticky{
@@ -240,7 +238,7 @@
   function makeAdBadge() {
     var badge = document.createElement("div");
     badge.className = "gaf-above-badge";
-    badge.innerHTML = '<span class="gaf-cta-pill">Go Ad-Free <span class="gaf-arrow">\u2192</span></span>';
+    badge.innerHTML = '<span class="gaf-cta-pill">Go Ad-Free</span>';
     badge.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); window.location.href = getSupportUrl(); });
     return badge;
   }
