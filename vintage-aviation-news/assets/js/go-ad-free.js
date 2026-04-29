@@ -104,95 +104,64 @@
 }
 .gaf-sticky-close:hover{color:#fff;}
 
-/* === POPUP === */
-.gaf-backdrop{position:fixed;inset:0;z-index:9999999;background:rgba(0,0,0,.45);backdrop-filter:blur(6px);display:flex;align-items:center;justify-content:center;padding:20px;}
-.gaf-popup{width:440px;max-width:100%;max-height:90vh;overflow-y:auto;border-radius:20px;background:#fff;box-shadow:0 24px 80px rgba(0,0,0,.2);animation:gafPopIn .3s ease-out;position:relative;padding:28px 24px;}
-.gaf-popup *{box-sizing:border-box;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
-.gaf-close{position:absolute;top:12px;right:16px;background:none;border:none;font-size:22px;color:#999;cursor:pointer;padding:4px;line-height:1;}
-.gaf-close:hover{color:#333;}
+/* === MODAL POPUP (Read Without Ads) === */
+.gaf-modal-backdrop{position:fixed;inset:0;z-index:9999999;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;padding:16px;animation:gafFadeIn .2s ease-out;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
+.gaf-modal{width:540px;max-width:100%;max-height:96vh;overflow-y:auto;border-radius:18px;background:#fff;box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative;animation:gafPopIn .25s ease-out;}
+.gaf-modal *{box-sizing:border-box;}
+.gaf-modal-close{position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;z-index:2;transition:background .15s;}
+.gaf-modal-close:hover{background:rgba(255,255,255,.18);}
 
-/* Screen 1 */
-.gaf-title{font-size:1.35em;font-weight:800;text-align:center;color:#1a1a1a;margin-bottom:16px;}
-.gaf-freq-wrap{position:relative;margin-bottom:16px;}
-.gaf-freq{width:100%;padding:10px 36px 10px 14px;border:1.5px solid #e0e0e0;border-radius:10px;font-size:14px;font-weight:500;color:#333;background:#fff;appearance:none;-webkit-appearance:none;cursor:pointer;outline:none;}
-.gaf-freq:focus{border-color:${P};}
-.gaf-freq-arrow{position:absolute;right:14px;top:50%;transform:translateY(-50%);pointer-events:none;color:#999;font-size:12px;}
-.gaf-amount-box{display:flex;align-items:center;border:1.5px solid #e0e0e0;border-radius:12px;padding:12px 16px;margin-bottom:14px;gap:8px;}
-.gaf-amount-box:focus-within{border-color:${P};}
-.gaf-amount-sign{font-size:2em;font-weight:800;color:#1a1a1a;}
-.gaf-amount-input{flex:1;font-size:2em;font-weight:800;color:#1a1a1a;border:none;outline:none;background:none;width:60px;min-width:0;}
-.gaf-amount-per{font-size:12px;color:#999;text-align:right;white-space:nowrap;}
-.gaf-presets{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
-.gaf-preset{position:relative;padding:10px 4px;border:1.5px solid #e0e0e0;border-radius:10px;background:#fff;font-size:14px;font-weight:600;color:#333;cursor:pointer;text-align:center;transition:all .15s;}
-.gaf-preset:hover{border-color:#ccc;background:#fafafa;}
-.gaf-preset.active{border-color:${P};background:${PL};color:${P};}
-.gaf-preset-pop{position:absolute;top:-8px;left:50%;transform:translateX(-50%);font-size:9px;font-weight:700;color:${P};background:${PL};padding:1px 6px;border-radius:8px;white-space:nowrap;}
-.gaf-perk{text-align:center;font-size:13px;color:${P};font-weight:500;margin-bottom:16px;}
-.gaf-cta{width:100%;padding:15px;border:none;border-radius:12px;background:${P};color:#fff;font-size:15px;font-weight:700;cursor:pointer;box-shadow:0 4px 16px ${PT};transition:background .15s;}
-.gaf-cta:hover{background:${PD};}
-.gaf-cta.processing{background:${PD};opacity:.7;cursor:default;}
-.gaf-trust{text-align:center;font-size:11px;color:#999;margin-top:12px;}
-.gaf-trust2{text-align:center;font-size:10.5px;color:#bbb;margin-top:8px;}
+/* Header (dark) */
+.gaf-modal-header{background:#0a1424;background:radial-gradient(circle at 50% 100%,#15263d 0%,#0a1424 65%);padding:36px 32px 44px;text-align:center;color:#fff;border-radius:18px 18px 0 0;}
+.gaf-modal-logo{width:62px;height:auto;margin:0 auto 6px;display:block;filter:brightness(1.1);}
+.gaf-modal-brand{font-size:13px;font-weight:700;letter-spacing:1.6px;color:#5fc4e0;margin-bottom:26px;}
+.gaf-modal-no-ads{display:flex;justify-content:center;margin-bottom:14px;position:relative;}
+.gaf-modal-no-ads-circle{width:74px;height:74px;border-radius:50%;border:4px solid ${P};display:inline-flex;align-items:center;justify-content:center;font-weight:800;color:${P};font-size:18px;letter-spacing:.5px;position:relative;}
+.gaf-modal-no-ads-circle::before{content:'';position:absolute;width:88px;height:5px;background:${P};transform:rotate(-45deg);border-radius:3px;left:50%;top:50%;margin-left:-44px;margin-top:-2.5px;}
+.gaf-modal-no-ads-circle::after{content:'';position:absolute;left:-18px;right:-18px;top:-12px;bottom:-12px;background:radial-gradient(circle,${P} 1px,transparent 1.5px) 0 0/14px 14px;opacity:0;}
+.gaf-modal-rays{position:absolute;left:50%;top:50%;width:140px;height:140px;transform:translate(-50%,-50%);pointer-events:none;}
+.gaf-modal-rays span{position:absolute;left:50%;top:0;width:2px;height:8px;background:${P};border-radius:2px;transform-origin:1px 70px;}
+.gaf-modal-title{font-size:38px;font-weight:800;line-height:1.05;margin:0 0 14px;font-family:'Merriweather',Georgia,serif;letter-spacing:-.5px;}
+.gaf-modal-title-accent{display:block;color:${P};}
+.gaf-modal-subtitle{font-size:14px;color:rgba(255,255,255,.78);margin:0;font-weight:400;}
 
-/* Screen 2 */
-.gaf-summary{text-align:center;margin-bottom:18px;}
-.gaf-summary-label{font-size:12px;color:#999;text-transform:uppercase;letter-spacing:1px;}
-.gaf-summary-amount{font-size:2em;font-weight:800;color:#1a1a1a;margin:4px 0;}
-.gaf-summary-cause{font-size:13px;color:${P};font-weight:500;}
-.gaf-input-group{margin-bottom:14px;}
-.gaf-input-group label{display:block;font-size:12px;font-weight:600;color:#555;margin-bottom:4px;}
-.gaf-input{width:100%;padding:10px 14px;border:1.5px solid #e0e0e0;border-radius:10px;font-size:14px;outline:none;color:#333;background:#fff;}
-.gaf-input:focus{border-color:${P};}
-.gaf-method-card{border:1.5px solid #e0e0e0;border-radius:12px;margin-bottom:10px;overflow:hidden;cursor:pointer;transition:border-color .15s;}
-.gaf-method-card.active{border-color:${P};background:${PL};}
-.gaf-method-header{display:flex;align-items:center;gap:10px;padding:12px 14px;}
-.gaf-method-icon{font-size:20px;}
-.gaf-method-info{flex:1;}
-.gaf-method-name{font-size:14px;font-weight:600;color:#333;}
-.gaf-method-sub{font-size:11px;color:${P};}
-.gaf-method-body{padding:0 14px 14px;display:none;}
-.gaf-method-card.active .gaf-method-body{display:block;}
-.gaf-method-body .gaf-input{margin-bottom:8px;}
-.gaf-method-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;}
-.gaf-express-label{text-align:center;font-size:11px;color:#bbb;margin:14px 0 10px;text-transform:uppercase;letter-spacing:1px;}
-.gaf-express-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin-bottom:14px;}
-.gaf-express-btn{padding:10px 4px;border:1.5px solid #e0e0e0;border-radius:10px;background:#fff;font-size:11px;font-weight:600;color:#333;cursor:pointer;text-align:center;transition:border-color .15s;}
-.gaf-express-btn:hover{border-color:#999;}
-.gaf-secure{text-align:center;font-size:11px;color:#999;margin-bottom:14px;}
+/* Body (white) */
+.gaf-modal-body{padding:30px 32px 24px;background:#fff;border-radius:0 0 18px 18px;}
+.gaf-modal-price{display:flex;align-items:baseline;justify-content:center;gap:10px;margin-bottom:14px;}
+.gaf-modal-price-strike{font-size:30px;color:#bdbdbd;text-decoration:line-through;font-weight:700;}
+.gaf-modal-price-now{font-size:60px;font-weight:800;color:#1a1a1a;letter-spacing:-1.5px;line-height:1;}
+.gaf-modal-price-period{font-size:18px;color:#6d6e78;font-weight:400;}
+.gaf-modal-coffee{display:inline-flex;align-items:center;gap:8px;background:${PL};color:${P};padding:7px 18px 7px 14px;border-radius:999px;font-size:14px;font-weight:600;margin:0 auto;}
+.gaf-modal-coffee-wrap{display:flex;justify-content:center;margin-bottom:24px;}
+.gaf-modal-coffee-icon{width:22px;height:22px;border-radius:50%;background:#ffe1d1;display:inline-flex;align-items:center;justify-content:center;font-size:12px;}
+.gaf-modal-divider{border:none;border-top:1px solid #f0f0f0;margin:0 0 22px;}
+.gaf-modal-features{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:22px;}
+.gaf-modal-feature{text-align:center;padding:0 4px;}
+.gaf-modal-feature-icon{width:54px;height:54px;border-radius:50%;background:${PL};margin:0 auto 12px;display:flex;align-items:center;justify-content:center;color:${P};}
+.gaf-modal-feature-icon svg{width:22px;height:22px;}
+.gaf-modal-feature-text{font-size:13px;font-weight:500;color:#1a1a1a;line-height:1.4;}
+.gaf-modal-cta{width:100%;background:${P};color:#fff;border:none;border-radius:14px;padding:18px 22px;font-size:18px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-family:inherit;transition:background .15s,transform .1s;box-shadow:0 6px 18px ${PT};margin-bottom:14px;}
+.gaf-modal-cta:hover{background:${PD};}
+.gaf-modal-cta:active{transform:translateY(1px);}
+.gaf-modal-cta-text{flex:1;text-align:center;margin-left:24px;}
+.gaf-modal-cta-arrow{font-size:20px;line-height:1;font-weight:600;}
+.gaf-modal-meta{text-align:center;font-size:13px;color:#6d6e78;margin:0 0 12px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.gaf-modal-meta-dot{color:#cfcfcf;}
+.gaf-modal-no-thanks{display:block;margin:0 auto;background:none;border:none;color:#aaa;font-size:13px;text-decoration:underline;cursor:pointer;padding:4px 8px;font-family:inherit;}
+.gaf-modal-no-thanks:hover{color:#6d6e78;}
 
-/* Screen 3 */
-.gaf-success-header{text-align:center;margin-bottom:20px;}
-.gaf-check-circle{width:48px;height:48px;border-radius:50%;border:3px solid ${P};display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:22px;color:${P};}
-.gaf-success-text{font-size:14px;color:#555;line-height:1.5;margin-bottom:10px;}
-.gaf-badge-pill{display:inline-flex;align-items:center;gap:4px;padding:6px 14px;border:1.5px solid ${P};border-radius:20px;background:${PL};font-size:12px;font-weight:600;color:${P};}
-.gaf-cert{background:#fff;border:1px solid #e8e8e8;border-radius:14px;padding:24px;margin-bottom:20px;box-shadow:0 2px 12px rgba(0,0,0,.04);position:relative;}
-.gaf-cert-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:6px;}
-.gaf-cert-share-icon{cursor:pointer;font-size:16px;color:#999;}.gaf-cert-share-icon:hover{color:${P};}
-.gaf-cert-label{font-size:10px;text-transform:uppercase;letter-spacing:2px;color:#999;text-align:center;margin-bottom:10px;}
-.gaf-cert-divider{height:1px;background:#e8e8e8;margin:12px 0;}
-.gaf-cert-certifies{text-align:center;font-size:12px;color:#999;margin-bottom:4px;}
-.gaf-cert-name{text-align:center;font-size:1.4em;font-weight:800;color:#1a1a1a;margin-bottom:4px;}
-.gaf-cert-of{text-align:center;font-size:12px;color:#999;margin-bottom:10px;}
-.gaf-cert-logo{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:12px;}
-.gaf-cert-logo-circle{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,#1a3a5c,#2c5f8a);display:flex;align-items:center;justify-content:center;font-size:9px;color:#e67e22;font-weight:700;font-style:italic;}
-.gaf-cert-logo-text{font-size:14px;font-weight:700;color:#1a1a1a;}
-.gaf-cert-cause{text-align:center;font-size:12px;font-style:italic;color:#777;margin-bottom:10px;}
-.gaf-cert-amount{text-align:center;font-size:15px;font-weight:700;color:#1a1a1a;}
-.gaf-cert-date{text-align:center;font-size:11px;color:#999;margin-top:2px;}
-.gaf-cert-perk{background:${PL};border-radius:10px;padding:12px;text-align:center;font-size:12px;color:${P};font-weight:500;margin-top:16px;}
-.gaf-social-label{text-align:center;font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:#999;margin-bottom:10px;}
-.gaf-social-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px;}
-.gaf-social-btn{padding:10px;border-radius:10px;border:none;color:#fff;font-size:12px;font-weight:600;cursor:pointer;text-align:center;transition:opacity .15s;text-decoration:none;display:block;}
-.gaf-social-btn:hover{opacity:.85;color:#fff;}
-.gaf-social-x{background:#1a1a1a;}.gaf-social-li{background:#0077b5;}.gaf-social-wa{background:#25d366;}
-.gaf-footer-links{text-align:center;font-size:11px;color:#999;}
-.gaf-footer-links a{color:${P};text-decoration:none;font-weight:500;}
-.gaf-footer-links a:hover{text-decoration:underline;}
-.gaf-footer-email{text-align:center;font-size:11px;color:#bbb;margin-top:6px;}
-
+@media(max-width:540px){
+  .gaf-modal-header{padding:28px 22px 32px;}
+  .gaf-modal-title{font-size:30px;}
+  .gaf-modal-body{padding:24px 22px 22px;}
+  .gaf-modal-price-now{font-size:48px;}
+  .gaf-modal-price-strike{font-size:24px;}
+  .gaf-modal-features{gap:4px;}
+  .gaf-modal-feature-text{font-size:11.5px;}
+  .gaf-modal-feature-icon{width:46px;height:46px;}
+}
 @media(max-width:480px){
   .gaf-sticky{flex-wrap:wrap;gap:8px;padding:10px 16px;font-size:12px;}
-  .gaf-popup{padding:20px 16px;}
 }
 `;
   document.head.appendChild(styleEl);
@@ -239,7 +208,7 @@
     var badge = document.createElement("div");
     badge.className = "gaf-above-badge";
     badge.innerHTML = '<span class="gaf-cta-pill">Go Ad-Free</span>';
-    badge.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); window.location.href = getSupportUrl(); });
+    badge.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); openPopup(); });
     return badge;
   }
 
@@ -247,18 +216,73 @@
   function injectStickyBanner() {}
 
   // ===== POPUP =====
+  // Logo path resolves relative to current page depth (sub-pages need ../).
+  function getLogoUrl() {
+    var path = window.location.pathname;
+    if (path.includes('/pages/')) return '../assets/van-logo.png';
+    return 'assets/van-logo.png';
+  }
+
   var backdrop = null;
 
   function openPopup() {
     if (backdrop) return;
-    S.screen = 1; S.method = "";
+    var paymentUrl = getSupportUrl() + '#/payment';
+    var logoUrl = getLogoUrl();
+
     backdrop = document.createElement("div");
-    backdrop.className = "gaf-backdrop";
-    backdrop.innerHTML = '<div class="gaf-popup" id="gafPopup"></div>';
+    backdrop.className = "gaf-modal-backdrop";
+    backdrop.innerHTML =
+      '<div class="gaf-modal" role="dialog" aria-modal="true" aria-labelledby="gafModalTitle">' +
+        '<button class="gaf-modal-close" type="button" aria-label="Close">&times;</button>' +
+        '<div class="gaf-modal-header">' +
+          '<img class="gaf-modal-logo" src="' + logoUrl + '" alt="' + SITE_NAME + '" onerror="this.style.display=\'none\'">' +
+          '<div class="gaf-modal-brand">VINTAGE AVIATION NEWS</div>' +
+          '<div class="gaf-modal-no-ads"><span class="gaf-modal-no-ads-circle">ADS</span></div>' +
+          '<h2 class="gaf-modal-title" id="gafModalTitle">Read Vintage Aviation' +
+            '<span class="gaf-modal-title-accent">Without Ads.</span>' +
+          '</h2>' +
+          '<p class="gaf-modal-subtitle">No popups. No banners. Just pure content.</p>' +
+        '</div>' +
+        '<div class="gaf-modal-body">' +
+          '<div class="gaf-modal-price">' +
+            '<span class="gaf-modal-price-strike">$3</span>' +
+            '<span class="gaf-modal-price-now">$1</span>' +
+            '<span class="gaf-modal-price-period">/ month</span>' +
+          '</div>' +
+          '<div class="gaf-modal-coffee-wrap">' +
+            '<span class="gaf-modal-coffee">' +
+              '<span class="gaf-modal-coffee-icon">☕</span> Less than a coffee' +
+            '</span>' +
+          '</div>' +
+          '<hr class="gaf-modal-divider">' +
+          '<div class="gaf-modal-features">' +
+            featureHtml(eyeOffSvg(), 'No ads.<br>Ever.') +
+            featureHtml(boltSvg(),   'Faster pages.<br>Better experience.') +
+            featureHtml(heartSvg(),  'Support quality<br>content.') +
+          '</div>' +
+          '<button class="gaf-modal-cta" type="button">' +
+            '<span class="gaf-modal-cta-text">Subscribe Now</span>' +
+            '<span class="gaf-modal-cta-arrow">›</span>' +
+          '</button>' +
+          '<div class="gaf-modal-meta">' +
+            '<span>🔒 Secure payment</span>' +
+            '<span class="gaf-modal-meta-dot">•</span>' +
+            '<span>Cancel anytime</span>' +
+          '</div>' +
+          '<button class="gaf-modal-no-thanks" type="button">No thanks</button>' +
+        '</div>' +
+      '</div>';
+
     document.body.appendChild(backdrop);
     document.body.style.overflow = "hidden";
+
     backdrop.addEventListener("click", function (e) { if (e.target === backdrop) closePopup(); });
-    renderScreen();
+    backdrop.querySelector(".gaf-modal-close").addEventListener("click", closePopup);
+    backdrop.querySelector(".gaf-modal-no-thanks").addEventListener("click", closePopup);
+    backdrop.querySelector(".gaf-modal-cta").addEventListener("click", function () {
+      window.location.href = paymentUrl;
+    });
   }
 
   function closePopup() {
@@ -269,150 +293,25 @@
 
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closePopup(); });
 
-  function renderScreen() {
-    var popup = document.getElementById("gafPopup");
-    if (!popup) return;
-    popup.innerHTML = '<button class="gaf-close" id="gafClose">&times;</button>' +
-      (S.screen === 1 ? renderScreen1() : S.screen === 2 ? renderScreen2() : renderScreen3());
+  function featureHtml(iconSvg, text) {
+    return '<div class="gaf-modal-feature">' +
+      '<div class="gaf-modal-feature-icon">' + iconSvg + '</div>' +
+      '<div class="gaf-modal-feature-text">' + text + '</div>' +
+    '</div>';
   }
 
-  // ===== SCREEN 1 =====
-  function renderScreen1() {
-    var amt = getAmount(), perDay = getPerDay(), freqLabel = getFreqLabel();
-    var freqOpts = FREQS.map(function (f) {
-      return '<option value="' + f.key + '"' + (S.freq === f.key ? " selected" : "") + '>' + f.label + '</option>';
-    }).join("");
-    var presetBtns = PRESETS.map(function (p) {
-      var active = !S.isCustom && S.preset === p ? " active" : "";
-      var pop = p === POPULAR ? '<span class="gaf-preset-pop">Popular</span>' : "";
-      return '<button class="gaf-preset' + active + '" data-gaf-preset="' + p + '">' + pop + '$' + p + '</button>';
-    }).join("");
-    return '<div class="gaf-title">' + SITE_TITLE + '</div>' +
-      '<div class="gaf-freq-wrap"><select class="gaf-freq" id="gafFreq">' + freqOpts + '</select><span class="gaf-freq-arrow">\u25BE</span></div>' +
-      '<div class="gaf-amount-box"><span class="gaf-amount-sign">$</span><input class="gaf-amount-input" id="gafAmount" type="text" inputmode="numeric" value="' + amt + '">' +
-        (perDay ? '<span class="gaf-amount-per">' + perDay + '</span>' : '') + '</div>' +
-      '<div class="gaf-presets">' + presetBtns + '</div>' +
-      '<div class="gaf-perk">\u2714 Includes ad-free experience</div>' +
-      '<button class="gaf-cta" id="gafCta1">Continue with $' + amt + freqLabel + '</button>' +
-      '<div class="gaf-trust">\uD83D\uDD12 Secure payment &nbsp;|&nbsp; ApplePay \u00B7 Visa \u00B7 MC</div>' +
-      '<div class="gaf-trust2">Secure &amp; encrypted \u00B7 Cancel anytime \u00B7 Takes &lt;10 seconds</div>';
+  function eyeOffSvg() {
+    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+      '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>' +
+      '<line x1="1" y1="1" x2="23" y2="23"/>' +
+    '</svg>';
   }
-
-  // ===== SCREEN 2 =====
-  function renderScreen2() {
-    var amt = getAmount(), freqLabel = getFreqLabel();
-    return '<div class="gaf-summary">' +
-        '<div class="gaf-summary-label">Going Ad-Free</div>' +
-        '<div class="gaf-summary-amount">$' + amt + freqLabel + '</div>' +
-        '<div class="gaf-summary-cause">Uninterrupted ' + SITE_CAUSE + ' reading</div></div>' +
-      '<div class="gaf-input-group"><label>Email address</label><input class="gaf-input" id="gafEmail" type="email" placeholder="you@example.com" value="' + esc(S.email) + '"></div>' +
-      '<div style="font-size:13px;font-weight:600;color:#333;margin-bottom:10px;">Select payment method</div>' +
-      '<div class="gaf-method-card' + (S.method === "bank" ? " active" : "") + '" data-gaf-method="bank"><div class="gaf-method-header"><span class="gaf-method-icon">\uD83C\uDFE6</span><div class="gaf-method-info"><div class="gaf-method-name">Direct Bank Transfer (ACH)</div><div class="gaf-method-sub">Best for long-term subscription</div></div></div><div class="gaf-method-body"><input class="gaf-input" placeholder="Routing number"><input class="gaf-input" placeholder="Account number"></div></div>' +
-      '<div class="gaf-express-label">Express checkout</div>' +
-      '<div class="gaf-express-grid"><button class="gaf-express-btn">\uF8FF Pay</button><button class="gaf-express-btn">G Pay</button><button class="gaf-express-btn">PayPal</button><button class="gaf-express-btn">Venmo</button></div>' +
-      '<div class="gaf-method-card' + (S.method === "card" ? " active" : "") + '" data-gaf-method="card"><div class="gaf-method-header"><span class="gaf-method-icon">\uD83D\uDCB3</span><div class="gaf-method-info"><div class="gaf-method-name">Credit or Debit Card</div><div class="gaf-method-sub">Visa, Mastercard, Amex</div></div></div><div class="gaf-method-body"><input class="gaf-input" id="gafCardName" placeholder="Name on card" value="' + esc(S.name) + '"><input class="gaf-input" placeholder="Card number" maxlength="19"><div class="gaf-method-row"><input class="gaf-input" placeholder="MM / YY" maxlength="5"><input class="gaf-input" placeholder="CVC" maxlength="4"></div></div></div>' +
-      '<div class="gaf-secure">\uD83D\uDD12 Secure payment \u2022 Powered by Stripe</div>' +
-      '<button class="gaf-cta" id="gafCta2">Complete Payment \u2014 $' + amt + freqLabel + '</button>';
+  function boltSvg() {
+    return '<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>';
   }
-
-  // ===== SCREEN 3 =====
-  function renderScreen3() {
-    var amt = getAmount();
-    var freqText = S.freq === "one-time" ? "" : S.freq === "monthly" ? "every month" : S.freq === "quarterly" ? "every quarter" : "every year";
-    var displayName = S.name || S.email || "Reader";
-    var today = new Date().toLocaleDateString("en-US", { year: "numeric", month: "long", day: "numeric" });
-    return '<div class="gaf-success-header">' +
-        '<div class="gaf-check-circle">\u2713</div>' +
-        '<div class="gaf-success-text"><strong>You\u2019re Ad-Free!</strong></div>' +
-        '<div class="gaf-success-text">Welcome, ' + esc(displayName) + '. Your subscription is now active. Enjoy uninterrupted ' + SITE_CAUSE + '.</div></div>' +
-      '<div class="gaf-cert">' +
-        '<div class="gaf-cert-label">SUBSCRIPTION DETAILS</div><div class="gaf-cert-divider"></div>' +
-        '<div class="gaf-cert-certifies">Plan</div>' +
-        '<div class="gaf-cert-name">Ad-Free Reading</div>' +
-        '<div class="gaf-cert-of">Amount</div>' +
-        '<div class="gaf-cert-logo"><span class="gaf-cert-logo-text">$' + amt + ' ' + freqText + '</span></div>' +
-        '<div class="gaf-cert-divider"></div>' +
-        '<div class="gaf-cert-cause">Started ' + today + '</div>' +
-        '<div class="gaf-cert-perk">\u2714 All ads, banners, and popups are now removed from your ' + SITE_NAME + ' experience.</div></div>' +
-      '<div class="gaf-footer-links"><a href="go-ad-free/">Manage Subscription</a></div>' +
-      '<div class="gaf-footer-email">\u2709 Confirmation and invoice sent to your email</div>';
+  function heartSvg() {
+    return '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
   }
-
-  function esc(s) { return (s || "").replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;"); }
-
-  // ===== EVENT DELEGATION =====
-  document.addEventListener("click", function (e) {
-    var t = e.target;
-
-    // Close popup
-    if (t.id === "gafClose" || (t.closest && t.closest("#gafClose"))) { closePopup(); return; }
-
-    // Sticky banner CTA
-    if (t.id === "gafStickyCta" || (t.closest && t.closest("#gafStickyCta"))) { window.location.href = getSupportUrl(); return; } // getSupportUrl now returns go-ad-free/
-
-    // Sticky banner close
-    if (t.id === "gafStickyClose" || (t.closest && t.closest("#gafStickyClose"))) {
-      var sticky = document.getElementById("gafSticky");
-      if (sticky) sticky.remove();
-      return;
-    }
-
-    // Preset buttons
-    var presetBtn = t.closest ? t.closest("[data-gaf-preset]") : null;
-    if (presetBtn) {
-      S.preset = parseInt(presetBtn.getAttribute("data-gaf-preset"), 10);
-      S.isCustom = false; S.custom = "";
-      renderScreen(); return;
-    }
-
-    // Method cards
-    var methodCard = t.closest ? t.closest("[data-gaf-method]") : null;
-    if (methodCard) {
-      var m = methodCard.getAttribute("data-gaf-method");
-      S.method = S.method === m ? "" : m;
-      renderScreen(); return;
-    }
-
-    // Screen 1 CTA
-    if (t.id === "gafCta1") { if (getAmount() > 0) { S.screen = 2; renderScreen(); } return; }
-
-    // Screen 2 CTA
-    if (t.id === "gafCta2") {
-      var emailEl = document.getElementById("gafEmail");
-      var nameEl = document.getElementById("gafCardName");
-      if (emailEl) S.email = emailEl.value.trim();
-      if (nameEl) S.name = nameEl.value.trim();
-      t.classList.add("processing"); t.textContent = "Processing\u2026";
-      setTimeout(function () { S.screen = 3; renderScreen(); }, 1800);
-      return;
-    }
-
-    // Express checkout
-    if (t.closest && t.closest(".gaf-express-btn")) {
-      var emailEl2 = document.getElementById("gafEmail");
-      if (emailEl2) S.email = emailEl2.value.trim();
-      S.name = S.email.split("@")[0] || "Reader";
-      S.screen = 3; renderScreen(); return;
-    }
-  });
-
-  // Amount input
-  document.addEventListener("input", function (e) {
-    if (e.target.id === "gafAmount") {
-      var v = e.target.value.replace(/[^0-9]/g, "");
-      S.isCustom = true; S.custom = v;
-      var cta = document.getElementById("gafCta1");
-      if (cta) cta.textContent = "Continue with $" + (parseInt(v, 10) || 0) + getFreqLabel();
-      document.querySelectorAll(".gaf-preset").forEach(function (b) { b.classList.remove("active"); });
-      var perEl = e.target.parentNode.querySelector(".gaf-amount-per");
-      if (perEl) perEl.textContent = getPerDay();
-    }
-  });
-
-  // Frequency change
-  document.addEventListener("change", function (e) {
-    if (e.target.id === "gafFreq") { S.freq = e.target.value; renderScreen(); }
-  });
 
   // ===== INIT =====
   function init() {
@@ -432,4 +331,8 @@
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
   else init();
+
+  // Expose globally so any CTA can trigger the popup:
+  //   <button onclick="vanOpenAdFreePopup()">…</button>
+  window.vanOpenAdFreePopup = openPopup;
 })();
