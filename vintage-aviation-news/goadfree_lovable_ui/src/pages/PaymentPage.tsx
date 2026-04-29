@@ -1,259 +1,668 @@
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ChevronDown, ChevronUp, Shield, CreditCard, Building2 } from "lucide-react";
 
-type PaymentMethod = "bank" | "apple" | "google" | "paypal" | "venmo" | "card" | null;
+const SITE_NAME = "Vintage Aviation News";
+const LOGO_URL = "/LH2_UI_Assets/vintage-aviation-news/assets/van-logo.png";
+const EMAIL = "vintageaviationlh2@gmail.com";
+
+type Method = "card" | "cashapp" | "bank";
+type Currency = "INR" | "USD";
+
+const FONT = "-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif";
 
 const COUNTRIES = [
-  { code: "US", label: "United States", flag: "🇺🇸" },
-  { code: "GB", label: "United Kingdom", flag: "🇬🇧" },
-  { code: "DE", label: "Germany", flag: "🇩🇪" },
-  { code: "FR", label: "France", flag: "🇫🇷" },
-  { code: "NL", label: "Netherlands", flag: "🇳🇱" },
-  { code: "CA", label: "Canada", flag: "🇨🇦" },
-  { code: "AU", label: "Australia", flag: "🇦🇺" },
-  { code: "IN", label: "India", flag: "🇮🇳" },
-  { code: "JP", label: "Japan", flag: "🇯🇵" },
-  { code: "OTHER", label: "Other", flag: "🌍" },
+  "India", "United States", "United Kingdom", "Canada", "Australia",
+  "Germany", "France", "Netherlands", "Japan", "Singapore",
 ];
-
-const EU_COUNTRIES = ["DE", "FR", "NL", "AT", "BE", "ES", "IT", "PT", "IE", "FI", "LU"];
-
-const fieldClass =
-  "w-full px-4 py-3 rounded-xl border border-input bg-background text-sm text-foreground placeholder:text-muted-foreground outline-none focus:border-primary focus:ring-2 focus:ring-primary/10 transition-colors";
 
 export default function PaymentPage() {
   const navigate = useNavigate();
+  const [currency, setCurrency] = useState<Currency>("USD");
+  const [method, setMethod] = useState<Method>("card");
+  const [country, setCountry] = useState("India");
+  const [saveInfo, setSaveInfo] = useState(false);
 
-  const [country, setCountry] = useState("US");
-  const [countryOpen, setCountryOpen] = useState(false);
-  const [selectedMethod, setSelectedMethod] = useState<PaymentMethod>(null);
-
-  const [bankName, setBankName] = useState("");
-  const [bankAccount, setBankAccount] = useState("");
-
-  const [cardNumber, setCardNumber] = useState("");
-  const [expiry, setExpiry] = useState("");
-  const [cvc, setCvc] = useState("");
-  const cardNumberRef = useRef<HTMLInputElement>(null);
-
-  const selectedCountry = COUNTRIES.find((c) => c.code === country) || COUNTRIES[0];
-  const isEU = EU_COUNTRIES.includes(country);
-
-  const isMethodSelected = selectedMethod !== null;
-
-  useEffect(() => {
-    if (selectedMethod === "card") {
-      cardNumberRef.current?.focus();
-    }
-  }, [selectedMethod]);
-
-  const formatCardNumber = (value: string) => {
-    const digits = value.replace(/\D/g, "").slice(0, 16);
-    return digits.replace(/(.{4})/g, "$1 ").trim();
-  };
-
-  const formatExpiry = (value: string) => {
-    const digits = value.replace(/\D/g, "").slice(0, 4);
-    if (digits.length >= 3) return `${digits.slice(0, 2)}/${digits.slice(2)}`;
-    return digits;
-  };
-
-  const selectMethod = (method: PaymentMethod) => {
-    setSelectedMethod((prev) => (prev === method ? null : method));
-  };
-
-  const methodBtnClass = (method: PaymentMethod) =>
-    `h-12 w-full rounded-xl border-2 bg-card transition-all duration-150 flex items-center justify-center ${
-      selectedMethod === method
-        ? "border-primary bg-primary/5"
-        : "border-input hover:border-muted-foreground/30"
-    }`;
-
-  const bankTransferLabel = isEU
-    ? "Direct Bank Transfer (SEPA)"
-    : country === "US"
-    ? "Direct Bank Transfer (ACH)"
-    : "Direct Bank Transfer";
+  const price = currency === "USD" ? "$1.00" : "₹83.00";
 
   return (
-    <div className="min-h-screen bg-background flex justify-center px-6 pt-10 pb-28 sm:pt-16 relative">
-      <div className="w-full max-w-md relative space-y-6">
-        {/* Header */}
-        <div className="space-y-1">
-          <button
-            onClick={() => navigate("/")}
-            className="text-sm text-muted-foreground hover:text-foreground transition-colors mb-4 flex items-center gap-1"
-          >
-            ← Back
-          </button>
-          <p className="text-sm text-muted-foreground">Ad-Free Access</p>
-          <p className="text-3xl font-serif font-bold tracking-tight text-foreground">
-            $20<span className="text-lg font-sans font-normal text-muted-foreground"> / year</span>
+    <div style={{ minHeight: "100vh", background: "#fff", fontFamily: FONT, color: "#30313d" }}>
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)",
+          maxWidth: 1180,
+          margin: "0 auto",
+          minHeight: "100vh",
+        }}
+        className="payment-grid"
+      >
+        {/* ============ LEFT COLUMN ============ */}
+        <div
+          style={{
+            padding: "48px 56px 48px 56px",
+            borderRight: "1px solid #e6e6e6",
+          }}
+          className="payment-left"
+        >
+          {/* Back + brand */}
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 36 }}>
+            <button
+              onClick={() => navigate("/")}
+              aria-label="Back"
+              style={{
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+                color: "#6d6e78",
+                fontSize: 18,
+                padding: 0,
+                lineHeight: 1,
+              }}
+            >
+              ←
+            </button>
+            <img
+              src={LOGO_URL}
+              alt={SITE_NAME}
+              style={{ width: 28, height: 28, borderRadius: "50%", objectFit: "cover" }}
+            />
+            <span style={{ fontSize: 14, fontWeight: 600, color: "#30313d" }}>{SITE_NAME}</span>
+          </div>
+
+          {/* Description */}
+          <p style={{ fontSize: 15, color: "#6d6e78", lineHeight: 1.5, margin: "0 0 16px", maxWidth: 360 }}>
+            Subscribe to {SITE_NAME} to remove ads and get a 3X faster experience.
           </p>
-          <p className="text-xs text-muted-foreground">That's just $0.05/day. Cancel anytime.</p>
+
+          {/* Price */}
+          <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 28 }}>
+            <span style={{ fontSize: 38, fontWeight: 600, color: "#30313d", letterSpacing: -0.5 }}>
+              {price}
+            </span>
+            <span style={{ fontSize: 13, color: "#6d6e78", lineHeight: 1.2 }}>
+              per
+              <br />
+              month
+            </span>
+          </div>
+
+          {/* Currency tabs */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, maxWidth: 360, marginBottom: 8 }}>
+            <button
+              onClick={() => setCurrency("INR")}
+              style={{
+                padding: "10px 16px",
+                border: `1px solid ${currency === "INR" ? "#30313d" : "#e6e6e6"}`,
+                background: "#fff",
+                borderRadius: 6,
+                fontSize: 13,
+                fontWeight: 500,
+                color: "#30313d",
+                cursor: "pointer",
+                fontFamily: FONT,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 6,
+              }}
+            >
+              <span style={{ fontSize: 14 }}>🇮🇳</span> INR
+            </button>
+            <button
+              onClick={() => setCurrency("USD")}
+              style={{
+                padding: "10px 16px",
+                border: `1px solid ${currency === "USD" ? "#30313d" : "#e6e6e6"}`,
+                background: "#fff",
+                borderRadius: 6,
+                fontSize: 13,
+                fontWeight: 500,
+                color: "#30313d",
+                cursor: "pointer",
+                fontFamily: FONT,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 6,
+              }}
+            >
+              <span style={{ fontSize: 14 }}>🇺🇸</span> USD
+            </button>
+          </div>
+          <p style={{ fontSize: 12, color: "#6d6e78", margin: "0 0 32px" }}>
+            Exchange rate and fees of your bank may apply
+          </p>
+
+          {/* Line item */}
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "flex-start",
+              gap: 24,
+              maxWidth: 360,
+              paddingTop: 20,
+            }}
+          >
+            <div style={{ flex: 1 }}>
+              <p style={{ fontSize: 13, fontWeight: 600, color: "#30313d", margin: 0, lineHeight: 1.45 }}>
+                {SITE_NAME} to remove ads and get a 3X faster experience.
+              </p>
+              <p style={{ fontSize: 12, color: "#6d6e78", margin: "6px 0 0" }}>Billed monthly</p>
+            </div>
+            <span style={{ fontSize: 13, fontWeight: 600, color: "#30313d", whiteSpace: "nowrap" }}>{price}</span>
+          </div>
         </div>
 
-        {/* Country selector + method label */}
-        <div className="flex items-center justify-between">
-          <p className="text-sm font-medium text-foreground">Select payment method</p>
-          <div className="relative">
+        {/* ============ RIGHT COLUMN ============ */}
+        <div style={{ padding: "48px 56px" }} className="payment-right">
+          {/* Express buttons */}
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 14 }}>
             <button
-              onClick={() => setCountryOpen(!countryOpen)}
-              className="flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs text-muted-foreground hover:text-foreground transition-colors"
+              style={{
+                background: "#33c481",
+                border: "none",
+                borderRadius: 6,
+                padding: "12px 18px",
+                color: "#000",
+                fontWeight: 700,
+                fontSize: 14,
+                cursor: "pointer",
+                fontFamily: FONT,
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                gap: 6,
+              }}
             >
-              <span>{selectedCountry.flag}</span>
-              <span className="hidden sm:inline">{selectedCountry.label}</span>
-              <ChevronDown className="w-3 h-3" />
+              Pay with{" "}
+              <span
+                style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  gap: 4,
+                  background: "#000",
+                  color: "#33c481",
+                  padding: "2px 8px 2px 6px",
+                  borderRadius: 999,
+                  fontWeight: 800,
+                }}
+              >
+                <span style={{ fontSize: 10 }}>▶</span> link
+              </span>
+            </button>
+            <button
+              style={{
+                background: "#ffc439",
+                border: "none",
+                borderRadius: 6,
+                padding: "12px 18px",
+                fontFamily: FONT,
+                fontSize: 16,
+                fontWeight: 700,
+                color: "#000",
+                cursor: "pointer",
+                letterSpacing: 0,
+              }}
+            >
+              <span style={{ fontStyle: "italic" }}>amazon</span>
+              <span> pay</span>
+            </button>
+          </div>
+
+          {/* OR divider */}
+          <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "20px 0 24px" }}>
+            <div style={{ flex: 1, height: 1, background: "#e6e6e6" }} />
+            <span style={{ fontSize: 12, color: "#6d6e78", fontWeight: 500 }}>OR</span>
+            <div style={{ flex: 1, height: 1, background: "#e6e6e6" }} />
+          </div>
+
+          {/* Contact info */}
+          <h3 style={{ fontSize: 15, fontWeight: 600, color: "#30313d", margin: "0 0 12px" }}>
+            Contact information
+          </h3>
+          <div
+            style={{
+              background: "#f6f6f6",
+              border: "1px solid #e6e6e6",
+              borderRadius: 6,
+              padding: "14px 16px",
+              display: "flex",
+              alignItems: "center",
+              gap: 16,
+              marginBottom: 28,
+            }}
+          >
+            <span style={{ fontSize: 13, color: "#6d6e78", flexShrink: 0 }}>Email</span>
+            <span style={{ fontSize: 13, color: "#30313d", textAlign: "right", marginLeft: "auto" }}>
+              {EMAIL}
+            </span>
+          </div>
+
+          {/* Payment method */}
+          <h3 style={{ fontSize: 15, fontWeight: 600, color: "#30313d", margin: "0 0 12px" }}>Payment method</h3>
+
+          {/* Card option (expanded) */}
+          <div
+            style={{
+              border: "1px solid #e6e6e6",
+              borderRadius: 6,
+              marginBottom: 8,
+              overflow: "hidden",
+              background: "#fff",
+            }}
+          >
+            <button
+              onClick={() => setMethod("card")}
+              style={{
+                width: "100%",
+                background: "#fff",
+                border: "none",
+                padding: "14px 16px",
+                display: "flex",
+                alignItems: "center",
+                gap: 12,
+                cursor: "pointer",
+                fontFamily: FONT,
+                textAlign: "left",
+              }}
+            >
+              <Radio selected={method === "card"} />
+              <CardIcon />
+              <span style={{ fontSize: 14, fontWeight: 500, color: "#30313d" }}>Card</span>
             </button>
 
-            {countryOpen && (
-              <>
-                <div className="fixed inset-0 z-40" onClick={() => setCountryOpen(false)} />
-                <div className="absolute top-full right-0 z-50 mt-1 w-56 max-h-72 overflow-y-auto rounded-xl border border-input bg-card shadow-lg">
-                  {COUNTRIES.map((c) => (
-                    <button
-                      key={c.code}
-                      onClick={() => {
-                        setCountry(c.code);
-                        setCountryOpen(false);
+            {method === "card" && (
+              <div style={{ padding: "0 16px 16px" }}>
+                <Label>Card information</Label>
+                <div
+                  style={{
+                    border: "1px solid #d1d5db",
+                    borderRadius: 6,
+                    overflow: "hidden",
+                  }}
+                >
+                  <div style={{ display: "flex", alignItems: "center", padding: "0 12px" }}>
+                    <input
+                      type="text"
+                      placeholder="1234 1234 1234 1234"
+                      style={{
+                        flex: 1,
+                        border: "none",
+                        outline: "none",
+                        padding: "12px 0",
+                        fontSize: 14,
+                        fontFamily: FONT,
+                        color: "#30313d",
                       }}
-                      className={`w-full flex items-center gap-3 px-4 py-2.5 text-sm transition-colors ${
-                        country === c.code ? "bg-primary/5 text-primary font-medium" : "text-foreground hover:bg-muted"
-                      }`}
+                    />
+                    <CardBrands />
+                  </div>
+                  <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", borderTop: "1px solid #d1d5db" }}>
+                    <input
+                      type="text"
+                      placeholder="MM / YY"
+                      style={{
+                        border: "none",
+                        outline: "none",
+                        padding: "12px",
+                        fontSize: 14,
+                        fontFamily: FONT,
+                        color: "#30313d",
+                      }}
+                    />
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        borderLeft: "1px solid #d1d5db",
+                        padding: "0 12px",
+                      }}
                     >
-                      <span>{c.flag}</span>
-                      <span>{c.label}</span>
-                    </button>
-                  ))}
+                      <input
+                        type="text"
+                        placeholder="CVC"
+                        style={{
+                          flex: 1,
+                          border: "none",
+                          outline: "none",
+                          padding: "12px 0",
+                          fontSize: 14,
+                          fontFamily: FONT,
+                          color: "#30313d",
+                        }}
+                      />
+                      <CvcIcon />
+                    </div>
+                  </div>
                 </div>
-              </>
+
+                <Label style={{ marginTop: 14 }}>Cardholder name</Label>
+                <input
+                  type="text"
+                  placeholder="Full name on card"
+                  style={{
+                    width: "100%",
+                    border: "1px solid #d1d5db",
+                    borderRadius: 6,
+                    padding: "12px",
+                    fontSize: 14,
+                    fontFamily: FONT,
+                    outline: "none",
+                    color: "#30313d",
+                    boxSizing: "border-box",
+                  }}
+                />
+
+                <Label style={{ marginTop: 14 }}>Country or region</Label>
+                <div style={{ position: "relative" }}>
+                  <select
+                    value={country}
+                    onChange={(e) => setCountry(e.target.value)}
+                    style={{
+                      width: "100%",
+                      border: "1px solid #d1d5db",
+                      borderRadius: 6,
+                      padding: "12px",
+                      fontSize: 14,
+                      fontFamily: FONT,
+                      outline: "none",
+                      color: "#30313d",
+                      background: "#fff",
+                      appearance: "none",
+                      cursor: "pointer",
+                    }}
+                  >
+                    {COUNTRIES.map((c) => (
+                      <option key={c} value={c}>
+                        {c}
+                      </option>
+                    ))}
+                  </select>
+                  <span
+                    style={{
+                      position: "absolute",
+                      right: 14,
+                      top: "50%",
+                      transform: "translateY(-50%)",
+                      pointerEvents: "none",
+                      color: "#6d6e78",
+                      fontSize: 10,
+                    }}
+                  >
+                    ▼
+                  </span>
+                </div>
+              </div>
             )}
           </div>
-        </div>
 
-        {/* Bank Transfer */}
-        <div>
+          {/* Cash App Pay */}
           <button
-            onClick={() => selectMethod("bank")}
-            className={`w-full rounded-2xl px-5 py-4 text-left transition-all duration-150 border-2 ${
-              selectedMethod === "bank"
-                ? "border-primary bg-primary/5"
-                : "border-input bg-card hover:border-muted-foreground/30"
-            }`}
-          >
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <Building2 className={`w-5 h-5 ${selectedMethod === "bank" ? "text-primary" : "text-muted-foreground"}`} />
-                <span className="text-sm font-semibold text-foreground">{bankTransferLabel}</span>
-              </div>
-              {selectedMethod === "bank" ? (
-                <ChevronUp className="w-4 h-4 text-primary" />
-              ) : (
-                <ChevronDown className="w-4 h-4 text-muted-foreground" />
-              )}
-            </div>
-          </button>
-
-          <div className={`overflow-hidden transition-all duration-300 ${selectedMethod === "bank" ? "max-h-[480px] opacity-100" : "max-h-0 opacity-0"}`}>
-            <div className="space-y-3 px-1 pt-3 pb-1">
-              <div>
-                <label className="mb-1.5 block text-xs text-muted-foreground">Name</label>
-                <input type="text" value={bankName} onChange={(e) => setBankName(e.target.value)} placeholder="John Doe" className={fieldClass} />
-              </div>
-              <div>
-                <label className="mb-1.5 block text-xs text-muted-foreground">{isEU ? "IBAN" : "Bank account / login"}</label>
-                <input type="text" value={bankAccount} onChange={(e) => setBankAccount(e.target.value)} placeholder={isEU ? "DE89 3704 0044 0532 0130 00" : "Bank account / login"} className={fieldClass} />
-              </div>
-              <p className="text-[10px] leading-relaxed text-muted-foreground">
-                By continuing, you authorize this payment and agree to recurring annual debits.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        {/* Express Methods */}
-        <div className="space-y-2">
-          <p className="text-center text-xs text-muted-foreground">Express checkout</p>
-          <div className="grid grid-cols-2 gap-2.5 sm:grid-cols-4">
-            <button className={methodBtnClass("apple")} onClick={() => selectMethod("apple")} aria-label="Apple Pay">
-              <span className="text-sm font-semibold text-foreground"> Pay</span>
-            </button>
-            <button className={methodBtnClass("google")} onClick={() => selectMethod("google")} aria-label="Google Pay">
-              <span className="text-sm font-semibold text-foreground">Google Pay</span>
-            </button>
-            <button className={methodBtnClass("paypal")} onClick={() => selectMethod("paypal")} aria-label="PayPal">
-              <span className="text-sm font-semibold text-foreground">PayPal</span>
-            </button>
-            <button className={methodBtnClass("venmo")} onClick={() => selectMethod("venmo")} aria-label="Venmo">
-              <span className="text-sm font-semibold text-foreground">Venmo</span>
-            </button>
-          </div>
-        </div>
-
-        {/* Card Payment */}
-        <div className={`overflow-hidden rounded-2xl border-2 bg-card transition-all duration-200 ${
-          selectedMethod === "card" ? "border-primary bg-primary/5" : "border-input"
-        }`}>
-          <button onClick={() => selectMethod("card")} className="w-full px-5 py-4 text-left">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-2.5 text-sm font-medium text-foreground">
-                <CreditCard className={`w-4 h-4 ${selectedMethod === "card" ? "text-primary" : "text-muted-foreground"}`} />
-                <span>Card payment</span>
-              </div>
-              {selectedMethod === "card" ? <ChevronUp className="w-4 h-4 text-primary" /> : <ChevronDown className="w-4 h-4 text-muted-foreground" />}
-            </div>
-          </button>
-
-          <div className={`overflow-hidden transition-all duration-300 ${selectedMethod === "card" ? "max-h-96 opacity-100" : "max-h-0 opacity-0"}`}>
-            <div className="space-y-3 px-5 pb-5">
-              <div>
-                <label className="mb-1.5 block text-xs text-muted-foreground">Card number</label>
-                <input ref={cardNumberRef} type="text" inputMode="numeric" placeholder="1234 5678 9012 3456" value={cardNumber} onChange={(e) => setCardNumber(formatCardNumber(e.target.value))} className={fieldClass} />
-              </div>
-              <div className="grid grid-cols-2 gap-3">
-                <div>
-                  <label className="mb-1.5 block text-xs text-muted-foreground">Expiry (MM/YY)</label>
-                  <input type="text" inputMode="numeric" placeholder="MM/YY" value={expiry} onChange={(e) => setExpiry(formatExpiry(e.target.value))} className={fieldClass} />
-                </div>
-                <div>
-                  <label className="mb-1.5 block text-xs text-muted-foreground">CVC</label>
-                  <input type="text" inputMode="numeric" placeholder="123" value={cvc} onChange={(e) => setCvc(e.target.value.replace(/\D/g, "").slice(0, 4))} className={fieldClass} />
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        {/* Trust */}
-        <div className="pt-1 text-muted-foreground">
-          <div className="flex items-center justify-center gap-1.5 text-xs">
-            <Shield className="h-3.5 w-3.5" />
-            <span>Secure payment • Powered by Stripe</span>
-          </div>
-        </div>
-      </div>
-
-      {/* Sticky CTA */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-t border-border px-6 py-4">
-        <div className="max-w-md mx-auto">
-          <button
-            disabled={!isMethodSelected}
-            onClick={() => {
-              if (isMethodSelected) {
-                navigate(`/success?name=${encodeURIComponent(bankName || "Reader")}`);
-              }
+            onClick={() => setMethod("cashapp")}
+            style={{
+              width: "100%",
+              background: "#fff",
+              border: "1px solid #e6e6e6",
+              borderRadius: 6,
+              padding: "14px 16px",
+              display: "flex",
+              alignItems: "center",
+              gap: 12,
+              cursor: "pointer",
+              fontFamily: FONT,
+              textAlign: "left",
+              marginBottom: 8,
             }}
-            className={`w-full rounded-2xl py-4 text-base font-semibold transition-all duration-200 ${
-              isMethodSelected
-                ? "bg-primary text-primary-foreground shadow-lg shadow-primary/25 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/30 active:translate-y-0"
-                : "bg-muted text-muted-foreground cursor-not-allowed"
-            }`}
           >
-            {isMethodSelected ? "Complete Payment — $20/year" : "Select a payment method"}
+            <Radio selected={method === "cashapp"} />
+            <CashAppIcon />
+            <span style={{ fontSize: 14, fontWeight: 500, color: "#30313d" }}>Cash App Pay</span>
           </button>
+
+          {/* Bank */}
+          <button
+            onClick={() => setMethod("bank")}
+            style={{
+              width: "100%",
+              background: "#fff",
+              border: "1px solid #e6e6e6",
+              borderRadius: 6,
+              padding: "14px 16px",
+              display: "flex",
+              alignItems: "center",
+              gap: 12,
+              cursor: "pointer",
+              fontFamily: FONT,
+              textAlign: "left",
+              marginBottom: 16,
+            }}
+          >
+            <Radio selected={method === "bank"} />
+            <BankIcon />
+            <span style={{ fontSize: 14, fontWeight: 500, color: "#30313d" }}>Bank</span>
+          </button>
+
+          {/* Save info checkbox */}
+          <div
+            style={{
+              border: "1px solid #e6e6e6",
+              borderRadius: 6,
+              padding: "14px 16px",
+              display: "flex",
+              gap: 12,
+              alignItems: "flex-start",
+              marginBottom: 16,
+            }}
+          >
+            <input
+              id="saveInfo"
+              type="checkbox"
+              checked={saveInfo}
+              onChange={(e) => setSaveInfo(e.target.checked)}
+              style={{ marginTop: 2, width: 16, height: 16, accentColor: "#5469d4", cursor: "pointer" }}
+            />
+            <label htmlFor="saveInfo" style={{ flex: 1, cursor: "pointer" }}>
+              <p style={{ fontSize: 14, fontWeight: 600, color: "#30313d", margin: 0 }}>
+                Save my information for faster checkout
+              </p>
+              <p style={{ fontSize: 12, color: "#6d6e78", margin: "4px 0 0", lineHeight: 1.4 }}>
+                Pay securely at {SITE_NAME} and everywhere{" "}
+                <span style={{ textDecoration: "underline" }}>Link</span> is accepted.
+              </p>
+            </label>
+          </div>
+
+          {/* Subscribe button */}
+          <button
+            onClick={() => navigate("/success")}
+            style={{
+              width: "100%",
+              background: "#5469d4",
+              color: "#fff",
+              border: "none",
+              borderRadius: 6,
+              padding: "14px",
+              fontSize: 15,
+              fontWeight: 600,
+              cursor: "pointer",
+              fontFamily: FONT,
+              transition: "background 0.15s",
+            }}
+            onMouseOver={(e) => (e.currentTarget.style.background = "#4456b3")}
+            onMouseOut={(e) => (e.currentTarget.style.background = "#5469d4")}
+          >
+            Subscribe
+          </button>
+
+          {/* Disclaimer */}
+          <p style={{ fontSize: 12, color: "#6d6e78", margin: "16px 0 24px", textAlign: "center", lineHeight: 1.5 }}>
+            By subscribing, you authorize {SITE_NAME} to charge you according to the terms until you cancel.
+          </p>
+
+          {/* Footer */}
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: 16,
+              fontSize: 12,
+              color: "#6d6e78",
+            }}
+          >
+            <span style={{ display: "inline-flex", alignItems: "center", gap: 4 }}>
+              Powered by <span style={{ fontStyle: "italic", fontWeight: 700, color: "#30313d" }}>stripe</span>
+            </span>
+            <span style={{ color: "#d1d5db" }}>|</span>
+            <a href="#" style={{ color: "#6d6e78", textDecoration: "none" }}>Terms</a>
+            <a href="#" style={{ color: "#6d6e78", textDecoration: "none" }}>Privacy</a>
+          </div>
         </div>
       </div>
+
+      {/* Mobile responsive */}
+      <style>{`
+        @media (max-width: 880px) {
+          .payment-grid { grid-template-columns: 1fr !important; }
+          .payment-left { border-right: none !important; border-bottom: 1px solid #e6e6e6 !important; padding: 32px 24px !important; }
+          .payment-right { padding: 32px 24px !important; }
+        }
+      `}</style>
     </div>
+  );
+}
+
+/* ────────── Sub-components ────────── */
+
+function Radio({ selected }: { selected: boolean }) {
+  return (
+    <span
+      style={{
+        width: 16,
+        height: 16,
+        borderRadius: "50%",
+        border: `1.5px solid ${selected ? "#30313d" : "#d1d5db"}`,
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        flexShrink: 0,
+      }}
+    >
+      {selected && (
+        <span style={{ width: 8, height: 8, borderRadius: "50%", background: "#30313d" }} />
+      )}
+    </span>
+  );
+}
+
+function Label({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) {
+  return (
+    <p style={{ fontSize: 13, color: "#30313d", margin: "0 0 6px", fontWeight: 500, ...style }}>
+      {children}
+    </p>
+  );
+}
+
+function CardIcon() {
+  return (
+    <svg width="22" height="16" viewBox="0 0 22 16" fill="none">
+      <rect x="0.5" y="0.5" width="21" height="15" rx="2" stroke="#30313d" />
+      <rect x="1" y="4" width="20" height="3" fill="#30313d" />
+    </svg>
+  );
+}
+
+function CardBrands() {
+  return (
+    <div style={{ display: "flex", gap: 4, alignItems: "center" }}>
+      <span
+        style={{
+          background: "#1a1f71",
+          color: "#fff",
+          fontSize: 9,
+          fontWeight: 700,
+          padding: "3px 5px",
+          borderRadius: 3,
+          fontStyle: "italic",
+        }}
+      >
+        VISA
+      </span>
+      <span
+        style={{
+          width: 24,
+          height: 16,
+          borderRadius: 3,
+          background: "linear-gradient(90deg, #eb001b 50%, #f79e1b 50%)",
+          display: "inline-block",
+        }}
+      />
+      <span
+        style={{
+          background: "#006fcf",
+          color: "#fff",
+          fontSize: 8,
+          fontWeight: 700,
+          padding: "3px 4px",
+          borderRadius: 3,
+        }}
+      >
+        AMEX
+      </span>
+      <span
+        style={{
+          background: "#0079be",
+          color: "#fff",
+          fontSize: 8,
+          fontWeight: 700,
+          padding: "3px 4px",
+          borderRadius: 3,
+        }}
+      >
+        ◐
+      </span>
+    </div>
+  );
+}
+
+function CvcIcon() {
+  return (
+    <svg width="24" height="16" viewBox="0 0 24 16" fill="none" style={{ flexShrink: 0 }}>
+      <rect x="0.5" y="0.5" width="23" height="15" rx="2" stroke="#6d6e78" />
+      <rect x="3" y="4" width="10" height="2" fill="#6d6e78" />
+      <text x="14" y="11" fontSize="6" fill="#6d6e78" fontFamily="sans-serif">123</text>
+    </svg>
+  );
+}
+
+function CashAppIcon() {
+  return (
+    <span
+      style={{
+        width: 22,
+        height: 22,
+        borderRadius: 4,
+        background: "#00d54b",
+        color: "#fff",
+        display: "inline-flex",
+        alignItems: "center",
+        justifyContent: "center",
+        fontWeight: 700,
+        fontSize: 14,
+      }}
+    >
+      $
+    </span>
+  );
+}
+
+function BankIcon() {
+  return (
+    <svg width="20" height="18" viewBox="0 0 20 18" fill="none">
+      <path d="M10 1L1 5h18L10 1z" stroke="#30313d" strokeWidth="1.2" strokeLinejoin="round" />
+      <path d="M3 7v8M7 7v8M13 7v8M17 7v8" stroke="#30313d" strokeWidth="1.2" />
+      <path d="M1 16h18" stroke="#30313d" strokeWidth="1.2" />
+    </svg>
   );
 }
