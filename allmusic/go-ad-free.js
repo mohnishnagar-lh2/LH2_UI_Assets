@@ -60,10 +60,11 @@ styleEl.textContent = `
 @keyframes gaf-spin{to{transform:rotate(360deg)}}
 @keyframes gaf-pulse{0%,100%{box-shadow:0 4px 16px rgba(26,122,138,.3)}50%{box-shadow:0 4px 24px rgba(26,122,138,.5)}}
 
-/* ---- Go Ads-Free row (above ad, matching video ad style) ---- */
-.gaf-bar{display:flex;align-items:center;justify-content:flex-end;padding:0;background:none;animation:gaf-fadeIn .3s ease-out;box-sizing:border-box;font-family:'Source Sans 3',-apple-system,sans-serif;margin:0 0 6px}
-.gaf-bar-cta{display:inline-flex;align-items:center;gap:4px;padding:6px 16px;background:#9b3a3a;color:#fff;font-size:11px;font-weight:800;border-radius:20px;white-space:nowrap;letter-spacing:.4px;text-transform:uppercase;cursor:pointer;transition:transform .15s,box-shadow .15s;box-shadow:0 2px 8px rgba(0,0,0,.25);border:none}
-.gaf-bar:hover .gaf-bar-cta{transform:scale(1.05);box-shadow:0 3px 12px rgba(155,58,58,.4)}
+/* ---- Remove Ads pill (top-right, above ad's top boundary) ---- */
+.gaf-bar{display:flex;justify-content:flex-end;padding:0 2px;background:none;animation:gaf-fadeIn .25s ease-out;box-sizing:border-box;font-family:'Source Sans 3',-apple-system,sans-serif;margin:0 0 4px;position:relative;z-index:2}
+.gaf-bar-cta{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;background:#fff;color:#1a7a8a;font-size:11px;font-weight:600;border-radius:11px;white-space:nowrap;cursor:pointer;transition:background .15s,color .15s,border-color .15s;border:1px solid #d6e4e7;pointer-events:auto;line-height:1.2;font-family:inherit}
+.gaf-bar-cta:hover{background:#1a7a8a;color:#fff;border-color:#1a7a8a}
+.gaf-bar-cta svg{width:9px;height:9px;flex-shrink:0;stroke-width:2.5}
 
 /* ---- Overlay + Popup ---- */
 .gaf-overlay{position:fixed;inset:0;z-index:9999999;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;transition:background .25s ease;font-family:'Source Sans 3',-apple-system,sans-serif}
@@ -213,6 +214,10 @@ function scanAds(){
     if(ad.getAttribute(MARKER))return;
     var rect = ad.getBoundingClientRect();
     if(rect.width<40||rect.height<20)return;
+    // Skip fixed/absolute positioned ads — injecting a sibling bar would
+    // place it elsewhere in document flow rather than visually attached.
+    var pos = getComputedStyle(ad).position;
+    if(pos==='fixed'||pos==='absolute'){ ad.setAttribute(MARKER,'1'); return; }
     ad.setAttribute(MARKER,'1');
     injectBar(ad);
   });
@@ -221,7 +226,7 @@ function scanAds(){
 function injectBar(ad){
   var bar = document.createElement('div');
   bar.className = 'gaf-bar';
-  bar.innerHTML = '<button class="gaf-bar-cta" type="button">GO ADS-FREE &rarr;</button>';
+  bar.innerHTML = '<button class="gaf-bar-cta" type="button"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>Remove Ads</button>';
   bar.querySelector('.gaf-bar-cta').addEventListener('click', function(e){e.stopPropagation();openPopup()});
   ad.parentNode.insertBefore(bar, ad);
 }
