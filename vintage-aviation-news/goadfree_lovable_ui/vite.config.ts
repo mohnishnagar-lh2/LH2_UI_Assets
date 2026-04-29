@@ -5,7 +5,7 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/LH2_Assets_UI/vintage-aviation-news/go-ad-free/",
+  base: "/LH2_UI_Assets/vintage-aviation-news/go-ad-free/",
   build: {
     outDir: "../go-ad-free",
     emptyOutDir: true,
