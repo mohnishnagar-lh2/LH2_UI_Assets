@@ -324,13 +324,12 @@
   }
 
   // ===== FLOW SELECTION =====
-  // Two demo flows, controlled by ?flow= query param:
-  //   ?flow=landing -> all CTAs go to the go-ad-free landing page
-  //   ?flow=popup   -> all CTAs open the modal popup
-  //   (no param)    -> mixed: navbar/sticky -> landing, ad pills -> popup
+  // Default behavior: all "Go Ad-Free" CTAs open the popup modal.
+  // Explicit opt-out via ?flow=landing makes them navigate to the
+  // go-ad-free/ landing page instead (useful for comparing flows).
   var FLOW = (function () {
-    try { return new URLSearchParams(window.location.search).get('flow'); }
-    catch (e) { return null; }
+    try { return new URLSearchParams(window.location.search).get('flow') || 'popup'; }
+    catch (e) { return 'popup'; }
   })();
 
   function makeAdBadge() {
@@ -348,8 +347,9 @@
     return badge;
   }
 
-  // When flow=popup, intercept clicks on existing <a href="...go-ad-free/"> CTAs
-  // (navbar Go Ad-Free button, sticky-bottom button) and open the popup instead.
+  // In popup flow (the default), intercept clicks on existing
+  // <a href="...go-ad-free/"> CTAs (navbar Go Ad-Free button,
+  // sticky-bottom button) and open the popup instead.
   if (FLOW === 'popup') {
     document.addEventListener('click', function (e) {
       // Don't intercept clicks that happen on the landing page itself

@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vintage Aviation News — Popup Design Preview</title>
+  <meta name="description" content="Standalone preview of the Vintage Aviation News Go Ad-Free popup design.">
+  <meta name="robots" content="noindex">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *,*::before,*::after{box-sizing:border-box;}
+    html,body{height:100%;margin:0;}
+    body{
+      font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+      background:radial-gradient(1200px 600px at 50% -10%,#2d4a72 0%,#1f3a5f 40%,#0e1d33 100%);
+      color:rgba(255,255,255,0.85);
+      display:flex;align-items:center;justify-content:center;
+      -webkit-font-smoothing:antialiased;
+    }
+    .pp-frame{
+      text-align:center;
+      max-width:520px;
+      padding:24px;
+    }
+    .pp-frame h1{
+      font-size:14px;font-weight:600;letter-spacing:1.4px;text-transform:uppercase;
+      color:rgba(255,255,255,0.55);margin:0 0 6px;
+    }
+    .pp-frame p{
+      font-size:13px;color:rgba(255,255,255,0.45);margin:0;
+    }
+    .pp-reopen{
+      display:inline-block;margin-top:16px;
+      background:rgba(255,255,255,0.08);color:#fff;
+      border:1px solid rgba(255,255,255,0.14);
+      padding:8px 16px;border-radius:999px;
+      font-size:12.5px;font-weight:500;cursor:pointer;
+      font-family:inherit;
+      transition:background 0.15s;
+    }
+    .pp-reopen:hover{background:rgba(255,255,255,0.14);}
+  </style>
+</head>
+<body>
+
+  <div class="pp-frame">
+    <h1>Vintage Aviation News</h1>
+    <p>Popup design preview</p>
+    <button class="pp-reopen" type="button" onclick="window.vanOpenAdFreePopup && window.vanOpenAdFreePopup()">Open popup</button>
+  </div>
+
+  <script src="assets/js/go-ad-free.js?v=13" data-delay="0" data-poll="0"></script>
+  <script>
+    // Auto-open the popup once the script's global is registered.
+    (function open() {
+      if (window.vanOpenAdFreePopup) { window.vanOpenAdFreePopup(); return; }
+      setTimeout(open, 60);
+    })();
+  </script>
+</body>
+</html>
