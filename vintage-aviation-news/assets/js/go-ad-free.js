@@ -104,76 +104,154 @@
 }
 .gaf-sticky-close:hover{color:#fff;}
 
-/* === MODAL POPUP (Read Without Ads) === */
-.gaf-modal-backdrop{position:fixed;inset:0;z-index:9999999;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;padding:12px;animation:gafFadeIn .2s ease-out;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
-.gaf-modal{width:500px;max-width:100%;max-height:calc(100vh - 24px);overflow-y:auto;border-radius:16px;background:#fff;box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative;animation:gafPopIn .25s ease-out;}
+/* === PAYWALL MODAL (vintage editorial, design from claude.ai/design) === */
+.gaf-modal-backdrop{
+  position:fixed;inset:0;z-index:9999999;
+  background:radial-gradient(1200px 600px at 50% -10%,#2d4a72 0%,#1f3a5f 40%,rgba(14,29,51,0.92) 100%),rgba(0,0,0,0.5);
+  display:flex;align-items:center;justify-content:center;
+  padding:24px 16px;
+  animation:gafFadeIn .2s ease-out;
+  font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+.gaf-modal{
+  --gaf-navy:#1f3a5f;--gaf-navy-deep:#142745;--gaf-red:#c8323a;--gaf-red-deep:#a8262d;--gaf-red-soft:#f3dad8;
+  --gaf-cream:#f1e8d6;--gaf-cream-2:#e8dcc4;--gaf-cream-3:#d8c89f;--gaf-paper:#fbf7ee;
+  --gaf-ink:#14202e;--gaf-ink-2:#3b4a5e;--gaf-ink-3:#7a8595;--gaf-rule:#ddd0b3;--gaf-rule-2:#e8e0cc;
+  width:100%;max-width:460px;max-height:calc(100vh - 48px);overflow-y:auto;
+  background:var(--gaf-paper);border-radius:14px;border:1px solid rgba(0,0,0,0.08);
+  box-shadow:0 1px 0 rgba(255,255,255,0.05) inset,0 30px 80px -20px rgba(0,0,0,0.65),0 10px 30px -15px rgba(0,0,0,0.45);
+  position:relative;color:var(--gaf-ink);
+  animation:gafPop .35s cubic-bezier(.2,.7,.2,1) both;
+}
 .gaf-modal *{box-sizing:border-box;}
-.gaf-modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:1px solid #e0e0e0;background:#fff;color:#6d6e78;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;z-index:2;transition:background .15s,color .15s;}
-.gaf-modal-close:hover{background:#f4f4f4;color:#1a1a1a;}
-
-/* Header (light cream — blends with white-bg logo) */
-.gaf-modal-header{background:#fbf8f3;padding:28px 28px 32px;text-align:center;color:#1a1a1a;border-radius:16px 16px 0 0;border-bottom:1px solid #f0ebe2;}
-.gaf-modal-logo{width:64px;height:auto;margin:0 auto 4px;display:block;}
-.gaf-modal-brand{font-size:11px;font-weight:800;letter-spacing:1.6px;color:${P};margin-bottom:18px;}
-.gaf-modal-no-ads{display:flex;justify-content:center;margin-bottom:14px;position:relative;}
-.gaf-modal-no-ads-circle{width:56px;height:56px;border-radius:50%;border:3px solid ${P};display:inline-flex;align-items:center;justify-content:center;font-weight:800;color:${P};font-size:14px;letter-spacing:.4px;position:relative;}
-.gaf-modal-no-ads-circle::before{content:'';position:absolute;width:66px;height:4px;background:${P};transform:rotate(-45deg);border-radius:2px;left:50%;top:50%;margin-left:-33px;margin-top:-2px;}
-.gaf-modal-title{font-size:30px;font-weight:800;line-height:1.05;margin:0 0 8px;font-family:'Merriweather',Georgia,serif;letter-spacing:-.4px;color:#1a1a1a;}
-.gaf-modal-title-accent{display:block;color:${P};}
-.gaf-modal-subtitle{font-size:13px;color:#6d6e78;margin:0;font-weight:400;}
-
-/* Body (white) */
-.gaf-modal-body{padding:22px 28px 18px;background:#fff;border-radius:0 0 16px 16px;}
-.gaf-modal-price{display:flex;align-items:baseline;justify-content:center;gap:8px;margin-bottom:8px;}
-.gaf-modal-price-strike{font-size:24px;color:#bdbdbd;text-decoration:line-through;font-weight:700;}
-.gaf-modal-price-now{font-size:46px;font-weight:800;color:#1a1a1a;letter-spacing:-1.2px;line-height:1;}
-.gaf-modal-price-period{font-size:15px;color:#6d6e78;font-weight:400;}
-.gaf-modal-coffee{display:inline-flex;align-items:center;gap:7px;background:${PL};color:${P};padding:5px 14px 5px 10px;border-radius:999px;font-size:13px;font-weight:600;margin:0 auto;}
-.gaf-modal-coffee-wrap{display:flex;justify-content:center;margin-bottom:14px;}
-.gaf-modal-coffee-icon{width:18px;height:18px;border-radius:50%;background:#ffe1d1;display:inline-flex;align-items:center;justify-content:center;font-size:10px;}
-.gaf-modal-divider{border:none;border-top:1px solid #f0f0f0;margin:0 0 14px;}
-.gaf-modal-features{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px;}
-.gaf-modal-feature{text-align:center;padding:0 4px;}
-.gaf-modal-feature-icon{width:42px;height:42px;border-radius:50%;background:${PL};margin:0 auto 8px;display:flex;align-items:center;justify-content:center;color:${P};}
-.gaf-modal-feature-icon svg{width:18px;height:18px;}
-.gaf-modal-feature-text{font-size:12px;font-weight:500;color:#1a1a1a;line-height:1.35;}
-.gaf-modal-cta{width:100%;background:${P};color:#fff;border:none;border-radius:12px;padding:14px 20px;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-family:inherit;transition:background .15s,transform .1s;box-shadow:0 4px 14px ${PT};margin-bottom:10px;}
-.gaf-modal-cta:hover{background:${PD};}
-.gaf-modal-cta:active{transform:translateY(1px);}
-.gaf-modal-cta-text{flex:1;text-align:center;margin-left:20px;}
-.gaf-modal-cta-arrow{font-size:18px;line-height:1;font-weight:600;}
-.gaf-modal-meta{text-align:center;font-size:12px;color:#6d6e78;margin:0 0 6px;display:flex;align-items:center;justify-content:center;gap:8px;}
-.gaf-modal-meta-dot{color:#cfcfcf;}
-.gaf-modal-no-thanks{display:block;margin:0 auto;background:none;border:none;color:#aaa;font-size:12px;text-decoration:underline;cursor:pointer;padding:2px 8px;font-family:inherit;}
-.gaf-modal-no-thanks:hover{color:#6d6e78;}
-
-@media(max-height:680px){
-  .gaf-modal-header{padding:20px 28px 24px;}
-  .gaf-modal-logo{width:50px;margin-bottom:2px;}
-  .gaf-modal-brand{margin-bottom:12px;font-size:10px;}
-  .gaf-modal-no-ads-circle{width:46px;height:46px;font-size:12px;border-width:2.5px;}
-  .gaf-modal-no-ads-circle::before{width:54px;height:3px;margin-left:-27px;margin-top:-1.5px;}
-  .gaf-modal-title{font-size:24px;margin-bottom:6px;}
-  .gaf-modal-subtitle{font-size:12px;}
-  .gaf-modal-body{padding:14px 28px 14px;}
-  .gaf-modal-price-now{font-size:38px;}
-  .gaf-modal-price-strike{font-size:20px;}
-  .gaf-modal-feature-icon{width:34px;height:34px;margin-bottom:5px;}
-  .gaf-modal-feature-icon svg{width:14px;height:14px;}
-  .gaf-modal-feature-text{font-size:11px;}
-  .gaf-modal-cta{padding:11px 18px;font-size:15px;}
+.gaf-modal .close{
+  position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;
+  border:1px solid var(--gaf-rule);background:#fff;color:var(--gaf-navy);
+  display:grid;place-items:center;cursor:pointer;z-index:5;padding:0;
+  transition:all .15s ease;
 }
-@media(max-width:540px){
-  .gaf-modal-header{padding:22px 20px 24px;}
-  .gaf-modal-title{font-size:24px;}
-  .gaf-modal-body{padding:18px 20px 16px;}
-  .gaf-modal-price-now{font-size:38px;}
-  .gaf-modal-price-strike{font-size:20px;}
-  .gaf-modal-features{gap:4px;}
-  .gaf-modal-feature-text{font-size:11px;}
-  .gaf-modal-feature-icon{width:38px;height:38px;}
+.gaf-modal .close:hover{background:#fff;color:var(--gaf-navy-deep);border-color:var(--gaf-cream-3);}
+.gaf-modal .close svg{width:12px;height:12px;}
+
+/* HERO */
+.gaf-modal .hero{
+  background:radial-gradient(120% 80% at 50% 0%,#f7eedd 0%,var(--gaf-cream) 60%,var(--gaf-cream-2) 100%);
+  padding:24px 36px 28px;text-align:center;position:relative;
 }
+.gaf-modal .hero::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
+  background:linear-gradient(90deg,transparent,var(--gaf-cream-3) 30%,var(--gaf-cream-3) 70%,transparent);
+}
+.gaf-modal .hero>*{position:relative;}
+.gaf-modal .brand{display:flex;flex-direction:column;align-items:center;gap:6px;margin-bottom:10px;}
+.gaf-modal .brand img{width:64px;height:64px;object-fit:contain;image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges;}
+.gaf-modal .brand-name{
+  font-family:'Inter',sans-serif;font-size:10.5px;font-weight:700;
+  letter-spacing:0.22em;color:var(--gaf-navy);text-transform:uppercase;margin:0;
+}
+.gaf-modal .brand-rule{width:28px;height:1px;background:var(--gaf-cream-3);margin-top:0;}
+
+.gaf-modal .stamp-wrap{display:flex;justify-content:center;margin:6px 0 8px;}
+.gaf-modal .icon-noads{width:56px;height:56px;transform:rotate(-6deg);display:block;animation:gafStampIn .55s cubic-bezier(.2,.9,.3,1) .15s both;}
+
+.gaf-modal .headline{
+  font-family:'Playfair Display',Georgia,serif;font-weight:600;
+  font-size:32px;line-height:1.1;letter-spacing:-0.015em;
+  margin:0 0 8px;color:var(--gaf-navy-deep);text-wrap:balance;
+}
+.gaf-modal .headline .accent{
+  font-family:'Playfair Display',Georgia,serif;color:var(--gaf-red);
+  font-style:italic;font-weight:700;font-size:36px;line-height:1.05;
+  display:inline-block;margin-top:2px;letter-spacing:-0.015em;
+}
+.gaf-modal .sub{margin:0;font-size:14.5px;color:var(--gaf-ink-2);line-height:1.55;}
+
+/* PRICE */
+.gaf-modal .price-block{padding:28px 36px 22px;text-align:center;background:var(--gaf-paper);}
+.gaf-modal .price{display:inline-flex;align-items:baseline;gap:10px;font-family:'Playfair Display',serif;}
+.gaf-modal .price .strike{
+  font-size:18px;color:var(--gaf-ink-3);
+  text-decoration:line-through;text-decoration-thickness:1.5px;text-decoration-color:var(--gaf-red);
+  font-weight:500;
+}
+.gaf-modal .price .amount{font-size:46px;font-weight:700;color:var(--gaf-navy-deep);letter-spacing:-0.02em;line-height:1;}
+.gaf-modal .price .per{font-family:'Inter',sans-serif;font-size:14px;color:var(--gaf-ink-2);font-weight:500;}
+.gaf-modal .pill{
+  display:inline-flex;align-items:center;gap:8px;margin-top:14px;
+  padding:7px 14px;background:var(--gaf-red-soft);color:var(--gaf-red-deep);
+  border-radius:999px;font-size:13px;font-weight:600;
+  border:1px solid rgba(200,50,58,0.12);
+}
+
+/* FEATURES */
+.gaf-modal .features{
+  display:grid;grid-template-columns:repeat(3,1fr);gap:8px;
+  padding:22px 28px 10px;border-top:1px solid var(--gaf-rule-2);margin:0 8px;
+}
+.gaf-modal .feature{display:flex;flex-direction:column;align-items:center;text-align:center;padding:8px 4px;gap:10px;}
+.gaf-modal .feature-icon{
+  width:42px;height:42px;border-radius:50%;background:#f1ece0;
+  border:1px solid var(--gaf-cream-3);color:var(--gaf-navy);
+  display:grid;place-items:center;box-shadow:0 1px 2px rgba(31,58,95,0.06);
+}
+.gaf-modal .feature-icon svg{width:18px;height:18px;}
+.gaf-modal .feature-icon.red{color:var(--gaf-red);background:var(--gaf-red-soft);border-color:rgba(200,50,58,0.18);}
+.gaf-modal .feature-text{font-size:12.5px;color:var(--gaf-ink-2);line-height:1.4;font-weight:500;max-width:12ch;}
+
+/* CTA */
+.gaf-modal .cta-wrap{padding:18px 28px 22px;}
+.gaf-modal .cta{
+  display:flex;align-items:center;justify-content:center;gap:10px;width:100%;
+  background:linear-gradient(180deg,var(--gaf-red) 0%,var(--gaf-red-deep) 100%);
+  color:#fff;border:none;border-radius:10px;padding:16px 20px;
+  font-family:'Inter',sans-serif;font-size:15.5px;font-weight:700;letter-spacing:0.01em;
+  cursor:pointer;position:relative;
+  box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 -1px 0 rgba(0,0,0,0.18) inset,0 6px 18px -4px rgba(168,38,45,0.5);
+  transition:transform .12s ease,box-shadow .12s ease,filter .15s ease;
+}
+.gaf-modal .cta:hover{
+  filter:brightness(1.05);transform:translateY(-1px);
+  box-shadow:0 1px 0 rgba(255,255,255,0.18) inset,0 -1px 0 rgba(0,0,0,0.18) inset,0 10px 22px -4px rgba(168,38,45,0.6);
+}
+.gaf-modal .cta:active{transform:translateY(0);}
+.gaf-modal .cta .arrow{
+  position:absolute;right:20px;display:grid;place-items:center;
+  width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,0.18);
+  transition:transform .15s ease,background .15s ease;
+}
+.gaf-modal .cta:hover .arrow{transform:translateX(3px);background:rgba(255,255,255,0.26);}
+.gaf-modal .cta .arrow svg{width:11px;height:11px;}
+
+.gaf-modal .meta{
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  margin-top:14px;font-size:12.5px;color:var(--gaf-ink-3);
+}
+.gaf-modal .meta .lock{display:inline-flex;align-items:center;gap:5px;color:var(--gaf-navy);font-weight:600;}
+.gaf-modal .meta .lock svg{width:11px;height:13px;}
+.gaf-modal .meta .gaf-dot{width:3px;height:3px;border-radius:50%;background:var(--gaf-ink-3);opacity:0.5;}
+.gaf-modal .meta .anytime{font-weight:500;color:var(--gaf-ink-2);}
+
+.gaf-modal .no-thanks-row{text-align:center;padding:4px 0 22px;}
+.gaf-modal .no-thanks{
+  background:none;border:none;font:inherit;font-family:'Inter',sans-serif;
+  font-size:13px;color:var(--gaf-ink-3);
+  text-decoration:underline;text-underline-offset:3px;text-decoration-color:var(--gaf-cream-3);
+  cursor:pointer;padding:4px 8px;transition:color .15s ease;
+}
+.gaf-modal .no-thanks:hover{color:var(--gaf-navy);text-decoration-color:var(--gaf-ink-3);}
+
+@keyframes gafPop{from{opacity:0;transform:translateY(8px) scale(0.98);}to{opacity:1;transform:translateY(0) scale(1);}}
+@keyframes gafStampIn{0%{opacity:0;transform:rotate(-22deg) scale(1.4);}60%{opacity:1;transform:rotate(-3deg) scale(0.95);}100%{opacity:1;transform:rotate(-6deg) scale(1);}}
+
 @media(max-width:480px){
+  .gaf-modal .hero{padding:20px 24px 24px;}
+  .gaf-modal .price-block{padding:22px 24px 18px;}
+  .gaf-modal .features{padding:18px 16px 8px;margin:0;}
+  .gaf-modal .cta-wrap{padding:14px 24px 18px;}
+  .gaf-modal .headline{font-size:26px;}
+  .gaf-modal .headline .accent{font-size:30px;}
+  .gaf-modal .price .amount{font-size:40px;}
   .gaf-sticky{flex-wrap:wrap;gap:8px;padding:10px 16px;font-size:12px;}
 }
 `;
@@ -270,10 +348,22 @@
     return 'assets/van-logo.png';
   }
 
+  // Inject Google Fonts for the popup typography (Playfair Display + Alfa Slab One).
+  // Inter is already loaded by the host pages.
+  function ensurePopupFonts() {
+    if (document.getElementById('gaf-modal-fonts')) return;
+    var link = document.createElement('link');
+    link.id = 'gaf-modal-fonts';
+    link.rel = 'stylesheet';
+    link.href = 'https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap';
+    document.head.appendChild(link);
+  }
+
   var backdrop = null;
 
   function openPopup() {
     if (backdrop) return;
+    ensurePopupFonts();
     var paymentUrl = getSupportUrl() + '#/payment';
     var logoUrl = getLogoUrl();
 
@@ -281,43 +371,97 @@
     backdrop.className = "gaf-modal-backdrop";
     backdrop.innerHTML =
       '<div class="gaf-modal" role="dialog" aria-modal="true" aria-labelledby="gafModalTitle">' +
-        '<button class="gaf-modal-close" type="button" aria-label="Close">&times;</button>' +
-        '<div class="gaf-modal-header">' +
-          '<img class="gaf-modal-logo" src="' + logoUrl + '" alt="' + SITE_NAME + '" onerror="this.style.display=\'none\'">' +
-          '<div class="gaf-modal-brand">VINTAGE AVIATION NEWS</div>' +
-          '<div class="gaf-modal-no-ads"><span class="gaf-modal-no-ads-circle">ADS</span></div>' +
-          '<h2 class="gaf-modal-title" id="gafModalTitle">Read Vintage Aviation' +
-            '<span class="gaf-modal-title-accent">Without Ads.</span>' +
-          '</h2>' +
-          '<p class="gaf-modal-subtitle">No popups. No banners. Just pure content.</p>' +
-        '</div>' +
-        '<div class="gaf-modal-body">' +
-          '<div class="gaf-modal-price">' +
-            '<span class="gaf-modal-price-strike">$3</span>' +
-            '<span class="gaf-modal-price-now">$1</span>' +
-            '<span class="gaf-modal-price-period">/ month</span>' +
+        '<button class="close" type="button" aria-label="Close">' +
+          '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round">' +
+            '<path d="M2 2 L10 10 M10 2 L2 10"/>' +
+          '</svg>' +
+        '</button>' +
+
+        '<section class="hero">' +
+          '<div class="brand">' +
+            '<img src="' + logoUrl + '" alt="' + SITE_NAME + '" onerror="this.style.display=\'none\'">' +
+            '<p class="brand-name">Vintage Aviation News</p>' +
+            '<span class="brand-rule" aria-hidden="true"></span>' +
           '</div>' +
-          '<div class="gaf-modal-coffee-wrap">' +
-            '<span class="gaf-modal-coffee">' +
-              '<span class="gaf-modal-coffee-icon">☕</span> Less than a coffee' +
+
+          // Vintage ink-stamp style "ADS" mark
+          '<div class="stamp-wrap">' +
+            '<svg class="icon-noads" viewBox="0 0 80 80" fill="none" aria-hidden="true">' +
+              '<circle cx="40" cy="40" r="32" stroke="#c8323a" stroke-width="2.6" fill="none"/>' +
+              '<circle cx="40" cy="40" r="27" stroke="#c8323a" stroke-width="1" fill="none" opacity="0.55"/>' +
+              '<text x="40" y="46" text-anchor="middle" font-family="\'Alfa Slab One\', serif" font-size="16" letter-spacing="2" fill="#c8323a">ADS</text>' +
+              '<line x1="17" y1="17" x2="63" y2="63" stroke="#c8323a" stroke-width="2.8" stroke-linecap="round"/>' +
+            '</svg>' +
+          '</div>' +
+
+          '<h1 id="gafModalTitle" class="headline">' +
+            'Read Vintage Aviation' +
+            '<br/>' +
+            '<span class="accent">Without Ads.</span>' +
+          '</h1>' +
+          '<p class="sub">No popups. No banners. Just pure content.</p>' +
+        '</section>' +
+
+        '<section class="price-block">' +
+          '<div class="price">' +
+            '<span class="strike">$3</span>' +
+            '<span class="amount">$1</span>' +
+            '<span class="per">/ month</span>' +
+          '</div>' +
+          '<div><span class="pill">Less than a coffee</span></div>' +
+        '</section>' +
+
+        '<div class="features">' +
+          '<div class="feature">' +
+            '<span class="feature-icon red">' +
+              '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
+                '<path d="M3 3l18 18"/>' +
+                '<path d="M10.6 6.2A10.5 10.5 0 0 1 12 6c5 0 9 4.5 10 6-0.4 0.7-1.4 2-2.8 3.3"/>' +
+                '<path d="M6.6 6.6C4.4 8 2.6 10.4 2 12c1 1.5 5 6 10 6 1.6 0 3.1-0.5 4.4-1.2"/>' +
+                '<path d="M9.9 9.9a3 3 0 0 0 4.2 4.2"/>' +
+              '</svg>' +
             '</span>' +
+            '<span class="feature-text">No ads.<br/>Ever.</span>' +
           '</div>' +
-          '<hr class="gaf-modal-divider">' +
-          '<div class="gaf-modal-features">' +
-            featureHtml(eyeOffSvg(), 'No ads.<br>Ever.') +
-            featureHtml(boltSvg(),   'Faster pages.<br>Better experience.') +
-            featureHtml(heartSvg(),  'Support quality<br>content.') +
+          '<div class="feature">' +
+            '<span class="feature-icon">' +
+              '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13 2 L4 14 h6 l-1 8 9-12 h-6 l1-8 z"/></svg>' +
+            '</span>' +
+            '<span class="feature-text">Faster pages.<br/>Better experience.</span>' +
           '</div>' +
-          '<button class="gaf-modal-cta" type="button">' +
-            '<span class="gaf-modal-cta-text">Subscribe Now</span>' +
-            '<span class="gaf-modal-cta-arrow">›</span>' +
+          '<div class="feature">' +
+            '<span class="feature-icon red">' +
+              '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21s-7-4.35-9.5-9C1 8.5 3 5 6.5 5 8.6 5 10.5 6.2 12 8c1.5-1.8 3.4-3 5.5-3C21 5 23 8.5 21.5 12 19 16.65 12 21 12 21z"/></svg>' +
+            '</span>' +
+            '<span class="feature-text">Support quality content.</span>' +
+          '</div>' +
+        '</div>' +
+
+        '<div class="cta-wrap">' +
+          '<button class="cta" type="button">' +
+            'Subscribe Now' +
+            '<span class="arrow" aria-hidden="true">' +
+              '<svg viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">' +
+                '<path d="M3 6 H9 M6 3 L9 6 L6 9"/>' +
+              '</svg>' +
+            '</span>' +
           '</button>' +
-          '<div class="gaf-modal-meta">' +
-            '<span>🔒 Secure payment</span>' +
-            '<span class="gaf-modal-meta-dot">•</span>' +
-            '<span>Cancel anytime</span>' +
+
+          '<div class="meta">' +
+            '<span class="lock">' +
+              '<svg viewBox="0 0 12 14" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">' +
+                '<rect x="2" y="6" width="8" height="7" rx="1.2"/>' +
+                '<path d="M4 6 V4 a2 2 0 0 1 4 0 V6"/>' +
+              '</svg>' +
+              'Secure payment' +
+            '</span>' +
+            '<span class="gaf-dot"></span>' +
+            '<span class="anytime">Cancel anytime</span>' +
           '</div>' +
-          '<button class="gaf-modal-no-thanks" type="button">No thanks</button>' +
+        '</div>' +
+
+        '<div class="no-thanks-row">' +
+          '<button class="no-thanks" type="button">No thanks</button>' +
         '</div>' +
       '</div>';
 
@@ -325,9 +469,9 @@
     document.body.style.overflow = "hidden";
 
     backdrop.addEventListener("click", function (e) { if (e.target === backdrop) closePopup(); });
-    backdrop.querySelector(".gaf-modal-close").addEventListener("click", closePopup);
-    backdrop.querySelector(".gaf-modal-no-thanks").addEventListener("click", closePopup);
-    backdrop.querySelector(".gaf-modal-cta").addEventListener("click", function () {
+    backdrop.querySelector(".close").addEventListener("click", closePopup);
+    backdrop.querySelector(".no-thanks").addEventListener("click", closePopup);
+    backdrop.querySelector(".cta").addEventListener("click", function () {
       window.location.href = paymentUrl;
     });
   }
@@ -339,26 +483,6 @@
   }
 
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closePopup(); });
-
-  function featureHtml(iconSvg, text) {
-    return '<div class="gaf-modal-feature">' +
-      '<div class="gaf-modal-feature-icon">' + iconSvg + '</div>' +
-      '<div class="gaf-modal-feature-text">' + text + '</div>' +
-    '</div>';
-  }
-
-  function eyeOffSvg() {
-    return '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
-      '<path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>' +
-      '<line x1="1" y1="1" x2="23" y2="23"/>' +
-    '</svg>';
-  }
-  function boltSvg() {
-    return '<svg viewBox="0 0 24 24" fill="currentColor"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>';
-  }
-  function heartSvg() {
-    return '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>';
-  }
 
   // ===== INIT =====
   function init() {
