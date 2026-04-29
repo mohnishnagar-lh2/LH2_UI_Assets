@@ -30,22 +30,24 @@ export default function PaymentPage() {
         style={{
           display: "grid",
           gridTemplateColumns: "minmax(0, 1fr) minmax(0, 1fr)",
-          maxWidth: 1180,
+          maxWidth: 1080,
           margin: "0 auto",
-          minHeight: "100vh",
+          alignItems: "start",
         }}
         className="payment-grid"
       >
         {/* ============ LEFT COLUMN ============ */}
         <div
           style={{
-            padding: "48px 56px 48px 56px",
+            padding: "32px 40px",
             borderRight: "1px solid #e6e6e6",
+            position: "sticky",
+            top: 0,
           }}
           className="payment-left"
         >
           {/* Back + brand */}
-          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 36 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 24 }}>
             <button
               onClick={() => navigate("/")}
               aria-label="Back"
@@ -70,16 +72,16 @@ export default function PaymentPage() {
           </div>
 
           {/* Description */}
-          <p style={{ fontSize: 15, color: "#6d6e78", lineHeight: 1.5, margin: "0 0 16px", maxWidth: 360 }}>
+          <p style={{ fontSize: 14, color: "#6d6e78", lineHeight: 1.5, margin: "0 0 12px", maxWidth: 360 }}>
             Subscribe to {SITE_NAME} to remove ads and get a 3X faster experience.
           </p>
 
           {/* Price */}
-          <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 28 }}>
-            <span style={{ fontSize: 38, fontWeight: 600, color: "#30313d", letterSpacing: -0.5 }}>
+          <div style={{ display: "flex", alignItems: "baseline", gap: 8, marginBottom: 20 }}>
+            <span style={{ fontSize: 32, fontWeight: 600, color: "#30313d", letterSpacing: -0.5 }}>
               {price}
             </span>
-            <span style={{ fontSize: 13, color: "#6d6e78", lineHeight: 1.2 }}>
+            <span style={{ fontSize: 12, color: "#6d6e78", lineHeight: 1.2 }}>
               per
               <br />
               month
@@ -87,7 +89,7 @@ export default function PaymentPage() {
           </div>
 
           {/* Currency tabs */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, maxWidth: 360, marginBottom: 8 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, maxWidth: 360, marginBottom: 6 }}>
             <button
               onClick={() => setCurrency("INR")}
               style={{
@@ -129,7 +131,7 @@ export default function PaymentPage() {
               <span style={{ fontSize: 14 }}>🇺🇸</span> USD
             </button>
           </div>
-          <p style={{ fontSize: 12, color: "#6d6e78", margin: "0 0 32px" }}>
+          <p style={{ fontSize: 11.5, color: "#6d6e78", margin: "0 0 22px" }}>
             Exchange rate and fees of your bank may apply
           </p>
 
@@ -139,9 +141,10 @@ export default function PaymentPage() {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "flex-start",
-              gap: 24,
+              gap: 20,
               maxWidth: 360,
-              paddingTop: 20,
+              paddingTop: 14,
+              borderTop: "1px solid #f0f0f0",
             }}
           >
             <div style={{ flex: 1 }}>
@@ -155,9 +158,9 @@ export default function PaymentPage() {
         </div>
 
         {/* ============ RIGHT COLUMN ============ */}
-        <div style={{ padding: "48px 56px" }} className="payment-right">
+        <div style={{ padding: "32px 40px" }} className="payment-right">
           {/* Express buttons */}
-          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 12, marginBottom: 14 }}>
+          <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 10, marginBottom: 12 }}>
             <button
               style={{
                 background: "#33c481",
@@ -211,14 +214,14 @@ export default function PaymentPage() {
           </div>
 
           {/* OR divider */}
-          <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "20px 0 24px" }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, margin: "14px 0 16px" }}>
             <div style={{ flex: 1, height: 1, background: "#e6e6e6" }} />
             <span style={{ fontSize: 12, color: "#6d6e78", fontWeight: 500 }}>OR</span>
             <div style={{ flex: 1, height: 1, background: "#e6e6e6" }} />
           </div>
 
           {/* Contact info */}
-          <h3 style={{ fontSize: 15, fontWeight: 600, color: "#30313d", margin: "0 0 12px" }}>
+          <h3 style={{ fontSize: 14, fontWeight: 600, color: "#30313d", margin: "0 0 8px" }}>
             Contact information
           </h3>
           <div
@@ -226,11 +229,11 @@ export default function PaymentPage() {
               background: "#f6f6f6",
               border: "1px solid #e6e6e6",
               borderRadius: 6,
-              padding: "14px 16px",
+              padding: "10px 14px",
               display: "flex",
               alignItems: "center",
-              gap: 16,
-              marginBottom: 28,
+              gap: 14,
+              marginBottom: 18,
             }}
           >
             <span style={{ fontSize: 13, color: "#6d6e78", flexShrink: 0 }}>Email</span>
@@ -240,7 +243,7 @@ export default function PaymentPage() {
           </div>
 
           {/* Payment method */}
-          <h3 style={{ fontSize: 15, fontWeight: 600, color: "#30313d", margin: "0 0 12px" }}>Payment method</h3>
+          <h3 style={{ fontSize: 14, fontWeight: 600, color: "#30313d", margin: "0 0 8px" }}>Payment method</h3>
 
           {/* Card option (expanded) */}
           <div
@@ -273,7 +276,7 @@ export default function PaymentPage() {
             </button>
 
             {method === "card" && (
-              <div style={{ padding: "0 16px 16px" }}>
+              <div style={{ padding: "0 14px 12px" }}>
                 <Label>Card information</Label>
                 <div
                   style={{
@@ -290,8 +293,8 @@ export default function PaymentPage() {
                         flex: 1,
                         border: "none",
                         outline: "none",
-                        padding: "12px 0",
-                        fontSize: 14,
+                        padding: "10px 0",
+                        fontSize: 13.5,
                         fontFamily: FONT,
                         color: "#30313d",
                       }}
@@ -305,8 +308,8 @@ export default function PaymentPage() {
                       style={{
                         border: "none",
                         outline: "none",
-                        padding: "12px",
-                        fontSize: 14,
+                        padding: "10px",
+                        fontSize: 13.5,
                         fontFamily: FONT,
                         color: "#30313d",
                       }}
@@ -337,7 +340,7 @@ export default function PaymentPage() {
                   </div>
                 </div>
 
-                <Label style={{ marginTop: 14 }}>Cardholder name</Label>
+                <Label style={{ marginTop: 10 }}>Cardholder name</Label>
                 <input
                   type="text"
                   placeholder="Full name on card"
@@ -354,7 +357,7 @@ export default function PaymentPage() {
                   }}
                 />
 
-                <Label style={{ marginTop: 14 }}>Country or region</Label>
+                <Label style={{ marginTop: 10 }}>Country or region</Label>
                 <div style={{ position: "relative" }}>
                   <select
                     value={country}
@@ -405,7 +408,7 @@ export default function PaymentPage() {
               background: "#fff",
               border: "1px solid #e6e6e6",
               borderRadius: 6,
-              padding: "14px 16px",
+              padding: "11px 14px",
               display: "flex",
               alignItems: "center",
               gap: 12,
@@ -428,14 +431,14 @@ export default function PaymentPage() {
               background: "#fff",
               border: "1px solid #e6e6e6",
               borderRadius: 6,
-              padding: "14px 16px",
+              padding: "11px 14px",
               display: "flex",
               alignItems: "center",
               gap: 12,
               cursor: "pointer",
               fontFamily: FONT,
               textAlign: "left",
-              marginBottom: 16,
+              marginBottom: 12,
             }}
           >
             <Radio selected={method === "bank"} />
@@ -448,11 +451,11 @@ export default function PaymentPage() {
             style={{
               border: "1px solid #e6e6e6",
               borderRadius: 6,
-              padding: "14px 16px",
+              padding: "10px 14px",
               display: "flex",
-              gap: 12,
+              gap: 10,
               alignItems: "flex-start",
-              marginBottom: 16,
+              marginBottom: 12,
             }}
           >
             <input
@@ -496,7 +499,7 @@ export default function PaymentPage() {
           </button>
 
           {/* Disclaimer */}
-          <p style={{ fontSize: 12, color: "#6d6e78", margin: "16px 0 24px", textAlign: "center", lineHeight: 1.5 }}>
+          <p style={{ fontSize: 11.5, color: "#6d6e78", margin: "12px 0 14px", textAlign: "center", lineHeight: 1.5 }}>
             By subscribing, you authorize {SITE_NAME} to charge you according to the terms until you cancel.
           </p>
 
@@ -521,12 +524,16 @@ export default function PaymentPage() {
         </div>
       </div>
 
-      {/* Mobile responsive */}
+      {/* Responsive */}
       <style>{`
+        @media (max-width: 1100px) {
+          .payment-left { padding: 28px 28px !important; }
+          .payment-right { padding: 28px 28px !important; }
+        }
         @media (max-width: 880px) {
           .payment-grid { grid-template-columns: 1fr !important; }
-          .payment-left { border-right: none !important; border-bottom: 1px solid #e6e6e6 !important; padding: 32px 24px !important; }
-          .payment-right { padding: 32px 24px !important; }
+          .payment-left { position: static !important; border-right: none !important; border-bottom: 1px solid #e6e6e6 !important; padding: 24px 20px !important; }
+          .payment-right { padding: 24px 20px !important; }
         }
       `}</style>
     </div>

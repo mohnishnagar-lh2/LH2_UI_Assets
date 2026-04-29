@@ -105,60 +105,73 @@
 .gaf-sticky-close:hover{color:#fff;}
 
 /* === MODAL POPUP (Read Without Ads) === */
-.gaf-modal-backdrop{position:fixed;inset:0;z-index:9999999;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;padding:16px;animation:gafFadeIn .2s ease-out;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
-.gaf-modal{width:540px;max-width:100%;max-height:96vh;overflow-y:auto;border-radius:18px;background:#fff;box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative;animation:gafPopIn .25s ease-out;}
+.gaf-modal-backdrop{position:fixed;inset:0;z-index:9999999;background:rgba(0,0,0,.65);display:flex;align-items:center;justify-content:center;padding:12px;animation:gafFadeIn .2s ease-out;font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;}
+.gaf-modal{width:500px;max-width:100%;max-height:calc(100vh - 24px);overflow-y:auto;border-radius:16px;background:#fff;box-shadow:0 30px 80px rgba(0,0,0,.45);position:relative;animation:gafPopIn .25s ease-out;}
 .gaf-modal *{box-sizing:border-box;}
-.gaf-modal-close{position:absolute;top:18px;right:18px;width:36px;height:36px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;z-index:2;transition:background .15s;}
+.gaf-modal-close{position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;border:1px solid rgba(255,255,255,.35);background:transparent;color:#fff;font-size:16px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;z-index:2;transition:background .15s;}
 .gaf-modal-close:hover{background:rgba(255,255,255,.18);}
 
 /* Header (dark) */
-.gaf-modal-header{background:#0a1424;background:radial-gradient(circle at 50% 100%,#15263d 0%,#0a1424 65%);padding:36px 32px 44px;text-align:center;color:#fff;border-radius:18px 18px 0 0;}
-.gaf-modal-logo{width:62px;height:auto;margin:0 auto 6px;display:block;filter:brightness(1.1);}
-.gaf-modal-brand{font-size:13px;font-weight:700;letter-spacing:1.6px;color:#5fc4e0;margin-bottom:26px;}
-.gaf-modal-no-ads{display:flex;justify-content:center;margin-bottom:14px;position:relative;}
-.gaf-modal-no-ads-circle{width:74px;height:74px;border-radius:50%;border:4px solid ${P};display:inline-flex;align-items:center;justify-content:center;font-weight:800;color:${P};font-size:18px;letter-spacing:.5px;position:relative;}
-.gaf-modal-no-ads-circle::before{content:'';position:absolute;width:88px;height:5px;background:${P};transform:rotate(-45deg);border-radius:3px;left:50%;top:50%;margin-left:-44px;margin-top:-2.5px;}
-.gaf-modal-no-ads-circle::after{content:'';position:absolute;left:-18px;right:-18px;top:-12px;bottom:-12px;background:radial-gradient(circle,${P} 1px,transparent 1.5px) 0 0/14px 14px;opacity:0;}
-.gaf-modal-rays{position:absolute;left:50%;top:50%;width:140px;height:140px;transform:translate(-50%,-50%);pointer-events:none;}
-.gaf-modal-rays span{position:absolute;left:50%;top:0;width:2px;height:8px;background:${P};border-radius:2px;transform-origin:1px 70px;}
-.gaf-modal-title{font-size:38px;font-weight:800;line-height:1.05;margin:0 0 14px;font-family:'Merriweather',Georgia,serif;letter-spacing:-.5px;}
+.gaf-modal-header{background:#0a1424;background:radial-gradient(circle at 50% 100%,#15263d 0%,#0a1424 65%);padding:24px 28px 28px;text-align:center;color:#fff;border-radius:16px 16px 0 0;}
+.gaf-modal-logo{width:46px;height:auto;margin:0 auto 4px;display:block;filter:brightness(1.1);}
+.gaf-modal-brand{font-size:11px;font-weight:700;letter-spacing:1.5px;color:#5fc4e0;margin-bottom:16px;}
+.gaf-modal-no-ads{display:flex;justify-content:center;margin-bottom:12px;position:relative;}
+.gaf-modal-no-ads-circle{width:56px;height:56px;border-radius:50%;border:3px solid ${P};display:inline-flex;align-items:center;justify-content:center;font-weight:800;color:${P};font-size:14px;letter-spacing:.4px;position:relative;}
+.gaf-modal-no-ads-circle::before{content:'';position:absolute;width:66px;height:4px;background:${P};transform:rotate(-45deg);border-radius:2px;left:50%;top:50%;margin-left:-33px;margin-top:-2px;}
+.gaf-modal-title{font-size:30px;font-weight:800;line-height:1.05;margin:0 0 8px;font-family:'Merriweather',Georgia,serif;letter-spacing:-.4px;}
 .gaf-modal-title-accent{display:block;color:${P};}
-.gaf-modal-subtitle{font-size:14px;color:rgba(255,255,255,.78);margin:0;font-weight:400;}
+.gaf-modal-subtitle{font-size:13px;color:rgba(255,255,255,.78);margin:0;font-weight:400;}
 
 /* Body (white) */
-.gaf-modal-body{padding:30px 32px 24px;background:#fff;border-radius:0 0 18px 18px;}
-.gaf-modal-price{display:flex;align-items:baseline;justify-content:center;gap:10px;margin-bottom:14px;}
-.gaf-modal-price-strike{font-size:30px;color:#bdbdbd;text-decoration:line-through;font-weight:700;}
-.gaf-modal-price-now{font-size:60px;font-weight:800;color:#1a1a1a;letter-spacing:-1.5px;line-height:1;}
-.gaf-modal-price-period{font-size:18px;color:#6d6e78;font-weight:400;}
-.gaf-modal-coffee{display:inline-flex;align-items:center;gap:8px;background:${PL};color:${P};padding:7px 18px 7px 14px;border-radius:999px;font-size:14px;font-weight:600;margin:0 auto;}
-.gaf-modal-coffee-wrap{display:flex;justify-content:center;margin-bottom:24px;}
-.gaf-modal-coffee-icon{width:22px;height:22px;border-radius:50%;background:#ffe1d1;display:inline-flex;align-items:center;justify-content:center;font-size:12px;}
-.gaf-modal-divider{border:none;border-top:1px solid #f0f0f0;margin:0 0 22px;}
-.gaf-modal-features{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:22px;}
+.gaf-modal-body{padding:20px 28px 18px;background:#fff;border-radius:0 0 16px 16px;}
+.gaf-modal-price{display:flex;align-items:baseline;justify-content:center;gap:8px;margin-bottom:8px;}
+.gaf-modal-price-strike{font-size:24px;color:#bdbdbd;text-decoration:line-through;font-weight:700;}
+.gaf-modal-price-now{font-size:46px;font-weight:800;color:#1a1a1a;letter-spacing:-1.2px;line-height:1;}
+.gaf-modal-price-period{font-size:15px;color:#6d6e78;font-weight:400;}
+.gaf-modal-coffee{display:inline-flex;align-items:center;gap:7px;background:${PL};color:${P};padding:5px 14px 5px 10px;border-radius:999px;font-size:13px;font-weight:600;margin:0 auto;}
+.gaf-modal-coffee-wrap{display:flex;justify-content:center;margin-bottom:14px;}
+.gaf-modal-coffee-icon{width:18px;height:18px;border-radius:50%;background:#ffe1d1;display:inline-flex;align-items:center;justify-content:center;font-size:10px;}
+.gaf-modal-divider{border:none;border-top:1px solid #f0f0f0;margin:0 0 14px;}
+.gaf-modal-features{display:grid;grid-template-columns:repeat(3,1fr);gap:6px;margin-bottom:14px;}
 .gaf-modal-feature{text-align:center;padding:0 4px;}
-.gaf-modal-feature-icon{width:54px;height:54px;border-radius:50%;background:${PL};margin:0 auto 12px;display:flex;align-items:center;justify-content:center;color:${P};}
-.gaf-modal-feature-icon svg{width:22px;height:22px;}
-.gaf-modal-feature-text{font-size:13px;font-weight:500;color:#1a1a1a;line-height:1.4;}
-.gaf-modal-cta{width:100%;background:${P};color:#fff;border:none;border-radius:14px;padding:18px 22px;font-size:18px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-family:inherit;transition:background .15s,transform .1s;box-shadow:0 6px 18px ${PT};margin-bottom:14px;}
+.gaf-modal-feature-icon{width:42px;height:42px;border-radius:50%;background:${PL};margin:0 auto 8px;display:flex;align-items:center;justify-content:center;color:${P};}
+.gaf-modal-feature-icon svg{width:18px;height:18px;}
+.gaf-modal-feature-text{font-size:12px;font-weight:500;color:#1a1a1a;line-height:1.35;}
+.gaf-modal-cta{width:100%;background:${P};color:#fff;border:none;border-radius:12px;padding:14px 20px;font-size:16px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:space-between;font-family:inherit;transition:background .15s,transform .1s;box-shadow:0 4px 14px ${PT};margin-bottom:10px;}
 .gaf-modal-cta:hover{background:${PD};}
 .gaf-modal-cta:active{transform:translateY(1px);}
-.gaf-modal-cta-text{flex:1;text-align:center;margin-left:24px;}
-.gaf-modal-cta-arrow{font-size:20px;line-height:1;font-weight:600;}
-.gaf-modal-meta{text-align:center;font-size:13px;color:#6d6e78;margin:0 0 12px;display:flex;align-items:center;justify-content:center;gap:8px;}
+.gaf-modal-cta-text{flex:1;text-align:center;margin-left:20px;}
+.gaf-modal-cta-arrow{font-size:18px;line-height:1;font-weight:600;}
+.gaf-modal-meta{text-align:center;font-size:12px;color:#6d6e78;margin:0 0 6px;display:flex;align-items:center;justify-content:center;gap:8px;}
 .gaf-modal-meta-dot{color:#cfcfcf;}
-.gaf-modal-no-thanks{display:block;margin:0 auto;background:none;border:none;color:#aaa;font-size:13px;text-decoration:underline;cursor:pointer;padding:4px 8px;font-family:inherit;}
+.gaf-modal-no-thanks{display:block;margin:0 auto;background:none;border:none;color:#aaa;font-size:12px;text-decoration:underline;cursor:pointer;padding:2px 8px;font-family:inherit;}
 .gaf-modal-no-thanks:hover{color:#6d6e78;}
 
+@media(max-height:680px){
+  .gaf-modal-header{padding:18px 28px 22px;}
+  .gaf-modal-logo{width:38px;margin-bottom:2px;}
+  .gaf-modal-brand{margin-bottom:10px;font-size:10px;}
+  .gaf-modal-no-ads-circle{width:46px;height:46px;font-size:12px;border-width:2.5px;}
+  .gaf-modal-no-ads-circle::before{width:54px;height:3px;margin-left:-27px;margin-top:-1.5px;}
+  .gaf-modal-title{font-size:24px;margin-bottom:6px;}
+  .gaf-modal-subtitle{font-size:12px;}
+  .gaf-modal-body{padding:14px 28px 14px;}
+  .gaf-modal-price-now{font-size:38px;}
+  .gaf-modal-price-strike{font-size:20px;}
+  .gaf-modal-feature-icon{width:34px;height:34px;margin-bottom:5px;}
+  .gaf-modal-feature-icon svg{width:14px;height:14px;}
+  .gaf-modal-feature-text{font-size:11px;}
+  .gaf-modal-cta{padding:11px 18px;font-size:15px;}
+}
 @media(max-width:540px){
-  .gaf-modal-header{padding:28px 22px 32px;}
-  .gaf-modal-title{font-size:30px;}
-  .gaf-modal-body{padding:24px 22px 22px;}
-  .gaf-modal-price-now{font-size:48px;}
-  .gaf-modal-price-strike{font-size:24px;}
+  .gaf-modal-header{padding:22px 20px 24px;}
+  .gaf-modal-title{font-size:24px;}
+  .gaf-modal-body{padding:18px 20px 16px;}
+  .gaf-modal-price-now{font-size:38px;}
+  .gaf-modal-price-strike{font-size:20px;}
   .gaf-modal-features{gap:4px;}
-  .gaf-modal-feature-text{font-size:11.5px;}
-  .gaf-modal-feature-icon{width:46px;height:46px;}
+  .gaf-modal-feature-text{font-size:11px;}
+  .gaf-modal-feature-icon{width:38px;height:38px;}
 }
 @media(max-width:480px){
   .gaf-sticky{flex-wrap:wrap;gap:8px;padding:10px 16px;font-size:12px;}
@@ -200,16 +213,50 @@
 
   function getSupportUrl() {
     var path = window.location.pathname;
-    if (path.includes('/pages/')) return '../go-ad-free/';
-    return 'go-ad-free/';
+    var base = path.includes('/pages/') ? '../go-ad-free/' : 'go-ad-free/';
+    // Preserve flow param across navigation
+    if (FLOW) base += '?flow=' + FLOW;
+    return base;
   }
+
+  // ===== FLOW SELECTION =====
+  // Two demo flows, controlled by ?flow= query param:
+  //   ?flow=landing -> all CTAs go to the go-ad-free landing page
+  //   ?flow=popup   -> all CTAs open the modal popup
+  //   (no param)    -> mixed: navbar/sticky -> landing, ad pills -> popup
+  var FLOW = (function () {
+    try { return new URLSearchParams(window.location.search).get('flow'); }
+    catch (e) { return null; }
+  })();
 
   function makeAdBadge() {
     var badge = document.createElement("div");
     badge.className = "gaf-above-badge";
     badge.innerHTML = '<span class="gaf-cta-pill">Go Ad-Free</span>';
-    badge.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); openPopup(); });
+    badge.addEventListener("click", function (e) {
+      e.preventDefault(); e.stopPropagation();
+      if (FLOW === 'landing') {
+        window.location.href = getSupportUrl();
+      } else {
+        openPopup();
+      }
+    });
     return badge;
+  }
+
+  // When flow=popup, intercept clicks on existing <a href="...go-ad-free/"> CTAs
+  // (navbar Go Ad-Free button, sticky-bottom button) and open the popup instead.
+  if (FLOW === 'popup') {
+    document.addEventListener('click', function (e) {
+      // Don't intercept clicks that happen on the landing page itself
+      if (window.location.pathname.indexOf('/go-ad-free/') !== -1) return;
+      var link = e.target && e.target.closest && e.target.closest('a');
+      if (!link) return;
+      var href = link.getAttribute('href') || '';
+      if (!/(^|\/)go-ad-free\/?(\?|#|$)/.test(href)) return;
+      e.preventDefault();
+      openPopup();
+    }, true);
   }
 
   // Sticky bottom banner removed
