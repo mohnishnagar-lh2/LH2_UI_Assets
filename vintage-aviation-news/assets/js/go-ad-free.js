@@ -510,6 +510,16 @@
 
   document.addEventListener("keydown", function (e) { if (e.key === "Escape") closePopup(); });
 
+  // ===== AUTO-OPEN =====
+  // Allow ?popup=open (or ?popup=1) to auto-open the popup on page load.
+  // Useful for sharing a "popup design" preview URL.
+  var POPUP_AUTO = (function () {
+    try {
+      var p = new URLSearchParams(window.location.search).get('popup');
+      return p === 'open' || p === '1';
+    } catch (e) { return false; }
+  })();
+
   // ===== INIT =====
   function init() {
     setTimeout(function () {
@@ -524,6 +534,8 @@
         }).observe(document.body, { childList: true, subtree: true });
       }
     }, CFG.delay);
+
+    if (POPUP_AUTO) setTimeout(openPopup, 600);
   }
 
   if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init);
