@@ -335,7 +335,7 @@
   function makeAdBadge() {
     var badge = document.createElement("div");
     badge.className = "gaf-above-badge";
-    badge.innerHTML = '<span class="gaf-cta-pill">Go Ad-Free</span>';
+    badge.innerHTML = '<span class="gaf-cta-pill">Remove Ads</span>';
     badge.addEventListener("click", function (e) {
       e.preventDefault(); e.stopPropagation();
       if (FLOW === 'landing') {
