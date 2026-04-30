@@ -324,12 +324,12 @@
   }
 
   // ===== FLOW SELECTION =====
-  // Default behavior: all "Go Ad-Free" CTAs open the popup modal.
-  // Explicit opt-out via ?flow=landing makes them navigate to the
-  // go-ad-free/ landing page instead (useful for comparing flows).
+  // Default behavior: all "Subscribe" / "Remove Ads" CTAs navigate to
+  // the go-ad-free/ landing page. Opt-in via ?flow=popup to open the
+  // popup modal directly instead.
   var FLOW = (function () {
-    try { return new URLSearchParams(window.location.search).get('flow') || 'popup'; }
-    catch (e) { return 'popup'; }
+    try { return new URLSearchParams(window.location.search).get('flow') || 'landing'; }
+    catch (e) { return 'landing'; }
   })();
 
   function makeAdBadge() {
