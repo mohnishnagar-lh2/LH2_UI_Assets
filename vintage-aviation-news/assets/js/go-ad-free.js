@@ -126,46 +126,66 @@
 }
 .gaf-modal *{box-sizing:border-box;}
 .gaf-modal .close{
-  position:absolute;top:16px;right:16px;width:32px;height:32px;border-radius:50%;
-  border:1px solid var(--gaf-rule);background:#fff;color:var(--gaf-navy);
-  display:grid;place-items:center;cursor:pointer;z-index:5;padding:0;
+  position:absolute;top:14px;right:14px;width:32px;height:32px;border-radius:50%;
+  border:1px solid rgba(255,255,255,0.35);background:rgba(20,32,46,0.45);
+  backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);
+  color:#fff;display:grid;place-items:center;cursor:pointer;z-index:6;padding:0;
   transition:all .15s ease;
 }
-.gaf-modal .close:hover{background:#fff;color:var(--gaf-navy-deep);border-color:var(--gaf-cream-3);}
+.gaf-modal .close:hover{background:rgba(20,32,46,0.7);border-color:rgba(255,255,255,0.6);}
 .gaf-modal .close svg{width:12px;height:12px;}
 
-/* HERO */
-.gaf-modal .hero{
-  background:radial-gradient(120% 80% at 50% 0%,#f7eedd 0%,var(--gaf-cream) 60%,var(--gaf-cream-2) 100%);
-  padding:18px 32px 20px;text-align:center;position:relative;
+/* PHOTO BANNER */
+.gaf-modal .photo-banner{position:relative;height:180px;background-size:cover;background-position:center 42%;overflow:visible;}
+.gaf-modal .brand-chip{
+  position:absolute;top:14px;left:16px;
+  display:inline-flex;align-items:center;gap:8px;
+  padding:5px 10px 5px 6px;
+  background:rgba(255,255,255,0.92);border-radius:999px;
+  box-shadow:0 2px 8px rgba(0,0,0,0.18);
+  backdrop-filter:blur(4px);
 }
-.gaf-modal .hero::after{
-  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;
-  background:linear-gradient(90deg,transparent,var(--gaf-cream-3) 30%,var(--gaf-cream-3) 70%,transparent);
+.gaf-modal .brand-chip img{width:22px;height:22px;object-fit:contain;}
+.gaf-modal .brand-chip span{
+  font-family:'Inter',sans-serif;font-size:9.5px;font-weight:700;
+  letter-spacing:0.18em;color:var(--gaf-navy);text-transform:uppercase;
 }
-.gaf-modal .hero>*{position:relative;}
-.gaf-modal .brand{display:flex;flex-direction:column;align-items:center;gap:4px;margin-bottom:6px;}
-.gaf-modal .brand img{width:54px;height:54px;object-fit:contain;image-rendering:-webkit-optimize-contrast;image-rendering:crisp-edges;}
-.gaf-modal .brand-name{
-  font-family:'Inter',sans-serif;font-size:10.5px;font-weight:700;
-  letter-spacing:0.22em;color:var(--gaf-navy);text-transform:uppercase;margin:0;
+.gaf-modal .photo-fade{
+  position:absolute;left:0;right:0;bottom:0;height:50px;
+  background:linear-gradient(180deg,transparent,var(--gaf-paper));
+  pointer-events:none;
 }
-.gaf-modal .brand-rule{width:28px;height:1px;background:var(--gaf-cream-3);margin-top:0;}
 
-.gaf-modal .stamp-wrap{display:flex;justify-content:center;margin:2px 0 6px;}
-.gaf-modal .icon-noads{width:50px;height:50px;transform:rotate(-6deg);display:block;animation:gafStampIn .55s cubic-bezier(.2,.9,.3,1) .15s both;}
+/* No-Ads disc badge — solid red, half on photo / half on cream */
+.gaf-modal .noads-badge{
+  position:absolute;left:50%;bottom:-32px;
+  transform:translateX(-50%) rotate(-6deg);
+  width:84px;height:84px;border-radius:50%;
+  background:linear-gradient(180deg,var(--gaf-red) 0%,var(--gaf-red-deep) 100%);
+  box-shadow:
+    0 0 0 4px var(--gaf-paper),
+    0 0 0 5px rgba(168,38,45,0.25),
+    0 10px 24px -6px rgba(168,38,45,0.55),
+    inset 0 1px 0 rgba(255,255,255,0.18),
+    inset 0 -2px 0 rgba(0,0,0,0.18);
+  display:grid;place-items:center;z-index:3;
+  animation:gafStampIn .55s cubic-bezier(.2,.9,.3,1) .15s both;
+}
+.gaf-modal .noads-badge svg{width:100%;height:100%;display:block;}
 
+/* HERO content (cream) */
+.gaf-modal .hero{position:relative;padding:48px 32px 24px;text-align:center;background:var(--gaf-paper);}
 .gaf-modal .headline{
   font-family:'Playfair Display',Georgia,serif;font-weight:600;
-  font-size:28px;line-height:1.1;letter-spacing:-0.015em;
-  margin:0 0 6px;color:var(--gaf-navy-deep);text-wrap:balance;
+  font-size:30px;line-height:1.1;letter-spacing:-0.015em;
+  margin:0 0 8px;color:var(--gaf-navy-deep);text-wrap:balance;
 }
 .gaf-modal .headline .accent{
   font-family:'Playfair Display',Georgia,serif;color:var(--gaf-red);
-  font-style:italic;font-weight:700;font-size:32px;line-height:1.05;
+  font-style:italic;font-weight:700;font-size:34px;line-height:1.05;
   display:inline-block;margin-top:2px;letter-spacing:-0.015em;
 }
-.gaf-modal .sub{margin:0;font-size:13.5px;color:var(--gaf-ink-2);line-height:1.5;}
+.gaf-modal .sub{margin:0;font-size:14px;color:var(--gaf-ink-2);line-height:1.5;}
 
 /* PRICE */
 .gaf-modal .price-block{padding:18px 32px 16px;text-align:center;background:var(--gaf-paper);}
@@ -242,16 +262,14 @@
 .gaf-modal .no-thanks:hover{color:var(--gaf-navy);text-decoration-color:var(--gaf-ink-3);}
 
 @keyframes gafPop{from{opacity:0;transform:translateY(8px) scale(0.98);}to{opacity:1;transform:translateY(0) scale(1);}}
-@keyframes gafStampIn{0%{opacity:0;transform:rotate(-22deg) scale(1.4);}60%{opacity:1;transform:rotate(-3deg) scale(0.95);}100%{opacity:1;transform:rotate(-6deg) scale(1);}}
+@keyframes gafStampIn{0%{opacity:0;transform:translateX(-50%) rotate(-22deg) scale(1.4);}60%{opacity:1;transform:translateX(-50%) rotate(-3deg) scale(0.95);}100%{opacity:1;transform:translateX(-50%) rotate(-6deg) scale(1);}}
 
 /* Short viewports — common laptop heights of 700–760px */
 @media(max-height:780px){
   .gaf-modal-backdrop{padding:12px;}
-  .gaf-modal .hero{padding:14px 32px 16px;}
-  .gaf-modal .brand img{width:44px;height:44px;}
-  .gaf-modal .brand-name{font-size:9.5px;}
-  .gaf-modal .icon-noads{width:42px;height:42px;}
-  .gaf-modal .stamp-wrap{margin:0 0 4px;}
+  .gaf-modal .photo-banner{height:130px;}
+  .gaf-modal .noads-badge{width:68px;height:68px;bottom:-26px;}
+  .gaf-modal .hero{padding:36px 32px 16px;}
   .gaf-modal .headline{font-size:24px;margin-bottom:4px;}
   .gaf-modal .headline .accent{font-size:28px;}
   .gaf-modal .sub{font-size:12.5px;}
@@ -324,12 +342,12 @@
   }
 
   // ===== FLOW SELECTION =====
-  // Default behavior: all "Subscribe" / "Remove Ads" CTAs navigate to
-  // the go-ad-free/ landing page. Opt-in via ?flow=popup to open the
-  // popup modal directly instead.
+  // Default behavior: every "Subscribe" / "Remove Ads" CTA opens the
+  // popup modal. Subscribe Now in the popup → payment page.
+  // Opt-out via ?flow=landing to navigate directly to the landing page.
   var FLOW = (function () {
-    try { return new URLSearchParams(window.location.search).get('flow') || 'landing'; }
-    catch (e) { return 'landing'; }
+    try { return new URLSearchParams(window.location.search).get('flow') || 'popup'; }
+    catch (e) { return 'popup'; }
   })();
 
   function makeAdBadge() {
@@ -367,11 +385,16 @@
   function injectStickyBanner() {}
 
   // ===== POPUP =====
-  // Logo path resolves relative to current page depth (sub-pages need ../).
+  // Asset paths resolve relative to current page depth (sub-pages need ../).
   function getLogoUrl() {
     var path = window.location.pathname;
     if (path.includes('/pages/')) return '../assets/van-logo.png';
     return 'assets/van-logo.png';
+  }
+  function getPhotoUrl() {
+    var path = window.location.pathname;
+    if (path.includes('/pages/')) return '../assets/spitfire-sky.jpg';
+    return 'assets/spitfire-sky.jpg';
   }
 
   // Inject Google Fonts for the popup typography (Playfair Display + Alfa Slab One).
@@ -392,6 +415,7 @@
     ensurePopupFonts();
     var paymentUrl = getSupportUrl() + '#/payment';
     var logoUrl = getLogoUrl();
+    var photoUrl = getPhotoUrl();
 
     backdrop = document.createElement("div");
     backdrop.className = "gaf-modal-backdrop";
@@ -403,23 +427,22 @@
           '</svg>' +
         '</button>' +
 
-        '<section class="hero">' +
-          '<div class="brand">' +
-            '<img src="' + logoUrl + '" alt="' + SITE_NAME + '" onerror="this.style.display=\'none\'">' +
-            '<p class="brand-name">Vintage Aviation News</p>' +
-            '<span class="brand-rule" aria-hidden="true"></span>' +
-          '</div>' +
-
-          // Vintage ink-stamp style "ADS" mark
-          '<div class="stamp-wrap">' +
-            '<svg class="icon-noads" viewBox="0 0 80 80" fill="none" aria-hidden="true">' +
-              '<circle cx="40" cy="40" r="32" stroke="#c8323a" stroke-width="2.6" fill="none"/>' +
-              '<circle cx="40" cy="40" r="27" stroke="#c8323a" stroke-width="1" fill="none" opacity="0.55"/>' +
-              '<text x="40" y="46" text-anchor="middle" font-family="\'Alfa Slab One\', serif" font-size="16" letter-spacing="2" fill="#c8323a">ADS</text>' +
-              '<line x1="17" y1="17" x2="63" y2="63" stroke="#c8323a" stroke-width="2.8" stroke-linecap="round"/>' +
+        '<div class="photo-banner" aria-hidden="true" style="background-image:url(\'' + photoUrl + '\');">' +
+          '<span class="brand-chip">' +
+            '<img src="' + logoUrl + '" alt="" onerror="this.style.display=\'none\'">' +
+            '<span>Vintage Aviation News</span>' +
+          '</span>' +
+          '<div class="photo-fade"></div>' +
+          '<div class="noads-badge" aria-hidden="true">' +
+            '<svg viewBox="0 0 84 84" fill="none">' +
+              '<circle cx="42" cy="42" r="30" stroke="rgba(255,255,255,0.85)" stroke-width="1.5" fill="none"/>' +
+              '<text x="42" y="48" text-anchor="middle" font-family="\'Alfa Slab One\', serif" font-size="17" letter-spacing="2" fill="#ffffff">ADS</text>' +
+              '<line x1="20" y1="20" x2="64" y2="64" stroke="#ffffff" stroke-width="3" stroke-linecap="round"/>' +
             '</svg>' +
           '</div>' +
+        '</div>' +
 
+        '<section class="hero">' +
           '<h1 id="gafModalTitle" class="headline">' +
             'Read Vintage Aviation' +
             '<br/>' +
