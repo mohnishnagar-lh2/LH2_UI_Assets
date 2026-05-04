@@ -3,17 +3,253 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Subscribe - Vintage Aviation News</title>
+  <title>How to Subscribe — Vintage Aviation News</title>
+  <meta name="description" content="Subscribe to Vintage Aviation News and Warbird Radio. Three subscription bundles: All-Access Membership, Podcast, and YouTube Video.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;0,9..144,800;1,9..144,400&family=Karla:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="../assets/css/style.css">
   <link rel="stylesheet" href="../assets/css/auth-styles.css">
+  <style>
+    /* ─── Subscribe page (vsub-*) — scoped under .vsub so the existing site header/footer aren't affected ─── */
+    .vsub {
+      --vsub-bg: #F4EFE6;
+      --vsub-bg-alt: #EBE3D3;
+      --vsub-paper: #FBF8F1;
+      --vsub-ink: #1B2A41;
+      --vsub-ink-soft: #3C4A60;
+      --vsub-ink-mute: #6B7385;
+      --vsub-rule: #2A3955;
+      --vsub-brass: #B6862C;
+      --vsub-brass-deep: #8E6818;
+      --vsub-red: #A7414B;
+      --vsub-red-deep: #7A2A33;
+      --vsub-hairline: #C9BFAB;
+      background: var(--vsub-bg);
+      color: var(--vsub-ink);
+      font-family: 'Karla', system-ui, sans-serif;
+      font-size: 17px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(ellipse at top left, rgba(182,134,44,0.04), transparent 50%),
+        radial-gradient(ellipse at bottom right, rgba(167,65,75,0.03), transparent 50%);
+    }
+    .vsub *, .vsub *::before, .vsub *::after { box-sizing: border-box; }
+
+    /* HERO */
+    .vsub-hero { max-width: 920px; margin: 0 auto; padding: 64px 32px 32px; text-align: center; }
+    .vsub-hero-eyebrow {
+      display: inline-block; padding: 6px 14px;
+      border: 1px solid var(--vsub-brass); color: var(--vsub-brass-deep);
+      font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+      font-weight: 600; margin-bottom: 24px;
+    }
+    .vsub-hero h1 {
+      font-family: 'Fraunces', serif; font-weight: 700;
+      font-size: clamp(36px, 5vw, 56px); line-height: 1.05;
+      letter-spacing: -0.02em; color: var(--vsub-ink); margin-bottom: 24px;
+      font-variation-settings: "opsz" 144, "SOFT" 30;
+    }
+    .vsub-hero h1 em { font-style: italic; color: var(--vsub-red-deep); font-weight: 600; }
+    .vsub-hero p { font-size: 19px; line-height: 1.65; color: var(--vsub-ink-soft); max-width: 720px; margin: 0 auto; }
+
+    /* DIVIDER */
+    .vsub-divider { max-width: 920px; margin: 48px auto 32px; padding: 0 32px; display: flex; align-items: center; gap: 16px; }
+    .vsub-divider::before, .vsub-divider::after { content: ""; flex: 1; height: 1px; background: var(--vsub-hairline); }
+    .vsub-divider-mark { font-family: 'Fraunces', serif; font-size: 16px; color: var(--vsub-brass-deep); letter-spacing: 0.3em; }
+
+    /* INTRO LINE */
+    .vsub-intro {
+      text-align: center; max-width: 720px; margin: 0 auto 56px; padding: 0 32px;
+      font-family: 'Fraunces', serif; font-style: italic; font-size: 18px; color: var(--vsub-ink-soft);
+    }
+
+    /* TIERS */
+    .vsub-tiers {
+      max-width: 1100px; margin: 0 auto; padding: 0 32px 32px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
+    }
+    @media (max-width: 900px) { .vsub-tiers { grid-template-columns: 1fr; } }
+    .vsub-tier {
+      background: var(--vsub-paper); border: 1px solid var(--vsub-hairline);
+      padding: 36px 32px; position: relative;
+      display: flex; flex-direction: column;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .vsub-tier:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(27,42,65,0.08); }
+    .vsub-tier-featured {
+      background: var(--vsub-ink); color: var(--vsub-paper);
+      border-color: var(--vsub-ink); transform: translateY(-8px);
+    }
+    .vsub-tier-featured:hover { transform: translateY(-12px); }
+
+    .vsub-tier-flag {
+      position: absolute; top: -12px; left: 50%; transform: translateX(-50%);
+      background: var(--vsub-brass); color: var(--vsub-paper);
+      padding: 4px 14px; font-size: 10px; letter-spacing: 0.25em;
+      text-transform: uppercase; font-weight: 700;
+    }
+
+    .vsub-tier-num {
+      font-family: 'Fraunces', serif; font-size: 13px; font-style: italic;
+      color: var(--vsub-brass); margin-bottom: 4px; letter-spacing: 0.1em;
+    }
+    .vsub-tier-name {
+      font-family: 'Fraunces', serif; font-weight: 700;
+      font-size: 24px; line-height: 1.15; margin-bottom: 6px; letter-spacing: -0.01em;
+    }
+    .vsub-tier-sub { font-size: 14px; color: var(--vsub-ink-mute); margin-bottom: 24px; font-style: italic; }
+    .vsub-tier-featured .vsub-tier-sub { color: rgba(251,248,241,0.6); }
+
+    .vsub-tier-price { margin-bottom: 24px; padding-bottom: 20px; border-bottom: 1px dashed var(--vsub-hairline); }
+    .vsub-tier-featured .vsub-tier-price { border-bottom-color: rgba(201,191,171,0.25); }
+    .vsub-tier-price-main { font-family: 'Fraunces', serif; font-size: 32px; font-weight: 700; line-height: 1; }
+    .vsub-tier-price-main span {
+      font-size: 14px; font-weight: 400; color: var(--vsub-ink-mute); font-family: 'Karla', sans-serif;
+    }
+    .vsub-tier-featured .vsub-tier-price-main span { color: rgba(251,248,241,0.6); }
+    .vsub-tier-price-alt { margin-top: 4px; font-size: 14px; color: var(--vsub-ink-mute); }
+    .vsub-tier-featured .vsub-tier-price-alt { color: rgba(251,248,241,0.7); }
+
+    .vsub-tier-includes {
+      font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 700; color: var(--vsub-brass-deep); margin-bottom: 14px;
+    }
+    .vsub-tier-featured .vsub-tier-includes { color: var(--vsub-brass); }
+
+    .vsub-tier-list { list-style: none; margin: 0 0 28px; padding: 0; flex-grow: 1; }
+    .vsub-tier-list li {
+      padding-left: 22px; position: relative; margin-bottom: 10px;
+      font-size: 15px; line-height: 1.5;
+    }
+    .vsub-tier-list li::before {
+      content: "✦"; position: absolute; left: 0; top: 0;
+      color: var(--vsub-brass); font-size: 11px;
+    }
+
+    .vsub-tier-cta {
+      display: block; text-align: center;
+      background: var(--vsub-red-deep); color: var(--vsub-paper);
+      padding: 14px 24px; text-decoration: none;
+      font-size: 13px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 700;
+      border: 1px solid var(--vsub-red-deep);
+      transition: background 0.2s, border-color 0.2s;
+      cursor: pointer; font-family: inherit;
+    }
+    .vsub-tier-cta:hover { background: var(--vsub-ink); border-color: var(--vsub-ink); color: var(--vsub-paper); text-decoration: none; }
+    .vsub-tier-featured .vsub-tier-cta { background: var(--vsub-brass); border-color: var(--vsub-brass); color: var(--vsub-ink); }
+    .vsub-tier-featured .vsub-tier-cta:hover { background: var(--vsub-paper); border-color: var(--vsub-paper); color: var(--vsub-ink); }
+
+    .vsub-tier-platforms { margin-top: 14px; text-align: center; font-size: 12px; color: var(--vsub-ink-mute); }
+    .vsub-tier-platforms a { color: var(--vsub-red-deep); text-decoration: none; font-weight: 600; }
+    .vsub-tier-platforms a:hover { text-decoration: underline; }
+    .vsub-tier-featured .vsub-tier-platforms { color: rgba(251,248,241,0.6); }
+    .vsub-tier-featured .vsub-tier-platforms a { color: var(--vsub-brass); }
+
+    /* PRICING NOTE */
+    .vsub-note { text-align: center; margin: 32px auto; padding: 0 32px; font-size: 13px; color: var(--vsub-ink-mute); font-style: italic; }
+
+    /* WHY SECTION */
+    .vsub-why {
+      background: var(--vsub-bg-alt);
+      padding: 72px 32px; margin-top: 32px;
+      border-top: 1px solid var(--vsub-hairline);
+      border-bottom: 1px solid var(--vsub-hairline);
+    }
+    .vsub-why-inner { max-width: 1100px; margin: 0 auto; }
+    .vsub-why-head { text-align: center; margin-bottom: 56px; }
+    .vsub-why-eyebrow {
+      font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--vsub-brass-deep); font-weight: 700; margin-bottom: 12px;
+    }
+    .vsub-why h2 {
+      font-family: 'Fraunces', serif; font-weight: 700;
+      font-size: clamp(28px, 4vw, 40px); letter-spacing: -0.01em; color: var(--vsub-ink);
+    }
+    .vsub-why h2 em { font-style: italic; color: var(--vsub-red-deep); }
+
+    .vsub-why-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+    @media (max-width: 900px) { .vsub-why-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 540px) { .vsub-why-grid { grid-template-columns: 1fr; } }
+
+    .vsub-why-num {
+      font-family: 'Fraunces', serif; font-style: italic; font-weight: 600;
+      font-size: 36px; color: var(--vsub-brass); line-height: 1; margin-bottom: 12px;
+    }
+    .vsub-why-title { font-family: 'Fraunces', serif; font-weight: 700; font-size: 19px; margin-bottom: 8px; color: var(--vsub-ink); }
+    .vsub-why-text { font-size: 15px; line-height: 1.55; color: var(--vsub-ink-soft); }
+
+    /* ARCHIVE STAT BLOCK */
+    .vsub-archive { background: var(--vsub-ink); color: var(--vsub-paper); padding: 64px 32px; text-align: center; }
+    .vsub-archive-inner { max-width: 1100px; margin: 0 auto; }
+    .vsub-archive-eyebrow {
+      font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase;
+      color: var(--vsub-brass); font-weight: 700; margin-bottom: 12px;
+    }
+    .vsub-archive h2 {
+      font-family: 'Fraunces', serif; font-weight: 700;
+      font-size: clamp(26px, 3.5vw, 36px); margin-bottom: 12px; letter-spacing: -0.01em;
+    }
+    .vsub-archive h2 em { font-style: italic; color: var(--vsub-brass); }
+    .vsub-archive-lede {
+      max-width: 640px; margin: 0 auto 48px; font-size: 16px;
+      color: rgba(251,248,241,0.75); line-height: 1.6;
+    }
+    .vsub-archive-stats {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px;
+      border-top: 1px solid rgba(201,191,171,0.2);
+      border-bottom: 1px solid rgba(201,191,171,0.2);
+      padding: 32px 0;
+    }
+    @media (max-width: 740px) { .vsub-archive-stats { grid-template-columns: repeat(2, 1fr); } }
+    .vsub-stat-num { font-family: 'Fraunces', serif; font-weight: 700; font-size: 44px; line-height: 1; color: var(--vsub-brass); }
+    .vsub-stat-label { margin-top: 8px; font-size: 12px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(251,248,241,0.7); }
+    .vsub-archive-shows { margin-top: 32px; font-size: 14px; color: rgba(251,248,241,0.65); line-height: 1.8; }
+    .vsub-archive-shows strong { color: var(--vsub-paper); }
+
+    /* FEATURED EMBED */
+    .vsub-featured { max-width: 920px; margin: 64px auto; padding: 0 32px; }
+    .vsub-featured-eyebrow {
+      text-align: center; font-size: 11px; letter-spacing: 0.4em;
+      text-transform: uppercase; color: var(--vsub-brass-deep);
+      font-weight: 700; margin-bottom: 12px;
+    }
+    .vsub-featured h3 { text-align: center; font-family: 'Fraunces', serif; font-weight: 700; font-size: 28px; margin-bottom: 6px; color: var(--vsub-ink); }
+    .vsub-featured h3 em { font-style: italic; color: var(--vsub-red-deep); }
+    .vsub-featured-sub { text-align: center; font-size: 15px; color: var(--vsub-ink-mute); margin-bottom: 28px; font-style: italic; }
+    .vsub-video-frame {
+      aspect-ratio: 16 / 9;
+      background:
+        linear-gradient(135deg, rgba(27,42,65,0.9), rgba(27,42,65,0.7)),
+        repeating-linear-gradient(45deg, transparent 0 12px, rgba(255,255,255,0.02) 12px 14px);
+      background-color: var(--vsub-ink);
+      border: 1px solid var(--vsub-rule);
+      display: flex; align-items: center; justify-content: center; flex-direction: column;
+      color: var(--vsub-paper); text-align: center;
+      padding: 48px 32px; position: relative; overflow: hidden;
+    }
+    .vsub-video-frame::before { content: ""; position: absolute; inset: 12px; border: 1px solid rgba(182,134,44,0.4); pointer-events: none; }
+    .vsub-play-btn {
+      width: 78px; height: 78px; border-radius: 50%;
+      background: var(--vsub-brass);
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      cursor: pointer; transition: transform 0.2s; border: none;
+    }
+    .vsub-play-btn:hover { transform: scale(1.08); }
+    .vsub-play-btn::after {
+      content: ""; border-style: solid; border-width: 14px 0 14px 22px;
+      border-color: transparent transparent transparent var(--vsub-ink); margin-left: 6px;
+    }
+    .vsub-video-title { font-family: 'Fraunces', serif; font-size: 22px; font-weight: 700; margin-bottom: 6px; letter-spacing: -0.01em; }
+    .vsub-video-meta { font-size: 13px; color: rgba(251,248,241,0.7); letter-spacing: 0.1em; text-transform: uppercase; }
+  </style>
 </head>
 <body>
 
-  <!-- HEADER -->
+  <!-- HEADER (existing VAN site header) -->
   <header class="site-header">
     <div class="container header-top">
       <div class="social-icons">
@@ -35,148 +271,159 @@
         <li><a href="articles.html">Articles</a></li>
         <li><a href="museum-news.html">Aviation Museum News</a></li>
         <li><a href="#">Sponsors <span class="arrow">&#9662;</span></a></li>
-        <li><a href="../go-ad-free/" style="background:#bb361b;color:#fff;padding:6px 16px;border-radius:4px;font-weight:700;font-size:13px">Subscribe</a></li>
+        <li><a href="subscribe.html" style="background:#bb361b;color:#fff;padding:6px 16px;border-radius:4px;font-weight:700;font-size:13px">Subscribe</a></li>
       </ul>
     </div>
   </nav>
 
-  <!-- PRICING SECTION -->
-  <section class="pricing-section">
-    <div class="container">
-      <div class="pricing-header">
-        <h1>Choose Your Plan</h1>
-        <p>Go ad-free on Vintage Aviation News and get access to exclusive content, uninterrupted reading, and more.</p>
-      </div>
+  <!-- ============ NEW SUBSCRIPTION BUNDLE PAGE ============ -->
+  <main class="vsub">
 
-      <div class="pricing-grid">
-        <!-- FREE -->
-        <div class="pricing-card">
-          <h3>Free</h3>
-          <div class="price">$0<span>/mo</span></div>
-          <div class="price-note">Free forever</div>
-          <ul class="pricing-features">
-            <li><span class="check"><i class="fas fa-check"></i></span> Access to all articles</li>
-            <li><span class="check"><i class="fas fa-check"></i></span> Daily newsletter</li>
-            <li><span class="check"><i class="fas fa-check"></i></span> Today in Aviation History</li>
-            <li class="disabled"><span class="cross"><i class="fas fa-times"></i></span> Ad-free reading</li>
-            <li class="disabled"><span class="cross"><i class="fas fa-times"></i></span> Exclusive interviews</li>
-            <li class="disabled"><span class="cross"><i class="fas fa-times"></i></span> Early access to features</li>
-          </ul>
-          <button class="pricing-btn pricing-btn-outline" onclick="handleSubscribe('Free', '$0')">
-            Get Started
-          </button>
+    <!-- Hero -->
+    <section class="vsub-hero">
+      <span class="vsub-hero-eyebrow">Subscribe</span>
+      <h1>How to subscribe to <em>Vintage Aviation News</em> and Warbird Radio</h1>
+      <p>Join the Vintage Aviation News and Warbird Radio community to gain exclusive access to in-depth warbird and vintage aviation coverage from the operators, restorers, and pilots who keep history flying. Our subscriptions offer a range of options to fit your preferences.</p>
+    </section>
+
+    <div class="vsub-divider"><span class="vsub-divider-mark">✦ ✦ ✦</span></div>
+    <p class="vsub-intro">Currently, we have 3 subscription options to choose from.</p>
+
+    <!-- Tiers -->
+    <section class="vsub-tiers">
+
+      <!-- TIER 1 — Featured -->
+      <article class="vsub-tier vsub-tier-featured">
+        <span class="vsub-tier-flag">Best Value</span>
+        <div class="vsub-tier-num">No. I</div>
+        <h2 class="vsub-tier-name">All-Access Membership</h2>
+        <p class="vsub-tier-sub">Vintage Observer Newsletter + Audio</p>
+        <div class="vsub-tier-price">
+          <div class="vsub-tier-price-main">$14.99<span> / month</span></div>
+          <div class="vsub-tier-price-alt">or $149.99 / year</div>
         </div>
+        <div class="vsub-tier-includes">Includes</div>
+        <ul class="vsub-tier-list">
+          <li>Weekly Vintage Observer Newsletter</li>
+          <li>Exclusive subscriber-only content</li>
+          <li>Audio content from Warbird Radio</li>
+        </ul>
+        <button class="vsub-tier-cta" type="button" data-tier="all-access" data-amount="14.99">Subscribe Here</button>
+        <p class="vsub-tier-platforms">Get access to all of our latest audio shows, weekly access to the Vintage Observer Newsletter, subscriber exclusives and more. Note the audio access is separate from Apple Podcasts &amp; Spotify.</p>
+      </article>
 
-        <!-- PRO (Featured) -->
-        <div class="pricing-card featured">
-          <span class="popular-badge">Most Popular</span>
-          <h3>Pro</h3>
-          <div class="price">$9.99<span>/mo</span></div>
-          <div class="price-note">Billed monthly</div>
-          <ul class="pricing-features">
-            <li><span class="check"><i class="fas fa-check"></i></span> Everything in Free</li>
-            <li><span class="check"><i class="fas fa-check"></i></span> Ad-free reading experience</li>
-            <li><span class="check"><i class="fas fa-check"></i></span> Exclusive pilot interviews</li>
-            <li><span class="check"><i class="fas fa-check"></i></span> Restoration photo galleries</li>
-            <li><span class="check"><i class="fas fa-check"></i></span> Monthly warbird wallpapers</li>
-            <li class="disabled"><span class="cross"><i class="fas fa-times"></i></span> Commercial use license</li>
-          </ul>
-          <button class="pricing-btn pricing-btn-primary" onclick="handleSubscribe('Pro', '$9.99')">
-            Subscribe to Pro
-          </button>
+      <!-- TIER 2 -->
+      <article class="vsub-tier">
+        <div class="vsub-tier-num">No. II</div>
+        <h2 class="vsub-tier-name">Podcast Subscription</h2>
+        <p class="vsub-tier-sub">via Apple or Spotify</p>
+        <div class="vsub-tier-price">
+          <div class="vsub-tier-price-main">$9.99<span> / month</span></div>
+          <div class="vsub-tier-price-alt">or $99.99 / year</div>
         </div>
+        <div class="vsub-tier-includes">Includes</div>
+        <ul class="vsub-tier-list">
+          <li>Warbird Radio LIVE</li>
+          <li>Warbird Radio Presents</li>
+          <li>Warbird Rescue</li>
+          <li>WIX Warbird Weekly</li>
+        </ul>
+        <button class="vsub-tier-cta" type="button" data-tier="podcast" data-amount="9.99">Subscribe via Podcast</button>
+        <p class="vsub-tier-platforms">For those who want to hear our biggest shows, you can now subscribe through <a href="#">Apple Podcasts</a> or <a href="#">Spotify</a> for just $9.99/month.</p>
+      </article>
 
-        <!-- ENTERPRISE -->
-        <div class="pricing-card">
-          <h3>Enterprise</h3>
-          <div class="price">$24.99<span>/mo</span></div>
-          <div class="price-note">For organizations</div>
-          <ul class="pricing-features">
-            <li><span class="check"><i class="fas fa-check"></i></span> Everything in Pro</li>
-            <li><span class="check"><i class="fas fa-check"></i></span> Commercial use license</li>
-            <li><span class="check"><i class="fas fa-check"></i></span> Team access (up to 10)</li>
-            <li><span class="check"><i class="fas fa-check"></i></span> API access to archives</li>
-            <li><span class="check"><i class="fas fa-check"></i></span> Priority access</li>
-            <li><span class="check"><i class="fas fa-check"></i></span> Custom branding options</li>
-          </ul>
-          <button class="pricing-btn pricing-btn-dark" onclick="handleSubscribe('Enterprise', '$24.99')">
-            Contact Sales
-          </button>
+      <!-- TIER 3 -->
+      <article class="vsub-tier">
+        <div class="vsub-tier-num">No. III</div>
+        <h2 class="vsub-tier-name">YouTube Video Subscription</h2>
+        <p class="vsub-tier-sub">Live HD video podcasts</p>
+        <div class="vsub-tier-price">
+          <div class="vsub-tier-price-main">$9.99<span> / month</span></div>
+          <div class="vsub-tier-price-alt">&nbsp;</div>
         </div>
-      </div>
+        <div class="vsub-tier-includes">Includes Live HD Video Podcasts Of</div>
+        <ul class="vsub-tier-list">
+          <li>Warbird Radio LIVE</li>
+          <li>Warbird Radio Presents</li>
+          <li>Warbird Rescue</li>
+          <li>WIX Warbird Weekly</li>
+        </ul>
+        <button class="vsub-tier-cta" type="button" data-tier="youtube" data-amount="9.99">Subscribe on YouTube</button>
+        <p class="vsub-tier-platforms">Live video podcasts of your favorite shows from Warbird Radio. For those who want to <strong>SEE</strong> our biggest shows live and in HD. <a href="#">YouTube Channel</a></p>
+      </article>
 
-      <!-- FAQ -->
-      <div class="faq-section">
-        <h2>Frequently Asked Questions</h2>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            Can I cancel my subscription at any time?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              Yes, you can cancel your subscription at any time from your Subscription Management page. Your access will continue until the end of your current billing period. No cancellation fees apply.
-            </div>
+    </section>
+
+    <p class="vsub-note">Please note that all prices listed on this page are in USD.</p>
+
+    <!-- Why Subscribe -->
+    <section class="vsub-why">
+      <div class="vsub-why-inner">
+        <div class="vsub-why-head">
+          <div class="vsub-why-eyebrow">— Why Subscribe to VAN —</div>
+          <h2>The stories you won't find <em>anywhere else.</em></h2>
+        </div>
+        <div class="vsub-why-grid">
+          <div class="vsub-why-card">
+            <div class="vsub-why-num">i.</div>
+            <div class="vsub-why-title">Expert Analysis</div>
+            <div class="vsub-why-text">Insights from veteran warbird operators, restorers, and aviation industry leaders.</div>
           </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            What payment methods do you accept?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              We accept all major credit cards (Visa, Mastercard, American Express), PayPal, and Apple Pay. All payments are processed securely through our payment provider.
-            </div>
+          <div class="vsub-why-card">
+            <div class="vsub-why-num">ii.</div>
+            <div class="vsub-why-title">Comprehensive Coverage</div>
+            <div class="vsub-why-text">Updates on restorations, air shows, museums, market activity, and the people keeping these aircraft flying.</div>
           </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            Is there a free trial for Pro or Enterprise?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              We offer a 14-day free trial for Pro plans. Enterprise plans include a 30-day trial with full feature access. No credit card required to start your trial.
-            </div>
+          <div class="vsub-why-card">
+            <div class="vsub-why-num">iii.</div>
+            <div class="vsub-why-title">Exclusive Content</div>
+            <div class="vsub-why-text">Subscriber-only podcasts, newsletters, and long-form features.</div>
           </div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" onclick="toggleFaq(this)">
-            Can I switch between plans?
-            <span class="faq-icon">+</span>
-          </button>
-          <div class="faq-answer">
-            <div class="faq-answer-inner">
-              Absolutely! You can upgrade or downgrade your plan at any time. When upgrading, you'll get immediate access to new features and your billing will be prorated. When downgrading, changes take effect at the next billing cycle.
-            </div>
+          <div class="vsub-why-card">
+            <div class="vsub-why-num">iv.</div>
+            <div class="vsub-why-title">Flexible Access</div>
+            <div class="vsub-why-text">Choose between audio, video, or both to suit your preferences.</div>
           </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- CONFIRM MODAL -->
-  <div class="modal-overlay confirm-modal" id="confirmModal">
-    <div class="modal">
-      <div class="modal-icon success"><i class="fas fa-check"></i></div>
-      <h3 id="confirmTitle">Subscription Confirmed!</h3>
-      <p id="confirmMessage">You've subscribed to the Pro plan at $9.99/mo.</p>
-      <div class="modal-actions">
-        <button class="modal-btn modal-btn-success" onclick="closeModal('confirmModal'); window.location.href='subscription.html';">
-          View My Subscription
-        </button>
+    <!-- Archive Block -->
+    <section class="vsub-archive">
+      <div class="vsub-archive-inner">
+        <div class="vsub-archive-eyebrow">— The Warbird Radio Archive —</div>
+        <h2>Seventeen years of <em>recorded history.</em></h2>
+        <p class="vsub-archive-lede">From October 2009 through today, Warbird Radio has documented the conversations behind the warbird movement. Audio shows are available with the All-Access Membership; major shows are also available via Apple Podcasts, Spotify, and YouTube subscriptions.</p>
+        <div class="vsub-archive-stats">
+          <div><div class="vsub-stat-num">1,025+</div><div class="vsub-stat-label">Total Episodes</div></div>
+          <div><div class="vsub-stat-num">8</div><div class="vsub-stat-label">Distinct Shows</div></div>
+          <div><div class="vsub-stat-num">17</div><div class="vsub-stat-label">Years On Air</div></div>
+          <div><div class="vsub-stat-num">1</div><div class="vsub-stat-label">Unreleased Bob Hoover Interview</div></div>
+        </div>
+        <p class="vsub-archive-shows">
+          <strong>Warbird Radio LIVE</strong> · <strong>Warbird Radio Presents</strong> · <strong>Warbird Rescue</strong> · <strong>RC Scale Builder Show</strong><br>
+          <strong>Plastic Scale Modeling Hour</strong> · <strong>WIX Warbird Weekly</strong> · <strong>TX Warbird Report</strong> · <strong>Wings Over New Zealand</strong>
+        </p>
       </div>
-    </div>
-  </div>
+    </section>
 
-  <!-- FOOTER -->
+    <!-- Featured Episode -->
+    <section class="vsub-featured">
+      <div class="vsub-featured-eyebrow">— Featured Episode —</div>
+      <h3>The Bob Hoover Interview, <em>Unreleased</em></h3>
+      <p class="vsub-featured-sub">A subscriber exclusive — released only to All-Access members.</p>
+      <div class="vsub-video-frame">
+        <button class="vsub-play-btn" type="button" aria-label="Play"></button>
+        <div class="vsub-video-title">Bob Hoover · The Full-Length Interview</div>
+        <div class="vsub-video-meta">All-Access Subscribers Only</div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- FOOTER (existing VAN site footer) -->
   <footer class="site-footer">
     <div class="container">
-      <div class="footer-top-row">
-        <div class="footer-brand"><div class="footer-logo"><img src="../assets/van-logo.png" alt="Vintage Aviation News" style="height:60px;"></div></div>
-        <div class="footer-social"><a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-instagram"></i></a></div>
-      </div>
       <div class="footer-grid">
         <div class="footer-brand"><p><em>Vintage Aviation News is a company founded by a group of passionate aviation enthusiasts who love the history and technology Aviation and Flying Museums preserve for the public.</em></p></div>
         <div class="footer-links"><ul><li><a href="../index.html">Home</a></li><li><a href="restorations.html">Restorations</a></li><li><a href="vintage.html">Vintage Aviation</a></li><li><a href="museum-news.html">Aviation Museum News</a></li><li><a href="articles.html">Articles</a></li></ul></div>
@@ -185,7 +432,7 @@
     </div>
   </footer>
 
-  <!-- Sticky Bottom Ad + Go Ad-Free Button -->
+  <!-- Sticky Bottom Subscribe Button (existing VAN pattern) -->
   <style>
     .sticky-bottom-wrap{position:fixed;bottom:0;left:0;right:0;z-index:998;display:flex;flex-direction:column;align-items:flex-start}
     .sticky-gaf-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 20px;background:#bb361b;color:#fff;text-decoration:none;font-family:var(--font-main);font-size:13px;font-weight:700;border-radius:4px;margin:0 0 -1px 20px;box-shadow:0 -2px 8px rgba(0,0,0,0.1);transition:background .15s;position:relative;z-index:2}
@@ -200,7 +447,7 @@
     @media(max-width:768px){.sticky-gaf-btn{font-size:11px;padding:6px 14px;margin-left:12px}.sticky-ad-placeholder{font-size:11px}}
   </style>
   <div class="sticky-bottom-wrap" id="stickyBottomWrap">
-    <a href="../go-ad-free/" class="sticky-gaf-btn"><i class="fas fa-fighter-jet"></i> Subscribe</a>
+    <a href="subscribe.html" class="sticky-gaf-btn"><i class="fas fa-fighter-jet"></i> Subscribe</a>
     <div class="sticky-bottom-ad">
       <div class="sticky-ad-content">
         <span class="sticky-ad-label">ADVERTISEMENT</span>
@@ -209,63 +456,20 @@
       <button class="sticky-ad-close" onclick="document.getElementById('stickyBottomWrap').style.display='none'">&times;</button>
     </div>
   </div>
-  <button class="back-to-top"><i class="fas fa-chevron-up"></i></button>
 
   <script src="../assets/js/auth.js?v=2"></script>
   <script src="../assets/js/main.js"></script>
   <script src="../assets/js/go-ad-free.js?v=17" data-delay="1000" data-poll="3000"></script>
   <script>
-    function handleSubscribe(planName, price) {
-      if (!isLoggedIn()) {
-        const redirect = encodeURIComponent(window.location.href);
-        window.location.href = 'login.html?redirect=' + redirect;
-        return;
-      }
-
-      subscribeToPlan(planName, price);
-
-      document.getElementById('confirmTitle').textContent =
-        planName === 'Free' ? 'Welcome Aboard!' : 'Subscription Confirmed!';
-      document.getElementById('confirmMessage').textContent =
-        planName === 'Free'
-          ? 'You\'re now on the Free plan. Upgrade anytime for premium features.'
-          : `You've subscribed to the ${planName} plan at ${price}/mo. Welcome aboard!`;
-
-      openModal('confirmModal');
-    }
-
-    function toggleFaq(btn) {
-      const item = btn.parentElement;
-      const wasActive = item.classList.contains('active');
-
-      // Close all
-      document.querySelectorAll('.faq-item').forEach(faq => {
-        faq.classList.remove('active');
-        faq.querySelector('.faq-answer').style.maxHeight = '0';
-      });
-
-      // Open clicked if wasn't active
-      if (!wasActive) {
-        item.classList.add('active');
-        const answer = item.querySelector('.faq-answer');
-        answer.style.maxHeight = answer.scrollHeight + 'px';
-      }
-    }
-
-    function openModal(id) {
-      document.getElementById(id).classList.add('active');
-    }
-
-    function closeModal(id) {
-      document.getElementById(id).classList.remove('active');
-    }
-
-    // Close modal on overlay click
-    document.querySelectorAll('.modal-overlay').forEach(overlay => {
-      overlay.addEventListener('click', (e) => {
-        if (e.target === overlay) overlay.classList.remove('active');
+    // Tier CTAs → payment page (carry tier + amount as hash params for future use).
+    document.querySelectorAll('.vsub-tier-cta').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        var tier = btn.getAttribute('data-tier') || '';
+        var amt = btn.getAttribute('data-amount') || '';
+        window.location.href = '../go-ad-free/#/payment?tier=' + encodeURIComponent(tier) + '&amount=' + encodeURIComponent(amt);
       });
     });
   </script>
+
 </body>
 </html>
