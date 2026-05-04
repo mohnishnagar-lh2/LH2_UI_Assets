@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>How to Subscribe — Vintage Aviation News</title>
+  <meta name="description" content="Subscribe to Vintage Aviation News and Warbird Radio. Three subscription options: All-Access Membership, Podcast, and YouTube Video.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="stylesheet" href="../assets/css/auth-styles.css">
+  <style>
+    /* Plain blog-style subscribe page (F4WOnline-inspired). Scoped under .vsc. */
+    .vsc {
+      max-width: 760px;
+      margin: 0 auto;
+      padding: 36px 28px 48px;
+      font-family: 'Inter', Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      line-height: 1.65;
+      color: #1a1a1a;
+      background: #fff;
+    }
+    .vsc *,
+    .vsc *::before,
+    .vsc *::after { box-sizing: border-box; }
+
+    .vsc h1 {
+      font-size: 28px;
+      font-weight: 800;
+      color: #1a1a1a;
+      line-height: 1.2;
+      margin: 0 0 18px;
+      letter-spacing: -0.01em;
+    }
+    .vsc h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: #1a1a1a;
+      line-height: 1.3;
+      margin: 28px 0 8px;
+      letter-spacing: -0.005em;
+    }
+    .vsc p {
+      margin: 0 0 14px;
+      color: #1a1a1a;
+    }
+    .vsc p strong { font-weight: 700; }
+    .vsc a {
+      color: #c8323a;
+      font-weight: 600;
+      text-decoration: none;
+    }
+    .vsc a:hover { text-decoration: underline; }
+    .vsc em { font-style: italic; }
+
+    .vsc-intro-num { color: #c8323a; font-weight: 700; }
+
+    .vsc ul.vsc-why {
+      margin: 12px 0 0;
+      padding: 0 0 0 22px;
+    }
+    .vsc ul.vsc-why li {
+      margin-bottom: 10px;
+      padding-left: 4px;
+      list-style: disc;
+    }
+    .vsc ul.vsc-why li strong { color: #1a1a1a; }
+
+    /* Featured video — black 16:9 frame with red play button */
+    .vsc-video {
+      margin: 28px 0 18px;
+      aspect-ratio: 16 / 9;
+      background:
+        linear-gradient(135deg, rgba(187,54,27,0.92), rgba(120,28,12,0.96)),
+        repeating-linear-gradient(90deg, transparent 0 14px, rgba(255,255,255,0.04) 14px 16px);
+      border-radius: 4px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+    }
+    .vsc-video-tag {
+      position: absolute;
+      top: 12px;
+      left: 14px;
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      max-width: 70%;
+      line-height: 1.2;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.4);
+    }
+    .vsc-video-tag small {
+      display: block;
+      margin-top: 2px;
+      font-size: 10px;
+      font-weight: 500;
+      opacity: 0.75;
+    }
+    .vsc-video-play {
+      width: 64px;
+      height: 46px;
+      border-radius: 8px;
+      background: #cc0000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 6px 16px rgba(0,0,0,0.4);
+      cursor: pointer;
+      border: none;
+      transition: transform .15s, background .15s;
+    }
+    .vsc-video-play:hover { background: #b40000; transform: scale(1.04); }
+    .vsc-video-play::after {
+      content: "";
+      border-style: solid;
+      border-width: 9px 0 9px 14px;
+      border-color: transparent transparent transparent #fff;
+      margin-left: 3px;
+    }
+    .vsc-video-watch {
+      position: absolute;
+      bottom: 12px;
+      right: 14px;
+      background: rgba(255,255,255,0.92);
+      color: #1a1a1a;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 4px 10px;
+      border-radius: 4px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .vsc-video-watch i { color: #cc0000; }
+
+    .vsc-prices-note {
+      font-style: italic;
+      color: #555;
+      font-size: 14px;
+      margin: 6px 0 18px;
+    }
+
+    @media (max-width: 640px) {
+      .vsc { padding: 24px 18px 36px; }
+      .vsc h1 { font-size: 24px; }
+      .vsc h3 { font-size: 17px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER (existing VAN site header) -->
+  <header class="site-header">
+    <div class="container header-top">
+      <div class="social-icons">
+        <a href="#"><i class="fab fa-facebook-f"></i></a><a href="#"><i class="fab fa-twitter"></i></a><a href="#"><i class="fab fa-youtube"></i></a><a href="#"><i class="fab fa-instagram"></i></a>
+      </div>
+      <div class="site-logo"><a href="../index.html"><img src="../assets/van-logo.png" alt="Vintage Aviation News" style="height:90px;"></a></div>
+      <div class="header-search"><input type="text" placeholder="Search Headlines, News..."><button><i class="fas fa-arrow-circle-right"></i></button></div>
+    </div>
+  </header>
+
+  <nav class="main-nav">
+    <div class="container">
+      <button class="nav-toggle"><i class="fas fa-bars"></i></button>
+      <ul class="nav-list">
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="restorations.html">Restorations</a></li>
+        <li><a href="warbirds-news.html">Warbirds News <span class="arrow">&#9662;</span></a></li>
+        <li><a href="vintage.html">Vintage</a></li>
+        <li><a href="articles.html">Articles</a></li>
+        <li><a href="museum-news.html">Aviation Museum News</a></li>
+        <li><a href="#">Sponsors <span class="arrow">&#9662;</span></a></li>
+        <li><a href="subscribe.html" style="background:#bb361b;color:#fff;padding:6px 16px;border-radius:4px;font-weight:700;font-size:13px">Subscribe</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <!-- ============ CLASSIC BLOG-STYLE BODY ============ -->
+  <article class="vsc">
+
+    <h1>How to subscribe to Vintage Aviation News and Warbird Radio</h1>
+
+    <p>Join the Vintage Aviation News and Warbird Radio community to gain exclusive access to in-depth warbird and vintage aviation coverage from the operators, restorers, and pilots who keep history flying. Our subscriptions offer a range of options to fit your preferences.</p>
+
+    <p>Currently, we currently have <span class="vsc-intro-num">3</span> subscription options to choose from:</p>
+
+    <h3>1. All-Access Membership – Vintage Observer Newsletter + Audio</h3>
+    <p><strong>Price:</strong> $14.99/month or $149.99/year</p>
+    <p><strong>Includes:</strong> Weekly Vintage Observer Newsletter, Exclusive subscriber-only content and Audio content</p>
+    <p><strong>Direct link to Subscribe:</strong> <a href="../go-ad-free/#/payment?tier=all-access&amount=14.99">Subscribe Here</a></p>
+    <p>Get access to <strong>all</strong> of our latest audio shows, weekly <strong>access</strong> to the Vintage Observer Newsletter, subscriber exclusives and more for $14.99/month or $149.99/year. Note the audio access is separate from Apple Podcasts &amp; Spotify.</p>
+
+    <h3>2. Podcast Subscription via Apple or Spotify</h3>
+    <p><strong>Price:</strong> $9.99/month or $99.99/year</p>
+    <p><strong>Includes:</strong> Access to major shows: Warbird Radio LIVE, Warbird Radio Presents, Warbird Rescue and WIX Warbird Weekly.</p>
+    <p><strong>Links to Subscribe:</strong> <a href="#">Apple Podcasts</a> and <a href="#">Spotify</a></p>
+    <p>For those who want to hear our biggest shows (Warbird Radio LIVE, Warbird Radio Presents, Warbird Rescue, and WIX Warbird Weekly), you can now subscribe through Apple Podcasts or Spotify for just $9.99/month.</p>
+
+    <h3>3. YouTube Video Subscription</h3>
+    <p><strong>Price:</strong> $9.99/month</p>
+    <p><strong>Includes:</strong> Live HD video podcasts of: Warbird Radio LIVE, Warbird Radio Presents, Warbird Rescue and WIX Warbird Weekly.</p>
+    <p><strong>Links to Subscribe:</strong> <a href="#">YouTube Channel</a></p>
+    <p class="vsc-prices-note">Please note that ALL prices listed on this page are in USD.</p>
+    <p>Live Video podcasts of your favorite shows from Vintage Aviation News and Warbird Radio. For those who want to <strong>SEE</strong> our biggest shows live and in HD. (Warbird Radio LIVE, Warbird Radio Presents, Warbird Rescue, and WIX Warbird Weekly.)</p>
+
+    <h3>Why Subscribe to VAN?</h3>
+    <ul class="vsc-why">
+      <li><strong>Expert Analysis:</strong> Insights from veteran warbird operators, restorers, and aviation industry leaders.</li>
+      <li><strong>Comprehensive Coverage:</strong> Updates on restorations, air shows, museums, market activity, and the people keeping these aircraft flying.</li>
+      <li><strong>Exclusive Content:</strong> Subscriber-only podcasts, newsletters, and long-form features.</li>
+      <li><strong>Flexible Access:</strong> Choose between audio, video, or both to suit your preferences.</li>
+    </ul>
+
+    <!-- Featured video placeholder -->
+    <div class="vsc-video" role="img" aria-label="Featured video — Bob Hoover unreleased interview">
+      <div class="vsc-video-tag">
+        The Bob Hoover Interview, Unreleased | Warbird Radio Presents
+        <small>VAN · Subscriber Exclusive</small>
+      </div>
+      <button class="vsc-video-play" type="button" aria-label="Play"></button>
+      <div class="vsc-video-watch"><i class="fab fa-youtube"></i> Watch on YouTube</div>
+    </div>
+
+  </article>
+
+  <!-- FOOTER (existing VAN site footer) -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand"><p><em>Vintage Aviation News is a company founded by a group of passionate aviation enthusiasts who love the history and technology Aviation and Flying Museums preserve for the public.</em></p></div>
+        <div class="footer-links"><ul><li><a href="../index.html">Home</a></li><li><a href="restorations.html">Restorations</a></li><li><a href="vintage.html">Vintage Aviation</a></li><li><a href="museum-news.html">Aviation Museum News</a></li><li><a href="articles.html">Articles</a></li></ul></div>
+        <div class="footer-links"><ul><li><a href="#">Privacy Policy</a></li><li><a href="#">Terms of Service</a></li><li><a href="#">Newsletter</a></li><li><a href="#">About Us</a></li><li><a href="contact.html">Contact Us</a></li></ul></div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sticky Bottom Subscribe Button -->
+  <style>
+    .sticky-bottom-wrap{position:fixed;bottom:0;left:0;right:0;z-index:998;display:flex;flex-direction:column;align-items:flex-start}
+    .sticky-gaf-btn{display:inline-flex;align-items:center;gap:6px;padding:8px 20px;background:#bb361b;color:#fff;text-decoration:none;font-family:var(--font-main);font-size:13px;font-weight:700;border-radius:4px;margin:0 0 -1px 20px;box-shadow:0 -2px 8px rgba(0,0,0,0.1);transition:background .15s;position:relative;z-index:2}
+    .sticky-gaf-btn:hover{background:#9e2e17;color:#fff}
+    .sticky-gaf-btn i{font-size:12px}
+    .sticky-bottom-ad{width:100%;background:#f0f0f0;border-top:1px solid #ddd;display:flex;align-items:center;justify-content:center;padding:10px 20px;position:relative;min-height:50px}
+    .sticky-ad-content{flex:1;text-align:center}
+    .sticky-ad-label{font-size:9px;text-transform:uppercase;letter-spacing:1px;color:#aaa;display:block;margin-bottom:2px}
+    .sticky-ad-placeholder{font-size:12px;color:#666;font-weight:600}
+    .sticky-ad-close{position:absolute;top:4px;right:8px;background:none;border:none;color:#aaa;font-size:16px;cursor:pointer;padding:4px}
+    .sticky-ad-close:hover{color:#666}
+    @media(max-width:768px){.sticky-gaf-btn{font-size:11px;padding:6px 14px;margin-left:12px}.sticky-ad-placeholder{font-size:11px}}
+  </style>
+  <div class="sticky-bottom-wrap" id="stickyBottomWrap">
+    <a href="subscribe.html" class="sticky-gaf-btn"><i class="fas fa-fighter-jet"></i> Subscribe</a>
+    <div class="sticky-bottom-ad">
+      <div class="sticky-ad-content">
+        <span class="sticky-ad-label">ADVERTISEMENT</span>
+        <div class="sticky-ad-placeholder">OPEN SOURCE SUMMIT - Embedded Linux Conference - MAY 18-20 MINNEAPOLIS - REGISTER NOW!</div>
+      </div>
+      <button class="sticky-ad-close" onclick="document.getElementById('stickyBottomWrap').style.display='none'">&times;</button>
+    </div>
+  </div>
+
+  <script src="../assets/js/auth.js?v=2"></script>
+  <script src="../assets/js/main.js"></script>
+  <script src="../assets/js/go-ad-free.js?v=17" data-delay="1000" data-poll="3000"></script>
+
+</body>
+</html>
