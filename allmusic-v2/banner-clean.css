@@ -1,60 +1,63 @@
-/* ===== Professional / Clean help banner (v2) =====
-   Overrides the original inline .help-banner styles.
-   Same theme — white bg, italic blue serif title, black silhouettes,
-   blue + yellow CTAs — refined typography, spacing, depth, and hover.
+/* ===== Modern / clean help banner (v2) =====
+   Same content (silhouettes, title, body text, 2 CTAs).
+   Cleaner stack layout, modern sans-serif title, refined typography,
+   pill-shaped buttons, soft elevation, generous whitespace.
 */
 .help-banner {
-  background: #fff;
-  border: 1px solid #e8e8e8;
-  border-radius: 10px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
-  padding: 36px 48px 40px;
+  background: #ffffff;
+  border: 1px solid #e6e8eb;
+  border-radius: 16px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04), 0 8px 24px rgba(15, 23, 42, 0.04);
+  padding: 40px 56px 44px;
   position: relative;
   font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
-  max-width: 1140px;
-  margin: 24px auto 32px;
+  max-width: 980px;
+  margin: 28px auto 36px;
 }
 
+/* Stack: silhouette row → title → text → buttons, all centered */
 .help-banner-inner {
-  display: grid;
-  grid-template-columns: 260px 1fr;
-  column-gap: 40px;
+  display: flex;
+  flex-direction: column;
   align-items: center;
+  gap: 16px;
+  text-align: center;
 }
 
 .help-banner-close {
   position: absolute;
-  top: 16px;
-  right: 18px;
-  background: transparent;
+  top: 14px;
+  right: 16px;
+  width: 30px;
+  height: 30px;
   border: 0;
-  width: 28px;
-  height: 28px;
   border-radius: 50%;
-  color: #6b7280;
+  background: transparent;
+  color: #94a3b8;
   font-family: 'Source Sans 3', -apple-system, sans-serif;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  line-height: 1;
   display: inline-flex;
   align-items: center;
   justify-content: center;
+  line-height: 1;
   transition: background 0.15s, color 0.15s;
 }
 .help-banner-close:hover {
-  background: #f3f4f6;
-  color: #111827;
+  background: #f1f5f9;
+  color: #0f172a;
 }
 
+/* Silhouettes — smaller, centered, slightly muted */
 .help-silhouette {
-  width: 260px;
-  height: 130px;
+  width: 220px;
+  height: 95px;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #1a1a1a;
-  margin: 0;
+  color: #0f172a;
+  margin: 0 0 4px;
 }
 .help-silhouette svg {
   width: 100%;
@@ -63,36 +66,51 @@
 }
 
 .help-content {
-  text-align: left;
-  max-width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  text-align: center;
 }
 
+/* Title — modern sans-serif, bold, uppercase, tight tracking */
 .help-title {
-  font-family: Georgia, 'Times New Roman', serif;
-  font-style: italic;
-  font-weight: 700;
-  font-size: 30px;
+  font-family: 'Source Sans 3', -apple-system, sans-serif;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 28px;
   letter-spacing: -0.4px;
-  color: #1c7eb8;
-  margin: 0 0 14px;
-  line-height: 1.1;
-  text-transform: uppercase;
+  color: #0f172a;
+  margin: 0;
+  line-height: 1.15;
+  text-transform: none;
+}
+/* Subtle accent color underline for the title — replaces the italic flourish */
+.help-title::after {
+  content: '';
+  display: block;
+  width: 44px;
+  height: 3px;
+  background: #1c7eb8;
+  border-radius: 2px;
+  margin: 12px auto 0;
 }
 
 .help-text {
-  font-size: 14.5px;
-  line-height: 1.6;
-  color: #1f2937;
-  margin: 0 0 6px;
+  font-size: 15px;
+  line-height: 1.65;
+  color: #475569;
+  margin: 0;
   font-weight: 400;
-  max-width: 720px;
+  max-width: 640px;
 }
-.help-text + .help-text { margin-top: 4px; }
+.help-text + .help-text { margin-top: -4px; }
 .help-text a {
   color: #1c7eb8;
   text-decoration: none;
   font-weight: 600;
-  border-bottom: 1px solid rgba(28,126,184,0.35);
+  border-bottom: 1px solid rgba(28, 126, 184, 0.25);
   transition: border-color 0.15s, color 0.15s;
 }
 .help-text a:hover {
@@ -101,11 +119,14 @@
   text-decoration: none;
 }
 
+/* Buttons — pill-shaped, side-by-side, modern weights */
 .help-buttons {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-top: 22px;
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 14px;
+  width: 100%;
   max-width: 720px;
 }
 
@@ -113,31 +134,33 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 12px;
-  padding: 15px 22px;
+  gap: 10px;
+  padding: 14px 24px;
   border: 0;
-  border-radius: 6px;
+  border-radius: 999px;
   font-family: 'Source Sans 3', -apple-system, sans-serif;
-  font-size: 13.5px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 0.4px;
+  letter-spacing: 0.5px;
   cursor: pointer;
   text-decoration: none;
-  color: #fff;
+  color: #ffffff;
   text-align: center;
   line-height: 1.2;
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  flex: 1 1 280px;
+  max-width: 340px;
   transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
 }
 .help-btn:hover {
-  color: #fff;
+  color: #ffffff;
   text-decoration: none;
   transform: translateY(-1px);
-  box-shadow: 0 3px 10px rgba(0,0,0,0.10);
+  box-shadow: 0 6px 16px rgba(15, 23, 42, 0.12);
 }
 .help-btn:active {
   transform: translateY(0);
-  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.06);
 }
 
 .help-btn.cc {
@@ -147,8 +170,8 @@
   background: #176ba0;
 }
 .help-btn.cc svg {
-  width: 22px;
-  height: 16px;
+  width: 20px;
+  height: 14px;
   fill: none;
   stroke: #fff;
   stroke-width: 1.6;
@@ -156,46 +179,36 @@
 
 .help-btn.paypal {
   background: #f5b50f;
-  color: #fff;
+  color: #ffffff;
 }
 .help-btn.paypal:hover {
   background: #e2a40b;
-  color: #fff;
+  color: #ffffff;
 }
 .help-btn.paypal .pp-logo {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 22px;
-  height: 22px;
+  width: 20px;
+  height: 20px;
   font-style: italic;
   font-weight: 900;
   color: #003087;
-  background: #fff;
+  background: #ffffff;
   border-radius: 50%;
   font-family: Georgia, serif;
-  font-size: 12px;
+  font-size: 11px;
   line-height: 1;
 }
 
-@media (max-width: 880px) {
+@media (max-width: 720px) {
   .help-banner {
-    padding: 28px 22px 28px;
+    padding: 28px 22px 30px;
     margin: 16px 12px 24px;
+    border-radius: 12px;
   }
-  .help-banner-inner {
-    grid-template-columns: 1fr;
-    row-gap: 18px;
-    column-gap: 0;
-    text-align: center;
-  }
-  .help-silhouette {
-    width: 220px;
-    height: 110px;
-    margin: 0 auto;
-  }
-  .help-content { text-align: center; }
-  .help-title { font-size: 24px; }
-  .help-buttons { grid-template-columns: 1fr; max-width: none; }
-  .help-text { max-width: none; margin-left: auto; margin-right: auto; }
+  .help-silhouette { width: 180px; height: 80px; }
+  .help-title { font-size: 22px; }
+  .help-text { font-size: 14px; }
+  .help-btn { flex: 1 1 100%; max-width: none; padding: 13px 20px; }
 }

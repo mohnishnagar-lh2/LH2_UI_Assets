@@ -7,8 +7,8 @@ var STYLE = ''
 + '.am-ra-pill svg{width:11px;height:11px;flex-shrink:0;stroke:#fff;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}'
 // Wrapper for inline ads (places pill above, right-aligned)
 + '.am-ra-wrap{display:flex;justify-content:flex-end;margin-bottom:6px;padding:0 4px}'
-// Floating pill for fixed/sticky ads
-+ '.am-ra-floating{position:absolute;top:8px;right:8px;z-index:5;font-size:11px;padding:5px 11px}'
+// Floating pill for fixed/sticky ads — sits ABOVE the ad container, right-aligned
++ '.am-ra-floating{position:absolute;bottom:calc(100% + 6px);right:0;z-index:5}'
 ;
 
 function injectStyles(){
