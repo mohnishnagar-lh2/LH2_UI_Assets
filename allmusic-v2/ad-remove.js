@@ -7,12 +7,8 @@ var STYLE = ''
 + '.am-ra-pill svg{width:11px;height:11px;flex-shrink:0;stroke:#fff;stroke-width:2.5;fill:none;stroke-linecap:round;stroke-linejoin:round}'
 // Wrapper for inline ads (places pill above, right-aligned)
 + '.am-ra-wrap{display:flex;justify-content:flex-end;margin-bottom:6px;padding:0 4px}'
-// Floating pill for fixed/sticky ads — overlays at top-right INSIDE the ad container
-+ '.am-ra-floating{position:absolute;top:8px;right:8px;z-index:5;box-shadow:0 2px 6px rgba(0,0,0,0.25)}'
-// Bottom banner already has close X + info icon at top-right; pin pill to top-LEFT instead
-+ '.gd-bottom-banner .am-ra-floating{top:6px;right:auto;left:8px;box-shadow:none}'
-// Side-rail ad has its own ::before/::after decorators at top-right; pin pill to top-LEFT
-+ '.side-rail-ad .am-ra-floating{top:8px;right:auto;left:8px;z-index:6}'
+// Floating pill for fixed/sticky ads — sits ABOVE the ad's top boundary, right-aligned
++ '.am-ra-floating{position:absolute;bottom:calc(100% + 6px);right:0;z-index:5;box-shadow:0 2px 6px rgba(0,0,0,0.25)}'
 ;
 
 function injectStyles(){
