@@ -50,11 +50,12 @@
 
 /* === Sticky video ad (bottom-right) === */
 .sv-container{position:fixed;bottom:104px;right:14px;width:320px;z-index:80}
-.sv-wrap{position:relative;width:100%;background:#fff;border-radius:6px;box-shadow:0 8px 28px rgba(0,0,0,0.35);overflow:hidden}
-.sv-gaf-cta{position:absolute;top:8px;right:8px;z-index:3;display:inline-flex;align-items:center;gap:5px;padding:4px 11px;background:#fff;color:#1a7a8a;font-size:11px;font-weight:600;border-radius:11px;white-space:nowrap;cursor:pointer;border:1px solid #d6e4e7;line-height:1.2;font-family:'Source Sans 3',-apple-system,sans-serif;transition:background .15s,color .15s,border-color .15s;text-decoration:none;box-shadow:0 2px 6px rgba(0,0,0,0.25)}
+.sv-cta-row{display:flex;justify-content:flex-end;margin-bottom:4px;padding:0 2px}
+.sv-gaf-cta{display:inline-flex;align-items:center;gap:5px;padding:4px 11px;background:#fff;color:#1a7a8a;font-size:11px;font-weight:600;border-radius:11px;white-space:nowrap;cursor:pointer;border:1px solid #d6e4e7;line-height:1.2;font-family:'Source Sans 3',-apple-system,sans-serif;transition:background .15s,color .15s,border-color .15s}
 .sv-gaf-cta:hover{background:#1a7a8a;color:#fff;border-color:#1a7a8a}
 .sv-gaf-cta svg{width:9px;height:9px;flex-shrink:0;stroke-width:2.5}
-.sv-close{position:absolute;top:8px;left:8px;width:22px;height:22px;border-radius:50%;background:rgba(0,0,0,0.7);color:#fff;border:none;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;z-index:3}
+.sv-wrap{position:relative;width:100%;background:#fff;border-radius:6px;box-shadow:0 8px 28px rgba(0,0,0,0.35);overflow:hidden}
+.sv-close{position:absolute;top:6px;right:6px;width:20px;height:20px;border-radius:50%;background:rgba(0,0,0,0.7);color:#fff;border:none;font-size:12px;cursor:pointer;display:flex;align-items:center;justify-content:center;line-height:1;padding:0;z-index:2}
 .sv-close:hover{background:#000}
 .sv-box{position:relative;background:#0a0e16;height:170px;color:#5fc4e0;font-family:'Source Sans 3',sans-serif;text-align:center;padding:18px 22px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-transform:uppercase;letter-spacing:1px}
 .sv-box::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 50% 70%,rgba(95,196,224,0.18),transparent 60%);z-index:0}
@@ -1011,12 +1012,14 @@ body{padding-bottom:90px}
 
 <!-- ===== STICKY VIDEO AD (bottom-right) ===== -->
 <div class="sv-container" id="stickyVideoAd">
-    <div class="sv-wrap">
-        <button class="sv-close" onclick="document.getElementById('stickyVideoAd').style.display='none'" aria-label="Close">&times;</button>
+    <div class="sv-cta-row">
         <a class="sv-gaf-cta" href="subscribe.html">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             Remove Ads
         </a>
+    </div>
+    <div class="sv-wrap">
+        <button class="sv-close" onclick="document.getElementById('stickyVideoAd').style.display='none'" aria-label="Close">Ã—</button>
         <div class="sv-box">
             <div class="sv-box-title">PERSONALIZED RECOMMENDATIONS</div>
             <div class="sv-box-text">AI ALGORITHMS ARE BEHIND THE PERSONALIZED RECOMMENDATIONS WE RECEIVE ON VARIOUS PLATFORMS, STREAMING SERVICES LIKE NETFLIX AND SPOTIFY USE AI TO SUGGEST MOVIES, SHOWS, AND MUSIC BASED ON YOUR VIEWING AND LISTENING HISTORY.</div>
