@@ -9,6 +9,8 @@ var STYLE = ''
 + '.am-ra-wrap{display:flex;justify-content:flex-end;margin-bottom:6px;padding:0 4px}'
 // Floating pill for fixed/sticky ads — sits ABOVE the ad's top boundary, right-aligned
 + '.am-ra-floating{position:absolute;bottom:calc(100% + 6px);right:0;z-index:5;box-shadow:0 2px 6px rgba(0,0,0,0.25)}'
+// Sticky video ad already has its own × close affordance — suppress the floating pill there
++ '.sv-container .am-ra-floating{display:none}'
 ;
 
 function injectStyles(){
