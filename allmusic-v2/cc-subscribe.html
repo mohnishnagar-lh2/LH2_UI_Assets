@@ -1,0 +1,349 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe with Credit Card | AllMusic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="subscribe-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+      (function(){
+        try{
+          var u = localStorage.getItem("allmusic_user");
+          document.documentElement.classList.add(u ? "am-logged-in" : "am-logged-out");
+        }catch(e){ document.documentElement.classList.add("am-logged-out"); }
+      })();
+    </script>
+    <style>
+      /* Hide variant blocks before JS runs based on auth state */
+      html.am-logged-in .auth-out-only { display: none !important; }
+      html.am-logged-out .auth-in-only { display: none !important; }
+      /* Page-specific header tweak: don't show search bar on subscribe pages */
+      body.am-subscribe-page .search-bar-wrap { display: none; }
+    </style>
+</head>
+<body class="am-subscribe-page">
+
+<!-- Dark sticky header -->
+<header class="site-header">
+    <div class="header-inner">
+        <a href="index.html" class="logo" aria-label="AllMusic Home">
+            <img src="assets/logo.svg" alt="AllMusic" class="logo-icon" width="36" height="36">
+            <span class="logo-text"><strong>ALL</strong>MUSIC</span>
+        </a>
+        <nav class="main-nav desktop-only">
+            <a href="#" class="nav-link">New Releases <span class="caret">&#9662;</span></a>
+            <a href="#" class="nav-link">Discover <span class="caret">&#9662;</span></a>
+            <a href="#" class="nav-link">Articles <span class="caret">&#9662;</span></a>
+            <a href="#" class="nav-link">AllMusic Recommends <span class="caret">&#9662;</span></a>
+            <a href="#" class="nav-link">My Profile</a>
+            <a href="#" class="nav-link">Advanced Search</a>
+            <a href="subscribe.html" class="nav-link am-remove-ads">Subscribe</a>
+        </nav>
+        <div class="header-right">
+            <span class="auth-links desktop-only">
+                <a href="login.html">SIGN UP</a> / <a href="login.html">LOG IN</a>
+            </span>
+            <button class="mobile-menu-btn mobile-only" aria-label="Menu">&#9776;</button>
+        </div>
+    </div>
+</header>
+
+<main class="sub-wrap">
+    <h1 class="sub-title alt">Subscribe with Credit Card</h1>
+
+    <!-- Benefits -->
+    <section class="sub-benefits">
+        <div class="sub-benefit">
+            <h3>Support AllMusic</h3>
+            <p>AllMusic has been offering in-depth information to industry professionals, research institutions and music fans for over 20 years. If you'd like to show your support, this is a good way to do it.</p>
+        </div>
+        <div class="sub-benefit">
+            <h3>An Ad-Free Experience</h3>
+            <p>As a subscriber, we'll remove ads to streamline your AllMusic experience.</p>
+        </div>
+        <div class="sub-benefit">
+            <h3>Improved Site Speed</h3>
+            <p>We work with dozens of ad networks to get the most relevant ads for you. By removing these you will get a vastly improved experience.</p>
+        </div>
+    </section>
+
+    <!-- ===== LOGGED-OUT: login form ===== -->
+    <section class="auth-out-only sub-login-block">
+        <p class="sub-login-prompt">To sign up for a Paid Subscription you need to log in to your AllMusic Account</p>
+
+        <button type="button" class="sub-social-btn fb" disabled>
+            LOG IN USING FACEBOOK
+            <span class="social-icon"><i class="fab fa-facebook"></i></span>
+        </button>
+        <button type="button" class="sub-social-btn google" id="googleLoginBtn">
+            LOG IN USING GOOGLE
+            <span class="social-icon">
+                <svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true">
+                    <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                    <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                    <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                    <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                </svg>
+            </span>
+        </button>
+
+        <div class="sub-or-divider">â€” OR LOGIN WITH YOUR EMAIL ADDRESS â€”</div>
+
+        <form id="emailLoginForm" autocomplete="off">
+            <div class="sub-form-row">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" class="sub-input" placeholder="name@domain.com" required>
+            </div>
+            <div class="sub-form-row">
+                <div class="row-head">
+                    <label for="password">Password</label>
+                    <a href="#">Forgot Your Password?</a>
+                </div>
+                <input type="password" id="password" class="sub-input" placeholder="password" required>
+            </div>
+            <button type="submit" class="sub-login-submit">LOG IN</button>
+            <div class="sub-login-meta">
+                <label><input type="checkbox"> Remember Me</label>
+                <a href="#">Don't have an account?</a>
+            </div>
+        </form>
+    </section>
+
+    <!-- ===== LOGGED-IN: pricing tiers ===== -->
+    <section class="auth-in-only sub-price-block">
+        <p class="sub-signed-in" id="signedInLine">You are currently signed in. <a href="#" id="signOutLink">Sign out</a>.</p>
+        <h2>Our standard AllMusic subscription cost is $16</h2>
+
+        <a href="#" class="sub-pay-btn cc" data-toggle-payment>
+            <span class="icon">
+                <svg class="cc-icon" viewBox="0 0 24 18" aria-hidden="true">
+                    <rect x="1" y="1" width="22" height="16" rx="2"/>
+                    <line x1="1" y1="6" x2="23" y2="6"/>
+                    <rect x="4" y="11" width="6" height="3" fill="#fff" stroke="none"/>
+                </svg>
+            </span>
+            <span class="label">SUBSCRIBE USING YOUR CREDIT CARD &bull; $16</span>
+            <span class="icon">
+                <svg class="cc-icon" viewBox="0 0 24 18" aria-hidden="true">
+                    <rect x="1" y="1" width="22" height="16" rx="2"/>
+                    <line x1="1" y1="6" x2="23" y2="6"/>
+                    <rect x="4" y="11" width="6" height="3" fill="#fff" stroke="none"/>
+                </svg>
+            </span>
+        </a>
+
+        <!-- Inline credit card payment widget -->
+        <div class="sub-pay-widget" id="ccPaymentWidget">
+            <div class="cc-form-label">Credit or debit card</div>
+            <div class="cc-input-row">
+                <span class="cc-input-icon"><i class="far fa-credit-card"></i></span>
+                <input type="text" id="ccNumber" placeholder="Card number" inputmode="numeric" autocomplete="cc-number">
+                <button type="button" class="cc-use-btn" disabled>Use</button>
+            </div>
+            <p class="cc-disclaimer">By clicking "Submit Payment" below, I hereby permit AllMusic/Netaktion to charge my credit card in the amount of 16.00 USD for a one-year AllMusic subscription and represent and warrant that I have reviewed and agree to the <a href="#">Terms of Service</a></p>
+            <button type="button" class="cc-submit" id="ccSubmit" disabled>SUBMIT PAYMENT</button>
+        </div>
+
+        <div class="sub-or">OR</div>
+
+        <div class="sub-marketing">
+            <p>The advertising industry is no longer able to support our operating costs so we're asking for your help.</p>
+            <p>If you are a longtime AllMusic user and value the work we put in, please consider subscribing at one of the following rates. You'll be supporting a longtime resource for music fans worldwide.</p>
+        </div>
+
+        <div class="sub-tier-stack">
+            <a href="#" class="sub-pay-btn cc">
+                <span class="icon"></span>
+                <span class="label">SUBSCRIBE &amp; DONATE VIA CREDIT CARD &bull; $25</span>
+                <span class="icon"><svg class="cc-icon" viewBox="0 0 24 18"><rect x="1" y="1" width="22" height="16" rx="2"/><line x1="1" y1="6" x2="23" y2="6"/><rect x="4" y="11" width="6" height="3" fill="#fff" stroke="none"/></svg></span>
+            </a>
+            <a href="#" class="sub-pay-btn cc">
+                <span class="icon"></span>
+                <span class="label">SUBSCRIBE &amp; DONATE VIA CREDIT CARD &bull; $50</span>
+                <span class="icon"><svg class="cc-icon" viewBox="0 0 24 18"><rect x="1" y="1" width="22" height="16" rx="2"/><line x1="1" y1="6" x2="23" y2="6"/><rect x="4" y="11" width="6" height="3" fill="#fff" stroke="none"/></svg></span>
+            </a>
+            <a href="#" class="sub-pay-btn cc">
+                <span class="icon"></span>
+                <span class="label">SUBSCRIBE &amp; DONATE VIA CREDIT CARD &bull; $100</span>
+                <span class="icon"><svg class="cc-icon" viewBox="0 0 24 18"><rect x="1" y="1" width="22" height="16" rx="2"/><line x1="1" y1="6" x2="23" y2="6"/><rect x="4" y="11" width="6" height="3" fill="#fff" stroke="none"/></svg></span>
+            </a>
+            <a href="#" class="sub-pay-btn cc">
+                <span class="icon"></span>
+                <span class="label">SUBSCRIBE &amp; DONATE VIA CREDIT CARD &bull; $1000</span>
+                <span class="icon"><svg class="cc-icon" viewBox="0 0 24 18"><rect x="1" y="1" width="22" height="16" rx="2"/><line x1="1" y1="6" x2="23" y2="6"/><rect x="4" y="11" width="6" height="3" fill="#fff" stroke="none"/></svg></span>
+            </a>
+        </div>
+    </section>
+</main>
+
+<!-- Sticky create-account bar (logged-out only) -->
+<div class="auth-out-only sub-create-bar" id="createBar" style="position:fixed">
+    <div class="sub-create-bar-text">Have You Created Your AllMusic Account Yet?</div>
+    <a href="#" class="sub-create-bar-cta">CREATE AN ACCOUNT</a>
+    <button class="sub-create-bar-close" aria-label="Close" onclick="this.parentElement.style.display='none';document.body.classList.remove('am-needs-login')">&times;</button>
+</div>
+
+<!-- Footer -->
+<footer class="sub-footer">
+    <div class="sub-footer-inner">
+        <div class="sub-footer-col">
+            <h5>OUR PROPERTIES</h5>
+            <a href="#">AllMusic</a>
+            <a href="#">AllMovie</a>
+            <a href="#">SideReel</a>
+            <h5 class="mt">SITE OVERVIEW</h5>
+            <a href="#">New Releases</a>
+            <a href="#">Discover</a>
+            <a href="#">Articles</a>
+            <a href="#">Recommendations</a>
+        </div>
+        <div class="sub-footer-col">
+            <h5>ABOUT</h5>
+            <a href="#">What is AllMusic?</a>
+            <a href="#">Copyright Policy</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Advertise</a>
+            <h5 class="mt">QUESTIONS AND CONTACT</h5>
+            <a href="#">FAQ</a>
+            <a href="#">Feedback</a>
+        </div>
+        <div class="sub-footer-col">
+            <h5>YOUR ALLMUSIC ACCOUNT</h5>
+            <a href="#">My Profile</a>
+            <a href="#">Account Settings</a>
+            <h5 class="mt">REMOVE ADS</h5>
+            <a href="subscribe.html">Subscribe to AllMusic</a>
+        </div>
+        <div class="sub-footer-col">
+            <h5>FOLLOW US</h5>
+            <a href="#">Facebook</a>
+            <a href="#">Bluesky</a>
+            <a href="#">Threads</a>
+            <a href="#">Tumblr</a>
+            <a href="#">RSS</a>
+            <h5 class="mt">SIGN UP FOR OUR WEEKLY NEW RELEASES NEWSLETTER</h5>
+            <form class="sub-footer-newsletter" onsubmit="event.preventDefault()">
+                <input type="email" placeholder="name@domain.com">
+                <button type="submit">SIGN UP</button>
+            </form>
+        </div>
+    </div>
+    <div class="sub-copyright">&copy;2026 ALLMUSIC, NETAKTION LLC - ALL RIGHTS RESERVED</div>
+</footer>
+
+<script src="auth.js"></script>
+<script>
+(function(){
+  // Show create bar padding only when logged out (so footer doesn't sit under the bar)
+  function syncPadding(){
+    if(window.AMAuth && window.AMAuth.getUser()){
+      document.body.classList.remove("am-needs-login");
+    }else{
+      document.body.classList.add("am-needs-login");
+    }
+  }
+  syncPadding();
+  document.addEventListener("am-auth-change", syncPadding);
+
+  // Google login button â†’ open SSO modal, refresh state on success
+  var googleBtn = document.getElementById("googleLoginBtn");
+  if(googleBtn){
+    googleBtn.addEventListener("click", function(){
+      window.AMAuth.signIn({
+        siteName: "AllMusic",
+        onSignedIn: function(){
+          // Stay on this page; logged-in variant renders automatically
+          document.documentElement.classList.remove("am-logged-out");
+          document.documentElement.classList.add("am-logged-in");
+          syncPadding();
+          window.scrollTo({top:0, behavior:"smooth"});
+        }
+      });
+    });
+  }
+
+  // Facebook button â€” show informational message (not implemented in demo)
+  var fbBtn = document.querySelector(".sub-social-btn.fb");
+  if(fbBtn){
+    fbBtn.disabled = false;
+    fbBtn.addEventListener("click", function(){
+      alert("Facebook login isn't available in this demo. Please use Google.");
+    });
+  }
+
+  // Render signed-in line + wire sign-out link
+  function renderSignedIn(){
+    var u = window.AMAuth && window.AMAuth.getUser();
+    var line = document.getElementById("signedInLine");
+    if(u && line){
+      line.innerHTML = 'You are currently signed in as <strong>'+ u.name +'</strong> ('+ u.email +'). <a href="#" id="signOutLink">Sign out</a>.';
+      var link = document.getElementById("signOutLink");
+      if(link){
+        link.addEventListener("click", function(e){
+          e.preventDefault();
+          if(confirm("Sign out of AllMusic?")){
+            window.AMAuth.signOut();
+            window.location.reload();
+          }
+        });
+      }
+    }
+  }
+  renderSignedIn();
+  document.addEventListener("am-auth-change", renderSignedIn);
+
+  // Toggle credit card widget when $16 button is clicked
+  var widgetToggle = document.querySelector("[data-toggle-payment]");
+  var widget = document.getElementById("ccPaymentWidget");
+  if(widgetToggle && widget){
+    widgetToggle.addEventListener("click", function(e){
+      e.preventDefault();
+      widget.classList.toggle("open");
+      if(widget.classList.contains("open")){
+        var input = document.getElementById("ccNumber");
+        setTimeout(function(){ input && input.focus(); }, 50);
+      }
+    });
+  }
+  var ccInput = document.getElementById("ccNumber");
+  var ccSubmit = document.getElementById("ccSubmit");
+  var ccUseBtn = document.querySelector(".cc-use-btn");
+  if(ccInput && ccSubmit){
+    ccInput.addEventListener("input", function(){
+      var v = ccInput.value.replace(/\D/g, "");
+      var enabled = v.length >= 12;
+      ccSubmit.disabled = !enabled;
+      ccSubmit.classList.toggle("enabled", enabled);
+      if(ccUseBtn) ccUseBtn.disabled = !enabled;
+    });
+    ccSubmit.addEventListener("click", function(){
+      if(ccSubmit.disabled) return;
+      alert("Demo: Payment of $16.00 USD submitted successfully.");
+    });
+  }
+
+  // Email form â€” accept anything, sign in as a generic user
+  var form = document.getElementById("emailLoginForm");
+  if(form){
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      var email = document.getElementById("email").value.trim();
+      if(!email) return;
+      var name = email.split("@")[0].replace(/\./g," ").replace(/\b\w/g, function(c){return c.toUpperCase();});
+      window.AMAuth.setUser({name:name, email:email, color:"#1c7eb8", initial:(name[0]||"U").toUpperCase()});
+      document.documentElement.classList.remove("am-logged-out");
+      document.documentElement.classList.add("am-logged-in");
+      syncPadding();
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  }
+})();
+</script>
+</body>
+</html>

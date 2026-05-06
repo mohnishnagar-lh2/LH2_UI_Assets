@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AllMusic — Read Without Ads</title>
+  <meta name="description" content="Read AllMusic without ads. Faster pages, deeper reading, support quality music journalism.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600;1,700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --teal:#1a7a8a;--teal-deep:#0d4d56;--teal-soft:#e6f4f7;
+      --ink:#1a1a1a;--ink-2:#4a4a4a;--ink-3:#888;
+      --bg:#fff;--paper:#f8f8f5;--rule:#e8e8e8;
+      --accent:#c8323a;
+    }
+    *,*::before,*::after{box-sizing:border-box;}
+    html,body{margin:0;}
+    body{
+      font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+      color:var(--ink);background:var(--bg);
+      -webkit-font-smoothing:antialiased;line-height:1.5;
+    }
+    a{color:inherit;text-decoration:none;}
+    .container{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+    /* Header */
+    .am-header{background:#fff;border-bottom:1px solid var(--rule);padding:14px 0;position:sticky;top:0;z-index:50;}
+    .am-header-inner{display:flex;align-items:center;justify-content:space-between;}
+    .am-brand{display:flex;align-items:center;gap:10px;}
+    .am-brand img{width:32px;height:32px;border-radius:7px;}
+    .am-brand span{font-size:18px;font-weight:700;}
+    .am-nav{display:flex;gap:20px;}
+    .am-nav a{font-size:14px;font-weight:500;color:var(--ink-2);}
+    .am-nav a:hover{color:var(--ink);}
+    .am-cta-pill{background:var(--teal);color:#fff;padding:8px 16px;border-radius:6px;font-size:13px;font-weight:600;border:none;cursor:pointer;font-family:inherit;}
+    .am-cta-pill:hover{background:var(--teal-deep);}
+
+    /* Hero */
+    .hero{padding:80px 0 64px;text-align:center;background:linear-gradient(180deg,#fff 0%,var(--paper) 100%);}
+    .hero h1{
+      font-family:'Playfair Display',Georgia,serif;font-weight:600;
+      font-size:54px;line-height:1.1;margin:0 0 16px;color:var(--ink);
+      letter-spacing:-0.02em;
+    }
+    .hero h1 em{font-style:italic;color:var(--accent);font-weight:700;}
+    .hero p{font-size:17px;color:var(--ink-2);max-width:600px;margin:0 auto 28px;}
+    .hero .cta{
+      display:inline-flex;align-items:center;gap:10px;
+      background:var(--teal);color:#fff;border:none;padding:16px 36px;
+      border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;
+      font-family:inherit;transition:background .15s,transform .15s;
+      box-shadow:0 6px 18px -4px rgba(26,122,138,0.45);
+    }
+    .hero .cta:hover{background:var(--teal-deep);transform:translateY(-1px);}
+    .hero .small-print{font-size:13px;color:var(--ink-3);margin-top:14px;}
+    .hero .small-print s{color:var(--ink-3);}
+
+    /* Why */
+    .why{padding:72px 0;background:#fff;}
+    .why h2{
+      font-family:'Playfair Display',Georgia,serif;font-weight:600;
+      font-size:34px;text-align:center;margin:0 0 14px;color:var(--ink);
+    }
+    .why p{font-size:17px;color:var(--ink-2);max-width:680px;margin:0 auto;text-align:center;font-style:italic;}
+
+    /* Comparison */
+    .compare{padding:72px 0;background:var(--paper);}
+    .compare h2{
+      font-family:'Playfair Display',Georgia,serif;font-weight:600;
+      font-size:34px;text-align:center;margin:0 0 12px;color:var(--ink);
+    }
+    .compare-sub{text-align:center;color:var(--ink-2);margin:0 0 36px;font-size:16px;}
+    .compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:840px;margin:0 auto;}
+    .compare-card{background:#fff;border:1px solid var(--rule);border-radius:14px;padding:24px;}
+    .compare-card h3{margin:0 0 14px;font-size:15px;font-weight:600;font-family:'Playfair Display',serif;}
+    .compare-card.bad h3{color:var(--accent);}
+    .compare-card.good h3{color:var(--teal);}
+    .compare-card ul{list-style:none;padding:0;margin:0;}
+    .compare-card li{font-size:14px;color:var(--ink-2);padding:6px 0;display:flex;align-items:flex-start;gap:10px;}
+    .compare-card li::before{content:"";width:6px;height:6px;border-radius:50%;margin-top:8px;flex-shrink:0;}
+    .compare-card.bad li::before{background:var(--accent);}
+    .compare-card.good li::before{background:var(--teal);}
+
+    /* Pricing */
+    .pricing{padding:72px 0;background:#fff;}
+    .pricing h2{font-family:'Playfair Display',Georgia,serif;font-weight:600;font-size:34px;text-align:center;margin:0 0 36px;color:var(--ink);}
+    .pricing-card{
+      max-width:420px;margin:0 auto;background:#fff;
+      border:1px solid var(--rule);border-radius:14px;padding:36px 32px;
+      text-align:center;box-shadow:0 4px 24px rgba(0,0,0,0.04);
+    }
+    .pricing-eyebrow{font-size:12px;color:var(--teal);font-weight:700;letter-spacing:1.2px;text-transform:uppercase;margin:0 0 6px;}
+    .pricing-title{font-family:'Playfair Display',serif;font-size:18px;font-weight:600;margin:0 0 16px;color:var(--ink);}
+    .pricing-price{margin:0 0 8px;}
+    .pricing-price s{font-family:'Playfair Display',serif;font-size:24px;color:var(--ink-3);}
+    .pricing-price b{font-family:'Playfair Display',serif;font-size:54px;font-weight:700;color:var(--ink);margin-left:6px;letter-spacing:-0.02em;}
+    .pricing-price .per{color:var(--ink-2);font-size:14px;}
+    .pricing-note{font-size:13px;color:var(--ink-3);margin:0 0 22px;}
+    .pricing-features{list-style:none;padding:0;margin:0 0 26px;text-align:left;max-width:280px;margin-left:auto;margin-right:auto;}
+    .pricing-features li{font-size:14px;color:var(--ink-2);padding:5px 0;display:flex;align-items:center;gap:10px;}
+    .pricing-features li::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--teal);}
+    .pricing .cta{
+      width:100%;padding:14px;border:none;border-radius:10px;
+      background:var(--teal);color:#fff;font-size:15px;font-weight:700;cursor:pointer;
+      font-family:inherit;transition:background .15s;
+    }
+    .pricing .cta:hover{background:var(--teal-deep);}
+
+    /* End CTA */
+    .end{padding:72px 0;text-align:center;background:var(--paper);}
+    .end p{font-family:'Playfair Display',serif;font-size:22px;color:var(--ink);max-width:520px;margin:0 auto 24px;line-height:1.5;}
+    .end .cta{
+      display:inline-block;background:var(--teal);color:#fff;border:none;
+      padding:16px 36px;border-radius:10px;font-size:16px;font-weight:700;cursor:pointer;
+      font-family:inherit;
+    }
+    .end .cta:hover{background:var(--teal-deep);}
+
+    /* Footer */
+    .am-footer{background:#1a1a1a;color:#aaa;padding:36px 0;text-align:center;font-size:13px;}
+    .am-footer a{color:#ccc;}
+
+    @media(max-width:760px){
+      .hero h1{font-size:36px;}
+      .compare-grid{grid-template-columns:1fr;}
+      .pricing-card{padding:28px 22px;}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="am-header">
+    <div class="container am-header-inner">
+      <a href="index.html" class="am-brand">
+        <img src="assets/logo.svg" alt="AllMusic" />
+        <span>AllMusic</span>
+      </a>
+      <nav class="am-nav">
+        <a href="index.html">Home</a>
+        <a href="article.html">Articles</a>
+        <a href="#">Reviews</a>
+      </nav>
+      <button class="am-cta-pill" type="button" onclick="window.gafOpenPopup && window.gafOpenPopup()">Subscribe</button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1>Read AllMusic<br><em>Without Ads.</em></h1>
+      <p>No popups. No banners. Just pure music journalism.</p>
+      <button class="cta" type="button" onclick="window.gafOpenPopup && window.gafOpenPopup()">Subscribe — $1/month</button>
+      <p class="small-print"><s>$3/month</s> &nbsp; $1/month — today only. Cancel anytime.</p>
+    </div>
+  </section>
+
+  <section class="why">
+    <div class="container">
+      <h2>Built for readers who care about the music.</h2>
+      <p>You don't come here to scroll. You come for the deep reviews, the genre histories, the stories behind every album. Ads break that rhythm. Ad-free lets you stay with the writing, start to finish.</p>
+    </div>
+  </section>
+
+  <section class="compare">
+    <div class="container">
+      <h2>The difference is immediate</h2>
+      <p class="compare-sub">Same article. Same content. One lets you actually read it.</p>
+      <div class="compare-grid">
+        <div class="compare-card bad">
+          <h3>With Ads</h3>
+          <ul>
+            <li>Broken reading flow</li>
+            <li>Slower pages</li>
+            <li>Constant distractions</li>
+          </ul>
+        </div>
+        <div class="compare-card good">
+          <h3>Ad-Free</h3>
+          <ul>
+            <li>Uninterrupted reading</li>
+            <li>Faster load times</li>
+            <li>Full focus on the music</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="pricing">
+    <div class="container">
+      <h2>One plan. No surprises.</h2>
+      <div class="pricing-card">
+        <p class="pricing-eyebrow">Today only</p>
+        <p class="pricing-title">Ad-Free Access</p>
+        <p class="pricing-price"><s>$3</s><b>$1</b><span class="per"> / month</span></p>
+        <p class="pricing-note">Just $1/month. Cancel anytime.</p>
+        <ul class="pricing-features">
+          <li>Every article, no interruptions</li>
+          <li>No banners, popups, or video ads</li>
+          <li>Faster, lighter pages</li>
+          <li>Support quality music journalism</li>
+        </ul>
+        <button class="cta" type="button" onclick="window.gafOpenPopup && window.gafOpenPopup()">Subscribe</button>
+      </div>
+    </div>
+  </section>
+
+  <section class="end">
+    <div class="container">
+      <p>You've read this far — now read every article without interruptions.</p>
+      <button class="cta" type="button" onclick="window.gafOpenPopup && window.gafOpenPopup()">Subscribe — $1/month</button>
+    </div>
+  </section>
+
+  <footer class="am-footer">
+    <div class="container">
+      AllMusic &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Contact</a>
+    </div>
+  </footer>
+
+  <script src="go-ad-free.js?v=2" data-delay="500" data-poll="0"></script>
+</body>
+</html>

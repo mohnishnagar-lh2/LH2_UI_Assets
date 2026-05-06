@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Foo Fighters — Your Favorite Toy | Review | AllMusic</title>
+  <meta name="description" content="Brisk and invigorated 12th album finds the veteran band in full rock mode, offering a breathless half-hour of energetic fun.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700;900&family=Roboto+Slab:wght@400;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --teal:#1a7a8a;--teal-deep:#0d4d56;--teal-soft:#e6f4f7;
+      --ink:#1a1a1a;--ink-2:#444;--ink-3:#888;
+      --rule:#e5e5e5;--paper:#f8f8f5;--accent:#5fc4e0;
+    }
+    *,*::before,*::after{box-sizing:border-box;}
+    html,body{margin:0;}
+    body{
+      font-family:'Source Sans 3','Helvetica Neue',Arial,sans-serif;
+      color:var(--ink);background:#fff;line-height:1.6;
+      -webkit-font-smoothing:antialiased;
+    }
+    a{color:var(--teal);text-decoration:none;}
+    a:hover{text-decoration:underline;}
+    .container{max-width:1180px;margin:0 auto;padding:0 24px;}
+
+    /* Header */
+    .am-header{background:#1a1a1a;color:#fff;padding:14px 0;}
+    .am-header-inner{display:flex;align-items:center;justify-content:space-between;}
+    .am-brand{display:flex;align-items:center;gap:10px;color:#fff;}
+    .am-brand img{width:32px;height:32px;border-radius:7px;}
+    .am-brand span{font-size:18px;font-weight:700;}
+    .am-nav{display:flex;gap:18px;}
+    .am-nav a{font-size:14px;color:#ccc;}
+    .am-nav a:hover{color:#fff;}
+    .am-search{display:flex;align-items:center;background:#fff;border-radius:4px;padding:6px 10px;}
+    .am-search input{border:none;outline:none;font-size:13px;width:160px;font-family:inherit;}
+    .am-search button{background:var(--teal);color:#fff;border:none;border-radius:3px;padding:4px 10px;font-size:12px;cursor:pointer;font-family:inherit;font-weight:600;}
+
+    /* Subnav */
+    .subnav{background:#fff;border-bottom:1px solid var(--rule);padding:8px 0;font-size:13px;}
+    .subnav .container{display:flex;gap:18px;color:var(--ink-2);}
+    .subnav a{color:var(--ink-2);}
+    .subnav a:hover{color:var(--teal);}
+
+    /* Article */
+    .article-wrap{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px;padding:32px 0 60px;}
+    .crumbs{font-size:12px;color:var(--ink-3);margin-bottom:14px;letter-spacing:0.4px;}
+    .crumbs a{color:var(--ink-3);}
+    .crumbs a:hover{color:var(--teal);}
+
+    .review-head{display:grid;grid-template-columns:200px 1fr;gap:28px;margin-bottom:24px;align-items:start;}
+    .album-cover{
+      width:200px;height:200px;border-radius:6px;
+      background:linear-gradient(135deg,#fff200 0%,#fff200 30%,#1a1a1a 30%,#1a1a1a 70%,#c0392b 70%,#c0392b 100%);
+      position:relative;display:flex;align-items:center;justify-content:center;
+      box-shadow:0 8px 30px rgba(0,0,0,0.12);
+    }
+    .album-cover-text{color:#fff;text-shadow:1px 1px 0 #000;font-weight:900;text-align:center;font-size:22px;line-height:1.1;}
+    .album-cover-text small{display:block;font-size:13px;font-weight:600;margin-top:6px;}
+    .review-meta-grid{display:flex;flex-direction:column;gap:6px;}
+    .album-eyebrow{font-size:12px;color:var(--ink-3);letter-spacing:1.4px;text-transform:uppercase;}
+    h1.album-title{font-family:'Roboto Slab',Georgia,serif;font-size:38px;font-weight:700;line-height:1.1;margin:0 0 4px;color:var(--ink);}
+    .album-artist{font-size:18px;font-weight:600;color:var(--teal);margin:0 0 14px;}
+    .album-stars{color:#f5b50f;font-size:22px;margin-bottom:8px;letter-spacing:2px;}
+    .album-stars .empty{color:#d6d6d6;}
+    .album-tags{display:flex;flex-wrap:wrap;gap:6px;}
+    .tag{font-size:11px;color:var(--ink-2);background:#f0f0f0;padding:4px 10px;border-radius:3px;}
+    .reviewer{font-size:13px;color:var(--ink-3);margin-top:10px;}
+    .reviewer b{color:var(--ink);font-weight:600;}
+
+    .share-strip{display:flex;align-items:center;gap:10px;padding:14px 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);margin-bottom:24px;}
+    .share-strip span{font-size:11px;color:var(--ink-3);text-transform:uppercase;letter-spacing:1.2px;font-weight:600;margin-right:6px;}
+    .share-btn{width:32px;height:32px;border-radius:50%;background:#f0f0f0;color:var(--ink-2);display:inline-flex;align-items:center;justify-content:center;font-size:13px;cursor:pointer;border:none;transition:background .15s;}
+    .share-btn:hover{background:var(--teal);color:#fff;}
+
+    .lede{font-family:'Roboto Slab',Georgia,serif;font-size:22px;line-height:1.5;color:var(--ink);margin:0 0 22px;font-weight:400;}
+    .article-body p{font-size:17px;color:var(--ink-2);margin:0 0 18px;}
+    .article-body p strong{color:var(--ink);}
+    .pull-quote{
+      border-left:4px solid var(--teal);padding:12px 0 12px 20px;margin:24px 0;
+      font-family:'Roboto Slab',Georgia,serif;font-style:italic;font-size:20px;color:var(--ink);
+      line-height:1.4;
+    }
+
+    /* Inline ad slot — gets a "Remove Ads" pill above it via go-ad-free.js */
+    .ad-banner.demo-ad{
+      max-width:600px;height:90px;background:#fafafa;border:1px dashed var(--rule);
+      display:flex;align-items:center;justify-content:center;color:var(--ink-3);font-size:12px;
+      margin:24px 0;letter-spacing:0.4px;
+    }
+
+    /* Sidebar */
+    .side{display:flex;flex-direction:column;gap:24px;}
+    .side-card{background:#fff;border:1px solid var(--rule);border-radius:8px;padding:18px;}
+    .side-card.subscribe{background:linear-gradient(160deg,#1a7a8a 0%,#0d4d56 100%);color:#fff;border:none;}
+    .side-card h3{font-family:'Roboto Slab',serif;font-size:14px;font-weight:700;margin:0 0 12px;text-transform:uppercase;letter-spacing:1.4px;color:var(--ink);}
+    .subscribe h3{color:#fff;}
+    .subscribe p{font-size:14px;line-height:1.45;margin:0 0 14px;color:rgba(255,255,255,0.85);}
+    .subscribe .cta{
+      display:inline-block;background:#fff;color:var(--teal-deep);
+      border:none;padding:10px 18px;border-radius:6px;
+      font-size:13px;font-weight:700;cursor:pointer;font-family:inherit;
+    }
+    .related-list{list-style:none;padding:0;margin:0;}
+    .related-list li{padding:8px 0;border-bottom:1px solid var(--rule);}
+    .related-list li:last-child{border-bottom:none;}
+    .related-list a{display:block;font-size:14px;color:var(--ink);font-weight:600;line-height:1.3;}
+    .related-list small{font-size:12px;color:var(--ink-3);font-weight:400;}
+
+    /* Footer */
+    .am-footer{background:#1a1a1a;color:#aaa;padding:36px 0;text-align:center;font-size:13px;}
+    .am-footer a{color:#ccc;}
+
+    @media(max-width:880px){
+      .article-wrap{grid-template-columns:1fr;}
+      .review-head{grid-template-columns:140px 1fr;gap:20px;}
+      .album-cover{width:140px;height:140px;}
+      h1.album-title{font-size:28px;}
+      .lede{font-size:18px;}
+      .article-body p{font-size:16px;}
+    }
+  </style>
+</head>
+<body>
+
+  <header class="am-header">
+    <div class="container am-header-inner">
+      <a href="index.html" class="am-brand">
+        <img src="assets/logo.svg" alt="AllMusic" />
+        <span>AllMusic</span>
+      </a>
+      <nav class="am-nav">
+        <a href="index.html">Home</a>
+        <a href="#">New Releases</a>
+        <a href="#">Reviews</a>
+        <a href="#">Genres</a>
+        <a href="landing.html">Go Ad-Free</a>
+      </nav>
+      <div class="am-search">
+        <input type="text" placeholder="Artists, albums, songs..." />
+        <button type="button">Search</button>
+      </div>
+    </div>
+  </header>
+
+  <div class="subnav">
+    <div class="container">
+      <a href="#">Pop/Rock</a>
+      <a href="#">R&amp;B</a>
+      <a href="#">Hip-Hop</a>
+      <a href="#">Country</a>
+      <a href="#">Jazz</a>
+      <a href="#">Folk</a>
+      <a href="#">Electronic</a>
+      <a href="#">Classical</a>
+    </div>
+  </div>
+
+  <main class="container">
+    <div class="article-wrap">
+      <article>
+        <div class="crumbs">
+          <a href="index.html">Home</a> &rsaquo; <a href="#">Reviews</a> &rsaquo; <a href="#">Pop/Rock</a> &rsaquo; <span>Foo Fighters</span>
+        </div>
+
+        <div class="review-head">
+          <div class="album-cover">
+            <span class="album-cover-text">FOO FIGHTERS<small>Your Favorite Toy</small></span>
+          </div>
+          <div class="review-meta-grid">
+            <span class="album-eyebrow">Album Review</span>
+            <h1 class="album-title">Your Favorite Toy</h1>
+            <p class="album-artist">Foo Fighters</p>
+            <div class="album-stars">★★★★<span class="empty">★</span></div>
+            <div class="album-tags">
+              <span class="tag">RCA</span>
+              <span class="tag">Pop/Rock</span>
+              <span class="tag">2026</span>
+              <span class="tag">Editors' Choice</span>
+            </div>
+            <p class="reviewer">Review by <b>Neil Z. Yeung</b> &middot; April 24, 2026</p>
+          </div>
+        </div>
+
+        <div class="share-strip">
+          <span>Share</span>
+          <button class="share-btn" aria-label="Twitter" type="button">𝕏</button>
+          <button class="share-btn" aria-label="Facebook" type="button">f</button>
+          <button class="share-btn" aria-label="Email" type="button">✉</button>
+          <button class="share-btn" aria-label="Copy link" type="button">🔗</button>
+        </div>
+
+        <p class="lede">
+          Brisk and invigorated, the Foo Fighters' twelfth studio album finds the veteran band in full rock mode, offering a breathless half-hour of energetic fun that ranks among their tightest work in years.
+        </p>
+
+        <div class="article-body">
+          <p>
+            <strong>After the introspective sprawl of 2023's <em>But Here We Are</em></strong>, the Foo Fighters return with a record that feels almost like a corrective: ten songs in thirty-two minutes, no filler, no detours into ambient interludes. The riffs come fast, the hooks come faster, and Dave Grohl sings like a man rediscovering exactly why he started a band in the first place.
+          </p>
+
+          <p>
+            Opener "Static City" sets the tone — a propulsive, three-chord thrash that wouldn't have sounded out of place on <em>The Colour and the Shape</em>, but with the production heft only thirty years of stadium experience can deliver. From there, the album barely lets up. "Headlamps" rides a Pat Smear riff that earns every second of its 2:48 runtime. The title track turns a deceptively simple verse-chorus structure into something genuinely thrilling by the time the final chorus arrives.
+        </p>
+
+          <div class="ad-banner demo-ad">SAMPLE AD &mdash; 600&times;90 leaderboard</div>
+
+          <p>
+            What's most surprising about <em>Your Favorite Toy</em> isn't its quality — at this point, a tight Foo Fighters record is what we've come to expect — but its sense of joy. <strong>This is a band having fun</strong>, leaning into their identity rather than questioning it, and the listener gets to ride along.
+          </p>
+
+          <div class="pull-quote">
+            "Ten songs in thirty-two minutes, no filler, no detours. The riffs come fast, the hooks come faster."
+          </div>
+
+          <p>
+            Drummer Josh Freese, in his first full studio outing with the band, plays with a brawler's instinct that suits these songs perfectly — never showy, always serving the groove. Producer Greg Kurstin keeps the mix wide and bright, giving every guitar layer room to breathe without sacrificing the punch.
+          </p>
+
+          <p>
+            The mid-album ballad "Slow Burn" is the only real pause for breath, and even it earns its place by the time the final guitar solo lands. By the closer, "Last One Out," you're ready to flip the record and start again. <strong>That's the highest praise you can give a rock album in 2026</strong> — that it leaves you wanting more.
+          </p>
+
+          <div class="ad-banner demo-ad">SAMPLE AD &mdash; 600&times;90 leaderboard</div>
+
+          <p>
+            <em>Your Favorite Toy</em> isn't reinventing anything. It doesn't have to. It's the sound of a band that knows exactly what it does well, and decided to do exactly that, with maximum conviction. That, somehow, has become the rarest thing in rock right now.
+          </p>
+        </div>
+      </article>
+
+      <aside class="side">
+        <div class="side-card subscribe">
+          <h3>Read Without Ads</h3>
+          <p>Faster pages, no banners, support the writers. $1/month, cancel anytime.</p>
+          <button class="cta" type="button" onclick="window.gafOpenPopup && window.gafOpenPopup()">Subscribe</button>
+        </div>
+
+        <div class="side-card">
+          <h3>Related Reviews</h3>
+          <ul class="related-list">
+            <li><a href="#">Romanticize the Dive<br><small>Metric &middot; ★★★★</small></a></li>
+            <li><a href="#">Long Long Road<br><small>Ringo Starr &middot; ★★★½</small></a></li>
+            <li><a href="#">13<br><small>White Denim &middot; ★★★★</small></a></li>
+            <li><a href="#">Orange<br><small>White Fence &middot; ★★★★½</small></a></li>
+          </ul>
+        </div>
+
+        <div class="side-card">
+          <h3>About the Band</h3>
+          <p style="font-size:14px;color:var(--ink-2);margin:0;line-height:1.45;">
+            Foo Fighters formed in 1994 as a Dave Grohl solo project after the dissolution of Nirvana. Over twelve studio albums, they have become one of the defining American rock bands of the 21st century.
+          </p>
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="am-footer">
+    <div class="container">
+      AllMusic &middot; <a href="#">Privacy</a> &middot; <a href="#">Terms</a> &middot; <a href="#">Contact</a>
+    </div>
+  </footer>
+
+  <script src="go-ad-free.js?v=2" data-delay="500" data-poll="3000" data-selectors=".demo-ad"></script>
+</body>
+</html>

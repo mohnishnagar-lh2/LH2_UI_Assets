@@ -1,0 +1,201 @@
+/* ===== Professional / Clean help banner (v2) =====
+   Overrides the original inline .help-banner styles.
+   Same theme — white bg, italic blue serif title, black silhouettes,
+   blue + yellow CTAs — refined typography, spacing, depth, and hover.
+*/
+.help-banner {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 10px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+  padding: 36px 48px 40px;
+  position: relative;
+  font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+  max-width: 1140px;
+  margin: 24px auto 32px;
+}
+
+.help-banner-inner {
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  column-gap: 40px;
+  align-items: center;
+}
+
+.help-banner-close {
+  position: absolute;
+  top: 16px;
+  right: 18px;
+  background: transparent;
+  border: 0;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  color: #6b7280;
+  font-family: 'Source Sans 3', -apple-system, sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s, color 0.15s;
+}
+.help-banner-close:hover {
+  background: #f3f4f6;
+  color: #111827;
+}
+
+.help-silhouette {
+  width: 260px;
+  height: 130px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #1a1a1a;
+  margin: 0;
+}
+.help-silhouette svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.help-content {
+  text-align: left;
+  max-width: 100%;
+}
+
+.help-title {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 30px;
+  letter-spacing: -0.4px;
+  color: #1c7eb8;
+  margin: 0 0 14px;
+  line-height: 1.1;
+  text-transform: uppercase;
+}
+
+.help-text {
+  font-size: 14.5px;
+  line-height: 1.6;
+  color: #1f2937;
+  margin: 0 0 6px;
+  font-weight: 400;
+  max-width: 720px;
+}
+.help-text + .help-text { margin-top: 4px; }
+.help-text a {
+  color: #1c7eb8;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(28,126,184,0.35);
+  transition: border-color 0.15s, color 0.15s;
+}
+.help-text a:hover {
+  color: #155b87;
+  border-bottom-color: #155b87;
+  text-decoration: none;
+}
+
+.help-buttons {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 22px;
+  max-width: 720px;
+}
+
+.help-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 15px 22px;
+  border: 0;
+  border-radius: 6px;
+  font-family: 'Source Sans 3', -apple-system, sans-serif;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #fff;
+  text-align: center;
+  line-height: 1.2;
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.help-btn:hover {
+  color: #fff;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 3px 10px rgba(0,0,0,0.10);
+}
+.help-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 1px 2px rgba(0,0,0,0.05);
+}
+
+.help-btn.cc {
+  background: #1c7eb8;
+}
+.help-btn.cc:hover {
+  background: #176ba0;
+}
+.help-btn.cc svg {
+  width: 22px;
+  height: 16px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.6;
+}
+
+.help-btn.paypal {
+  background: #f5b50f;
+  color: #fff;
+}
+.help-btn.paypal:hover {
+  background: #e2a40b;
+  color: #fff;
+}
+.help-btn.paypal .pp-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 22px;
+  height: 22px;
+  font-style: italic;
+  font-weight: 900;
+  color: #003087;
+  background: #fff;
+  border-radius: 50%;
+  font-family: Georgia, serif;
+  font-size: 12px;
+  line-height: 1;
+}
+
+@media (max-width: 880px) {
+  .help-banner {
+    padding: 28px 22px 28px;
+    margin: 16px 12px 24px;
+  }
+  .help-banner-inner {
+    grid-template-columns: 1fr;
+    row-gap: 18px;
+    column-gap: 0;
+    text-align: center;
+  }
+  .help-silhouette {
+    width: 220px;
+    height: 110px;
+    margin: 0 auto;
+  }
+  .help-content { text-align: center; }
+  .help-title { font-size: 24px; }
+  .help-buttons { grid-template-columns: 1fr; max-width: none; }
+  .help-text { max-width: none; margin-left: auto; margin-right: auto; }
+}
