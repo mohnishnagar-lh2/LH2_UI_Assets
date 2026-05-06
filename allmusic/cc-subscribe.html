@@ -116,6 +116,7 @@
 
     <!-- ===== LOGGED-IN: pricing tiers ===== -->
     <section class="auth-in-only sub-price-block">
+        <p class="sub-signed-in" id="signedInLine">You are currently signed in. <a href="#" id="signOutLink">Sign out</a>.</p>
         <h2>Our standard AllMusic subscription cost is $16</h2>
 
         <a href="#" class="sub-pay-btn cc" data-toggle-payment>
@@ -275,6 +276,27 @@
       alert("Facebook login isn't available in this demo. Please use Google.");
     });
   }
+
+  // Render signed-in line + wire sign-out link
+  function renderSignedIn(){
+    var u = window.AMAuth && window.AMAuth.getUser();
+    var line = document.getElementById("signedInLine");
+    if(u && line){
+      line.innerHTML = 'You are currently signed in as <strong>'+ u.name +'</strong> ('+ u.email +'). <a href="#" id="signOutLink">Sign out</a>.';
+      var link = document.getElementById("signOutLink");
+      if(link){
+        link.addEventListener("click", function(e){
+          e.preventDefault();
+          if(confirm("Sign out of AllMusic?")){
+            window.AMAuth.signOut();
+            window.location.reload();
+          }
+        });
+      }
+    }
+  }
+  renderSignedIn();
+  document.addEventListener("am-auth-change", renderSignedIn);
 
   // Toggle credit card widget when $16 button is clicked
   var widgetToggle = document.querySelector("[data-toggle-payment]");

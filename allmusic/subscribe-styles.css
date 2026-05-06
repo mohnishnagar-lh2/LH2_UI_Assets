@@ -132,6 +132,17 @@ body.am-subscribe-page.am-needs-login { padding-bottom: 96px; }
 
 .sub-tier-stack { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
 
+.sub-signed-in {
+  text-align: center;
+  font-size: 14px;
+  color: #b8b8b8;
+  margin: 0 auto 22px;
+  line-height: 1.5;
+}
+.sub-signed-in strong { color: #fff; }
+.sub-signed-in a { color: #1ca4cd; font-weight: 600; }
+.sub-signed-in a:hover { text-decoration: underline; }
+
 /* ===== Inline payment widgets (revealed when $16 button is clicked) ===== */
 .sub-pay-widget {
   max-width: 580px;
