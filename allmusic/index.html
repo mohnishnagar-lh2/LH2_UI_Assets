@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -9,13 +9,25 @@
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+      // Pre-paint auth state so the help banner doesn't flash for logged-in users
+      (function(){
+        try{
+          var u = localStorage.getItem("allmusic_user");
+          document.documentElement.classList.add(u ? "am-logged-in" : "am-logged-out");
+        }catch(e){ document.documentElement.classList.add("am-logged-out"); }
+      })();
+    </script>
+    <style>
+      html.am-logged-in #helpBanner{display:none !important}
+    </style>
 <style>
 /* === Side rail sticky ad === */
 .side-rail-ad{position:fixed;top:140px;left:20px;width:160px;z-index:50;display:none}
 @media (min-width:1280px){.side-rail-ad{display:block}}
 .side-rail-ad .ad-slot{width:160px;height:600px;background:#f7eaf2;border:1px solid #e2d2dc;border-radius:6px;padding:18px 14px;display:flex;flex-direction:column;align-items:flex-start;gap:14px;position:relative;color:#1a1a1a;font-family:'Source Sans 3',sans-serif}
 .side-rail-ad .ad-slot::before{content:'';position:absolute;top:6px;right:6px;width:14px;height:14px;background:#fff;border-radius:50%;border:1px solid #ccc;color:#666;font-size:10px;display:flex;align-items:center;justify-content:center}
-.side-rail-ad .ad-slot::after{content:'⋮';position:absolute;top:4px;right:24px;color:#666;font-size:14px}
+.side-rail-ad .ad-slot::after{content:'â‹®';position:absolute;top:4px;right:24px;color:#666;font-size:14px}
 .gd-logo{display:flex;align-items:center;gap:6px;font-weight:700;font-size:14px;color:#000;margin-bottom:6px}
 .gd-logo i{color:#5fc4e0;font-size:14px}
 .side-rail-ad h4{font-size:18px;font-weight:700;line-height:1.15;color:#000;margin:0}
@@ -63,7 +75,7 @@
 body{padding-bottom:90px}
 .album-cover{position:relative}
 
-/* === Asking For Your Help — donation banner === */
+/* === Asking For Your Help â€” donation banner === */
 .help-banner{background:#fff;border-bottom:1px solid #e5e5e5;padding:36px 28px 40px;position:relative;font-family:'Source Sans 3',-apple-system,sans-serif;max-width:1180px;margin:0 auto}
 .help-banner-inner{display:grid;grid-template-columns:300px 1fr;gap:30px;align-items:center}
 .help-banner-close{position:absolute;top:18px;right:22px;background:none;border:none;color:#1ca4cd;font-size:18px;font-weight:600;cursor:pointer;padding:4px 6px;line-height:1;font-family:Arial,sans-serif;letter-spacing:0;text-transform:none}
@@ -112,7 +124,7 @@ body{padding-bottom:90px}
             <a href="#" class="nav-link">AllMusic Recommends <span class="caret">&#9662;</span></a>
             <a href="#" class="nav-link">My Profile</a>
             <a href="#" class="nav-link">Advanced Search</a>
-            <a href="#" class="nav-link" onclick="event.preventDefault();window.gafOpenPopup&&gafOpenPopup()">Remove Ads</a>
+            <a href="subscribe.html" class="nav-link am-remove-ads">Remove Ads</a>
         </nav>
 
         <div class="header-right">
@@ -136,14 +148,14 @@ body{padding-bottom:90px}
     </div>
 </header>
 
-<!-- ===== ASKING FOR YOUR HELP — DONATION BANNER ===== -->
+<!-- ===== ASKING FOR YOUR HELP â€” DONATION BANNER ===== -->
 <div class="help-banner" id="helpBanner">
     <button class="help-banner-close" onclick="document.getElementById('helpBanner').style.display='none'" aria-label="Close">X</button>
     <div class="help-banner-inner">
         <div class="help-silhouette">
             <svg viewBox="0 0 300 150" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
                 <g fill="#1a1a1a">
-                    <!-- FIGURE 1 — arms angled outward and down (H) -->
+                    <!-- FIGURE 1 â€” arms angled outward and down (H) -->
                     <!-- hat brim + crown -->
                     <ellipse cx="38" cy="20" rx="14" ry="2.5"/>
                     <path d="M30 8 L46 8 L48 20 L28 20 Z"/>
@@ -154,11 +166,11 @@ body{padding-bottom:90px}
                     <!-- legs -->
                     <path d="M28 110 L34 110 L33 142 L29 142 Z"/>
                     <path d="M42 110 L48 110 L47 142 L43 142 Z"/>
-                    <!-- arms — both angled outward, downward -->
+                    <!-- arms â€” both angled outward, downward -->
                     <path d="M28 38 L8 78 L13 82 L33 42 Z"/>
                     <path d="M48 38 L68 78 L63 82 L43 42 Z"/>
 
-                    <!-- FIGURE 2 — both arms raised (E) -->
+                    <!-- FIGURE 2 â€” both arms raised (E) -->
                     <ellipse cx="115" cy="20" rx="14" ry="2.5"/>
                     <path d="M107 8 L123 8 L125 20 L105 20 Z"/>
                     <circle cx="115" cy="27" r="7"/>
@@ -169,7 +181,7 @@ body{padding-bottom:90px}
                     <path d="M105 36 L92 0 L98 0 L111 38 Z"/>
                     <path d="M125 36 L138 0 L132 0 L119 38 Z"/>
 
-                    <!-- FIGURE 3 — left arm up, right arm extended out (L) -->
+                    <!-- FIGURE 3 â€” left arm up, right arm extended out (L) -->
                     <ellipse cx="190" cy="20" rx="14" ry="2.5"/>
                     <path d="M182 8 L198 8 L200 20 L180 20 Z"/>
                     <circle cx="190" cy="27" r="7"/>
@@ -181,7 +193,7 @@ body{padding-bottom:90px}
                     <!-- arm 2 horizontal right -->
                     <path d="M200 38 L228 38 L228 44 L200 46 Z"/>
 
-                    <!-- FIGURE 4 — left horizontal, right up (P) -->
+                    <!-- FIGURE 4 â€” left horizontal, right up (P) -->
                     <ellipse cx="262" cy="20" rx="14" ry="2.5"/>
                     <path d="M254 8 L270 8 L272 20 L252 20 Z"/>
                     <circle cx="262" cy="27" r="7"/>
@@ -200,7 +212,7 @@ body{padding-bottom:90px}
             <p class="help-text">Advertising is no longer able to cover our operating costs.</p>
             <p class="help-text">If you are a longtime visitor of AllMusic and want to see the site continue, please donate by <a href="#">becoming an AllMusic Subscriber</a>.</p>
             <div class="help-buttons">
-                <a href="#" class="help-btn cc" onclick="event.preventDefault();window.gafOpenPopup&&gafOpenPopup()">
+                <a href="cc-subscribe.html" class="help-btn cc">
                     <span>SUBSCRIBE &amp; DONATE USING CREDIT CARD</span>
                     <svg viewBox="0 0 24 18" aria-hidden="true">
                         <rect x="1" y="1" width="22" height="16" rx="2"/>
@@ -208,7 +220,7 @@ body{padding-bottom:90px}
                         <rect x="4" y="11" width="6" height="3" fill="#fff" stroke="none"/>
                     </svg>
                 </a>
-                <a href="#" class="help-btn paypal" onclick="event.preventDefault();window.gafOpenPopup&&gafOpenPopup()">
+                <a href="paypal-subscribe.html" class="help-btn paypal">
                     <span>SUBSCRIBE &amp; DONATE USING PAYPAL/VENMO</span>
                     <span class="pp-logo">P</span>
                 </a>
@@ -228,7 +240,7 @@ body{padding-bottom:90px}
     </div>
 </aside>
 
-<!-- ===== HERO — NEW MUSIC FRIDAY ===== -->
+<!-- ===== HERO â€” NEW MUSIC FRIDAY ===== -->
 <section class="hero-section">
     <div class="hero-inner">
         <div class="hero-image">
@@ -256,10 +268,10 @@ body{padding-bottom:90px}
                 <span class="editors-overlay"><i class="fas fa-headphones"></i> Editors' Choice</span>
             </div>
             <div class="review-meta">
-                <span class="artist-name">Foo Fighters</span>
-                <a href="#" class="album-name">Your Favorite Toy</a>
+                <a href="artist.html" class="artist-name">Foo Fighters</a>
+                <a href="album.html" class="album-name">Your Favorite Toy</a>
                 <span class="label-genre">RCA<br>Pop/Rock</span>
-                <div class="stars">★★★★<span class="star-empty">★</span></div>
+                <div class="stars">â˜…â˜…â˜…â˜…<span class="star-empty">â˜…</span></div>
                 <p class="review-snippet">Brisk and invigorated 12th album finds the veteran band in full rock mode, offering a breathless half-hour of energetic fun.</p>
                 <span class="reviewer">- Neil Z. Yeung</span>
             </div>
@@ -271,10 +283,10 @@ body{padding-bottom:90px}
                 <span class="editors-overlay"><i class="fas fa-headphones"></i> Editors' Choice</span>
             </div>
             <div class="review-meta">
-                <span class="artist-name">Metric</span>
-                <a href="#" class="album-name">Romanticize the Dive</a>
+                <a href="artist.html" class="artist-name">Metric</a>
+                <a href="album.html" class="album-name">Romanticize the Dive</a>
                 <span class="label-genre">Metric Music<br>Pop/Rock</span>
-                <div class="stars">★★★★<span class="star-empty">★</span></div>
+                <div class="stars">â˜…â˜…â˜…â˜…<span class="star-empty">â˜…</span></div>
                 <p class="review-snippet">The long-running group return to the stadium indie sound, doing so with immaculate skill and some real depth and imagination, as usual.</p>
                 <span class="reviewer">- Tim Sendra</span>
             </div>
@@ -285,10 +297,10 @@ body{padding-bottom:90px}
                 <div class="cover-text" style="color:#2c5f2d">Ringo Starr<br><span style="font-size:14px">Long Long Road</span></div>
             </div>
             <div class="review-meta">
-                <span class="artist-name">Ringo Starr</span>
-                <a href="#" class="album-name">Long Long Road</a>
+                <a href="artist.html" class="artist-name">Ringo Starr</a>
+                <a href="album.html" class="album-name">Long Long Road</a>
                 <span class="label-genre">Ringo Starr<br>Country, Pop/Rock</span>
-                <div class="stars">★★★<span class="star-half">★</span><span class="star-empty">★</span></div>
+                <div class="stars">â˜…â˜…â˜…<span class="star-half">â˜…</span><span class="star-empty">â˜…</span></div>
                 <p class="review-snippet">The Beatles drummer reunites with T-Bone Burnett for a second fine album of country-influenced material.</p>
                 <span class="reviewer">- Mark Deming</span>
             </div>
@@ -304,10 +316,10 @@ body{padding-bottom:90px}
                 <span class="editors-overlay"><i class="fas fa-headphones"></i> Editors' Choice</span>
             </div>
             <div class="review-meta">
-                <span class="artist-name">White Denim</span>
-                <a href="#" class="album-name">13</a>
+                <a href="artist.html" class="artist-name">White Denim</a>
+                <a href="album.html" class="album-name">13</a>
                 <span class="label-genre">Bella Union<br>Pop/Rock, R&amp;B</span>
-                <div class="stars">★★★★<span class="star-empty">★</span></div>
+                <div class="stars">â˜…â˜…â˜…â˜…<span class="star-empty">â˜…</span></div>
                 <p class="review-snippet">A giddy, stylistically funky good time marks the Austin group's 13th album.</p>
                 <span class="reviewer">- Matt Collar</span>
             </div>
@@ -318,10 +330,10 @@ body{padding-bottom:90px}
                 <span class="editors-overlay"><i class="fas fa-headphones"></i> Editors' Choice</span>
             </div>
             <div class="review-meta">
-                <span class="artist-name">White Fence</span>
-                <a href="#" class="album-name">Orange</a>
+                <a href="artist.html" class="artist-name">White Fence</a>
+                <a href="album.html" class="album-name">Orange</a>
                 <span class="label-genre">Drag City<br>Pop/Rock</span>
-                <div class="stars">★★★★<span class="star-half">★</span></div>
+                <div class="stars">â˜…â˜…â˜…â˜…<span class="star-half">â˜…</span></div>
                 <p class="review-snippet">The first album from this psychedelic pop group since 2019 contains some of the most immediate songs the band has committed to tape.</p>
                 <span class="reviewer">- Fred Thomas</span>
             </div>
@@ -331,10 +343,10 @@ body{padding-bottom:90px}
                 <div class="cover-text" style="color:#1a1a1a;font-size:11px">THE MILK CARTON KIDS<br><span style="font-size:11px">Lost Cause Lover Fool</span></div>
             </div>
             <div class="review-meta">
-                <span class="artist-name">The Milk Carton Kids</span>
-                <a href="#" class="album-name">Lost Cause Lover Fool</a>
+                <a href="artist.html" class="artist-name">The Milk Carton Kids</a>
+                <a href="album.html" class="album-name">Lost Cause Lover Fool</a>
                 <span class="label-genre">Far Cry Records<br>Pop/Rock, Folk</span>
-                <div class="stars">★★★<span class="star-half">★</span><span class="star-empty">★</span></div>
+                <div class="stars">â˜…â˜…â˜…<span class="star-half">â˜…</span><span class="star-empty">â˜…</span></div>
                 <p class="review-snippet">The indie folk duo's seventh studio LP is a set of quiet sad songs (including one called "Sad Song") about transformational emotional moments.</p>
                 <span class="reviewer">- Marcy Donelson</span>
             </div>
@@ -344,10 +356,10 @@ body{padding-bottom:90px}
                 <div class="cover-text" style="color:#1a1a1a;font-size:11px">The Reds, Pinks &amp; Purples<br><span style="font-size:10px">Acknowledge Kindness</span></div>
             </div>
             <div class="review-meta">
-                <span class="artist-name">The Reds, Pinks &amp; Purples</span>
-                <a href="#" class="album-name">Acknowledge Kindness</a>
+                <a href="artist.html" class="artist-name">The Reds, Pinks &amp; Purples</a>
+                <a href="album.html" class="album-name">Acknowledge Kindness</a>
                 <span class="label-genre">Fire Records<br>Pop/Rock</span>
-                <div class="stars">★★★★<span class="star-empty">★</span></div>
+                <div class="stars">â˜…â˜…â˜…â˜…<span class="star-empty">â˜…</span></div>
                 <p class="review-snippet">Glenn Donaldson's prolific indie pop project shakes off some of their jumpy college rock tendencies in favor of slower moving, goth-like reflections.</p>
                 <span class="reviewer">- Fred Thomas</span>
             </div>
@@ -359,10 +371,10 @@ body{padding-bottom:90px}
                 <span class="editors-overlay"><i class="fas fa-headphones"></i> Editors' Choice</span>
             </div>
             <div class="review-meta">
-                <span class="artist-name">Joy Harjo</span>
-                <a href="#" class="album-name">Insomnia and Seven Steps to Grace</a>
+                <a href="artist.html" class="artist-name">Joy Harjo</a>
+                <a href="album.html" class="album-name">Insomnia and Seven Steps to Grace</a>
                 <span class="label-genre">Smithsonian Folkways Recordings<br>Folk, Comedy/Spoken, International, Jazz</span>
-                <div class="stars">★★★★<span class="star-empty">★</span></div>
+                <div class="stars">â˜…â˜…â˜…â˜…<span class="star-empty">â˜…</span></div>
                 <p class="review-snippet">The U.S. poet laureate teams with bassist and producer Esperanza Spalding to deliver a class of mature poetics, rich storytelling, and funky jazz...</p>
                 <span class="reviewer">- Fred Thomas</span>
             </div>
@@ -387,43 +399,43 @@ body{padding-bottom:90px}
     <div class="releases-grid">
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#7a8c5a,#4a5c3a)"><div class="cover-text sm">The Great Divide</div></div>
-            <span class="artist-name">Noah Kahan</span>
-            <a href="#" class="album-name">The Great Divide</a>
+            <a href="artist.html" class="artist-name">Noah Kahan</a>
+            <a href="album.html" class="album-name">The Great Divide</a>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#ffe4ad,#ffc380)"><div class="cover-text sm dark-text">Under My Umbrella</div></div>
-            <span class="artist-name">Miss Grit</span>
-            <a href="#" class="album-name">Under My Umbrella</a>
+            <a href="artist.html" class="artist-name">Miss Grit</a>
+            <a href="album.html" class="album-name">Under My Umbrella</a>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#ff6347,#dc143c)"><div class="cover-text sm">Weller at the BBC, Vol. 2</div></div>
-            <span class="artist-name">Paul Weller</span>
-            <a href="#" class="album-name">Weller at the BBC, Vol. 2</a>
+            <a href="artist.html" class="artist-name">Paul Weller</a>
+            <a href="album.html" class="album-name">Weller at the BBC, Vol. 2</a>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#d4c4a8,#a89880)"><div class="cover-text sm dark-text" style="font-size:9px">Geometry of Murder</div></div>
-            <span class="artist-name">Earth / Black Noi$e</span>
-            <a href="#" class="album-name">Geometry of Murder: Extra Capsular Extraction Inversions</a>
+            <a href="artist.html" class="artist-name">Earth / Black Noi$e</a>
+            <a href="album.html" class="album-name">Geometry of Murder: Extra Capsular Extraction Inversions</a>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#3a4a5a,#1a2a3a)"><div class="cover-text sm">Out of the Ghetto</div></div>
-            <span class="artist-name">Courtney Pine</span>
-            <a href="#" class="album-name">Out of the Ghetto: A Modern-Day Jazz Story</a>
+            <a href="artist.html" class="artist-name">Courtney Pine</a>
+            <a href="album.html" class="album-name">Out of the Ghetto: A Modern-Day Jazz Story</a>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#8b4513,#654321,#a0522d)"><div class="cover-text sm">Las Cruxes</div></div>
-            <span class="artist-name">Las Cruxes</span>
-            <a href="#" class="album-name">Las Cruxes</a>
+            <a href="artist.html" class="artist-name">Las Cruxes</a>
+            <a href="album.html" class="album-name">Las Cruxes</a>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#4a8c9c,#2a5c6c)"><div class="cover-text sm">Triumvirate</div></div>
-            <span class="artist-name">Billy Childs</span>
-            <a href="#" class="album-name">Triumvirate</a>
+            <a href="artist.html" class="artist-name">Billy Childs</a>
+            <a href="album.html" class="album-name">Triumvirate</a>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#c8b89c,#8c7c64)"><div class="cover-text sm">Confession</div></div>
-            <span class="artist-name">Carla dal Forno</span>
-            <a href="#" class="album-name">Confession</a>
+            <a href="artist.html" class="artist-name">Carla dal Forno</a>
+            <a href="album.html" class="album-name">Confession</a>
         </div>
     </div>
     <a href="#" class="cta-button">ALL FEATURED NEW RELEASES</a>
@@ -440,7 +452,7 @@ body{padding-bottom:90px}
     </div>
 </div>
 
-<!-- ===== EDITORIAL CARDS — 3-col ===== -->
+<!-- ===== EDITORIAL CARDS â€” 3-col ===== -->
 <section class="section articles-section">
     <div class="articles-grid">
         <a href="#" class="article-card">
@@ -521,43 +533,43 @@ body{padding-bottom:90px}
     <div class="editors-grid">
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#dcd6c8,#a8a298)"><div class="cover-text sm dark-text" style="font-size:10px">COLLEEN<br>LIBRES ANTES<br>DEL FINAL</div></div>
-            <span class="artist-name">Colleen</span>
-            <a href="#" class="album-name">Libres antes del final</a>
+            <a href="artist.html" class="artist-name">Colleen</a>
+            <a href="album.html" class="album-name">Libres antes del final</a>
         </div>
         <div class="release-item">
-            <div class="album-cover small-cover" style="background:linear-gradient(135deg,#ddc89c,#b8a070)"><div class="cover-text sm dark-text" style="font-size:18px;font-style:italic;font-family:Georgia,serif">Taracá</div></div>
-            <span class="artist-name">Jorge Drexler</span>
-            <a href="#" class="album-name">Taracá</a>
+            <div class="album-cover small-cover" style="background:linear-gradient(135deg,#ddc89c,#b8a070)"><div class="cover-text sm dark-text" style="font-size:18px;font-style:italic;font-family:Georgia,serif">TaracÃ¡</div></div>
+            <a href="artist.html" class="artist-name">Jorge Drexler</a>
+            <a href="album.html" class="album-name">TaracÃ¡</a>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#c0392b,#2c3e50,#f39c12)"><div class="cover-text sm" style="font-size:9px">Luke Una</div></div>
-            <span class="artist-name">Luke Una</span>
-            <a href="#" class="album-name">Luke Una Presents É Soul Cultura, Vol. 3</a>
+            <a href="artist.html" class="artist-name">Luke Una</a>
+            <a href="album.html" class="album-name">Luke Una Presents Ã‰ Soul Cultura, Vol. 3</a>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#1a1a1a,#3a3a3a)"><div class="cover-text sm" style="font-size:10px">PROSTITUTE<br>Attempted Martyr</div></div>
-            <span class="artist-name">Prostitute</span>
-            <a href="#" class="album-name">Attempted Martyr</a>
+            <a href="artist.html" class="artist-name">Prostitute</a>
+            <a href="album.html" class="album-name">Attempted Martyr</a>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#8a8a7a,#4a4a3a)"><div class="cover-text sm">A Pound of Feathers</div></div>
-            <span class="artist-name">The Black Crowes</span>
-            <a href="#" class="album-name">A Pound of Feathers</a>
+            <a href="artist.html" class="artist-name">The Black Crowes</a>
+            <a href="album.html" class="album-name">A Pound of Feathers</a>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#1a2a1a,#0a0a0a)"><div class="cover-text sm">Lotus Bridge</div></div>
-            <span class="artist-name">The Monochrome Set</span>
-            <a href="#" class="album-name">Lotus Bridge</a>
+            <a href="artist.html" class="artist-name">The Monochrome Set</a>
+            <a href="album.html" class="album-name">Lotus Bridge</a>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#fff200,#dc143c,#0a0e16)"><div class="cover-text sm">It's the Long Goodbye</div></div>
-            <span class="artist-name">The Twilight Sad</span>
-            <a href="#" class="album-name">It's the Long Goodbye</a>
+            <a href="artist.html" class="artist-name">The Twilight Sad</a>
+            <a href="album.html" class="album-name">It's the Long Goodbye</a>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#3a4a8a,#2a3a6a,#e91e63)"><div class="cover-text sm" style="font-size:10px">WALTER SMITH III<br>Twio, Vol. 2</div></div>
-            <span class="artist-name">Walter Smith III</span>
-            <a href="#" class="album-name">Twio, Vol. 2</a>
+            <a href="artist.html" class="artist-name">Walter Smith III</a>
+            <a href="album.html" class="album-name">Twio, Vol. 2</a>
         </div>
     </div>
 </section>
@@ -578,12 +590,12 @@ body{padding-bottom:90px}
         <div class="staff-pick">
             <div class="staff-pick-cover" style="background:#000;position:relative;overflow:hidden">
                 <div style="position:absolute;top:14px;left:14px;color:#fff;font-size:11px;font-weight:700;display:flex;align-items:center;gap:6px"><span style="display:inline-block;width:8px;height:8px;background:#fff;border-radius:50%"></span> 3D ISLAND</div>
-                <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-size:48px;font-weight:900;letter-spacing:4px">⚡</div>
+                <div style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#fff;font-size:48px;font-weight:900;letter-spacing:4px">âš¡</div>
                 <div style="position:absolute;bottom:24px;left:50%;transform:translateX(-50%);color:#fff;font-size:24px;font-weight:900;letter-spacing:2px">WHITE NOISE</div>
             </div>
-            <div class="staff-pick-badge">AllMusic Staff Pick — April 28, 2026</div>
-            <span class="artist-name">White Noise</span>
-            <a href="#" class="album-name">An Electric Storm</a>
+            <div class="staff-pick-badge">AllMusic Staff Pick â€” April 28, 2026</div>
+            <a href="artist.html" class="artist-name">White Noise</a>
+            <a href="album.html" class="album-name">An Electric Storm</a>
             <span class="label-genre">1969<br>Experimental Rock</span>
             <p class="review-snippet">A prototypical release for experimental pop, electronic production, and strange music in general, White Storm's 1969 album An Electric Storm remains mysterious. The work of U.K. tape music innovator Delia Derbyshire and other members of the BBC Radiophonic Workshop, White Storm had few peers at the time, with the United States of America being a similar artist only at times. Interesting pop songs heavy on tape experiments and rudimentary early electronics make this a must-hear for anyone already a fan of the legions of acts that took influence from it.</p>
             <span class="reviewer">- Fred Thomas</span>
@@ -631,38 +643,38 @@ body{padding-bottom:90px}
     <div class="releases-grid six-col">
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#a52a2a,#5c0000)"><div class="cover-text sm">HEAVEN &amp; HELL<br>The Devil You Know</div></div>
-            <span class="artist-name">Heaven &amp; Hell</span>
-            <a href="#" class="album-name">The Devil You Know</a>
+            <a href="artist.html" class="artist-name">Heaven &amp; Hell</a>
+            <a href="album.html" class="album-name">The Devil You Know</a>
             <span class="release-date">Released April 28, 2009</span>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#e8c894,#c8a874)"><div class="cover-text sm dark-text">Humanz</div></div>
-            <span class="artist-name">Gorillaz</span>
-            <a href="#" class="album-name">Humanz</a>
+            <a href="artist.html" class="artist-name">Gorillaz</a>
+            <a href="album.html" class="album-name">Humanz</a>
             <span class="release-date">Released April 28, 2017</span>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#b34a4a,#8a3232)"><div class="cover-text sm">BOB DYLAN<br>Together Through Life</div></div>
-            <span class="artist-name">Bob Dylan</span>
-            <a href="#" class="album-name">Together Through Life</a>
+            <a href="artist.html" class="artist-name">Bob Dylan</a>
+            <a href="album.html" class="album-name">Together Through Life</a>
             <span class="release-date">Released April 28, 2009</span>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#dc143c,#ff6347,#fff)"><div class="cover-text sm">DIVA</div></div>
-            <span class="artist-name">Annie Lennox</span>
-            <a href="#" class="album-name">Diva</a>
+            <a href="artist.html" class="artist-name">Annie Lennox</a>
+            <a href="album.html" class="album-name">Diva</a>
             <span class="release-date">Released April 28, 1992</span>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#ff69b4,#c71585)"><div class="cover-text sm">Pleasure</div></div>
-            <span class="artist-name">Feist</span>
-            <a href="#" class="album-name">Pleasure</a>
+            <a href="artist.html" class="artist-name">Feist</a>
+            <a href="album.html" class="album-name">Pleasure</a>
             <span class="release-date">Released April 28, 2017</span>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#fff200,#fdb813)"><div class="cover-text sm dark-text">Marshall Crenshaw</div></div>
-            <span class="artist-name">Marshall Crenshaw</span>
-            <a href="#" class="album-name">Marshall Crenshaw</a>
+            <a href="artist.html" class="artist-name">Marshall Crenshaw</a>
+            <a href="album.html" class="album-name">Marshall Crenshaw</a>
             <span class="release-date">Released April 28, 1982</span>
         </div>
     </div>
@@ -674,7 +686,7 @@ body{padding-bottom:90px}
     <div class="birthdays-grid">
         <div class="birthday-item">
             <div class="birthday-avatar" style="background:url('https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?w=200&q=80') center/cover"></div>
-            <a href="#" class="birthday-name">Willie Colón</a>
+            <a href="#" class="birthday-name">Willie ColÃ³n</a>
             <span class="birthday-date">April 28, 1950</span>
         </div>
         <div class="birthday-item">
@@ -689,7 +701,7 @@ body{padding-bottom:90px}
         </div>
         <div class="birthday-item">
             <div class="birthday-avatar" style="background:url('https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=200&q=80') center/cover"></div>
-            <a href="#" class="birthday-name">Mario Bauzá</a>
+            <a href="#" class="birthday-name">Mario BauzÃ¡</a>
             <span class="birthday-date">April 28, 1911</span>
         </div>
         <div class="birthday-item">
@@ -764,9 +776,9 @@ body{padding-bottom:90px}
             <div style="position:absolute;bottom:6px;left:6px;right:6px;color:#1a1a1a;font-size:11px;font-style:italic;text-align:center">Creature of Habit</div>
         </div>
         <div class="user-review-info">
-            <span class="artist-name">Courtney Barnett</span>
-            <a href="#" class="album-name">Creature of Habit</a>
-            <div class="stars lg">★★★★<span class="star-empty">★</span></div>
+            <a href="artist.html" class="artist-name">Courtney Barnett</a>
+            <a href="album.html" class="album-name">Creature of Habit</a>
+            <div class="stars lg">â˜…â˜…â˜…â˜…<span class="star-empty">â˜…</span></div>
             <div class="user-review-by">User Review by <a href="#">AI</a></div>
         </div>
     </div>
@@ -779,62 +791,62 @@ body{padding-bottom:90px}
     <div class="releases-grid five-col">
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#5c0a0a,#1a0a0a)"><div class="cover-text sm" style="font-size:10px">american<br>football</div></div>
-            <span class="artist-name">American Football</span>
-            <a href="#" class="album-name">American Football [LP4]</a>
+            <a href="artist.html" class="artist-name">American Football</a>
+            <a href="album.html" class="album-name">American Football [LP4]</a>
             <span class="release-date">May 1, 2026</span>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#0a0e16,#3a2a1a,#dc143c)"><div class="cover-text sm" style="font-size:9px">BONNER KRAMER<br>THURSTON MOORE</div></div>
-            <span class="artist-name">Bonner Kramer / Thurston Moore</span>
-            <a href="#" class="album-name">They Came Like Swallows: Seven Requiems for the Children of Gaza</a>
+            <a href="artist.html" class="artist-name">Bonner Kramer / Thurston Moore</a>
+            <a href="album.html" class="album-name">They Came Like Swallows: Seven Requiems for the Children of Gaza</a>
             <span class="release-date">May 1, 2026</span>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#3a3a3a,#1a1a1a)"><div class="cover-text sm">Sweat</div></div>
-            <span class="artist-name">Melanie C</span>
-            <a href="#" class="album-name">Sweat</a>
+            <a href="artist.html" class="artist-name">Melanie C</a>
+            <a href="album.html" class="album-name">Sweat</a>
             <span class="release-date">May 1, 2026</span>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#7a8c7a,#4a5c4a)"><div class="cover-text sm" style="font-size:10px">In Times of Dragons</div></div>
-            <span class="artist-name">Tori Amos</span>
-            <a href="#" class="album-name">In Times of Dragons</a>
+            <a href="artist.html" class="artist-name">Tori Amos</a>
+            <a href="album.html" class="album-name">In Times of Dragons</a>
             <span class="release-date">May 1, 2026</span>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#3a5a8a,#1a3a6a)"><div class="cover-text sm">THE BLACK KEYS<br>Peaches</div></div>
-            <span class="artist-name">The Black Keys</span>
-            <a href="#" class="album-name">Peaches</a>
+            <a href="artist.html" class="artist-name">The Black Keys</a>
+            <a href="album.html" class="album-name">Peaches</a>
             <span class="release-date">May 1, 2026</span>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#d4c5a9,#a89875)"><div class="cover-text sm dark-text">Middle of Nowhere</div></div>
-            <span class="artist-name">Kacey Musgraves</span>
-            <a href="#" class="album-name">Middle of Nowhere</a>
+            <a href="artist.html" class="artist-name">Kacey Musgraves</a>
+            <a href="album.html" class="album-name">Middle of Nowhere</a>
             <span class="release-date">May 1, 2026</span>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#b89c7a,#7a5c3a)"><div class="cover-text sm">Remember the Humans</div></div>
-            <span class="artist-name">Broken Social Scene</span>
-            <a href="#" class="album-name">Remember the Humans</a>
+            <a href="artist.html" class="artist-name">Broken Social Scene</a>
+            <a href="album.html" class="album-name">Remember the Humans</a>
             <span class="release-date">May 8, 2026</span>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#fff200,#dc143c,#0a0e16)"><div class="cover-text sm">Born To Kill</div></div>
-            <span class="artist-name">Social Distortion</span>
-            <a href="#" class="album-name">Born To Kill</a>
+            <a href="artist.html" class="artist-name">Social Distortion</a>
+            <a href="album.html" class="album-name">Born To Kill</a>
             <span class="release-date">May 8, 2026</span>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#dc143c,#fff200,#0a0e16)"><div class="cover-text sm" style="font-size:9px">From a Hole in the Floor to a Fountain of Youth</div></div>
-            <span class="artist-name">Future Islands</span>
-            <a href="#" class="album-name">From a Hole in the Floor to a Fountain of Youth</a>
+            <a href="artist.html" class="artist-name">Future Islands</a>
+            <a href="album.html" class="album-name">From a Hole in the Floor to a Fountain of Youth</a>
             <span class="release-date">May 22, 2026</span>
         </div>
         <div class="release-item">
             <div class="album-cover small-cover" style="background:linear-gradient(135deg,#f0e8d4,#c8b89c)"><div class="cover-text sm dark-text" style="font-size:10px">The Boys of<br>Dungeon Lane</div></div>
-            <span class="artist-name">Paul McCartney</span>
-            <a href="#" class="album-name">The Boys of Dungeon Lane</a>
+            <a href="artist.html" class="artist-name">Paul McCartney</a>
+            <a href="album.html" class="album-name">The Boys of Dungeon Lane</a>
             <span class="release-date">May 29, 2026</span>
         </div>
     </div>
@@ -895,33 +907,33 @@ body{padding-bottom:90px}
             <div class="releases-grid three-col">
                 <div class="release-item">
                     <div class="album-cover small-cover" style="background:linear-gradient(135deg,#8b4513,#a0522d)"><div class="cover-text sm">The Spinners</div></div>
-                    <span class="artist-name">The Spinners</span>
-                    <a href="#" class="album-name">The Very Best of the Spinners</a>
+                    <a href="artist.html" class="artist-name">The Spinners</a>
+                    <a href="album.html" class="album-name">The Very Best of the Spinners</a>
                 </div>
                 <div class="release-item">
                     <div class="album-cover small-cover" style="background:linear-gradient(135deg,#4a4a4a,#6a6a6a)"><div class="cover-text sm">Debut</div></div>
-                    <span class="artist-name">Björk</span>
-                    <a href="#" class="album-name">Debut</a>
+                    <a href="artist.html" class="artist-name">BjÃ¶rk</a>
+                    <a href="album.html" class="album-name">Debut</a>
                 </div>
                 <div class="release-item">
                     <div class="album-cover small-cover" style="background:linear-gradient(135deg,#c0392b,#e74c3c)"><div class="cover-text sm">Doggystyle</div></div>
-                    <span class="artist-name">Snoop Dogg</span>
-                    <a href="#" class="album-name">Doggystyle</a>
+                    <a href="artist.html" class="artist-name">Snoop Dogg</a>
+                    <a href="album.html" class="album-name">Doggystyle</a>
                 </div>
                 <div class="release-item">
                     <div class="album-cover small-cover" style="background:linear-gradient(135deg,#2c3e50,#34495e)"><div class="cover-text sm">The Drifters</div></div>
-                    <span class="artist-name">The Drifters</span>
-                    <a href="#" class="album-name">The Very Best of the Drifters [Rhino]</a>
+                    <a href="artist.html" class="artist-name">The Drifters</a>
+                    <a href="album.html" class="album-name">The Very Best of the Drifters [Rhino]</a>
                 </div>
                 <div class="release-item">
                     <div class="album-cover small-cover" style="background:linear-gradient(135deg,#c0392b,#fff200)"><div class="cover-text sm">All Killer, No Filler</div></div>
-                    <span class="artist-name">Jerry Lee Lewis</span>
-                    <a href="#" class="album-name">All Killer, No Filler: The Anthology</a>
+                    <a href="artist.html" class="artist-name">Jerry Lee Lewis</a>
+                    <a href="album.html" class="album-name">All Killer, No Filler: The Anthology</a>
                 </div>
                 <div class="release-item">
                     <div class="album-cover small-cover" style="background:linear-gradient(135deg,#8b7355,#c8a96e)"><div class="cover-text sm">Contrasts</div></div>
-                    <span class="artist-name">Jimmy Dorsey / Jimmy Dorsey &amp; His Orchestra</span>
-                    <a href="#" class="album-name">Contrasts [Decca]</a>
+                    <a href="artist.html" class="artist-name">Jimmy Dorsey / Jimmy Dorsey &amp; His Orchestra</a>
+                    <a href="album.html" class="album-name">Contrasts [Decca]</a>
                 </div>
             </div>
         </div>
@@ -985,8 +997,8 @@ body{padding-bottom:90px}
 
 <!-- ===== STICKY BOTTOM GODADDY BANNER ===== -->
 <div class="gd-bottom-banner" id="gdBottomBanner">
-    <button class="gd-bottom-banner-close" onclick="document.getElementById('gdBottomBanner').style.display='none'" aria-label="Close">×</button>
-    <span class="gd-bottom-banner-info">ⓘ ⋮</span>
+    <button class="gd-bottom-banner-close" onclick="document.getElementById('gdBottomBanner').style.display='none'" aria-label="Close">Ã—</button>
+    <span class="gd-bottom-banner-info">â“˜ â‹®</span>
     <div class="gd-bb-logo"><i class="fas fa-circle-nodes"></i> GoDaddy</div>
     <div class="gd-bb-tag">Build, brand, and back your business with GoDaddy.</div>
     <div class="gd-bb-product">
@@ -994,7 +1006,7 @@ body{padding-bottom:90px}
         <div style="font-weight:700;font-size:10px">AMERICAN PIES CASERAS, NATURALES, PERO SOBRE TODO ORIGINALES</div>
     </div>
     <div class="gd-bb-laptop">
-        <div style="background:#000;width:80px;height:50px;border-radius:3px;display:flex;align-items:center;justify-content:center;color:#5fc4e0;font-size:8px">Ricardo de Tomás<br>9LIVES.ES</div>
+        <div style="background:#000;width:80px;height:50px;border-radius:3px;display:flex;align-items:center;justify-content:center;color:#5fc4e0;font-size:8px">Ricardo de TomÃ¡s<br>9LIVES.ES</div>
     </div>
 </div>
 
@@ -1007,7 +1019,7 @@ body{padding-bottom:90px}
         </button>
     </div>
     <div class="sv-wrap">
-        <button class="sv-close" onclick="document.getElementById('stickyVideoAd').style.display='none'" aria-label="Close">×</button>
+        <button class="sv-close" onclick="document.getElementById('stickyVideoAd').style.display='none'" aria-label="Close">Ã—</button>
         <div class="sv-box">
             <div class="sv-box-title">PERSONALIZED RECOMMENDATIONS</div>
             <div class="sv-box-text">AI ALGORITHMS ARE BEHIND THE PERSONALIZED RECOMMENDATIONS WE RECEIVE ON VARIOUS PLATFORMS, STREAMING SERVICES LIKE NETFLIX AND SPOTIFY USE AI TO SUGGEST MOVIES, SHOWS, AND MUSIC BASED ON YOUR VIEWING AND LISTENING HISTORY.</div>
@@ -1015,6 +1027,7 @@ body{padding-bottom:90px}
     </div>
 </div>
 
+<script src="auth.js"></script>
 <script src="go-ad-free.js?v=2" data-delay="1000" data-poll="3000" data-selectors=".demo-ad"></script>
 </body>
 </html>

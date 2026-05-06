@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe with PayPal or Venmo | AllMusic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="subscribe-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+      (function(){
+        try{
+          var u = localStorage.getItem("allmusic_user");
+          document.documentElement.classList.add(u ? "am-logged-in" : "am-logged-out");
+        }catch(e){ document.documentElement.classList.add("am-logged-out"); }
+      })();
+    </script>
+    <style>
+      html.am-logged-in .auth-out-only { display: none !important; }
+      html.am-logged-out .auth-in-only { display: none !important; }
+      body.am-subscribe-page .search-bar-wrap { display: none; }
+      /* PayPal page secondary buttons */
+      .pp-secondary { background:#ffc439; color:#003087; padding:14px; border-radius:4px; text-align:center; font-weight:700; font-family:Georgia,serif; font-size:18px; font-style:italic; cursor:pointer; max-width:580px; margin:10px auto; }
+      .pp-secondary-cc { background:#2c2e2e; color:#fff; padding:14px; border-radius:4px; text-align:center; font-weight:600; font-family:'Source Sans 3',sans-serif; font-size:14px; cursor:pointer; max-width:580px; margin:10px auto; display:flex; align-items:center; justify-content:center; gap:10px; }
+      .pp-powered { text-align:center; font-size:11px; color:#888; margin-top:8px; font-style:italic; }
+      .pp-powered .pp-name { color:#1ca4cd; font-weight:700; font-style:italic; }
+    </style>
+</head>
+<body class="am-subscribe-page">
+
+<header class="site-header">
+    <div class="header-inner">
+        <a href="index.html" class="logo" aria-label="AllMusic Home">
+            <img src="assets/logo.svg" alt="AllMusic" class="logo-icon" width="36" height="36">
+            <span class="logo-text"><strong>ALL</strong>MUSIC</span>
+        </a>
+        <nav class="main-nav desktop-only">
+            <a href="#" class="nav-link">New Releases <span class="caret">&#9662;</span></a>
+            <a href="#" class="nav-link">Discover <span class="caret">&#9662;</span></a>
+            <a href="#" class="nav-link">Articles <span class="caret">&#9662;</span></a>
+            <a href="#" class="nav-link">AllMusic Recommends <span class="caret">&#9662;</span></a>
+            <a href="#" class="nav-link">My Profile</a>
+            <a href="#" class="nav-link">Advanced Search</a>
+            <a href="subscribe.html" class="nav-link am-remove-ads">Remove Ads</a>
+        </nav>
+        <div class="header-right">
+            <span class="auth-links desktop-only">
+                <a href="login.html">SIGN UP</a> / <a href="login.html">LOG IN</a>
+            </span>
+            <button class="mobile-menu-btn mobile-only" aria-label="Menu">&#9776;</button>
+        </div>
+    </div>
+</header>
+
+<main class="sub-wrap">
+    <h1 class="sub-title alt">Subscribe with PayPal or Venmo</h1>
+
+    <section class="sub-benefits">
+        <div class="sub-benefit">
+            <h3>Support AllMusic</h3>
+            <p>AllMusic has been offering in-depth information to industry professionals, research institutions and music fans for over 20 years. If you'd like to show your support, this is a good way to do it.</p>
+        </div>
+        <div class="sub-benefit">
+            <h3>An Ad-Free Experience</h3>
+            <p>As a subscriber, we'll remove ads to streamline your AllMusic experience.</p>
+        </div>
+        <div class="sub-benefit">
+            <h3>Improved Site Speed</h3>
+            <p>We work with dozens of ad networks to get the most relevant ads for you. By removing these you will get a vastly improved experience.</p>
+        </div>
+    </section>
+
+    <!-- ===== LOGGED-OUT: login form ===== -->
+    <section class="auth-out-only sub-login-block">
+        <p class="sub-login-prompt">To sign up for a Paid Subscription you need to log in to your AllMusic Account</p>
+
+        <button type="button" class="sub-social-btn fb">
+            LOG IN USING FACEBOOK
+            <span class="social-icon"><i class="fab fa-facebook"></i></span>
+        </button>
+        <button type="button" class="sub-social-btn google" id="googleLoginBtn">
+            LOG IN USING GOOGLE
+            <span class="social-icon">
+                <svg viewBox="0 0 48 48" width="20" height="20" aria-hidden="true">
+                    <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+                    <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+                    <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+                    <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+                </svg>
+            </span>
+        </button>
+
+        <div class="sub-or-divider">— OR LOGIN WITH YOUR EMAIL ADDRESS —</div>
+
+        <form id="emailLoginForm" autocomplete="off">
+            <div class="sub-form-row">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" class="sub-input" placeholder="name@domain.com" required>
+            </div>
+            <div class="sub-form-row">
+                <div class="row-head">
+                    <label for="password">Password</label>
+                    <a href="#">Forgot Your Password?</a>
+                </div>
+                <input type="password" id="password" class="sub-input" placeholder="password" required>
+            </div>
+            <button type="submit" class="sub-login-submit">LOG IN</button>
+            <div class="sub-login-meta">
+                <label><input type="checkbox"> Remember Me</label>
+                <a href="#">Don't have an account?</a>
+            </div>
+        </form>
+    </section>
+
+    <!-- ===== LOGGED-IN: pricing tiers (PayPal/Venmo flavor) ===== -->
+    <section class="auth-in-only sub-price-block">
+        <h2>Our standard AllMusic subscription cost is $16</h2>
+
+        <a href="#" class="sub-pay-btn paypal">
+            <span class="icon"></span>
+            <span class="label">SUBSCRIBE USING PAYPAL OR VENMO &bull; $16</span>
+            <span class="icon"><span class="pp-logo">P</span></span>
+        </a>
+
+        <div class="sub-or">OR</div>
+
+        <div class="sub-marketing">
+            <p>The advertising industry is no longer able to support our operating costs so we're asking for your help.</p>
+            <p>If you are a longtime AllMusic user and value the work we put in, please consider subscribing at one of the following rates. You'll be supporting a longtime resource for music fans worldwide.</p>
+        </div>
+
+        <div class="sub-tier-stack">
+            <a href="#" class="sub-pay-btn paypal">
+                <span class="icon"></span>
+                <span class="label">SUBSCRIBE &amp; DONATE VIA PAYPAL/VENMO &bull; $25</span>
+                <span class="icon"><span class="pp-logo">P</span></span>
+            </a>
+            <a href="#" class="sub-pay-btn paypal">
+                <span class="icon"></span>
+                <span class="label">SUBSCRIBE &amp; DONATE VIA PAYPAL/VENMO &bull; $50</span>
+                <span class="icon"><span class="pp-logo">P</span></span>
+            </a>
+            <a href="#" class="sub-pay-btn paypal">
+                <span class="icon"></span>
+                <span class="label">SUBSCRIBE &amp; DONATE VIA PAYPAL/VENMO &bull; $100</span>
+                <span class="icon"><span class="pp-logo">P</span></span>
+            </a>
+            <a href="#" class="sub-pay-btn paypal">
+                <span class="icon"></span>
+                <span class="label">SUBSCRIBE &amp; DONATE VIA PAYPAL/VENMO &bull; $1000</span>
+                <span class="icon"><span class="pp-logo">P</span></span>
+            </a>
+        </div>
+    </section>
+</main>
+
+<!-- Sticky create-account bar (logged-out only) -->
+<div class="auth-out-only sub-create-bar" id="createBar">
+    <div class="sub-create-bar-text">Have You Created Your AllMusic Account Yet?</div>
+    <a href="#" class="sub-create-bar-cta">CREATE AN ACCOUNT</a>
+    <button class="sub-create-bar-close" aria-label="Close" onclick="this.parentElement.style.display='none';document.body.classList.remove('am-needs-login')">&times;</button>
+</div>
+
+<footer class="sub-footer">
+    <div class="sub-footer-inner">
+        <div class="sub-footer-col">
+            <h5>OUR PROPERTIES</h5>
+            <a href="#">AllMusic</a>
+            <a href="#">AllMovie</a>
+            <a href="#">SideReel</a>
+            <h5 class="mt">SITE OVERVIEW</h5>
+            <a href="#">New Releases</a>
+            <a href="#">Discover</a>
+            <a href="#">Articles</a>
+            <a href="#">Recommendations</a>
+        </div>
+        <div class="sub-footer-col">
+            <h5>ABOUT</h5>
+            <a href="#">What is AllMusic?</a>
+            <a href="#">Copyright Policy</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Advertise</a>
+            <h5 class="mt">QUESTIONS AND CONTACT</h5>
+            <a href="#">FAQ</a>
+            <a href="#">Feedback</a>
+        </div>
+        <div class="sub-footer-col">
+            <h5>YOUR ALLMUSIC ACCOUNT</h5>
+            <a href="#">My Profile</a>
+            <a href="#">Account Settings</a>
+            <h5 class="mt">REMOVE ADS</h5>
+            <a href="subscribe.html">Subscribe to AllMusic</a>
+        </div>
+        <div class="sub-footer-col">
+            <h5>FOLLOW US</h5>
+            <a href="#">Facebook</a>
+            <a href="#">Bluesky</a>
+            <a href="#">Threads</a>
+            <a href="#">Tumblr</a>
+            <a href="#">RSS</a>
+            <h5 class="mt">SIGN UP FOR OUR WEEKLY NEW RELEASES NEWSLETTER</h5>
+            <form class="sub-footer-newsletter" onsubmit="event.preventDefault()">
+                <input type="email" placeholder="name@domain.com">
+                <button type="submit">SIGN UP</button>
+            </form>
+        </div>
+    </div>
+    <div class="sub-copyright">&copy;2026 ALLMUSIC, NETAKTION LLC - ALL RIGHTS RESERVED</div>
+</footer>
+
+<script src="auth.js"></script>
+<script>
+(function(){
+  function syncPadding(){
+    if(window.AMAuth && window.AMAuth.getUser()){
+      document.body.classList.remove("am-needs-login");
+    }else{
+      document.body.classList.add("am-needs-login");
+    }
+  }
+  syncPadding();
+  document.addEventListener("am-auth-change", syncPadding);
+
+  var googleBtn = document.getElementById("googleLoginBtn");
+  if(googleBtn){
+    googleBtn.addEventListener("click", function(){
+      window.AMAuth.signIn({
+        siteName: "AllMusic",
+        onSignedIn: function(){
+          document.documentElement.classList.remove("am-logged-out");
+          document.documentElement.classList.add("am-logged-in");
+          syncPadding();
+          window.scrollTo({top:0, behavior:"smooth"});
+        }
+      });
+    });
+  }
+
+  var fbBtn = document.querySelector(".sub-social-btn.fb");
+  if(fbBtn){
+    fbBtn.addEventListener("click", function(){
+      alert("Facebook login isn't available in this demo. Please use Google.");
+    });
+  }
+
+  var form = document.getElementById("emailLoginForm");
+  if(form){
+    form.addEventListener("submit", function(e){
+      e.preventDefault();
+      var email = document.getElementById("email").value.trim();
+      if(!email) return;
+      var name = email.split("@")[0].replace(/\./g," ").replace(/\b\w/g, function(c){return c.toUpperCase();});
+      window.AMAuth.setUser({name:name, email:email, color:"#f5b50f", initial:(name[0]||"U").toUpperCase()});
+      document.documentElement.classList.remove("am-logged-out");
+      document.documentElement.classList.add("am-logged-in");
+      syncPadding();
+      window.scrollTo({top:0, behavior:"smooth"});
+    });
+  }
+})();
+</script>
+</body>
+</html>
