@@ -971,7 +971,7 @@ body{padding-bottom:90px}
             <a href="#">My Profile</a>
             <a href="#">Account Settings</a>
             <h4 class="mt">REMOVE ADS</h4>
-            <a href="#" onclick="event.preventDefault();window.gafOpenPopup&&gafOpenPopup()">Subscribe to AllMusic</a>
+            <a href="subscribe.html">Subscribe to AllMusic</a>
         </div>
         <div class="footer-col">
             <h4>FOLLOW US</h4>
@@ -1013,10 +1013,10 @@ body{padding-bottom:90px}
 <!-- ===== STICKY VIDEO AD (bottom-right) ===== -->
 <div class="sv-container" id="stickyVideoAd">
     <div class="sv-cta-row">
-        <button class="sv-gaf-cta" type="button" onclick="window.gafOpenPopup && gafOpenPopup()">
+        <a class="sv-gaf-cta" href="subscribe.html">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
             Remove Ads
-        </button>
+        </a>
     </div>
     <div class="sv-wrap">
         <button class="sv-close" onclick="document.getElementById('stickyVideoAd').style.display='none'" aria-label="Close">Ã—</button>
@@ -1028,6 +1028,5 @@ body{padding-bottom:90px}
 </div>
 
 <script src="auth.js"></script>
-<script src="go-ad-free.js?v=2" data-delay="1000" data-poll="3000" data-selectors=".demo-ad"></script>
 </body>
 </html>
