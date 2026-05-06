@@ -11,6 +11,8 @@ var STYLE = ''
 + '.am-ra-floating{position:absolute;top:8px;right:8px;z-index:5;box-shadow:0 2px 6px rgba(0,0,0,0.25)}'
 // Bottom banner already has close X + info icon at top-right; pin pill to top-LEFT instead
 + '.gd-bottom-banner .am-ra-floating{top:6px;right:auto;left:8px;box-shadow:none}'
+// Side-rail ad has its own ::before/::after decorators at top-right; pin pill to top-LEFT
++ '.side-rail-ad .am-ra-floating{top:8px;right:auto;left:8px;z-index:6}'
 ;
 
 function injectStyles(){
