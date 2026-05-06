@@ -71,8 +71,6 @@ var CSS = ''
 + '.am-user-menu .am-signout{color:#d33}'
 + '.am-user-menu .am-signout .am-mi-icon{color:#d33}'
 + '.am-user-menu .am-signout:hover{background:#fff5f5}'
-// Mark Remove Ads link visually when logged in
-+ 'body.am-logged-in .am-remove-ads{outline:2px solid #d33;outline-offset:2px;border-radius:2px}'
 ;
 
 function injectStyles(){
