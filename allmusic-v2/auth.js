@@ -157,11 +157,8 @@ function applyState(){
     document.body.classList.remove("am-logged-in");
   }
 
-  // Hide help banner when logged in
-  var banner = document.getElementById("helpBanner");
-  if(banner){
-    banner.style.display = u ? "none" : "";
-  }
+  // v2: help banner stays visible at all times (baseline hides it when logged in;
+  // v2 intentionally keeps it on every page regardless of auth state).
 
   // Header right zone — swap SIGN UP/LOG IN with user pill
   var authBox = document.querySelector(".auth-links");
