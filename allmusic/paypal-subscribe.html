@@ -119,11 +119,26 @@
     <section class="auth-in-only sub-price-block">
         <h2>Our standard AllMusic subscription cost is $16</h2>
 
-        <a href="#" class="sub-pay-btn paypal">
+        <a href="#" class="sub-pay-btn paypal" data-toggle-payment>
             <span class="icon"></span>
             <span class="label">SUBSCRIBE USING PAYPAL OR VENMO &bull; $16</span>
             <span class="icon"><span class="pp-logo">P</span></span>
         </a>
+
+        <!-- Inline PayPal/Debit payment options -->
+        <div class="sub-pay-widget" id="ppPaymentWidget">
+            <button type="button" class="pp-paypal-btn">
+                <span class="pp-blue">Pay</span><span class="pp-light">Pal</span>
+            </button>
+            <button type="button" class="pp-debit-btn">
+                <svg viewBox="0 0 24 18" aria-hidden="true">
+                    <rect x="1" y="1" width="22" height="16" rx="2"/>
+                    <line x1="1" y1="6" x2="23" y2="6"/>
+                </svg>
+                Debit or Credit Card
+            </button>
+            <p class="pp-powered">Powered by <span class="pp-name"><span class="pp-blue">Pay</span><span class="pp-light">Pal</span></span></p>
+        </div>
 
         <div class="sub-or">OR</div>
 
@@ -244,6 +259,28 @@
   if(fbBtn){
     fbBtn.addEventListener("click", function(){
       alert("Facebook login isn't available in this demo. Please use Google.");
+    });
+  }
+
+  // Toggle PayPal options when $16 button is clicked
+  var widgetToggle = document.querySelector("[data-toggle-payment]");
+  var widget = document.getElementById("ppPaymentWidget");
+  if(widgetToggle && widget){
+    widgetToggle.addEventListener("click", function(e){
+      e.preventDefault();
+      widget.classList.toggle("open");
+    });
+  }
+  var ppBtn = document.querySelector(".pp-paypal-btn");
+  if(ppBtn){
+    ppBtn.addEventListener("click", function(){
+      alert("Demo: redirecting to PayPal/Venmo for $16.00 USD…");
+    });
+  }
+  var ppDebitBtn = document.querySelector(".pp-debit-btn");
+  if(ppDebitBtn){
+    ppDebitBtn.addEventListener("click", function(){
+      window.location.href = "cc-subscribe.html";
     });
   }
 

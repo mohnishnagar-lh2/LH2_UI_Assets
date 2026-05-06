@@ -132,6 +132,151 @@ body.am-subscribe-page.am-needs-login { padding-bottom: 96px; }
 
 .sub-tier-stack { display: flex; flex-direction: column; gap: 14px; margin-top: 20px; }
 
+/* ===== Inline payment widgets (revealed when $16 button is clicked) ===== */
+.sub-pay-widget {
+  max-width: 580px;
+  margin: 14px auto 0;
+  display: none;
+  flex-direction: column;
+  gap: 14px;
+  animation: subSlide .18s ease;
+}
+.sub-pay-widget.open { display: flex; }
+@keyframes subSlide { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Credit card form */
+.cc-form-label {
+  text-align: center;
+  font-size: 13px;
+  color: #d9d9d9;
+  margin-top: 4px;
+  font-weight: 400;
+}
+.cc-input-row {
+  display: flex;
+  align-items: stretch;
+  background: #fff;
+  border-radius: 4px;
+  overflow: hidden;
+  border: 1px solid #ccc;
+}
+.cc-input-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  background: #f1f1f1;
+  color: #666;
+  font-size: 16px;
+}
+.cc-input-row input {
+  flex: 1;
+  border: none;
+  padding: 14px 12px;
+  font-size: 15px;
+  font-family: inherit;
+  outline: none;
+  background: #fff;
+  color: #1a1a1a;
+}
+.cc-input-row input::placeholder { color: #999; }
+.cc-use-btn {
+  background: #5cb85c;
+  color: #fff;
+  border: none;
+  padding: 0 14px;
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  letter-spacing: 0.4px;
+  margin: 6px;
+  border-radius: 14px;
+}
+.cc-use-btn::after {
+  content: "\2192";
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: rgba(0,0,0,0.25);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+}
+.cc-disclaimer {
+  text-align: center;
+  font-size: 12.5px;
+  color: #d9d9d9;
+  line-height: 1.55;
+  padding: 0 12px;
+}
+.cc-disclaimer a { color: #1ca4cd; }
+.cc-submit {
+  background: #555;
+  color: #fff;
+  border: none;
+  padding: 16px;
+  font-family: inherit;
+  font-size: 13.5px;
+  font-weight: 700;
+  letter-spacing: 0.6px;
+  cursor: not-allowed;
+  border-radius: 4px;
+  text-align: center;
+}
+.cc-submit.enabled { background: #1c7eb8; cursor: pointer; }
+.cc-submit.enabled:hover { background: #176ba0; }
+
+/* PayPal / Debit-Credit secondary buttons */
+.pp-paypal-btn {
+  background: #ffc439;
+  border: none;
+  padding: 16px;
+  border-radius: 24px;
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-weight: 900;
+  font-size: 22px;
+  color: #003087;
+  cursor: pointer;
+  text-align: center;
+}
+.pp-paypal-btn .pp-blue { color: #003087; }
+.pp-paypal-btn .pp-light { color: #009cde; }
+.pp-debit-btn {
+  background: #2c2e2e;
+  color: #fff;
+  border: none;
+  padding: 16px;
+  border-radius: 24px;
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+.pp-debit-btn:hover { background: #3a3c3c; }
+.pp-debit-btn svg { width: 22px; height: 16px; fill: none; stroke: #fff; stroke-width: 1.6; }
+.pp-powered {
+  text-align: center;
+  font-size: 12px;
+  color: #888;
+  margin-top: 4px;
+}
+.pp-powered .pp-name {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+}
+.pp-powered .pp-name .pp-blue { color: #003087; }
+.pp-powered .pp-name .pp-light { color: #009cde; }
+
 /* Login form (logged-out variant) */
 .sub-login-block { padding: 70px 0 40px; max-width: 480px; margin: 0 auto; }
 .sub-login-prompt {
