@@ -52,11 +52,25 @@ var CSS = ''
 + '.am-modal-close{position:absolute;top:14px;right:14px;background:transparent;border:none;color:#5f6368;font-size:22px;cursor:pointer;width:32px;height:32px;border-radius:50%;display:flex;align-items:center;justify-content:center;line-height:1}'
 + '.am-modal-close:hover{background:rgba(0,0,0,0.05)}'
 // Header user pill
-+ '.am-user-pill{display:inline-flex;align-items:center;gap:8px;color:#fff;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;font-family:"Source Sans 3",sans-serif}'
++ '.am-user-pill{display:inline-flex;align-items:center;gap:8px;color:#fff;font-size:11px;font-weight:700;letter-spacing:0.5px;text-transform:uppercase;font-family:"Source Sans 3",sans-serif;position:relative}'
 + '.am-user-pill .am-gear,.am-user-pill .am-flag{cursor:pointer;color:#aaa;font-size:13px;line-height:1}'
 + '.am-user-pill .am-gear:hover,.am-user-pill .am-flag:hover{color:#fff}'
-+ '.am-user-name{cursor:pointer}'
++ '.am-user-name{cursor:pointer;display:inline-flex;align-items:center;gap:5px}'
 + '.am-user-name:hover{text-decoration:underline}'
++ '.am-user-name .am-caret{font-size:8px;opacity:.7}'
+// User dropdown menu
++ '.am-user-menu{position:absolute;top:calc(100% + 10px);right:0;background:#fff;color:#1a1a1a;min-width:220px;border-radius:6px;box-shadow:0 8px 24px rgba(0,0,0,0.4);overflow:hidden;z-index:1000;font-family:"Source Sans 3",sans-serif;font-weight:400;letter-spacing:normal;text-transform:none;display:none}'
++ '.am-user-menu.open{display:block;animation:amSlide .15s ease}'
++ '.am-user-menu-head{padding:14px 18px 12px;border-bottom:1px solid #eee;background:#fafafa}'
++ '.am-user-menu-head .am-mh-name{font-size:14px;font-weight:700;color:#1a1a1a}'
++ '.am-user-menu-head .am-mh-email{font-size:12px;color:#666;margin-top:2px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}'
++ '.am-user-menu a, .am-user-menu button{display:flex;align-items:center;gap:12px;padding:11px 18px;font-size:13.5px;color:#1a1a1a;text-decoration:none;cursor:pointer;border:none;background:transparent;width:100%;text-align:left;font-family:inherit;font-weight:500}'
++ '.am-user-menu a:hover, .am-user-menu button:hover{background:#f5f5f5;color:#1a1a1a;text-decoration:none}'
++ '.am-user-menu .am-mi-icon{width:16px;text-align:center;color:#666;font-size:13px}'
++ '.am-user-menu .am-divider{height:1px;background:#eee;margin:0}'
++ '.am-user-menu .am-signout{color:#d33}'
++ '.am-user-menu .am-signout .am-mi-icon{color:#d33}'
++ '.am-user-menu .am-signout:hover{background:#fff5f5}'
 // Mark Remove Ads link visually when logged in
 + 'body.am-logged-in .am-remove-ads{outline:2px solid #d33;outline-offset:2px;border-radius:2px}'
 ;
@@ -155,18 +169,54 @@ function applyState(){
   var authBox = document.querySelector(".auth-links");
   if(authBox){
     if(u){
+      var firstName = (u.name || "User").split(" ")[0].toUpperCase();
       authBox.innerHTML = ''
         + '<span class="am-user-pill">'
-        +   '<span class="am-user-name" title="'+u.email+'">'+ (u.name.split(" ")[0].toUpperCase()) +'</span>'
+        +   '<span class="am-user-name" title="'+u.email+'" data-am-toggle-menu>'
+        +     '<span>'+ firstName +'</span>'
+        +     '<span class="am-caret">&#9662;</span>'
+        +   '</span>'
         +   '<span class="am-gear" title="Settings"><i class="fas fa-cog"></i></span>'
         +   '<span class="am-flag" title="Sign out" data-am-signout><i class="fas fa-flag"></i></span>'
+        +   '<div class="am-user-menu" id="amUserMenu">'
+        +     '<div class="am-user-menu-head">'
+        +       '<div class="am-mh-name">'+ u.name +'</div>'
+        +       '<div class="am-mh-email">'+ u.email +'</div>'
+        +     '</div>'
+        +     '<a href="#"><span class="am-mi-icon"><i class="fas fa-user"></i></span>My Profile</a>'
+        +     '<a href="#"><span class="am-mi-icon"><i class="fas fa-cog"></i></span>Account Settings</a>'
+        +     '<a href="subscribe.html"><span class="am-mi-icon"><i class="fas fa-circle-xmark"></i></span>Remove Ads</a>'
+        +     '<div class="am-divider"></div>'
+        +     '<button class="am-signout" data-am-signout type="button"><span class="am-mi-icon"><i class="fas fa-right-from-bracket"></i></span>Sign Out</button>'
+        +   '</div>'
         + '</span>';
-      var signoutEl = authBox.querySelector("[data-am-signout]");
-      if(signoutEl){
-        signoutEl.addEventListener("click", function(){
-          if(confirm("Sign out of AllMusic?")) clearUser();
+
+      var menu = authBox.querySelector("#amUserMenu");
+      var toggle = authBox.querySelector("[data-am-toggle-menu]");
+      function closeMenu(){ menu && menu.classList.remove("open"); }
+      function openMenu(){ menu && menu.classList.add("open"); }
+      if(toggle){
+        toggle.addEventListener("click", function(e){
+          e.stopPropagation();
+          if(menu.classList.contains("open")) closeMenu(); else openMenu();
         });
       }
+      // Close on outside click or Escape
+      document.addEventListener("click", function(e){
+        if(menu && menu.classList.contains("open") && !authBox.contains(e.target)) closeMenu();
+      });
+      document.addEventListener("keydown", function(e){ if(e.key==="Escape") closeMenu(); });
+
+      // Wire all sign-out triggers (both flag icon and dropdown button)
+      Array.prototype.forEach.call(authBox.querySelectorAll("[data-am-signout]"), function(el){
+        el.addEventListener("click", function(ev){
+          ev.preventDefault(); ev.stopPropagation();
+          if(confirm("Sign out of AllMusic?")){
+            clearUser();
+            closeMenu();
+          }
+        });
+      });
     }else{
       authBox.innerHTML = '<a href="login.html">SIGN UP</a> / <a href="login.html">LOG IN</a>';
     }
