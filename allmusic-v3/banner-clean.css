@@ -1,0 +1,232 @@
+/* ===== Compact, sophisticated help banner (v2) =====
+   Horizontal layout — small silhouette mark on left, content+CTAs on right.
+   Same content (silhouettes, title, body, two CTAs).
+   Refined typography, accent rule, minimal chrome, generous but tight rhythm.
+
+   v2 keeps the banner visible regardless of auth state — the override below
+   neutralizes the inline `html.am-logged-in` hide rule that the baseline
+   ships in each page's <head>.
+*/
+html.am-logged-in #helpBanner,
+html.am-logged-out #helpBanner {
+  display: block !important;
+}
+
+.help-banner {
+  background: #ffffff;
+  border: 1px solid #e6e8eb;
+  border-left: 3px solid #1c7eb8;
+  border-radius: 12px;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.04);
+  padding: 18px 24px 18px 22px;
+  position: relative;
+  font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, sans-serif;
+  max-width: 1140px;
+  margin: 16px auto 20px;
+}
+
+/* Horizontal: silhouette mark | content (title+body) | CTAs */
+.help-banner-inner {
+  display: grid;
+  grid-template-columns: 96px 1fr auto;
+  align-items: center;
+  column-gap: 22px;
+  text-align: left;
+}
+
+/* Close — small + minimal */
+.help-banner-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  width: 24px;
+  height: 24px;
+  border: 0;
+  border-radius: 50%;
+  background: transparent;
+  color: #94a3b8;
+  font-family: 'Source Sans 3', -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.15s, color 0.15s;
+}
+.help-banner-close:hover {
+  background: #f1f5f9;
+  color: #0f172a;
+}
+
+/* Silhouette mark — small, tight */
+.help-silhouette {
+  width: 96px;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #0f172a;
+  margin: 0;
+}
+.help-silhouette svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+/* Content block */
+.help-content {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  text-align: left;
+}
+
+/* Title — compact, bold, refined uppercase */
+.help-title {
+  font-family: 'Source Sans 3', -apple-system, sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 14px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  color: #1c7eb8;
+  margin: 0;
+  line-height: 1.2;
+}
+.help-title::after { content: none; }
+
+/* Body — single tight paragraph; second line same line treatment */
+.help-text {
+  font-size: 13.5px;
+  line-height: 1.5;
+  color: #475569;
+  margin: 0;
+  font-weight: 400;
+}
+.help-text + .help-text { margin-top: 1px; }
+.help-text a {
+  color: #1c7eb8;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(28, 126, 184, 0.25);
+  transition: color 0.15s, border-color 0.15s;
+}
+.help-text a:hover {
+  color: #155b87;
+  border-bottom-color: #155b87;
+  text-decoration: none;
+}
+
+/* CTAs — compact pills, side-by-side, fixed widths */
+.help-buttons {
+  display: inline-flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.help-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 0;
+  border-radius: 999px;
+  font-family: 'Source Sans 3', -apple-system, sans-serif;
+  font-size: 11.5px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #ffffff;
+  text-align: center;
+  line-height: 1.15;
+  white-space: nowrap;
+  transition: background 0.15s, transform 0.15s, box-shadow 0.15s;
+  box-shadow: 0 1px 2px rgba(15, 23, 42, 0.08);
+}
+.help-btn:hover {
+  color: #ffffff;
+  text-decoration: none;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(15, 23, 42, 0.12);
+}
+
+.help-btn.cc {
+  background: #1c7eb8;
+}
+.help-btn.cc:hover {
+  background: #176ba0;
+}
+.help-btn.cc svg {
+  width: 16px;
+  height: 12px;
+  fill: none;
+  stroke: #fff;
+  stroke-width: 1.6;
+}
+
+.help-btn.paypal {
+  background: #f5b50f;
+  color: #ffffff;
+}
+.help-btn.paypal:hover {
+  background: #e2a40b;
+  color: #ffffff;
+}
+.help-btn.paypal .pp-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 16px;
+  height: 16px;
+  font-style: italic;
+  font-weight: 900;
+  color: #003087;
+  background: #ffffff;
+  border-radius: 50%;
+  font-family: Georgia, serif;
+  font-size: 9px;
+  line-height: 1;
+}
+
+/* Truncate long button labels with two-line wrap on tighter widths */
+.help-btn span:first-child {
+  display: inline-block;
+}
+
+@media (max-width: 1080px) {
+  .help-banner-inner {
+    grid-template-columns: 80px 1fr;
+    grid-template-rows: auto auto;
+    column-gap: 18px;
+    row-gap: 12px;
+  }
+  .help-buttons {
+    grid-column: 1 / -1;
+    justify-self: stretch;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+  .help-silhouette { width: 80px; height: 48px; }
+  .help-btn { width: 100%; }
+}
+
+@media (max-width: 600px) {
+  .help-banner {
+    padding: 16px 16px;
+    margin: 12px 12px 16px;
+  }
+  .help-banner-inner {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto;
+    text-align: center;
+  }
+  .help-silhouette { width: 80px; height: 48px; margin: 0 auto; }
+  .help-content { text-align: center; }
+  .help-buttons { grid-template-columns: 1fr; }
+}

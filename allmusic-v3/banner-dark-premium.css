@@ -1,0 +1,333 @@
+/* ===== Theme 04 — Dark Premium help banner (v2) =====
+   Faithful port of Theme 04 from the AllMusic banner-themes design bundle.
+   Three-column: vinyl-disc aside | eyebrow+headline+body | stacked CTAs.
+   Mapped onto the existing .help-banner / .help-banner-inner / .help-content
+   markup so individual pages only need an aside content swap.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&display=swap');
+
+html.am-logged-in #helpBanner,
+html.am-logged-out #helpBanner {
+  display: block !important;
+}
+
+/* === Outer banner: black canvas + blue radial blooms === */
+.help-banner {
+  background: #0a0a0a;
+  border: 0;
+  border-radius: 4px;
+  box-shadow: 0 18px 48px -16px rgba(0, 0, 0, 0.6);
+  padding: 0;
+  position: relative;
+  font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  max-width: 1520px;
+  margin: 18px auto 22px;
+  color: #ffffff;
+  overflow: hidden;
+}
+.help-banner::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(900px 400px at 20% 100%, rgba(0, 115, 185, 0.28), transparent 60%),
+    radial-gradient(700px 300px at 100% 0%, rgba(0, 115, 185, 0.15), transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.help-banner-close {
+  position: absolute;
+  top: 12px;
+  right: 14px;
+  z-index: 3;
+  width: auto;
+  height: auto;
+  padding: 4px 8px;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  color: rgba(255, 255, 255, 0.4);
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.help-banner-close:hover {
+  background: none;
+  color: #ffffff;
+}
+
+/* === Three-column grid: aside | mid | buttons === */
+.help-banner-inner {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  align-items: stretch;
+  gap: 0;
+  text-align: left;
+  position: relative;
+  z-index: 1;
+  min-height: 240px;
+}
+
+/* === Left aside: top meta + vinyl disc + bottom meta === */
+.help-silhouette {
+  padding: 28px 28px;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  width: auto;
+  height: auto;
+  margin: 0;
+  gap: 0;
+  background: transparent;
+}
+.help-silhouette svg { display: none; }
+
+.help-aside-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+  line-height: 1;
+}
+
+.help-aside-big {
+  font-family: 'Inter', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.5);
+  margin: 0;
+  line-height: 1.4;
+  text-wrap: balance;
+}
+
+/* Vinyl disc with concentric rings */
+.help-aside-disc {
+  width: 90px;
+  height: 90px;
+  position: relative;
+  align-self: flex-start;
+  flex-shrink: 0;
+}
+.help-aside-disc .ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(0, 115, 185, 0.55);
+}
+.help-aside-disc .ring.r1 { inset: 0;    border-color: #0073b9; border-width: 1.5px; }
+.help-aside-disc .ring.r2 { inset: 10px; border-color: rgba(0, 115, 185, 0.45); }
+.help-aside-disc .ring.r3 { inset: 20px; border-color: rgba(255, 255, 255, 0.18); }
+.help-aside-disc .ring.r4 { inset: 30px; border-color: rgba(0, 115, 185, 0.7); }
+.help-aside-disc .core {
+  position: absolute;
+  inset: 38px;
+  border-radius: 50%;
+  background: #0073b9;
+  box-shadow: 0 0 0 3px #0a0a0a, 0 0 0 4px rgba(0, 115, 185, 0.4);
+}
+
+/* === Mid: eyebrow + Fraunces headline + body copy === */
+.help-content {
+  padding: 28px 32px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  justify-content: center;
+  text-align: left;
+  background: transparent;
+  position: relative;
+}
+
+.help-title {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 600;
+  font-size: 10px;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: #0073b9;
+  margin: 0 0 0;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.help-title::before {
+  content: '';
+  width: 24px;
+  height: 1px;
+  background: #0073b9;
+  flex-shrink: 0;
+}
+.help-title::after { content: none; }
+
+/* First .help-text becomes the Fraunces headline (t4-h) */
+.help-text:first-of-type {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin: 0;
+  max-width: none;
+}
+/* Subsequent .help-text paragraphs are body copy (t4-body) */
+.help-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+  font-weight: 400;
+  max-width: 56ch;
+}
+.help-text + .help-text { margin-top: 0; }
+.help-text a {
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 400;
+  border-bottom: 1px solid #0073b9;
+  transition: color 0.15s, border-color 0.15s;
+}
+.help-text a:hover {
+  color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+/* === Right column: stacked CTAs === */
+.help-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: stretch;
+  justify-content: center;
+  padding: 28px 28px;
+  margin-top: 0;
+  position: relative;
+}
+
+.help-btn {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 16px;
+  border: 1px solid rgba(0, 115, 185, 0.5);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  text-decoration: none;
+  color: #ffffff;
+  text-align: left;
+  line-height: 1.15;
+  white-space: normal;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+  box-shadow: none;
+}
+.help-btn:hover {
+  background: rgba(0, 115, 185, 0.15);
+  border-color: #0073b9;
+  color: #ffffff;
+  transform: none;
+  box-shadow: none;
+  text-decoration: none;
+}
+.help-btn::after {
+  content: '→';
+  font-size: 14px;
+  opacity: 0.8;
+  flex-shrink: 0;
+}
+.help-btn span:first-child { display: inline-block; flex: 1; }
+
+/* Primary — solid blue (cc) */
+.help-btn.cc {
+  background: #0073b9;
+  border-color: transparent;
+  color: #ffffff;
+  font-weight: 600;
+}
+.help-btn.cc:hover {
+  background: #0085d4;
+  border-color: transparent;
+  color: #ffffff;
+}
+/* Hide the credit-card SVG icon — Theme 04 uses arrow only */
+.help-btn.cc svg { display: none; }
+
+/* Secondary — outlined (paypal slot) */
+.help-btn.paypal {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(0, 115, 185, 0.5);
+  color: #ffffff;
+}
+.help-btn.paypal:hover {
+  background: rgba(0, 115, 185, 0.15);
+  border-color: #0073b9;
+  color: #ffffff;
+}
+.help-btn.paypal .pp-logo { display: none; }
+
+/* === Responsive === */
+@media (max-width: 1080px) {
+  .help-banner-inner {
+    grid-template-columns: 1fr 1.4fr;
+    min-height: 0;
+  }
+  .help-buttons {
+    grid-column: 1 / -1;
+    flex-direction: row;
+    padding: 0 28px 24px;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 18px;
+  }
+  .help-btn { flex: 1 1 0; }
+}
+
+@media (max-width: 720px) {
+  .help-banner {
+    margin: 12px 12px 16px;
+  }
+  .help-banner-inner {
+    grid-template-columns: 1fr;
+  }
+  .help-silhouette {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+  }
+  .help-aside-disc { width: 56px; height: 56px; }
+  .help-aside-disc .core { inset: 22px; }
+  .help-aside-disc .ring.r2 { inset: 6px; }
+  .help-aside-disc .ring.r3 { inset: 12px; }
+  .help-aside-disc .ring.r4 { inset: 18px; }
+  .help-aside-title, .help-aside-big { font-size: 9px; }
+  .help-aside-big { flex: 1; }
+  .help-content { padding: 22px 20px; }
+  .help-text:first-of-type { font-size: 22px; }
+  .help-buttons {
+    flex-direction: column;
+    padding: 0 20px 22px;
+  }
+}

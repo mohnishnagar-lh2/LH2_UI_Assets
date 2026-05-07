@@ -1,0 +1,297 @@
+/* ===== Warm Card help banner (v2) =====
+   Recreation of the "Warm Card" reference design.
+   Dark warm-brown card with two columns:
+     - Aside: "Member-funded" eyebrow + "Music for the people who care." (serif)
+     - Main:  ASKING FOR YOUR HELP eyebrow + body copy + two CTA buttons
+   Reuses the existing .help-banner / .help-banner-inner / .help-content
+   markup; the .help-silhouette slot is reused for the new aside content.
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap');
+
+html.am-logged-in #helpBanner,
+html.am-logged-out #helpBanner {
+  display: block !important;
+}
+
+/* === Outer card === */
+.help-banner {
+  background: #2a2520;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 14px;
+  box-shadow: 0 18px 48px -16px rgba(15, 12, 9, 0.45),
+              0 4px 12px -4px rgba(15, 12, 9, 0.25);
+  padding: 0;
+  position: relative;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  max-width: 1140px;
+  margin: 18px auto 22px;
+  color: #f6f1ea;
+  overflow: hidden;
+}
+
+/* Close × — sits over the warm card top-right */
+.help-banner-close {
+  position: absolute;
+  top: 14px;
+  right: 16px;
+  z-index: 3;
+  width: 28px;
+  height: 28px;
+  border: 1px solid rgba(246, 241, 234, 0.18);
+  border-radius: 50%;
+  background: rgba(0, 0, 0, 0.18);
+  color: #f6f1ea;
+  font-family: 'Inter', sans-serif;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.help-banner-close:hover {
+  background: rgba(246, 241, 234, 0.12);
+  border-color: rgba(246, 241, 234, 0.4);
+}
+
+/* === Two-column layout: aside | main === */
+.help-banner-inner {
+  display: grid;
+  grid-template-columns: 320px 1fr;
+  align-items: stretch;
+  gap: 0;
+  text-align: left;
+}
+
+/* === Left aside (big serif headline) === */
+.help-silhouette {
+  background: #211c18;
+  padding: 36px 30px 32px;
+  border-right: 1px solid rgba(246, 241, 234, 0.08);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 14px;
+  width: auto;
+  height: auto;
+  margin: 0;
+}
+/* Hide the original silhouette SVG so this slot can hold text instead */
+.help-silhouette svg { display: none; }
+
+.help-aside-title {
+  font-family: 'Inter', sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #e8a23a;
+  margin: 0;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.help-aside-title::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #e8a23a;
+  flex-shrink: 0;
+}
+
+.help-aside-big {
+  font-family: 'Fraunces', Georgia, serif;
+  font-weight: 600;
+  font-size: 32px;
+  line-height: 1.08;
+  letter-spacing: -0.01em;
+  color: #f6f1ea;
+  margin: 0;
+  text-wrap: balance;
+}
+
+/* Decorative bars under the aside text (matches Warm Card t2-bars) */
+.help-aside-bars {
+  display: flex;
+  gap: 4px;
+  margin-top: 14px;
+}
+.help-aside-bars span {
+  display: block;
+  width: 22px;
+  height: 3px;
+  background: rgba(232, 162, 58, 0.55);
+  border-radius: 2px;
+}
+.help-aside-bars span:nth-child(odd) { background: rgba(246, 241, 234, 0.25); }
+
+/* === Right main content === */
+.help-content {
+  padding: 32px 56px 32px 38px;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+  background: #2a2520;
+}
+
+.help-title {
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #e8a23a;
+  margin: 0 0 4px;
+  line-height: 1;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.help-title::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #e8a23a;
+  flex-shrink: 0;
+}
+.help-title::after { content: none; }
+
+.help-text {
+  font-family: 'Inter', sans-serif;
+  font-size: 14.5px;
+  line-height: 1.55;
+  color: rgba(246, 241, 234, 0.78);
+  margin: 0;
+  font-weight: 400;
+  max-width: 60ch;
+}
+.help-text + .help-text { margin-top: 4px; }
+.help-text a {
+  color: #f6f1ea;
+  text-decoration: none;
+  font-weight: 600;
+  border-bottom: 1px solid rgba(232, 162, 58, 0.55);
+  transition: color 0.15s, border-color 0.15s;
+}
+.help-text a:hover {
+  color: #e8a23a;
+  border-bottom-color: #e8a23a;
+}
+
+/* === CTA buttons === */
+.help-buttons {
+  display: inline-flex;
+  gap: 12px;
+  align-items: center;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.help-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 12px 22px;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  text-decoration: none;
+  color: #f6f1ea;
+  text-align: center;
+  line-height: 1.15;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.15s, box-shadow 0.15s;
+}
+.help-btn:hover {
+  text-decoration: none;
+  transform: translateY(-1px);
+}
+
+/* Primary — solid blue (matches Warm Card) */
+.help-btn.cc {
+  background: #0073b9;
+  color: #ffffff;
+  border-color: #0073b9;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.18) inset,
+              0 6px 14px -6px rgba(0, 115, 185, 0.55);
+}
+.help-btn.cc:hover {
+  background: #005f99;
+  border-color: #005f99;
+  color: #ffffff;
+}
+.help-btn.cc svg {
+  width: 16px;
+  height: 12px;
+  fill: none;
+  stroke: #ffffff;
+  stroke-width: 1.6;
+}
+
+/* Secondary — outlined warm (paypal still mapped to .help-btn.paypal) */
+.help-btn.paypal {
+  background: transparent;
+  color: #f6f1ea;
+  border-color: rgba(246, 241, 234, 0.32);
+}
+.help-btn.paypal:hover {
+  background: rgba(246, 241, 234, 0.08);
+  border-color: rgba(246, 241, 234, 0.55);
+  color: #f6f1ea;
+}
+.help-btn.paypal .pp-logo {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  font-style: italic;
+  font-weight: 900;
+  color: #003087;
+  background: #ffffff;
+  border-radius: 50%;
+  font-family: Georgia, serif;
+  font-size: 10px;
+  line-height: 1;
+}
+
+.help-btn span:first-child { display: inline-block; }
+
+/* === Responsive === */
+@media (max-width: 980px) {
+  .help-banner-inner {
+    grid-template-columns: 1fr;
+  }
+  .help-silhouette {
+    border-right: 0;
+    border-bottom: 1px solid rgba(246, 241, 234, 0.08);
+    padding: 26px 24px 22px;
+  }
+  .help-aside-big { font-size: 26px; }
+  .help-content { padding: 26px 24px 28px; }
+}
+
+@media (max-width: 600px) {
+  .help-banner {
+    margin: 12px 12px 16px;
+    border-radius: 12px;
+  }
+  .help-aside-big { font-size: 22px; }
+  .help-buttons { display: grid; grid-template-columns: 1fr; width: 100%; }
+  .help-btn { width: 100%; }
+}

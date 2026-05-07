@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Subscribe to AllMusic | AllMusic</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600;700;900&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="subscribe-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+      // v3 flow: pre-payment login is removed — let any visitor see the plan + go to checkout.
+      (function(){
+        try{
+          var u = localStorage.getItem("allmusic_user");
+          if(u){ document.documentElement.classList.add("am-logged-in"); }
+        }catch(e){}
+      })();
+    </script>
+    <style>
+      body.am-subscribe-page .search-bar-wrap { display: none; }
+      .sub-pay-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 18px;
+        max-width: 880px;
+        margin: 28px auto 0;
+      }
+      .sub-pay-grid .sub-pay-btn { max-width: none; margin: 0; }
+      @media (max-width: 720px) {
+        .sub-pay-grid { grid-template-columns: 1fr; }
+      }
+      .sub-signed-in {
+        text-align: center;
+        font-size: 15.5px;
+        color: #d9d9d9;
+        margin: 36px auto 0;
+        line-height: 1.5;
+      }
+      .sub-signed-in a { color: #1ca4cd; }
+    </style>
+</head>
+<body class="am-subscribe-page">
+
+<header class="site-header">
+    <div class="header-inner">
+        <a href="index.html" class="logo" aria-label="AllMusic Home">
+            <img src="assets/logo.svg" alt="AllMusic" class="logo-icon" width="36" height="36">
+            <span class="logo-text"><strong>ALL</strong>MUSIC</span>
+        </a>
+        <nav class="main-nav desktop-only">
+            <a href="#" class="nav-link">New Releases <span class="caret">&#9662;</span></a>
+            <a href="#" class="nav-link">Discover <span class="caret">&#9662;</span></a>
+            <a href="#" class="nav-link">Articles <span class="caret">&#9662;</span></a>
+            <a href="#" class="nav-link">AllMusic Recommends <span class="caret">&#9662;</span></a>
+            <a href="#" class="nav-link">My Profile</a>
+            <a href="#" class="nav-link">Advanced Search</a>
+            <a href="subscribe.html" class="nav-link am-remove-ads">Subscribe</a>
+        </nav>
+        <div class="header-right">
+            <span class="auth-links desktop-only">
+                <a href="login.html">SIGN UP</a> / <a href="login.html">LOG IN</a>
+            </span>
+            <button class="mobile-menu-btn mobile-only" aria-label="Menu">&#9776;</button>
+        </div>
+    </div>
+</header>
+
+<main class="sub-wrap">
+    <h1 class="sub-title">Support AllMusic by signing up<br>for a <span class="accent">Paid Subscription</span></h1>
+    <p class="sub-lead">If you are a die-hard AllMusic user and value the service we provide, for only <span class="price">$16 a year</span> consider signing up for a Paid Subscription. Subscriptions are optional, but provide a number of benefits including&hellip;</p>
+
+    <section class="sub-benefits">
+        <div class="sub-benefit">
+            <h3>Support AllMusic</h3>
+            <p>AllMusic has been offering in-depth information to industry professionals, research institutions and music fans for over 20 years. If you'd like to show your support, this is a good way to do it.</p>
+        </div>
+        <div class="sub-benefit">
+            <h3>An Ad-Free Experience</h3>
+            <p>As a subscriber, we'll remove ads to streamline your AllMusic experience.</p>
+        </div>
+        <div class="sub-benefit">
+            <h3>Improved Site Speed</h3>
+            <p>We work with dozens of ad networks to get the most relevant ads for you. By removing these you will get a vastly improved experience.</p>
+        </div>
+    </section>
+
+    <p class="sub-signed-in" id="signedInLine">
+        You are currently signed in. To sign up as a different user, <a href="#" id="logoutLink">log into another account</a>.
+    </p>
+
+    <div class="sub-pay-grid">
+        <a href="payment.html?method=cc" class="sub-pay-btn cc">
+            <span class="icon">
+                <svg class="cc-icon" viewBox="0 0 24 18" aria-hidden="true">
+                    <rect x="1" y="1" width="22" height="16" rx="2"/>
+                    <line x1="1" y1="6" x2="23" y2="6"/>
+                    <rect x="4" y="11" width="6" height="3" fill="#fff" stroke="none"/>
+                </svg>
+            </span>
+            <span class="label">SUBSCRIBE USING YOUR CREDIT CARD</span>
+            <span class="icon">
+                <svg class="cc-icon" viewBox="0 0 24 18" aria-hidden="true">
+                    <rect x="1" y="1" width="22" height="16" rx="2"/>
+                    <line x1="1" y1="6" x2="23" y2="6"/>
+                    <rect x="4" y="11" width="6" height="3" fill="#fff" stroke="none"/>
+                </svg>
+            </span>
+        </a>
+        <a href="payment.html?method=paypal" class="sub-pay-btn paypal">
+            <span class="icon"></span>
+            <span class="label">SUBSCRIBE USING PAYPAL OR VENMO</span>
+            <span class="icon"><span class="pp-logo">P</span></span>
+        </a>
+    </div>
+</main>
+
+<footer class="sub-footer">
+    <div class="sub-footer-inner">
+        <div class="sub-footer-col">
+            <h5>OUR PROPERTIES</h5>
+            <a href="#">AllMusic</a>
+            <a href="#">AllMovie</a>
+            <a href="#">SideReel</a>
+            <h5 class="mt">SITE OVERVIEW</h5>
+            <a href="#">New Releases</a>
+            <a href="#">Discover</a>
+            <a href="#">Articles</a>
+            <a href="#">Recommendations</a>
+        </div>
+        <div class="sub-footer-col">
+            <h5>ABOUT</h5>
+            <a href="#">What is AllMusic?</a>
+            <a href="#">Copyright Policy</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Advertise</a>
+            <h5 class="mt">QUESTIONS AND CONTACT</h5>
+            <a href="#">FAQ</a>
+            <a href="#">Feedback</a>
+        </div>
+        <div class="sub-footer-col">
+            <h5>YOUR ALLMUSIC ACCOUNT</h5>
+            <a href="#">My Profile</a>
+            <a href="#">Account Settings</a>
+            <h5 class="mt">REMOVE ADS</h5>
+            <a href="subscribe.html">Subscribe to AllMusic</a>
+        </div>
+        <div class="sub-footer-col">
+            <h5>FOLLOW US</h5>
+            <a href="#">Facebook</a>
+            <a href="#">Bluesky</a>
+            <a href="#">Threads</a>
+            <a href="#">Tumblr</a>
+            <a href="#">RSS</a>
+            <h5 class="mt">SIGN UP FOR OUR WEEKLY NEW RELEASES NEWSLETTER</h5>
+            <form class="sub-footer-newsletter" onsubmit="event.preventDefault()">
+                <input type="email" placeholder="name@domain.com">
+                <button type="submit">SIGN UP</button>
+            </form>
+        </div>
+    </div>
+    <div class="sub-copyright">&copy;2026 ALLMUSIC, NETAKTION LLC - ALL RIGHTS RESERVED</div>
+</footer>
+
+<script src="auth.js"></script>
+<script>
+(function(){
+  function render(){
+    var u = window.AMAuth && window.AMAuth.getUser();
+    var line = document.getElementById("signedInLine");
+    if(u && line){
+      var firstName = (u.name || "").split(" ")[0] || "User";
+      line.innerHTML = 'You are currently signed in as <strong>'+ firstName +' '+(u.name.split(" ").slice(1).join(" ").toUpperCase() || "") +'</strong> ('+ u.email +').<br>To sign up as a different user, <a href="#" id="logoutLink">log into another account</a>.';
+      var logoutLink = document.getElementById("logoutLink");
+      if(logoutLink){
+        logoutLink.addEventListener("click", function(e){
+          e.preventDefault();
+          window.AMAuth.signOut();
+          window.location.replace("payment.html");
+        });
+      }
+    }
+  }
+  render();
+  document.addEventListener("am-auth-change", render);
+})();
+</script>
+</body>
+</html>
