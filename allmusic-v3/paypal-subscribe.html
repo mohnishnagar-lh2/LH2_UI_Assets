@@ -11,8 +11,9 @@
     <link rel="stylesheet" href="subscribe-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
-      // v3 flow: pre-payment login is removed — forward to payment.html
-      window.location.replace("payment.html?method=paypal");
+      // v3 flow: pre-payment login is removed — always show the payment-button view,
+      // regardless of whether the visitor is actually signed in.
+      document.documentElement.classList.add("am-logged-in", "am-v3-no-login");
     </script>
     <style>
       html.am-logged-in .auth-out-only { display: none !important; }
@@ -116,7 +117,7 @@
         <p class="sub-signed-in" id="signedInLine">You are currently signed in. <a href="#" id="signOutLink">Sign out</a>.</p>
         <h2>Our standard AllMusic subscription cost is $16</h2>
 
-        <a href="#" class="sub-pay-btn paypal" data-toggle-payment>
+        <a href="payment.html?method=paypal" class="sub-pay-btn paypal" data-toggle-payment>
             <span class="icon"></span>
             <span class="label">SUBSCRIBE USING PAYPAL OR VENMO &bull; $16</span>
             <span class="icon"><span class="pp-logo">P</span></span>
@@ -145,22 +146,22 @@
         </div>
 
         <div class="sub-tier-stack">
-            <a href="#" class="sub-pay-btn paypal">
+            <a href="payment.html?method=paypal" class="sub-pay-btn paypal">
                 <span class="icon"></span>
                 <span class="label">SUBSCRIBE &amp; DONATE VIA PAYPAL/VENMO &bull; $25</span>
                 <span class="icon"><span class="pp-logo">P</span></span>
             </a>
-            <a href="#" class="sub-pay-btn paypal">
+            <a href="payment.html?method=paypal" class="sub-pay-btn paypal">
                 <span class="icon"></span>
                 <span class="label">SUBSCRIBE &amp; DONATE VIA PAYPAL/VENMO &bull; $50</span>
                 <span class="icon"><span class="pp-logo">P</span></span>
             </a>
-            <a href="#" class="sub-pay-btn paypal">
+            <a href="payment.html?method=paypal" class="sub-pay-btn paypal">
                 <span class="icon"></span>
                 <span class="label">SUBSCRIBE &amp; DONATE VIA PAYPAL/VENMO &bull; $100</span>
                 <span class="icon"><span class="pp-logo">P</span></span>
             </a>
-            <a href="#" class="sub-pay-btn paypal">
+            <a href="payment.html?method=paypal" class="sub-pay-btn paypal">
                 <span class="icon"></span>
                 <span class="label">SUBSCRIBE &amp; DONATE VIA PAYPAL/VENMO &bull; $1000</span>
                 <span class="icon"><span class="pp-logo">P</span></span>
@@ -280,25 +281,24 @@
   renderSignedIn();
   document.addEventListener("am-auth-change", renderSignedIn);
 
-  // Toggle PayPal options when $16 button is clicked
+  // v3 flow: $16 toggle goes straight to payment.html (no inline widget step)
   var widgetToggle = document.querySelector("[data-toggle-payment]");
-  var widget = document.getElementById("ppPaymentWidget");
-  if(widgetToggle && widget){
+  if(widgetToggle){
     widgetToggle.addEventListener("click", function(e){
       e.preventDefault();
-      widget.classList.toggle("open");
+      window.location.href = "payment.html?method=paypal";
     });
   }
   var ppBtn = document.querySelector(".pp-paypal-btn");
   if(ppBtn){
     ppBtn.addEventListener("click", function(){
-      alert("Demo: redirecting to PayPal/Venmo for $16.00 USDâ€¦");
+      window.location.href = "payment.html?method=paypal";
     });
   }
   var ppDebitBtn = document.querySelector(".pp-debit-btn");
   if(ppDebitBtn){
     ppDebitBtn.addEventListener("click", function(){
-      window.location.href = "cc-subscribe.html";
+      window.location.href = "payment.html?method=cc";
     });
   }
 

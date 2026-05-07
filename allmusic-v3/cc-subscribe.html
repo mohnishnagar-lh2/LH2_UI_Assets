@@ -11,8 +11,10 @@
     <link rel="stylesheet" href="subscribe-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
-      // v3 flow: pre-payment login is removed — forward to payment.html
-      window.location.replace("payment.html?method=cc");
+      // v3 flow: pre-payment login is removed — always show the payment-button view,
+      // regardless of whether the visitor is actually signed in. (auth-out-only blocks
+      // — i.e. the login form — get hidden by the am-logged-in class.)
+      document.documentElement.classList.add("am-logged-in", "am-v3-no-login");
     </script>
     <style>
       /* Hide variant blocks before JS runs based on auth state */
@@ -115,7 +117,7 @@
         <p class="sub-signed-in" id="signedInLine">You are currently signed in. <a href="#" id="signOutLink">Sign out</a>.</p>
         <h2>Our standard AllMusic subscription cost is $16</h2>
 
-        <a href="#" class="sub-pay-btn cc" data-toggle-payment>
+        <a href="payment.html?method=cc" class="sub-pay-btn cc" data-toggle-payment>
             <span class="icon">
                 <svg class="cc-icon" viewBox="0 0 24 18" aria-hidden="true">
                     <rect x="1" y="1" width="22" height="16" rx="2"/>
@@ -153,22 +155,22 @@
         </div>
 
         <div class="sub-tier-stack">
-            <a href="#" class="sub-pay-btn cc">
+            <a href="payment.html?method=cc" class="sub-pay-btn cc">
                 <span class="icon"></span>
                 <span class="label">SUBSCRIBE &amp; DONATE VIA CREDIT CARD &bull; $25</span>
                 <span class="icon"><svg class="cc-icon" viewBox="0 0 24 18"><rect x="1" y="1" width="22" height="16" rx="2"/><line x1="1" y1="6" x2="23" y2="6"/><rect x="4" y="11" width="6" height="3" fill="#fff" stroke="none"/></svg></span>
             </a>
-            <a href="#" class="sub-pay-btn cc">
+            <a href="payment.html?method=cc" class="sub-pay-btn cc">
                 <span class="icon"></span>
                 <span class="label">SUBSCRIBE &amp; DONATE VIA CREDIT CARD &bull; $50</span>
                 <span class="icon"><svg class="cc-icon" viewBox="0 0 24 18"><rect x="1" y="1" width="22" height="16" rx="2"/><line x1="1" y1="6" x2="23" y2="6"/><rect x="4" y="11" width="6" height="3" fill="#fff" stroke="none"/></svg></span>
             </a>
-            <a href="#" class="sub-pay-btn cc">
+            <a href="payment.html?method=cc" class="sub-pay-btn cc">
                 <span class="icon"></span>
                 <span class="label">SUBSCRIBE &amp; DONATE VIA CREDIT CARD &bull; $100</span>
                 <span class="icon"><svg class="cc-icon" viewBox="0 0 24 18"><rect x="1" y="1" width="22" height="16" rx="2"/><line x1="1" y1="6" x2="23" y2="6"/><rect x="4" y="11" width="6" height="3" fill="#fff" stroke="none"/></svg></span>
             </a>
-            <a href="#" class="sub-pay-btn cc">
+            <a href="payment.html?method=cc" class="sub-pay-btn cc">
                 <span class="icon"></span>
                 <span class="label">SUBSCRIBE &amp; DONATE VIA CREDIT CARD &bull; $1000</span>
                 <span class="icon"><svg class="cc-icon" viewBox="0 0 24 18"><rect x="1" y="1" width="22" height="16" rx="2"/><line x1="1" y1="6" x2="23" y2="6"/><rect x="4" y="11" width="6" height="3" fill="#fff" stroke="none"/></svg></span>
@@ -295,32 +297,21 @@
   document.addEventListener("am-auth-change", renderSignedIn);
 
   // Toggle credit card widget when $16 button is clicked
+  // v3 flow: the $16 toggle now navigates straight to the payment page
+  // instead of opening the inline credit-card widget.
   var widgetToggle = document.querySelector("[data-toggle-payment]");
-  var widget = document.getElementById("ccPaymentWidget");
-  if(widgetToggle && widget){
+  if(widgetToggle){
     widgetToggle.addEventListener("click", function(e){
       e.preventDefault();
-      widget.classList.toggle("open");
-      if(widget.classList.contains("open")){
-        var input = document.getElementById("ccNumber");
-        setTimeout(function(){ input && input.focus(); }, 50);
-      }
+      window.location.href = "payment.html?method=cc";
     });
   }
-  var ccInput = document.getElementById("ccNumber");
+  // ccSubmit is unreachable in v3 (the inline widget no longer opens), but keep
+  // a sensible redirect just in case.
   var ccSubmit = document.getElementById("ccSubmit");
-  var ccUseBtn = document.querySelector(".cc-use-btn");
-  if(ccInput && ccSubmit){
-    ccInput.addEventListener("input", function(){
-      var v = ccInput.value.replace(/\D/g, "");
-      var enabled = v.length >= 12;
-      ccSubmit.disabled = !enabled;
-      ccSubmit.classList.toggle("enabled", enabled);
-      if(ccUseBtn) ccUseBtn.disabled = !enabled;
-    });
+  if(ccSubmit){
     ccSubmit.addEventListener("click", function(){
-      if(ccSubmit.disabled) return;
-      alert("Demo: Payment of $16.00 USD submitted successfully.");
+      window.location.href = "payment.html?method=cc";
     });
   }
 
