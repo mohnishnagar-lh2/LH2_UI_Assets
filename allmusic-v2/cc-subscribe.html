@@ -11,12 +11,8 @@
     <link rel="stylesheet" href="subscribe-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
-      (function(){
-        try{
-          var u = localStorage.getItem("allmusic_user");
-          document.documentElement.classList.add(u ? "am-logged-in" : "am-logged-out");
-        }catch(e){ document.documentElement.classList.add("am-logged-out"); }
-      })();
+      // Pre-payment login is removed from the v2 flow — forward to payment.html
+      window.location.replace("payment.html?method=cc");
     </script>
     <style>
       /* Hide variant blocks before JS runs based on auth state */

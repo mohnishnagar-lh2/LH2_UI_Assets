@@ -11,15 +11,11 @@
     <link rel="stylesheet" href="subscribe-styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <script>
-      // If not logged in, redirect to cc-subscribe (which has the login form)
+      // Login is no longer required before payment — let any visitor see the plan + checkout.
       (function(){
         try{
           var u = localStorage.getItem("allmusic_user");
-          if(!u){
-            window.location.replace("cc-subscribe.html");
-            return;
-          }
-          document.documentElement.classList.add("am-logged-in");
+          if(u){ document.documentElement.classList.add("am-logged-in"); }
         }catch(e){}
       })();
     </script>
@@ -96,7 +92,7 @@
     </p>
 
     <div class="sub-pay-grid">
-        <a href="cc-subscribe.html" class="sub-pay-btn cc">
+        <a href="payment.html?method=cc" class="sub-pay-btn cc">
             <span class="icon">
                 <svg class="cc-icon" viewBox="0 0 24 18" aria-hidden="true">
                     <rect x="1" y="1" width="22" height="16" rx="2"/>
@@ -113,7 +109,7 @@
                 </svg>
             </span>
         </a>
-        <a href="paypal-subscribe.html" class="sub-pay-btn paypal">
+        <a href="payment.html?method=paypal" class="sub-pay-btn paypal">
             <span class="icon"></span>
             <span class="label">SUBSCRIBE USING PAYPAL OR VENMO</span>
             <span class="icon"><span class="pp-logo">P</span></span>
@@ -183,7 +179,7 @@
         logoutLink.addEventListener("click", function(e){
           e.preventDefault();
           window.AMAuth.signOut();
-          window.location.replace("cc-subscribe.html");
+          window.location.replace("payment.html");
         });
       }
     }

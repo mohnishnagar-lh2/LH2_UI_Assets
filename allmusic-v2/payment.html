@@ -115,11 +115,90 @@
       .pay-left{position:static;border-right:none;border-bottom:1px solid var(--rule);padding:24px 20px;}
       .pay-right{padding:24px 20px;}
     }
+
+    /* Email input replacing the static contact line */
+    .pay-contact-email-input{
+      flex:1;border:0;outline:0;background:transparent;text-align:right;
+      font-family:inherit;font-size:13px;color:var(--ink);padding:0;
+    }
+    .pay-contact-email-input::placeholder{color:#a8a9b0;}
+
+    /* Post-payment success card */
+    .pay-success{
+      min-height:100vh;display:flex;align-items:center;justify-content:center;
+      background:linear-gradient(180deg,#f6f9fb 0%,#ffffff 100%);
+      padding:32px 16px;
+    }
+    .pay-success-card{
+      width:100%;max-width:520px;background:#ffffff;border:1px solid var(--rule);
+      border-radius:14px;box-shadow:0 18px 48px -16px rgba(15,23,42,0.18),0 4px 12px -4px rgba(15,23,42,0.08);
+      padding:40px 36px 36px;text-align:center;
+    }
+    .pay-success-icon{
+      width:64px;height:64px;border-radius:50%;
+      background:linear-gradient(180deg,#34d399 0%,#10b981 100%);
+      color:#ffffff;display:inline-flex;align-items:center;justify-content:center;
+      font-size:30px;font-weight:700;line-height:1;margin:0 auto 18px;
+      box-shadow:0 6px 18px -6px rgba(16,185,129,0.6);
+    }
+    .pay-success-title{
+      font-family:'Inter',sans-serif;font-size:24px;font-weight:600;color:var(--ink);
+      margin:0 0 8px;letter-spacing:-0.01em;
+    }
+    .pay-success-amt{
+      font-size:13px;color:var(--ink-2);margin:0 0 22px;
+    }
+    .pay-success-amt strong{color:var(--ink);font-weight:600;}
+    .pay-success-divider{
+      height:1px;background:var(--rule);margin:22px 0 22px;
+    }
+    .pay-success-text{
+      font-size:14.5px;color:var(--ink);line-height:1.55;margin:0 0 10px;
+    }
+    .pay-success-text:last-of-type{margin-bottom:0;}
+    .pay-success-text strong{color:var(--teal);font-weight:600;word-break:break-word;}
+    .pay-success-actions{
+      display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:28px;
+    }
+    .pay-success-btn{
+      display:inline-flex;align-items:center;justify-content:center;
+      padding:11px 22px;border-radius:6px;font-size:14px;font-weight:600;
+      text-decoration:none;font-family:inherit;cursor:pointer;
+      transition:background .15s,color .15s,border-color .15s;
+    }
+    .pay-success-btn.primary{background:var(--teal);color:#ffffff;border:1px solid var(--teal);}
+    .pay-success-btn.primary:hover{background:var(--teal-deep);border-color:var(--teal-deep);}
+    .pay-success-btn.secondary{background:#ffffff;color:var(--ink);border:1px solid var(--rule);}
+    .pay-success-btn.secondary:hover{background:#f6f6f6;border-color:#cfd2d6;}
+    .pay-success-foot{
+      font-size:12px;color:var(--ink-2);margin-top:22px;line-height:1.5;
+    }
   </style>
 </head>
 <body>
 
-  <div class="pay-grid">
+  <!-- Post-payment success card (shown after Subscribe is clicked) -->
+  <section class="pay-success" id="paySuccess" hidden>
+    <div class="pay-success-card" role="status" aria-live="polite">
+      <div class="pay-success-icon" aria-hidden="true">&#10003;</div>
+      <h1 class="pay-success-title">Thanks for subscribing!</h1>
+      <p class="pay-success-amt">Payment of <strong id="paySuccessAmt">$1.00</strong> received.</p>
+
+      <div class="pay-success-divider"></div>
+
+      <p class="pay-success-text">We've sent your login details to <strong id="paySuccessEmail"></strong>.</p>
+      <p class="pay-success-text">Please log in to enjoy your ad-free AllMusic experience.</p>
+
+      <div class="pay-success-actions">
+        <a href="login.html" class="pay-success-btn primary">Log in</a>
+        <a href="index.html" class="pay-success-btn secondary">Back to AllMusic</a>
+      </div>
+
+      <p class="pay-success-foot">Didn't get the email? Check your spam folder or <a href="#">resend it</a>.</p>
+    </div>
+  </section>
+
+  <div class="pay-grid" id="payGrid">
     <!-- LEFT -->
     <div class="pay-left">
       <div class="pay-back-row">
@@ -164,7 +243,7 @@
       <h3 class="pay-section-h">Contact information</h3>
       <div class="pay-contact">
         <span class="pay-contact-label">Email</span>
-        <span class="pay-contact-email">allmusiclh2@gmail.com</span>
+        <input id="payEmail" type="email" class="pay-contact-email-input" placeholder="name@domain.com" autocomplete="email" required />
       </div>
 
       <h3 class="pay-section-h">Payment method</h3>
@@ -237,7 +316,7 @@
         </label>
       </div>
 
-      <button class="pay-subscribe" type="button" onclick="alert('Demo: subscription confirmed.')">Subscribe</button>
+      <button class="pay-subscribe" id="paySubscribeBtn" type="button">Subscribe</button>
 
       <p class="pay-disclaimer">
         By subscribing, you authorize AllMusic to charge you according to the terms until you cancel.
@@ -273,6 +352,27 @@
       var form = document.getElementById('payCardForm');
       if (form) form.style.display = (m === 'card') ? '' : 'none';
     }
+
+    // Subscribe → show post-payment thank-you card.
+    // No login is required up front; we ask for email here and tell the user
+    // we'll mail them their account credentials.
+    document.getElementById('paySubscribeBtn').addEventListener('click', function () {
+      var emailInput = document.getElementById('payEmail');
+      var email = (emailInput.value || '').trim();
+      if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        emailInput.focus();
+        emailInput.style.outline = '2px solid #c8323a';
+        return;
+      }
+      emailInput.style.outline = '';
+      document.getElementById('paySuccessEmail').textContent = email;
+      document.getElementById('paySuccessAmt').textContent =
+        document.getElementById('payLineAmt').textContent;
+      document.getElementById('payGrid').style.display = 'none';
+      var card = document.getElementById('paySuccess');
+      card.hidden = false;
+      window.scrollTo(0, 0);
+    });
   </script>
 
 </body>
